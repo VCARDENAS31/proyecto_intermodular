@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda de Videojuegos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .game-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .carousel-img {
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        nav.navbar {
+            background-color: #2D2959;
+        }
+
+        nav ul {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark py-3">
+        <div class="container-fluid"> 
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/imagenes/logo.png" class="img-fluid" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="mainNav">
+                <form class="d-none d-lg-flex mx-auto w-50" role="search">
+                    <input class="form-control" type="search" placeholder="Buscar..." />
+                </form>
+
+                <ul class="navbar-nav gap-3">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">VIDEOJUEGOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#artistas">CONSOLAS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#entradas">ACCESORIOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#informacion">PRÓXIMOS LANZAMIENTOS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <!-- CAROUSEL -->
+    <div id="mainCarousel" class="carousel slide mt-4 container" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://i.imgur.com/kcW3p6u.jpeg" class="d-block w-100 carousel-img" alt="Resident Evil" />
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.imgur.com/JRbCYxM.jpeg" class="d-block w-100 carousel-img" alt="Game 2" />
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.imgur.com/Sk5C1xY.jpeg" class="d-block w-100 carousel-img" alt="Game 3" />
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- ÚLTIMAS NOVEDADES -->
+    <div class="container mt-5">
+        <h3 class="fw-bold mb-3">Últimas Novedades</h3>
+        <div class="row g-3">
+            <div class="col-6 col-md-2"><img src="https://i.imgur.com/nXcO8Y8.jpeg" class="img-fluid rounded" /></div>
+            <div class="col-6 col-md-2"><img src="https://i.imgur.com/yE0KDv1.jpeg" class="img-fluid rounded" /></div>
+            <div class="col-6 col-md-2"><img src="https://i.imgur.com/1dEOi33.jpeg" class="img-fluid rounded" /></div>
+            <div class="col-6 col-md-2"><img src="https://i.imgur.com/3RlQqfS.jpeg" class="img-fluid rounded" /></div>
+            <div class="col-6 col-md-2"><img src="https://i.imgur.com/n7QHYqJ.jpeg" class="img-fluid rounded" /></div>
+        </div>
+    </div>
+
+    <!-- VIDEOJUEGOS LISTA -->
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold">Videojuegos</h3>
+            <button class="btn btn-outline-primary">Ver todo</button>
+        </div>
+
+        <div class="row g-4">
+            <!-- Template cards -->
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="border p-4">IMAGEN</div>
+                    <p class="mt-3">Producto no disponible</p>
+                    <button class="btn btn-primary">Agregar al carrito</button>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="border p-4">IMAGEN</div>
+                    <p class="mt-3">Producto no disponible</p>
+                    <button class="btn btn-primary">Agregar al carrito</button>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="border p-4">IMAGEN</div>
+                    <p class="mt-3">Producto no disponible</p>
+                    <button class="btn btn-primary">Agregar al carrito</button>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="border p-4">IMAGEN</div>
+                    <p class="mt-3">Producto no disponible</p>
+                    <button class="btn btn-primary">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts requeridos para Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
