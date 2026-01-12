@@ -7,142 +7,299 @@
     <title>Tienda de Videojuegos</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/all.min.css">
-    <style>
-        body {
-            background-color: #f5f5f5;
-        }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-        .game-card img {
-            width: 100%;
+    <style>
+        /* Carousel */
+        .carousel-item>img {
             border-radius: 10px;
         }
 
-        .carousel-img {
-            height: 400px;
-            object-fit: cover;
-            border-radius: 12px;
+        .iconos-nav {
+            gap: 20px;
+            font-size: 20px;
         }
 
-        nav.navbar {
+        .nav-principal {
             background-color: #2D2959;
         }
 
-        nav ul {
-            color: white;
+        hr {
+            background-color: white;
+        }
+
+        .logo {
+            width: 80px;
+        }
+
+        .nav-secundario {
+            background-color: #4B4682;
+        }
+
+        .carousel-indicators>button {
+            width: 10px;
+            height: 12px;
+            border-radius: 100%;
+            background-color: white;
+            margin: 0px 0px 10px 10px;
+            border: 0px;
+        }
+
+        .carousel-indicators .active {
+            background-color: #4B4682;
+            opacity: 1;
+        }
+
+
+        /* Flechas */
+        .carousel-control-prev,
+        .carousel-control-next {
+            filter: invert(1);
+            width: 45px;
+            height: 45px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 1;
+        }
+
+        /* Flecha izquierda */
+        .carousel-control-prev {
+            left: -60px;
+            /* mueve fuera */
+        }
+
+        /* Flecha derecha */
+        .carousel-control-next {
+            right: -60px;
+            /* mueve fuera */
+        }
+
+        @media (max-width: 768px) {
+            .carousel-control-prev {
+                left: 0px;
+                border-radius: 100%;
+                width: 15px;
+                height: 15px;
+                padding: 2px;
+                margin-left: 10px;
+            }
+
+            .carousel-control-next {
+                right: 0px;
+                border-radius: 100%;
+                width: 15px;
+                height: 15px;
+                padding: 2px;
+                margin-right: 10px;
+            }
         }
     </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark py-3">
-        <div class="container-fluid"> 
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="assets/imagenes/logo.png" class="img-fluid" alt="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNav">
+    <header>
+        <!-- NAVBAR PRINCIPAL -->
+        <nav class="navbar navbar-expand-lg p-3 nav-principal navbar-dark">
+            <!-- Botón menú móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>
+
             </button>
 
-            <div class="collapse navbar-collapse justify-content-between" id="mainNav">
-                <form class="d-none d-lg-flex mx-auto w-50" role="search">
-                    <input class="form-control" type="search" placeholder="Buscar..." />
+            <div class="logo">
+                <img class="img-fluid" src="assets/imagenes/logo_tienda.png">
+            </div>
+
+            <!-- Contenido colapsable -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+
+                <hr>
+                <ul class="navbar-nav d-lg-none w-100 mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-start ps-3" href="#">VIDEOJUEGOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-start ps-3" href="#">CONSOLAS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-start ps-3" href="#">ACCESORIOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white text-start ps-3" href="#">PRÓXIMOS LANZAMIENTOS</a>
+                    </li>
+                </ul>
+
+                <!-- Buscador -->
+                <form class="d-flex mx-lg-auto w-100 my-3 px-4">
+                    <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
                 </form>
 
-                <ul class="navbar-nav gap-3">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">VIDEOJUEGOS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#artistas">CONSOLAS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#entradas">ACCESORIOS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#informacion">PRÓXIMOS LANZAMIENTOS</a></li>
-                </ul>
             </div>
-        </div>
-    </nav>
-
-
-
-
-
-    <!-- CAROUSEL -->
-    <div id="mainCarousel" class="carousel slide mt-4 container" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://i.imgur.com/kcW3p6u.jpeg" class="d-block w-100 carousel-img" alt="Resident Evil" />
+            <div class="d-flex iconos-nav ">
+                <a href="#" class="text-white">
+                    <i class="bi bi-person fs-4"></i>
+                </a>
+                <a href="#" class="text-white">
+                    <i class="bi bi-cart fs-4"></i>
+                </a>
             </div>
-            <div class="carousel-item">
-                <img src="https://i.imgur.com/JRbCYxM.jpeg" class="d-block w-100 carousel-img" alt="Game 2" />
-            </div>
-            <div class="carousel-item">
-                <img src="https://i.imgur.com/Sk5C1xY.jpeg" class="d-block w-100 carousel-img" alt="Game 3" />
-            </div>
-        </div>
+        </nav>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    </div>
-
-    <!-- ÚLTIMAS NOVEDADES -->
-    <div class="container mt-5">
-        <h3 class="fw-bold mb-3">Últimas Novedades</h3>
-        <div class="row g-3">
-            <div class="col-6 col-md-2"><img src="https://i.imgur.com/nXcO8Y8.jpeg" class="img-fluid rounded" /></div>
-            <div class="col-6 col-md-2"><img src="https://i.imgur.com/yE0KDv1.jpeg" class="img-fluid rounded" /></div>
-            <div class="col-6 col-md-2"><img src="https://i.imgur.com/1dEOi33.jpeg" class="img-fluid rounded" /></div>
-            <div class="col-6 col-md-2"><img src="https://i.imgur.com/3RlQqfS.jpeg" class="img-fluid rounded" /></div>
-            <div class="col-6 col-md-2"><img src="https://i.imgur.com/n7QHYqJ.jpeg" class="img-fluid rounded" /></div>
-        </div>
-    </div>
-
-    <!-- VIDEOJUEGOS LISTA -->
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="fw-bold">Videojuegos</h3>
-            <button class="btn btn-outline-primary">Ver todo</button>
-        </div>
-
-        <div class="row g-4">
-            <!-- Template cards -->
-            <div class="col-6 col-md-3">
-                <div class="card p-3 text-center">
-                    <div class="border p-4">IMAGEN</div>
-                    <p class="mt-3">Producto no disponible</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
+        <!-- NAVBAR SECUNDARIO -->
+        <nav class="navbar navbar-expand-lg d-none d-lg-flex nav-secundario">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarCategories">
+                    <ul class="navbar-nav w-100 justify-content-between text-center">
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3" href="#">
+                                <i class="bi bi-controller mr-1"></i> VIDEOJUEGOS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3 d-flex align-items-center" href="#">
+                                <i class="bi bi-box-fill mr-1"></i> CONSOLAS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white py-3 d-flex align-items-center" href="#">
+                                <i class="bi bi-headset mr-1"></i> ACCESORIOS
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white p-3 d-flex align-items-center" href="#">
+                                <i class="bi bi-calendar-event mr-1"></i> PRÓXIMOS LANZAMIENTOS
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </nav>
+    </header>
 
-            <div class="col-6 col-md-3">
-                <div class="card p-3 text-center">
-                    <div class="border p-4">IMAGEN</div>
-                    <p class="mt-3">Producto no disponible</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
-                </div>
-            </div>
+    <main>
+        <!-- CAROUSEL RESPONSIVO -->
+        <div class="container my-4">
+            <div id="carrusel-imagenes" class="carousel slide" data-bs-ride="carousel">
 
-            <div class="col-6 col-md-3">
-                <div class="card p-3 text-center">
-                    <div class="border p-4">IMAGEN</div>
-                    <p class="mt-3">Producto no disponible</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="0"
+                        class="active"></button>
+                    <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="2"></button>
                 </div>
-            </div>
 
-            <div class="col-6 col-md-3">
-                <div class="card p-3 text-center">
-                    <div class="border p-4">IMAGEN</div>
-                    <p class="mt-3">Producto no disponible</p>
-                    <button class="btn btn-primary">Agregar al carrito</button>
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-4"
+                            alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/imagenes/resident_requiem.png" class="d-block w-100 img-fluid" alt="">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100 img-fluid" alt="">
+                    </div>
                 </div>
+
+                <!-- Controles -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-imagenes"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrusel-imagenes"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+
             </div>
         </div>
-    </div>
 
+        <section class="container my-5">
+
+            <!-- Título -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="fw-bold">ÚLTIMAS NOVEDADES</h4>
+                <a href="#" class="btn btn-light btn-sm">VER TODO</a>
+            </div>
+
+            <!-- Carousel -->
+            <div id="novedadesCarousel" class="carousel slide" data-bs-ride="false">
+
+                <div class="carousel-inner">
+
+                    <!-- SLIDE 1 -->
+                    <div class="carousel-item active">
+                        <div class="row g-3">
+                            <div class="col-6 col-md-3 card">
+                                <img src="https://cdn.mos.cms.futurecdn.net/XFMNa86ArHaGtugMrkkLdT.jpg"
+                                    class="img-fluid rounded-3" alt="Call of Duty">
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <img src="https://nintendoeverything.com/wp-content/uploads/Mario-Tennis-Fever-boxart.jpg"
+                                    class="img-fluid rounded-3" alt="Mario Tennis Fever">
+                            </div>
+
+                            <div class="col-6 col-md-3 d-none d-md-block">
+                                <img src="https://media.gamestop.com/i/gamestop/20027423/Mario-Tennis-Fever---Nintendo-Switch-2?fmt=auto&h=768&w=768"
+                                    class="img-fluid rounded-3" alt="Mario Tennis">
+                            </div>
+
+                            <div class="col-6 col-md-3 d-none d-md-block">
+                                <img src="https://nintendosoup.com/wp-content/uploads/2018/07/octopath-traveler-cover-art-photo-1.jpg"
+                                    class="img-fluid rounded-3" alt="Octopath Traveler">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2 -->
+                    <div class="carousel-item">
+                        <div class="row g-3">
+                            <div class="col-6 col-md-3">
+                                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/0c7bbf4c3b3fd9f65d9e6bfa8d3c2bbd1d4d2b573b6627b6.png"
+                                    class="img-fluid rounded-3" alt="God of War Ragnarok">
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <img src="https://image.api.playstation.com/vulcan/ap/rnd/202206/0921/7db4d93cda5c32fcb6b3c72d5b42e9e08b9c2a3e3e8edb67.png"
+                                    class="img-fluid rounded-3" alt="The Last of Us Part II">
+                            </div>
+
+                            <div class="col-6 col-md-3 d-none d-md-block">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg"
+                                    class="img-fluid rounded-3" alt="Elden Ring">
+                            </div>
+
+                            <div class="col-6 col-md-3 d-none d-md-block">
+                                <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg"
+                                    class="img-fluid rounded-3" alt="The Witcher 3">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Flechas -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#novedadesCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon rounded-circle"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#novedadesCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon rounded-circle"></span>
+                </button>
+
+            </div>
+        </section>
+
+
+    </main>
     <!-- Scripts requeridos para Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
