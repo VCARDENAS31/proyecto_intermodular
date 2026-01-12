@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda de Videojuegos</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
@@ -109,13 +108,130 @@
                 display: none;
             }
         }
+
+        .link-noticia {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        #arrastrar-scroll .card {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #arrastrar-scroll .card-body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+       
+        .footer {
+    background: linear-gradient(180deg, #2d2959, #2a2753);
+    color: #fff;
+    font-size: 14px;
+}
+
+/* Barra superior */
+.footer-top {
+    background: #1f1c3f;
+}
+
+.footer-logo {
+    width: 85px;
+}
+
+/* Columnas */
+.footer-col {
+    position: relative;
+}
+
+/* Títulos */
+.footer-title {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Categorías */
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    text-decoration: none;
+    transition: background .2s ease;
+}
+
+.footer-links a:hover {
+    background: rgba(255,255,255,0.18);
+}
+
+/* Contacto */
+.footer-contact {
+    margin-bottom: 14px;
+    opacity: 0.9;
+}
+
+.footer-contact i {
+    margin-right: 8px;
+}
+
+/* Redes */
+.footer-social li {
+    margin-bottom: 12px;
+    opacity: 0.9;
+    transition: opacity .2s ease;
+}
+
+.footer-social li:hover {
+    opacity: 1;
+}
+
+.footer-social i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* Colores redes */
+.bi-instagram { color: #e1306c; }
+.bi-facebook { color: #1877f2; }
+.bi-twitter-x { color: #1da1f2; }
+
+/* Copyright */
+.footer-bottom {
+    background: rgba(0,0,0,0.15);
+    color: #ccc;
+    font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-title {
+        text-align: center;
+    }
+.footer-links a {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
     </style>
 </head>
 
 <body>
     <header>
         <!-- NAVBAR PRINCIPAL -->
-        <nav class="navbar navbar-expand-lg p-3 nav-principal navbar-dark container">
+        <nav class="navbar navbar-expand-lg p-3 nav-principal navbar-dark">
             <!-- Botón menú móvil -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                 <span class="navbar-toggler-icon"></span>
@@ -132,16 +248,17 @@
                 <hr>
                 <ul class="navbar-nav d-lg-none w-100 mt-3">
                     <li class="nav-item">
-                        <a class="nav-link text-white text-start ps-3" href="#"> VIDEOJUEGOS</a>
+                        <a class="nav-link text-white text-start ps-3" href="#"><i class="bi bi-controller mr-1"></i> VIDEOJUEGOS</a>
+                        
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white text-start ps-3" href="#"> CONSOLAS</a>
+                        <a class="nav-link text-white text-start ps-3" href="#"><i class="bi bi-box-fill mr-1"></i> CONSOLAS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white text-start ps-3" href="#"> ACCESORIOS</a>
+                        <a class="nav-link text-white text-start ps-3" href="#"><i class="bi bi-headset mr-1"></i> ACCESORIOS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white text-start ps-3" href="#"> PRÓXIMOS LANZAMIENTOS</a>
+                        <a class="nav-link text-white text-start ps-3" href="#"><i class="bi bi-calendar-event mr-1"></i> PRÓXIMOS LANZAMIENTOS</a>
                     </li>
                 </ul>
 
@@ -161,9 +278,10 @@
                 </a>
             </div>
         </nav>
+        
 
         <!-- NAVBAR SECUNDARIO -->
-        <nav class="navbar navbar-expand-lg d-none d-lg-flex nav-secundario container">
+        <nav class="navbar navbar-expand-lg d-none d-lg-flex nav-secundario">
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarCategories">
                     <ul class="navbar-nav w-100 justify-content-between text-center">
@@ -317,112 +435,177 @@
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
+                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-fc26-xbox.jpg">
+                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
+                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-fc26-xbox.jpg">
+                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
+                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-fc26-xbox.jpg">
+                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
+                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-fc26-xbox.jpg">
+                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
+                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/juego-fc26-xbox.jpg">
+                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
 
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -430,7 +613,7 @@
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
-                
+
             </div>
         </section>
 
@@ -460,120 +643,161 @@
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/ps5-digital.png">
+                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/xbox-seriesx.png">
+                                <p class="small fw-bold mb-3">XBOX SERIES X 1TB</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/ns1-oled.png">
+                                <p class="small fw-bold mb-3">Nintendo Switch Oled</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/ps5-digital.png">
+                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/xbox-seriesx.png">
+                                <p class="small fw-bold mb-3">XBOX SERIES X 1TB</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/ns1-oled.png">
+                                <p class="small fw-bold mb-3">Nintendo Switch Oled</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/ps5-digital.png">
+                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2"
+                                    src="assets/imagenes/xbox-seriesx.png">
+                                <p class="small fw-bold mb-3">XBOX SERIES X 1TB</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/ns1-oled.png">
+                                <p class="small fw-bold mb-3">Nintendo Switch Oled</p>
+
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
                     </div>
 
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
-                
+
             </div>
         </section>
 
@@ -601,124 +825,254 @@
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
+                            <div class="card-body p-1 text-center d-flex flex-column">
+                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/dualsense-edge-ps5.png">
+                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/juego-007.webp">
-                                <p class="small fw-bold mb-2">FIRST 007 PS5</p>
-                                <button class="btn btn-primary btn-sm w-100 mb-1"><i class="bi bi-cart"></i>
-                                    COMPRAR</button>
-                                <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-eye"></i>
-                                    VER</button>
-                            </div>
-                        </div>
                     </div>
 
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
-                
+
+            </div>
+        </section>
+
+
+        <section id="noticias-videojuegos" class="bg-light py-5">
+            <div class="container">
+                <hr class="mb-5">
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card-noticia shadow-sm">
+                            <a href="https://www.hobbyconsolas.com/videojuegos/sony-anuncia-coleccion-hyperpop-con-nuevos-mandos-carcasas-ps5-3-colores-reservas-precio-fecha-lanzamiento_6918304_0.html"
+                                class="link-noticia">
+                                <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=500"
+                                    alt="DualSense PS5" class="card-img-top">
+                                <div class="card-body p-4">
+                                    <span>Hardware</span>
+                                    <h3>Nuevos colores para el DualSense Edge confirmados</h3>
+                                    <p>Sony anuncia una nueva línea de mandos profesionales con acabados metálicos que
+                                        llegarán a las tiendas el próximo mes.</p>
+                                </div>
+                        </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://www.muycomputer.com/2026/01/12/intel-panther-lake-estara-al-nivel-de-ps6-portatil/"
+                            class="link-noticia">
+                            <div class="card-noticia shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500"
+                                    class="card-img-top" alt="Hardware">
+                                <div class="card-body p-4">
+                                    <span class="categoria-noticia">Hardware</span>
+                                    <h3>Nueva consola portátil en desarrollo</h3>
+                                    <p>Filtraciones indican que la nueva generación de dispositivos
+                                        portátiles duplicará su potencia gráfica este otoño.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="https://www.clavecd.es/elden-ring-2-impactante-actualizacion-de-fromsoftware-news-d/"
+                            class="link-noticia">
+                            <div class="card-noticia shadow-sm">
+                                <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&q=80&w=500"
+                                    class="card-img-top" alt="Lanzamientos">
+                                <div class="card-body p-4">
+                                    <span>Lanzamientos</span>
+                                    <h3>Elden Ring 2: Rumores sobre su mundo abierto</h3>
+                                    <p>Nuevos reportes sugieren que el mapa será tres veces más
+                                        grande e incluirá un sistema climático dinámico.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
+<footer class="footer mt-5">
+
+    <!-- Barra superior -->
+    <div class="footer-top text-center py-3">
+        <img src="assets/imagenes/logo_tienda.png" alt="VicioGames" class="footer-logo">
+    </div>
+
+    <!-- Contenido -->
+    <div class="container py-5">
+        <div class="row text-white align-items-start">
+
+            <!-- CATEGORÍAS -->
+            <div class="col-md-4 mb-4 mb-md-0 footer-col">
+                <h6 class="footer-title">CATEGORÍAS</h6>
+
+                <ul class="list-unstyled footer-links text-center">
+                    <li><a href="#" class="d-block w-50">Videojuegos</a></li>
+                    <li><a href="#" class="d-block w-50">Consolas</a></li>
+                    <li><a href="#" class="d-block w-50">Accesorios</a></li>
+                    <li><a href="#" class="d-block w-50">Próximos lanzamientos</a></li>
+                </ul>
+            </div>
+
+            <!-- CONTACTO -->
+            <div class="col-md-4 mb-4 mb-md-0 footer-col text-center">
+                <h6 class="footer-title">CONTACTO</h6>
+
+                <p class="footer-contact">
+                    <i class="bi bi-telephone-fill"></i>
+                    +34 626 45 33 43
+                </p>
+
+                <p class="footer-contact">
+                    <i class="bi bi-envelope-fill"></i>
+                    viciogames@gmail.com
+                </p>
+            </div>
+
+            <!-- REDES -->
+            <div class="col-md-4 footer-col text-md-end text-center">
+                <h6 class="footer-title">SÍGUENOS</h6>
+
+                <ul class="list-unstyled footer-social">
+                    <li><i class="bi bi-instagram"></i> Instagram</li>
+                    <li><i class="bi bi-facebook"></i> Facebook</li>
+                    <li><i class="bi bi-twitter-x"></i> Twitter</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom text-center py-3">
+        <small>© 2025 VicioGames. Todos los derechos reservados.</small>
+    </div>
+
+</footer>
+
+
+
     <!-- Scripts requeridos para Bootstrap -->
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
