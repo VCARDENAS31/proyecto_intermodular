@@ -1,16 +1,38 @@
+const slider = document.getElementById('arrastrar-scroll');
+let isDown = false;
+let startX;
+let scrollLeft;
 
-    const contenedor = document.getElementById('contenedor-juegos');
-    const btnIzq = document.getElementById('btn-izq');
-    const btnDer = document.getElementById('btn-der');
+slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.style.cursor = 'grabbing';
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
 
-    // Al hacer clic en la flecha derecha
-    btnDer.addEventListener('click', () => {
-        // Desplaza el contenedor hacia la derecha el ancho de una carta aproximadamente
-        contenedor.scrollLeft += 300; 
+slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+});
+
+slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.style.cursor = 'grab';
+});
+
+slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // El 2 es la sensibilidad
+    slider.scrollLeft = scrollLeft - walk;
+});
+
+function scrollSlider(button, distance) {
+    // Busca el contenedor de scroll que está al lado del botón
+    const slider = button.parentElement.querySelector('#arrastrar-scroll');
+    slider.scrollBy({
+        left: distance,
+        behavior: 'smooth'
     });
-
-    // Al hacer clic en la flecha izquierda
-    btnIzq.addEventListener('click', () => {
-        // Desplaza el contenedor hacia la izquierda
-        contenedor.scrollLeft -= 300;
-    });
+}

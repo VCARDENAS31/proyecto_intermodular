@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "bootstrap": "v4.6"
+    "bootstrap": "^5.3.8"
   }
 }
