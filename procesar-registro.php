@@ -1,5 +1,5 @@
 <?php
-session_start(); // OBLIGATORIO para usar sesiones
+session_start(); 
 include('conexion-bd.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
