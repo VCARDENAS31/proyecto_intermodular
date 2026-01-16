@@ -28,39 +28,54 @@
 
             <!-- SIDEBAR MÓVIL -->
             <div id="sidebarMovil" class="d-flex flex-column bg-dark">
+                <!-- Botón cerrar sidebar -->
                 <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
                     aria-label="Cerrar"></button>
 
-                <h2 class="text-white mt-5 text-center">Categorías</h2>
-                <ul class="list-unstyled mt-4 text-center">
-                    <li><a href="#" class="text-white menu-item"><i class="bi bi-controller"></i> VIDEOJUEGOS</a></li>
-                    <li><a href="#" class="text-white menu-item"><i class="bi bi-box-fill"></i> CONSOLAS</a></li>
-                    <li><a href="#" class="text-white menu-item"><i class="bi bi-headset"></i> ACCESORIOS</a></li>
-                    <li><a href="#" class="text-white menu-item"><i class="bi bi-calendar-event"></i> PRÓXIMOS LANZAMIENTOS</a>
+                <h2 class="text-white mt-5 text-center mb-5">Categorías</h2>
+                <!-- Menú categorías -->
+                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-controller"></i> VIDEOJUEGOS</a></li>
+                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-box-fill"></i> CONSOLAS</a></li>
+                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-headset"></i> ACCESORIOS</a></li>
+                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-calendar-event"></i> PRÓXIMOS
+                            LANZAMIENTOS</a>
                     </li>
                 </ul>
-
+                <!-- Buscador móvil -->
                 <form class="d-flex w-100 my-3 px-4">
                     <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
                 </form>
-
-                <button type="submit" class="btn btn-danger logout-btn">Cerrar sesión</button>
+                <!-- Botón cerrar sesión -->
+                <button class="btn btn-danger logout-btn btn-cerrar-sesion">
+                    CERRAR SESIÓN
+                </button>
             </div>
+            <!-- ===== FIN SIDEBAR ===== -->
 
+            <!-- Overlay -->
             <div id="overlaySidebar"></div>
 
-
+            <!-- Buscador escritorio -->
             <form class="d-none d-lg-flex w-100 my-3 px-4">
-                <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
+                <input class="form-control rounded-pill px-4 d-flex" type="search" placeholder="Buscar videojuegos">
             </form>
 
-
             </div>
-            <div class="d-xs-none d-flex iconos-nav">
-                <a href="#" class="text-white">
-                    <i class="bi bi-person fs-4"></i>
-                </a>
 
+            <!-- Iconos usuario y carrito -->
+            <div class="d-xs-none d-flex iconos-nav">
+                <div class="dropdown">
+                    <!-- icono login -->
+                    <a href="#" class="text-white " id="userMenu" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-4"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item btn-cerrar-sesion" href="#"><i
+                                    class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
+                    </ul>
+                </div>
+
+                <!-- icono Carrito -->
                 <a href="#" class="text-white">
                     <i class="bi bi-cart fs-4"></i>
                 </a>
@@ -138,7 +153,9 @@
             </div>
         </div>
 
-        <section id="proximos-lanzamientos" >
+        <!-- ===== SECCIONES DE PRODUCTOS ===== -->
+        <!-- Próximos lanzamientos -->
+        <section id="proximos-lanzamientos">
             <div class="container rounded-4 p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
@@ -194,14 +211,14 @@
                     <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
                         <img class="card-img-top img-fluid" src="assets/imagenes/resident-evil-requiem.webp">
                     </div>
-                    
-                </div>
-                
-            </div>
-            
-        </section>
-        
 
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Videojuegos -->
         <section id="videojuegos">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
@@ -409,7 +426,7 @@
         </section>
 
 
-
+        <!-- Consolas -->
         <section id="consolas">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
@@ -592,6 +609,7 @@
             </div>
         </section>
 
+        <!-- Accesorios -->
         <section id="accesorios">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
@@ -753,7 +771,7 @@
             </div>
         </section>
 
-
+        <!-- ===== SECCIÓN NOTICIAS ===== -->
         <section id="noticias-videojuegos" class="bg-light py-5">
             <div class="container">
                 <hr class="mb-5">
@@ -811,6 +829,8 @@
         </section>
 
     </main>
+
+    <!-- ================= FOOTER ================= -->
     <footer class="footer mt-5">
 
         <!-- Barra superior -->

@@ -1,358 +1,363 @@
-        body {
-            background-color: rgb(255, 255, 255);
-        }
-
-
-        /* PÁGINA USER*/
-
-        /* Carousel */
-        .carousel-item>img {
-            border-radius: 10px;
-            border: 2px solid black;
-        }
-
-        .iconos-nav {
-            gap: 20px;
-            font-size: 20px;
-        }
-
-
-        hr {
-            border: 1px solid black;
-        }
-
-        .logo {
-            width: 80px;
-        }
-
-        .nav-secundario {
-            background-color: #4B4682;
-        }
-
-        .carousel-indicators .active {
-            background-color: #4B4682;
-            opacity: 1;
-        }
-
-
-        .btn-ver-todo:hover {
-            background-color: #bcbcbc;
-        }
-
-
-        #arrastrar-scroll img {
-            pointer-events: none;
-            user-select: none;
-        }
-
-        #arrastrar-scroll {
-            overflow-x: auto;
-        }
-
-        .card {
-            width: 200px;
-        }
-
-        .contenedor-slider {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Flechas Estilizadas */
-        .btn-scroll {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: #4B4682;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            z-index: 10;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-scroll:hover {
-            background: #2D2959;
-            transform: scale(1.1);
-        }
-
-        .prev-btn {
-            left: -20px;
-        }
-
-        .next-btn {
-            right: -20px;
-        }
-
-        /* Ocultar flechas en móviles*/
-        @media (max-width: 768px) {
-            .btn-scroll {
-                display: none;
-            }
-        }
-
-        .link-noticia {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        #arrastrar-scroll .card {
-            height: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #arrastrar-scroll .card-body {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-
-        .footer {
-            background: linear-gradient(180deg, #2d2959, #2a2753);
-            color: #fff;
-            font-size: 14px;
-        }
-
-        /* Barra superior */
-        .footer-top {
-            background: #1f1c3f;
-        }
-
-        .footer-logo {
-            width: 85px;
-        }
-
-        /* Columnas */
-        .footer-col {
-            position: relative;
-        }
-
-        /* Títulos */
-        .footer-title {
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        /* Categorías */
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            background: rgba(255, 255, 255, 0.18);
-        }
-
-        /* Contacto */
-        .footer-contact {
-            margin-bottom: 14px;
-            opacity: 0.9;
-        }
-
-        .footer-contact i {
-            margin-right: 8px;
-        }
-
-        /* Redes */
-        .footer-social li {
-            margin-bottom: 12px;
-            opacity: 0.9;
-            transition: opacity .2s ease;
-        }
-
-        .footer-social li:hover {
-            opacity: 1;
-        }
-
-        .footer-social i {
-            font-size: 18px;
-            margin-right: 10px;
-        }
-
-        /* Colores redes */
-        .bi-instagram {
-            color: #e1306c;
-        }
-
-        .bi-facebook {
-            color: #1877f2;
-        }
-
-        .bi-twitter-x {
-            color: #1da1f2;
-        }
-
-        /* Copyright */
-        .footer-bottom {
-            background: rgba(0, 0, 0, 0.15);
-            color: #ccc;
-            font-size: 13px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .footer-title {
-                text-align: center;
-            }
-
-            .footer-links a {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        #sidebarMovil.mostrar {
-            transform: translateX(0);
-        }
-
-        #sidebarMovil a {
-            display: block;
-            padding: 14px;
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-
-
-
-        /* PÁGINA ADMINISTRADOR*/
-
-
-
-        /* --- NAVBAR --- */
-        .navbar-admin {
-            background-color: black;
-        }
-
-
-        /* --- SIDEBAR --- */
-        #sidebarMovil {
-            background-color: #0b3c6f;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: -300px;
-            width: 300px;
-            height: 100vh;
-            transition: all 0.3s ease;
-            z-index: 1050;
-            display: flex;
-            flex-direction: column;
-        }
-
-
-
-        #sidebarMovil.mostrar {
-            left: 0;
-        }
-
-        #sidebarMovil .user-section {
-            text-align: center;
-            padding: 30px 10px;
-        }
-
-        #sidebarMovil .user-section i {
-            font-size: 60px;
-        }
-
-        #sidebarMovil .menu-item {
-            padding: 14px 22px;
-            cursor: pointer;
-            font-size: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.2s;
-        }
-
-        #sidebarMovil .menu-item:hover,
-        .menu-item:hover {
-            outline: 1px solid #bcbcbc;
-        }
-
-        .logout-btn {
-            margin: auto 20px 30px 20px;
-            font-weight: bold;
-        }
-
-        /* --- CONTENIDO PRINCIPAL --- */
-        #content {
-            flex-grow: 1;
-            margin-top: 56px;
-            /* Espacio para la navbar fija */
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        /* En pantallas grandes, si el sidebar está abierto, empujamos el contenido */
-        @media (min-width: 769px) {
-            #sidebarMovil.mostrar+#content {
-                margin-left: 280px;
-            }
-        }
-
-        /* --- TARJETAS DE ACCIÓN --- */
-        .card-action {
-            border: 1px solid #ddd;
-            text-align: center;
-            padding: 40px 20px;
-            cursor: pointer;
-            transition: 0.3s;
-            background-color: white;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-action:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
-            border-color: #0b3c6f;
-        }
-
-        .card-action i {
-            font-size: 50px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .card-action h6 {
-            font-weight: bold;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        #overlaySidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-            display: none;
-        }
-
-        #overlaySidebar.mostrar {
-            display: block;
-        }
+/* ======================================================
+   ESTILOS GENERALES / REUTILIZABLES
+====================================================== */
+
+body {
+    background-color: #ffffff;
+}
+
+hr {
+    border: 1px solid black;
+}
+
+.logo {
+    width: 80px;
+}
+
+.link-noticia {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ---------- Cards reutilizables ---------- */
+
+.card-action,
+.card-noticia {
+    border-radius: 12px;
+    background-color: #fff;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    cursor: pointer;
+}
+
+.card-action:hover,
+.card-noticia:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: #0b3c6f;
+}
+
+/* ======================================================
+   ESTILOS PÁGINA USER
+====================================================== */
+
+/* ---------- Navbar ---------- */
+
+.iconos-nav {
+    gap: 20px;
+    font-size: 20px;
+}
+
+.nav-secundario {
+    background-color: #4B4682;
+}
+
+/* ---------- Carousel ---------- */
+
+.carousel-item > img {
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.carousel-indicators .active {
+    background-color: #4B4682;
+    opacity: 1;
+}
+
+/* ---------- Botones ---------- */
+
+.btn-ver-todo:hover {
+    background-color: #bcbcbc;
+}
+
+/* ---------- Slider productos ---------- */
+
+#arrastrar-scroll {
+    overflow-x: auto;
+}
+
+#arrastrar-scroll img {
+    pointer-events: none;
+    user-select: none;
+}
+
+#arrastrar-scroll .card {
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#arrastrar-scroll .card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.contenedor-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* ---------- Flechas slider ---------- */
+
+.btn-scroll {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #4B4682;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-scroll:hover {
+    background: #2D2959;
+    transform: scale(1.1);
+}
+
+.prev-btn {
+    left: -20px;
+}
+
+.next-btn {
+    right: -20px;
+}
+
+/* Ocultar flechas en móviles */
+@media (max-width: 768px) {
+    .btn-scroll {
+        display: none;
+    }
+}
+
+/* ---------- Noticias ---------- */
+
+.card-noticia {
+    overflow: hidden;
+}
+
+.card-noticia img {
+    transition: transform 0.5s ease;
+}
+
+.card-noticia:hover img {
+    transform: scale(1.08);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+    background: linear-gradient(180deg, #2d2959, #2a2753);
+    color: #fff;
+    font-size: 14px;
+}
+
+.footer-top {
+    background: #1f1c3f;
+}
+
+.footer-logo {
+    width: 85px;
+}
+
+.footer-col {
+    position: relative;
+}
+
+.footer-title {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.footer-contact {
+    margin-bottom: 14px;
+    opacity: 0.9;
+}
+
+.footer-contact i {
+    margin-right: 8px;
+}
+
+.footer-social li {
+    margin-bottom: 12px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+.footer-social li:hover {
+    opacity: 1;
+}
+
+.footer-social i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* Colores redes */
+.bi-instagram { color: #e1306c; }
+.bi-facebook  { color: #1877f2; }
+.bi-twitter-x { color: #1da1f2; }
+
+.footer-bottom {
+    background: rgba(0, 0, 0, 0.15);
+    color: #ccc;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .footer-title {
+        text-align: center;
+    }
+
+    .footer-links a {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ======================================================
+   ESTILOS PÁGINA ADMIN
+====================================================== */
+
+/* ---------- Navbar ---------- */
+
+.navbar-admin {
+    background-color: black;
+}
+
+/* ---------- Sidebar ---------- */
+
+#sidebarMovil {
+    background-color: #000;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    transition: all 0.3s ease;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebarMovil.mostrar {
+    left: 0;
+}
+
+#sidebarMovil .user-section {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+
+#sidebarMovil .user-section i {
+    font-size: 60px;
+}
+
+#sidebarMovil .menu-item {
+    padding: 14px 22px;
+    cursor: pointer;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.2s;
+}
+
+#sidebarMovil .menu-item:hover {
+    outline: 1px solid #bcbcbc;
+}
+
+.logout-btn {
+    margin: auto 20px 30px;
+    font-weight: bold;
+}
+
+/* ---------- Contenido ---------- */
+
+#content {
+    flex-grow: 1;
+    margin-top: 56px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+@media (min-width: 769px) {
+    #sidebarMovil.mostrar + #content {
+        margin-left: 280px;
+    }
+}
+
+/* ---------- Cards Admin ---------- */
+
+.card-action {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 40px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-action i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.card-action:hover i {
+    color: #0b3c6f;
+}
+
+.card-action h6 {
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* ---------- Overlay ---------- */
+
+#overlaySidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    display: none;
+}
+
+#overlaySidebar.mostrar {
+    display: block;
+}
