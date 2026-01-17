@@ -4,6 +4,7 @@ session_start();
 
 // Incluye la conexión a la base de datos
 include('conexion-bd.php');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 // Verifica que el formulario haya sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
