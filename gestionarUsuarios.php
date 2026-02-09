@@ -82,52 +82,52 @@
 
 
         <!-- ================= CONTENIDO PRINCIPAL ================= -->
-        <div id="content" class="p-4 p-md-5">
+    <div class="contenido p-4 flex-grow-1 d-flex justify-content-center align-items-center" style="min-height: 90vh">
+        <div class="container">
 
-            <!-- Título -->
-            <h3 class="text-center mb-5 fw-bold">SELECCIONA UNA ACCIÓN</h3>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>Gestionar Usuarios</h1>
+                <button class="btn btn-success shadow-sm">
+                    <i class="bi bi-person-plus-fill me-2"></i>Añadir Usuario
+                </button>
+            </div>
 
-            <!-- Acciones del panel -->
-            <div class="container">
-                <div class="row g-4 justify-content-center">
-
-                    <!-- Card acción -->
-                    <div class="col-6 col-md-4">
-                        <a href="gestionarUsuarios.php">
-                        <div class="card-action">
-                            <i class="bi bi-people"></i>
-                            <h6>GESTIONAR USUARIOS</h6>
-                        </div>
-                    </a>
-                    </div>
-
-                    <!-- Card acción -->
-                    <div class="col-6 col-md-4">
-                        <div class="card-action">
-                            <i class="bi bi-box-seam"></i>
-                            <h6>GESTIONAR PRODUCTOS</h6>
-                        </div>
-                    </div>
-
-                    <!-- Card acción -->
-                    <div class="col-6 col-md-4">
-                        <div class="card-action">
-                            <i class="bi bi-percent"></i>
-                            <h6>GESTIONAR CUPONES</h6>
-                        </div>
-                    </div>
-
-                    <!-- Card acción -->
-                    <div class="col-6 col-md-4">
-                        <div class="card-action">
-                            <i class="bi bi-truck"></i>
-                            <h6>ACTUALIZAR PEDIDOS</h6>
-                        </div>
-                    </div>
-
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0 text-center align-middle">
+                    <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre completo</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Juan Pérez</td>
+                                <td>juan.perez@ejemplo.com</td>
+                                <td><span class="badge bg-secondary">User</span></td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm text-white">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+        
+    </div>
+</div>
         <!-- ================= FIN CONTENIDO ================= -->
 
     </div>
