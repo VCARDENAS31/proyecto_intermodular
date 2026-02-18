@@ -8,6 +8,7 @@ const botonMenu = document.getElementById('botonMenu');
 const sidebarMovil = document.getElementById('sidebarMovil');
 const overlaySidebar = document.getElementById('overlaySidebar');
 
+
 // Abre/cierra sidebar al hacer clic en el botón del menú
 botonMenu.addEventListener('click', () => {
     sidebarMovil.classList.toggle('mostrar'); // Muestra u oculta el sidebar
@@ -44,6 +45,8 @@ function scrollSlider(boton, cantidadDesplazamiento) {
         behavior: 'smooth'
     });
 }
+
+
 
 
 // ==========================

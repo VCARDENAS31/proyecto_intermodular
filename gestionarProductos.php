@@ -1,10 +1,3 @@
-<?php
-include 'conexion-bd.php';
-include 'consultas.php';
-
-$resultado = obtenerUsuarios($conexion); // Llamamos a la función
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -59,7 +52,7 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
     <div class="d-flex">
 
         <!-- ================= SIDEBAR ================= -->
-        <div id="sidebarMovil" class="bg-dark">
+        <div id="sidebarMovil">
 
             <!-- Botón cerrar sidebar -->
             <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
@@ -91,10 +84,11 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
     <div class="contenido-gestion p-4 flex-grow-1 d-flex justify-content-center align-items-center">
         <div class="container">
 
-            <h1 class="text-center">Gestionar Usuarios</h1><br>
+            <h1 class="text-center">Gestionar Productos</h1>
+            <br>
             <div class="d-flex justify-content-end align-items-center mb-4">
                 <button class="btn btn-success shadow-sm">
-                    <i class="bi bi-person-plus-fill me-2"></i>Añadir Usuario
+                    <i class="bi bi-plus-circle me-2"></i>Añadir producto
                 </button>
             </div>
 
@@ -105,42 +99,38 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                             <thead class="table-dark">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre completo</th>
-                                    <th>Email</th>
-                                    <th>Rol</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                    <th>Tipo</th>
+                                    <th>Categoría</th>
+                                    <th>Imagen</th>
+                                    <th>Plataforma</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <?php while ($user = mysqli_fetch_assoc($resultado)): ?>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <?php echo $user['id_usuario']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $user['nombre'] . " " . $user['apellidos']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $user['email']; ?>
-                                        </td>
-                                        <td>
-                                            <span
-                                                class="badge <?php echo ($user['rol'] == 'admin') ? 'bg-primary' : 'bg-secondary'; ?>">
-                                                <?php echo ($user['rol']); ?>
-                                            </span>
-                                        </td>
-                                        <td class="text-nowrap">
-                                            <div class="d-flex justify-content-center gap-3">
-                                                <button class="btn btn-warning btn-sm text-white"><i
-                                                        class="bi bi-pencil-square"></i></button>
-                                                <button class="btn btn-danger btn-sm"
-                                                    onclick="confirmarEliminar(<?php echo $user['id_usuario']; ?>)">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Elden ring </td>
+                                    <td>29.99€</td>
+                                    <td>10</td>
+                                    <td>Juego</td>
+                                    <td>Acción</td>
+                                    <td><img src="assets/imagenes/eldenring.jpg" alt="Elden Ring" class="img-thumbnail"
+                                            style="max-width: 100px;"></td>
+                                    <td>PS5</td>
+                                    <td class="text-nowrap">
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <button class="btn btn-warning btn-sm text-white">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -157,8 +147,9 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
     <div id="overlaySidebar"></div>
 
     <!-- Scripts -->
-    <script src="efectos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
+    <script src="efectos.js"></script>
+
 </body>
+
 </html>
