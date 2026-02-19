@@ -52,7 +52,7 @@
     <div class="d-flex">
 
         <!-- ================= SIDEBAR ================= -->
-        <div id="sidebarMovil">
+        <div id="sidebarMovil" class="bg-dark">
 
             <!-- Botón cerrar sidebar -->
             <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
@@ -117,8 +117,7 @@
                                     <td>10</td>
                                     <td>Juego</td>
                                     <td>Acción</td>
-                                    <td><img src="assets/imagenes/eldenring.jpg" alt="Elden Ring" class="img-thumbnail"
-                                            style="max-width: 100px;"></td>
+                                    <td><img src="assets/imagenes/eldenring.jpg" alt="Elden Ring" class="img-thumbnail"></td>
                                     <td>PS5</td>
                                     <td class="text-nowrap">
                                         <div class="d-flex justify-content-center gap-3">

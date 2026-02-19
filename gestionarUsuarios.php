@@ -93,9 +93,11 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
 
             <h1 class="text-center">Gestionar Usuarios</h1><br>
             <div class="d-flex justify-content-end align-items-center mb-4">
-                <button class="btn btn-success shadow-sm">
+                <a href="form-nuevo-usuario.html">
+                 <button class="btn btn-success shadow-sm">
                     <i class="bi bi-person-plus-fill me-2"></i>Añadir Usuario
                 </button>
+                </a>
             </div>
 
             <div class="card shadow-sm">
