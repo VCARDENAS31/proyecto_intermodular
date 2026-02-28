@@ -2,6 +2,15 @@
 include 'conexion-bd.php';
 include 'consultas.php';
 
+//Iniciar sesión para poder leer los datos del usuario logueado
+session_start();
+
+//Comprobar si el usuario tiene permiso (debe ser admin)
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+    // Si no es admin, lo mandamos al login o mostramos error
+    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+}
+
 $resultado = obtenerUsuarios($conexion); // Llamamos a la función
 ?>
 
@@ -136,7 +145,7 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                                                 <button class="btn btn-warning btn-sm text-white"><i
                                                         class="bi bi-pencil-square"></i></button>
                                                 <button class="btn btn-danger btn-sm"
-                                                    onclick="confirmarEliminar(<?php echo $user['id_usuario']; ?>)">
+                                                    onclick="confirmarEliminarUsuario(<?php echo $user['id_usuario']; ?>)">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </div>

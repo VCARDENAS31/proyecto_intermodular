@@ -1,3 +1,19 @@
+<?php
+include 'conexion-bd.php';
+include 'consultas.php';
+
+//Iniciar sesión para poder leer los datos del usuario logueado
+session_start();
+
+//Comprobar si el usuario tiene permiso (debe ser admin)
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+    // Si no es admin, lo mandamos al login o mostramos error
+    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+}
+
+$resultado = obtenerProductos($conexion); // Llamamos a la función
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -87,9 +103,9 @@
             <h1 class="text-center">Gestionar Productos</h1>
             <br>
             <div class="d-flex justify-content-end align-items-center mb-4">
-                <button class="btn btn-success shadow-sm">
+                <a href="anadir-producto.php" class="btn btn-success shadow-sm">
                     <i class="bi bi-plus-circle me-2"></i>Añadir producto
-                </button>
+                </a>
             </div>
 
             <div class="card shadow-sm">
@@ -110,26 +126,29 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php while ($producto = mysqli_fetch_assoc($resultado)): ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Elden ring </td>
-                                    <td>29.99€</td>
-                                    <td>10</td>
-                                    <td>Juego</td>
-                                    <td>Acción</td>
-                                    <td><img src="assets/imagenes/eldenring.jpg" alt="Elden Ring" class="img-thumbnail"></td>
-                                    <td>PS5</td>
+                                    <td><?php echo $producto['id_producto']; ?></td>
+                                    <td><?php echo $producto['nombre']; ?></td>
+                                    <td><?php echo $producto['precio']; ?>€</td>
+                                    <td><?php echo $producto['stock']; ?></td>
+                                    <td><?php echo $producto['tipo']; ?></td>
+                                    <td><?php echo $producto['categoria']; ?></td>
+                                    <td><img src="<?php echo $producto['img_url']; ?>" alt="<?php echo $producto['nombre']; ?>" width="80" height="auto"></td>
+                                    <td><?php echo $producto['plataforma']; ?></td>
                                     <td class="text-nowrap">
                                         <div class="d-flex justify-content-center gap-3">
                                             <button class="btn btn-warning btn-sm text-white">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm">
+                                            <button class="btn btn-danger btn-sm"
+                                                onclick="confirmarEliminarProducto(<?php echo $producto['id_producto']; ?>)">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
@@ -147,8 +166,8 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="funciones-crud.js"></script>     
     <script src="efectos.js"></script>
-
 </body>
 
 </html>
