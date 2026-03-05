@@ -102,10 +102,10 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
 
             <h1 class="text-center">Gestionar Usuarios</h1><br>
             <div class="d-flex justify-content-end align-items-center mb-4">
-                <a href="form-nuevo-usuario.html">
-                 <button class="btn btn-success shadow-sm">
-                    <i class="bi bi-person-plus-fill me-2"></i>Añadir Usuario
-                </button>
+                <a href="anadir-usuario.php">
+                    <button class="btn btn-success shadow-sm">
+                        <i class="bi bi-person-plus-fill me-2"></i>Añadir Usuario
+                    </button>
                 </a>
             </div>
 
@@ -115,6 +115,7 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                         <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
                             <thead class="table-dark">
                                 <tr>
+                                    <th>#</th>
                                     <th>ID</th>
                                     <th>Nombre completo</th>
                                     <th>Email</th>
@@ -122,9 +123,14 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <?php while ($user = mysqli_fetch_assoc($resultado)): ?>
+                            <?php
+                            $n = 1;
+                            while ($user = mysqli_fetch_assoc($resultado)): ?>
                                 <tbody>
                                     <tr>
+                                        <td class="fw-bold">
+                                            <?php echo $n++; ?>
+                                        </td>
                                         <td>
                                             <?php echo $user['id_usuario']; ?>
                                         </td>
@@ -142,8 +148,10 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                                         </td>
                                         <td class="text-nowrap">
                                             <div class="d-flex justify-content-center gap-3">
-                                                <button class="btn btn-warning btn-sm text-white"><i
+                                                <a href="editar-usuario.php?id=<?php echo $user['id_usuario']; ?>">
+                                                     <button class="btn btn-warning btn-sm text-white"><i
                                                         class="bi bi-pencil-square"></i></button>
+                                                </a>
                                                 <button class="btn btn-danger btn-sm"
                                                     onclick="confirmarEliminarUsuario(<?php echo $user['id_usuario']; ?>)">
                                                     <i class="bi bi-trash"></i>
@@ -172,4 +180,5 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="funciones-crud.js"></script>
 </body>
+
 </html>

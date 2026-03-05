@@ -378,6 +378,6 @@ div > a , a, * > a{
     color: black;
 }
 
-.contenido-gestion{
+*.contenido-gestion{
     min-height: 90vh;
 }

@@ -114,6 +114,7 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
                         <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
                             <thead class="table-dark">
                                 <tr>
+                                    <th>#</th>
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Precio</th>
@@ -126,28 +127,32 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while ($producto = mysqli_fetch_assoc($resultado)): ?>
-                                <tr>
-                                    <td><?php echo $producto['id_producto']; ?></td>
-                                    <td><?php echo $producto['nombre']; ?></td>
-                                    <td><?php echo $producto['precio']; ?>€</td>
-                                    <td><?php echo $producto['stock']; ?></td>
-                                    <td><?php echo $producto['tipo']; ?></td>
-                                    <td><?php echo $producto['categoria']; ?></td>
-                                    <td><img src="<?php echo $producto['img_url']; ?>" alt="<?php echo $producto['nombre']; ?>" width="80" height="auto"></td>
-                                    <td><?php echo $producto['plataforma']; ?></td>
-                                    <td class="text-nowrap">
-                                        <div class="d-flex justify-content-center gap-3">
-                                            <button class="btn btn-warning btn-sm text-white">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button class="btn btn-danger btn-sm"
-                                                onclick="confirmarEliminarProducto(<?php echo $producto['id_producto']; ?>)">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                <?php
+                                $n = 1; 
+                                while ($producto = mysqli_fetch_assoc($resultado)): ?>
+                                    <tr>
+                                        <td><?php echo $n++; ?></td>
+                                        <td><?php echo $producto['id_producto']; ?></td>
+                                        <td><?php echo $producto['nombre']; ?></td>
+                                        <td><?php echo $producto['precio']; ?>€</td>
+                                        <td><?php echo $producto['stock']; ?></td>
+                                        <td><?php echo $producto['tipo']; ?></td>
+                                        <td><?php echo $producto['categoria']; ?></td>
+                                        <td><img src="<?php echo $producto['img_url']; ?>"
+                                                alt="<?php echo $producto['nombre']; ?>" width="80" height="auto"></td>
+                                        <td><?php echo $producto['plataforma']; ?></td>
+                                        <td class="text-nowrap">
+                                            <div class="d-flex justify-content-center gap-3">
+                                                <button class="btn btn-warning btn-sm text-white">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </button>
+                                                <button class="btn btn-danger btn-sm"
+                                                    onclick="confirmarEliminarProducto(<?php echo $producto['id_producto']; ?>)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
@@ -166,7 +171,7 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>     
+    <script src="funciones-crud.js"></script>
     <script src="efectos.js"></script>
 </body>
 
