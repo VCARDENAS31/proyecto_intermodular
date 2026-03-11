@@ -380,3 +380,34 @@ div > a , a, * > a{
 *.contenido-gestion{
     min-height: 90vh;
 }
+
+
+
+
+
+
+/* Filtros */
+.filter-bar {
+    border: 1px solid #333;
+    background-color: #1a1a1a !important;
+}
+
+.dropdown-menu-dark .form-check {
+    margin-bottom: 8px;
+}
+
+.dropdown-menu-dark .form-check-label {
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+section.barra-filtro{
+    background-color: #151335;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+div > .card {
+    width: 200px;
+}
