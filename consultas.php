@@ -125,4 +125,25 @@ function obtenerProductoPorId($conexion, $id) {
     // Retorna un array asociativo con los datos del producto
     return mysqli_fetch_assoc($resultado);
 }
+
+function obtenerProductosPorPlataforma($conexion, $plataforma) {
+    // 1. Preparamos la consulta con un placeholder (?)
+    $sql = "SELECT * FROM productos WHERE plataforma = ?";
+    
+    $stmt = mysqli_prepare($conexion, $sql);
+    
+    // 2. Vinculamos el parámetro (s = string)
+    mysqli_stmt_bind_param($stmt, "s", $plataforma);
+    
+    // 3. Ejecutamos
+    mysqli_stmt_execute($stmt);
+    
+    // 4. Obtenemos el resultado
+    $resultado = mysqli_stmt_get_result($stmt);
+    
+    return $resultado;
+}
+
+
 ?>
+

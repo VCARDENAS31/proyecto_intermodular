@@ -1,3 +1,7 @@
+<?php
+include 'consultas.php'; // Incluimos tus funciones
+include 'conexion-bd.php'; // Tu conexión a la DB
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -194,15 +198,23 @@
                         <ul class="dropdown-menu dropdown-menu-dark p-3 w-100 shadow-lg">
                             <li>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="cat1"><label
-                                        class="form-check-label" for="cat1">Acción / Aventura</label></div>
+                                        class="form-check-label" for="cat1">Deportes</label></div>
                             </li>
                             <li>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="cat2"><label
-                                        class="form-check-label" for="cat2">RPG / Rol</label></div>
+                                        class="form-check-label" for="cat2">Acción</label></div>
                             </li>
                             <li>
                                 <div class="form-check"><input class="form-check-input" type="checkbox" id="cat3"><label
-                                        class="form-check-label" for="cat3">Deportes</label></div>
+                                        class="form-check-label" for="cat3">Aventura</label></div>
+                            </li>
+                            <li>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat4"><label
+                                        class="form-check-label" for="cat4">Terror</label></div>
+                            </li>
+                            <li>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat5"><label
+                                        class="form-check-label" for="cat5">RPG</label></div>
                             </li>
                         </ul>
                     </div>
@@ -238,144 +250,34 @@
         </section>
 
         <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
+                
+                
+                <?php
+                $productosXbox = obtenerProductosPorPlataforma($conexion, 'XBOX');
+                while ($fila = mysqli_fetch_assoc($productosXbox)) {
+                    ?>
+                    <div class="card xbox col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                        <div class="card-img-container">
+                            <img class="card-img-top" src="assets/imagenes/<?php echo $fila['img_url']; ?>">
+                        </div>
+                        <div class="text-center">
+                            <p class="fw-bold mb-0 mt-3"><?php echo $fila['nombre']; ?></p>
+                            <p class=" mb-3"><b>Precio:</b> <?php echo $fila['precio']; ?>€</p>
+                        </div>
+                        <div class="mt-auto">
+                            <button class="btn btn-primary btn-sm w-100 mb-1">
+                                <i class="bi bi-cart"></i> COMPRAR
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm w-100">
+                                <i class="bi bi-eye"></i> VER
+                            </button>
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
-            
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                <div class="card-body p-1 text-center d-flex flex-column">
-                    <img class="card-img-top img-fluid rounded-3 mb-2"
-                        src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                    <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                    <div class="mt-auto">
-                        <button class="btn btn-primary btn-sm w-100 mb-1">
-                            <i class="bi bi-cart"></i> COMPRAR
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm w-100">
-                            <i class="bi bi-eye"></i> VER
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
     </main>
 </body>
