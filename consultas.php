@@ -6,25 +6,19 @@
  * Obtener todos los usuarios registrados
  * Tabla: usuarios
  */
-function obtenerUsuarios($conexion) {
+function obtenerUsuarios($conexion)
+{
     $sql = "SELECT id_usuario, nombre, apellidos, email, rol FROM usuarios";
     return mysqli_query($conexion, $sql);
 }
 
-/**
- * Obtener todos los productos y su stock
- * Tabla: productos
- */
-function obtenerProductos($conexion) {
-    $sql = "SELECT id_producto, nombre, precio, stock, tipo, categoria, img_url, plataforma FROM productos";
-    return mysqli_query($conexion, $sql);
-}
 
 /**
  * Obtener todos los cupones de descuento
  * Tabla: cupones
  */
-function obtenerCupones($conexion) {
+function obtenerCupones($conexion)
+{
     $sql = "SELECT id_cupon, codigo, descuento_porcentaje, fecha_caducidad, activo FROM cupones";
     return mysqli_query($conexion, $sql);
 }
@@ -33,7 +27,8 @@ function obtenerCupones($conexion) {
  * Obtener los pedidos incluyendo el nombre del usuario
  * Tablas: pedidos y usuarios (JOIN)
  */
-function obtenerPedidos($conexion) {
+function obtenerPedidos($conexion)
+{
     $sql = "SELECT p.id_pedido, u.nombre, u.apellidos, p.total, p.estado, p.fecha_pedido 
             FROM pedidos p 
             INNER JOIN usuarios u ON p.usuario_id = u.id_usuario 
@@ -41,7 +36,8 @@ function obtenerPedidos($conexion) {
     return mysqli_query($conexion, $sql);
 }
 
-function eliminarUsuario($conexion, $id) {
+function eliminarUsuario($conexion, $id)
+{
     $id = intval($id);
 
     // 1. Limpiamos el carrito primero para evitar errores de integridad
@@ -50,19 +46,21 @@ function eliminarUsuario($conexion, $id) {
 
     // 2. Eliminamos al usuario
     $sql_usuario = "DELETE FROM usuarios WHERE id_usuario = $id";
-    
+
     // Retornamos true si funcionó, false si hubo error (ej. tiene pedidos)
     return mysqli_query($conexion, $sql_usuario);
 }
 
-function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $imagen) {
+function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $imagen)
+{
     $sql = "INSERT INTO productos (nombre, precio, stock, tipo, categoria, descripcion, plataforma, img_url) 
             VALUES ('$nombre', $precio, $stock, '$tipo', '$categoria', '$descripcion', '$plataforma', '$imagen')";
-    
+
     return mysqli_query($conexion, $sql);
 }
 
-function eliminarProducto($conexion, $id) {
+function eliminarProducto($conexion, $id)
+{
     $id = intval($id);
     $sql = "DELETE FROM productos WHERE id_producto = $id";
     return mysqli_query($conexion, $sql);
@@ -71,7 +69,8 @@ function eliminarProducto($conexion, $id) {
 /**
  * Actualizar datos de un usuario
  */
-function actualizarUsuario($conexion, $id, $nombre, $apellidos, $email, $rol) {
+function actualizarUsuario($conexion, $id, $nombre, $apellidos, $email, $rol)
+{
     $id = intval($id);
     $sql = "UPDATE usuarios SET 
             nombre = '$nombre', 
@@ -85,7 +84,8 @@ function actualizarUsuario($conexion, $id, $nombre, $apellidos, $email, $rol) {
 /**
  * Actualizar datos de un producto (URL de imagen como texto)
  */
-function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $tipo, $categoria, $plataforma, $imagen) {
+function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $tipo, $categoria, $plataforma, $imagen)
+{
     $id = intval($id);
     $sql = "UPDATE productos SET 
             nombre = '$nombre', 
@@ -104,11 +104,12 @@ function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $tipo, $ca
  * Obtener un usuario específico por su ID
  *
  */
-function obtenerUsuarioPorId($conexion, $id) {
+function obtenerUsuarioPorId($conexion, $id)
+{
     $id = intval($id); // Seguridad: nos aseguramos que sea un número
     $sql = "SELECT * FROM usuarios WHERE id_usuario = $id";
     $resultado = mysqli_query($conexion, $sql);
-    
+
     // Retorna un array asociativo con los datos del usuario
     return mysqli_fetch_assoc($resultado);
 }
@@ -117,33 +118,41 @@ function obtenerUsuarioPorId($conexion, $id) {
  * Obtener un producto específico por su ID
  *
  */
-function obtenerProductoPorId($conexion, $id) {
+function obtenerProductoPorId($conexion, $id)
+{
     $id = intval($id);
     $sql = "SELECT * FROM productos WHERE id_producto = $id";
     $resultado = mysqli_query($conexion, $sql);
-    
+
     // Retorna un array asociativo con los datos del producto
     return mysqli_fetch_assoc($resultado);
 }
 
-function obtenerProductosPorPlataforma($conexion, $plataforma) {
+function obtenerProductosPorPlataforma($conexion, $plataforma)
+{
     // 1. Preparamos la consulta con un placeholder (?)
     $sql = "SELECT * FROM productos WHERE plataforma = ?";
-    
+
     $stmt = mysqli_prepare($conexion, $sql);
-    
+
     // 2. Vinculamos el parámetro (s = string)
     mysqli_stmt_bind_param($stmt, "s", $plataforma);
-    
+
     // 3. Ejecutamos
     mysqli_stmt_execute($stmt);
-    
+
     // 4. Obtenemos el resultado
     $resultado = mysqli_stmt_get_result($stmt);
-    
+
     return $resultado;
 }
 
-
+function obtenerPrimeros18($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Juego'
+            LIMIT 18";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
 ?>
-

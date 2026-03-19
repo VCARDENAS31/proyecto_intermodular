@@ -1,3 +1,8 @@
+<?php
+include 'consultas.php'; // Incluimos tus funciones
+include 'conexion-bd.php'; // Tu conexión a la DB
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -34,12 +39,16 @@
 
                 <h2 class="text-white mt-5 text-center mb-5">Categorías</h2>
                 <!-- Menú categorías -->
-                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-controller"></i> VIDEOJUEGOS</a></li>
-                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-box-fill"></i> CONSOLAS</a></li>
-                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-headset"></i> ACCESORIOS</a></li>
-                    <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-calendar-event"></i> PRÓXIMOS
-                            LANZAMIENTOS</a>
-                    </li>
+                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-controller"></i>
+                    VIDEOJUEGOS</a></li>
+                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-box-fill"></i>
+                    CONSOLAS</a></li>
+                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-headset"></i>
+                    ACCESORIOS</a></li>
+                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-calendar-event"></i>
+                    PRÓXIMOS
+                    LANZAMIENTOS</a>
+                </li>
                 </ul>
                 <!-- Buscador móvil -->
                 <form class="d-flex w-100 my-3 px-4">
@@ -242,186 +251,40 @@
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+                    <?php
+                    // Llamamos a la función del archivo externo
+                    $juegosIndex = obtenerPrimeros18($conexion);
 
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
+                    // Supongamos que $juegosIndex es el resultado de tu consulta SQL
+                    foreach ($juegosIndex as $producto) {
+                        // Convertimos 'PS5' a 'ps5', 'Switch' a 'switch', etc.
+                        $clasePlataforma = strtolower($producto['plataforma']);
+                        ?>
+
+                    <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                        <div class="card-img-container">
+                            <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
                         </div>
-
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-fc26-xbox.jpg">
-                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="text-center">
+                            <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                            <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
                         </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-fc26-xbox.jpg">
-                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-fc26-xbox.jpg">
-                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-fc26-xbox.jpg">
-                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-fc26-xbox.jpg">
-                                <p class="small fw-bold mb-3">EA FC 26 XBOX</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="mt-auto">
+                            <button class="btn btn-primary btn-sm w-100 mb-1">
+                                <i class="bi bi-cart"></i> COMPRAR
+                            </button>
+                            <button class="btn btn-outline-secondary btn-sm w-100">
+                                <i class="bi bi-eye"></i> VER
+                            </button>
                         </div>
                     </div>
 
+                    <?php } 
+                    ?>
+                    </div>
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
-
             </div>
         </section>
 
