@@ -1,3 +1,8 @@
+<?php
+include 'conexion-bd.php';
+include 'consultas.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -183,7 +188,7 @@
 
         <!-- Videojuegos PS5 -->
         <section id="videojuegos-ps5">
-            <div class="container p-4">
+            <div class="container p-4 mt-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
                     <div class="d-md-none">
@@ -205,12 +210,24 @@
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/juego-ps5-the-last-of-us-parte-2-remastered.jpg">
-                                <p class="small fw-bold mb-3">THE LAST OF US PART II REMASTERED</p>
+                        <?php
+                        // Llamamos a la función del archivo externo
+                        $juegosPs5Index = obtenerUltimos18JuegosPs5($conexion);
 
+                        // Supongamos que $juegosPs5Index es el resultado de tu consulta SQL
+                        foreach ($juegosPs5Index as $producto) {
+                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            $clasePlataforma = strtolower($producto['plataforma']);
+                            ?>
+
+                            <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                <div class="card-img-container">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
+                                <div class="text-center">
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
+                                </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
@@ -220,7 +237,9 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+
+                        <?php }
+                        ?>
                     </div>
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
@@ -253,12 +272,24 @@
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/ps5-digital.png">
-                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
+                        <?php
+                        // Llamamos a la función del archivo externo
+                        $juegosXboxIndex = obtenerUltimos18JuegosXbox($conexion);
 
+                        // Supongamos que $juegosXboxIndex es el resultado de tu consulta SQL
+                        foreach ($juegosXboxIndex as $producto) {
+                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            $clasePlataforma = strtolower($producto['plataforma']);
+                            ?>
+
+                            <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                <div class="card-img-container">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
+                                <div class="text-center">
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
+                                </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
@@ -268,10 +299,12 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+
+                        <?php }
+                        ?>
                     </div>
-                    <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)">
-                        <i class="bi bi-chevron-right"></i></button>
+                    <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
+                            class="bi bi-chevron-right"></i></button>
                 </div>
             </div>
         </section>
@@ -300,11 +333,24 @@
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/dualsense-edge-ps5.png">
-                                <p class="small fw-bold mb-3">DualSense Edge PS5 Blanco</p>
+                        <?php
+                        // Llamamos a la función del archivo externo
+                        $juegosNintendoIndex = obtenerUltimos18JuegosNintendo($conexion);
+
+                        // Supongamos que $juegosNintendoIndex es el resultado de tu consulta SQL
+                        foreach ($juegosNintendoIndex as $producto) {
+                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            $clasePlataforma = strtolower($producto['plataforma']);
+                            ?>
+
+                            <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                <div class="card-img-container">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
+                                <div class="text-center">
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
+                                </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
@@ -314,9 +360,10 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
+                        <?php }
+                        ?>
+                    </div>
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>

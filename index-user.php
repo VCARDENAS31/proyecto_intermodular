@@ -251,36 +251,36 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                    <?php
-                    // Llamamos a la función del archivo externo
-                    $juegosIndex = obtenerPrimeros18($conexion);
+                        <?php
+                        // Llamamos a la función del archivo externo
+                        $juegosIndex = obtenerUltimos18($conexion);
 
-                    // Supongamos que $juegosIndex es el resultado de tu consulta SQL
-                    foreach ($juegosIndex as $producto) {
-                        // Convertimos 'PS5' a 'ps5', 'Switch' a 'switch', etc.
-                        $clasePlataforma = strtolower($producto['plataforma']);
+                        // Supongamos que $juegosIndex es el resultado de tu consulta SQL
+                        foreach ($juegosIndex as $producto) {
+                            // Convertimos 'PS5' a 'ps5', 'Switch' a 'switch', etc.
+                            $clasePlataforma = strtolower($producto['plataforma']);
+                            ?>
+
+                            <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                <div class="card-img-container">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
+                                <div class="text-center">
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
+                                </div>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
+                                </div>
+                            </div>
+
+                        <?php }
                         ?>
-
-                    <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                        <div class="card-img-container">
-                            <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
-                        </div>
-                        <div class="text-center">
-                            <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
-                            <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
-                        </div>
-                        <div class="mt-auto">
-                            <button class="btn btn-primary btn-sm w-100 mb-1">
-                                <i class="bi bi-cart"></i> COMPRAR
-                            </button>
-                            <button class="btn btn-outline-secondary btn-sm w-100">
-                                <i class="bi bi-eye"></i> VER
-                            </button>
-                        </div>
-                    </div>
-
-                    <?php } 
-                    ?>
                     </div>
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
@@ -313,12 +313,22 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/ps5-digital.png">
-                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
+                        <?php
+                        // Llamamos a la función del archivo externo
+                        $ultimasConsolas = obtenerUltimas18consolas($conexion);
 
+                        // Supongamos que $ultimasConsolas es el resultado de tu consulta SQL
+                        foreach ($ultimasConsolas as $consolas) {
+                            ?>
+
+                            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                <div class="">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $consolas['img_url']; ?>">
+                                </div>
+                                <div class="text-center">
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $consolas['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $consolas['precio']; ?>€</p>
+                                </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
@@ -328,147 +338,13 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     </button>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/xbox-seriesx.png">
-                                <p class="small fw-bold mb-3">XBOX SERIES X 1TB</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/ns1-oled.png">
-                                <p class="small fw-bold mb-3">Nintendo Switch Oled</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/ps5-digital.png">
-                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/xbox-seriesx.png">
-                                <p class="small fw-bold mb-3">XBOX SERIES X 1TB</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/ns1-oled.png">
-                                <p class="small fw-bold mb-3">Nintendo Switch Oled</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/ps5-digital.png">
-                                <p class="small fw-bold mb-3">PS5 DIGITAL EDITION</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2"
-                                    src="assets/imagenes/xbox-seriesx.png">
-                                <p class="small fw-bold mb-3">XBOX SERIES X 1TB</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2">
-                            <div class="card-body p-1 text-center d-flex flex-column">
-                                <img class="card-img-top img-fluid rounded-3 mb-2" src="assets/imagenes/ns1-oled.png">
-                                <p class="small fw-bold mb-3">Nintendo Switch Oled</p>
-
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
+                        <?php }
+                        ?>
                     </div>
-
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
-
             </div>
         </section>
 

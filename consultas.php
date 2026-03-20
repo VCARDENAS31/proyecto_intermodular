@@ -147,12 +147,55 @@ function obtenerProductosPorPlataforma($conexion, $plataforma)
     return $resultado;
 }
 
-function obtenerPrimeros18($conexion)
+function obtenerUltimos18($conexion)
 {
     $sql = "SELECT * FROM productos 
             WHERE tipo = 'Juego'
+            ORDER BY id_producto DESC
+            LIMIT 18";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimos18JuegosPs5($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Juego' AND plataforma = 'PS5'
+            ORDER BY id_producto DESC
+            LIMIT 18";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimos18JuegosXbox($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Juego' AND plataforma = 'Xbox'
+            ORDER BY id_producto DESC
+            LIMIT 18";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimos18JuegosNintendo($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Juego' AND plataforma = 'Switch'
+            ORDER BY id_producto DESC
+            LIMIT 18";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimas18consolas($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Consola'
+            ORDER BY id_producto DESC
             LIMIT 18";
     $resultado = mysqli_query($conexion, $sql);
     return $resultado;
 }
 ?>
+
+
