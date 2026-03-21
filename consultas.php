@@ -196,6 +196,36 @@ function obtenerUltimas18consolas($conexion)
     $resultado = mysqli_query($conexion, $sql);
     return $resultado;
 }
+
+function obtenerUltimas8consolasPs5($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Consola' AND plataforma = 'PS5'
+            ORDER BY id_producto DESC
+            LIMIT 8";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimas8consolasXbox($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Consola' AND plataforma = 'Xbox'
+            ORDER BY id_producto DESC
+            LIMIT 8";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimas8consolasNintendo($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Consola' AND plataforma = 'Switch'
+            ORDER BY id_producto DESC
+            LIMIT 8";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
 ?>
 
 

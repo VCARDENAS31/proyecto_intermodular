@@ -322,7 +322,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                             ?>
 
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                                <div class="">
+                                <div>
                                     <img class="card-img-top" src="assets/imagenes/<?php echo $consolas['img_url']; ?>">
                                 </div>
                                 <div class="text-center">
