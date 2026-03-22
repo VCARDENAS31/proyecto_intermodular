@@ -1,6 +1,6 @@
 <?php
-include 'consultas.php'; // Incluimos tus funciones
-include 'conexion-bd.php'; // Tu conexión a la DB
+include 'conexion-bd.php';
+include 'consultas.php';
 ?>
 
 <!DOCTYPE html>
@@ -124,7 +124,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
-        <div class="container mt-5 mb-5 ">
+        <div class="container-fluid p-0">
             <div id="carrusel-imagenes" class="carousel slide" data-bs-ride="carousel">
 
                 <!-- Indicadores -->
@@ -138,14 +138,14 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-4"
+                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-0"
                             alt="">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/re2_remake.png" class="d-block w-100 img-fluid rounded-4" alt="">
+                        <img src="assets/imagenes/re2_remake.png" class="d-block w-100 img-fluid rounded-0" alt="">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100  rounded-4" alt="">
+                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100  rounded-0" alt="">
                     </div>
                 </div>
 
@@ -163,80 +163,39 @@ include 'conexion-bd.php'; // Tu conexión a la DB
         </div>
 
         <!-- ===== SECCIONES DE PRODUCTOS ===== -->
-        <!-- Próximos lanzamientos -->
-        <section id="proximos-lanzamientos">
-            <div class="container rounded-4 p-4">
-                <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
-                    <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">PRÓXIMAMENTE</h6>
-                    </div>
-                    <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">PRÓXIMAMENTE</h2>
-                    </div>
-
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
-                        Ver todo
-                    </a>
-
-                </div>
-
-                <hr>
-
-                <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/code-vein.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/crimsom.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/dragon-quest.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/final-fantasy-2.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/juego-007.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/mario-tennis.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/monster-hunters.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/pokemon-pokopia.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/resident-evil-requiem.webp">
-                    </div>
-
-                </div>
-
+        <div class="navbar-secundario">
+            <div class="container p-0">
+                <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
+                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
+                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                            <i class="bi bi-controller"></i> PS5
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
+                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                            <i class="bi bi-xbox"></i> XBOX SERIES X/S
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
+                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                            <i class="bi bi-nintendo-switch"></i> NINTENDO SWITCH
+                        </a>
+                    </li>
+                </ul>
             </div>
+        </div>
 
-        </section>
-
-        <!-- Videojuegos -->
-        <section id="videojuegos">
-            <div class="container p-4">
+        <!-- Videojuegos PS5 -->
+        <section id="videojuegos-ps5">
+            <div class="container p-4 mt-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
                     <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">VIDEOJUEGOS</h6>
+                        <h6 class="fw-bold mb-0">CONSOLAS PS5</h6>
                     </div>
                     <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">VIDEOJUEGOS</h2>
+                        <h2 class="fw-bold mb-0">CONSOLAS PS5</h2>
                     </div>
 
                     <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
@@ -253,81 +212,21 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimosJuegos = obtenerUltimos18Juegos($conexion);
+                        $consolasPs5Index = obtenerUltimas8consolasPs5($conexion);
 
-                        // Supongamos que $ultimosJuegos es el resultado de tu consulta SQL
-                        foreach ($ultimosJuegos as $juego) {
-                            // Convertimos 'PS5' a 'ps5', 'Switch' a 'switch', etc.
-                            $clasePlataforma = strtolower($juego['plataforma']);
-                            ?>
-
-                            <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                                <div class="card-img-container">
-                                    <img class="card-img-top" src="assets/imagenes/<?php echo $juego['img_url']; ?>">
-                                </div>
-                                <div class="text-center">
-                                    <p class="fw-bold mb-0 mt-3"><?php echo $juego['nombre']; ?></p>
-                                    <p class="mb-3"><b>Precio:</b> <?php echo $juego['precio']; ?>€</p>
-                                </div>
-                                <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
-                                        <i class="bi bi-eye"></i> VER
-                                    </button>
-                                </div>
-                            </div>
-
-                        <?php }
-                        ?>
-                    </div>
-                    <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
-                            class="bi bi-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Consolas -->
-        <section id="consolas">
-            <div class="container p-4">
-                <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
-                    <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">CONSOLAS</h6>
-                    </div>
-                    <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">CONSOLAS</h2>
-                    </div>
-
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
-                        Ver todo
-                    </a>
-
-                </div>
-                <hr>
-
-                <div class="contenedor-slider">
-                    <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
-                            class="bi bi-chevron-left"></i></button>
-
-                    <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
-                        <?php
-                        // Llamamos a la función del archivo externo
-                        $ultimasConsolas = obtenerUltimas18consolas($conexion);
-
-                        // Supongamos que $ultimasConsolas es el resultado de tu consulta SQL
-                        foreach ($ultimasConsolas as $consolas) {
+                        // Supongamos que $consolasPs5Index es el resultado de tu consulta SQL
+                        foreach ($consolasPs5Index as $producto) {
+                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
 
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
-                                    <img class="card-img-top" src="assets/imagenes/<?php echo $consolas['img_url']; ?>">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
                                 </div>
                                 <div class="text-center">
-                                    <p class="fw-bold mb-0 mt-3"><?php echo $consolas['nombre']; ?></p>
-                                    <p class="mb-3"><b>Precio:</b> <?php echo $consolas['precio']; ?>€</p>
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
@@ -348,16 +247,17 @@ include 'conexion-bd.php'; // Tu conexión a la DB
             </div>
         </section>
 
-        <!-- Accesorios -->
-        <section id="accesorios">
+
+        <!-- Videojuegos XBOX SERIES X/S -->
+        <section id="videojuegos-xbox">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
                     <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">ACCESORIOS</h6>
+                        <h6 class="fw-bold mb-0">CONSOLAS XBOX SERIES X/S</h6>
                     </div>
                     <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">ACCESORIOS</h2>
+                        <h2 class="fw-bold mb-0">CONSOLAS XBOX SERIES X/S</h2>
                     </div>
 
                     <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
@@ -374,19 +274,21 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimosAccesorios = obtenerUltimos10Accesorios($conexion);
+                        $consolasXboxIndex = obtenerUltimas8consolasXbox($conexion);
 
-                        // Supongamos que $ultimosAccesorios es el resultado de tu consulta SQL
-                        foreach ($ultimosAccesorios as $accesorio) {
+                        // Supongamos que $consolasXboxIndex es el resultado de tu consulta SQL
+                        foreach ($consolasXboxIndex as $producto) {
+                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
 
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
-                                    <img class="card-img-top" src="assets/imagenes/<?php echo $accesorio['img_url']; ?>">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
                                 </div>
                                 <div class="text-center">
-                                    <p class="fw-bold mb-0 mt-3"><?php echo $accesorio['nombre']; ?></p>
-                                    <p class="mb-3"><b>Precio:</b> <?php echo $accesorio['precio']; ?>€</p>
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
@@ -407,63 +309,66 @@ include 'conexion-bd.php'; // Tu conexión a la DB
             </div>
         </section>
 
-        <!-- ===== SECCIÓN NOTICIAS ===== -->
-        <section id="noticias-videojuegos" class="bg-light py-5">
-            <div class="container">
-                <hr class="mb-5">
+        <!-- VIDEOJUEGOS NINTENDO SWITCH -->
+        <section id="videojuegos-nintendo">
+            <div class="container p-4">
+                <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card-noticia shadow-sm">
-                            <a href="https://www.hobbyconsolas.com/videojuegos/sony-anuncia-coleccion-hyperpop-con-nuevos-mandos-carcasas-ps5-3-colores-reservas-precio-fecha-lanzamiento_6918304_0.html"
-                                class="link-noticia">
-                                <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=500"
-                                    alt="DualSense PS5" class="card-img-top">
-                                <div class="card-body p-4">
-                                    <span>Hardware</span>
-                                    <h3>Nuevos colores para el DualSense Edge confirmados</h3>
-                                    <p>Sony anuncia una nueva línea de mandos profesionales con acabados metálicos que
-                                        llegarán a las tiendas el próximo mes.</p>
-                                </div>
-                        </div>
-                        </a>
+                    <div class="d-md-none">
+                        <h6 class="fw-bold mb-0">CONSOLAS NINTENDO SWITCH</h6>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <h2 class="fw-bold mb-0">CONSOLAS NINTENDO SWITCH</h2>
                     </div>
 
-                    <div class="col-md-4">
-                        <a href="https://www.muycomputer.com/2026/01/12/intel-panther-lake-estara-al-nivel-de-ps6-portatil/"
-                            class="link-noticia">
-                            <div class="card-noticia shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500"
-                                    class="card-img-top" alt="Hardware">
-                                <div class="card-body p-4">
-                                    <span class="categoria-noticia">Hardware</span>
-                                    <h3>Nueva consola portátil en desarrollo</h3>
-                                    <p>Filtraciones indican que la nueva generación de dispositivos
-                                        portátiles duplicará su potencia gráfica este otoño.</p>
+                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                        Ver todo
+                    </a>
+
+                </div>
+                <hr>
+
+                <div class="contenedor-slider">
+                    <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
+                            class="bi bi-chevron-left"></i></button>
+
+                    <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
+                        <?php
+                        // Llamamos a la función del archivo externo
+                        $consolasNintendoIndex = obtenerUltimas8consolasNintendo($conexion);
+
+                        // Supongamos que $consolasNintendoIndex es el resultado de tu consulta SQL
+                        foreach ($consolasNintendoIndex as $producto) {
+                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            $clasePlataforma = strtolower($producto['plataforma']);
+                            ?>
+
+                            <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                <div>
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
+                                <div class="text-center">
+                                    <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                                    <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
+                                </div>
+                                <div class="mt-auto">
+                                    <button class="btn btn-primary btn-sm w-100 mb-1">
+                                        <i class="bi bi-cart"></i> COMPRAR
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-eye"></i> VER
+                                    </button>
                                 </div>
                             </div>
-                        </a>
-                    </div>
 
-                    <div class="col-md-4">
-                        <a href="https://www.clavecd.es/elden-ring-2-impactante-actualizacion-de-fromsoftware-news-d/"
-                            class="link-noticia">
-                            <div class="card-noticia shadow-sm">
-                                <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&q=80&w=500"
-                                    class="card-img-top" alt="Lanzamientos">
-                                <div class="card-body p-4">
-                                    <span>Lanzamientos</span>
-                                    <h3>Elden Ring 2: Rumores sobre su mundo abierto</h3>
-                                    <p>Nuevos reportes sugieren que el mapa será tres veces más
-                                        grande e incluirá un sistema climático dinámico.</p>
-                                </div>
-                            </div>
-                        </a>
+                        <?php }
+                        ?>
                     </div>
+                    <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
+                            class="bi bi-chevron-right"></i></button>
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- ================= FOOTER ================= -->

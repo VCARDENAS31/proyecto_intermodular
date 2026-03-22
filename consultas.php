@@ -147,7 +147,7 @@ function obtenerProductosPorPlataforma($conexion, $plataforma)
     return $resultado;
 }
 
-function obtenerUltimos18($conexion)
+function obtenerUltimos18Juegos($conexion)
 {
     $sql = "SELECT * FROM productos 
             WHERE tipo = 'Juego'
@@ -223,6 +223,16 @@ function obtenerUltimas8consolasNintendo($conexion)
             WHERE tipo = 'Consola' AND plataforma = 'Switch'
             ORDER BY id_producto DESC
             LIMIT 8";
+    $resultado = mysqli_query($conexion, $sql);
+    return $resultado;
+}
+
+function obtenerUltimos10Accesorios($conexion)
+{
+    $sql = "SELECT * FROM productos 
+            WHERE tipo = 'Accesorio' AND plataforma = 'PS5'
+            ORDER BY id_producto DESC
+            LIMIT 10";
     $resultado = mysqli_query($conexion, $sql);
     return $resultado;
 }
