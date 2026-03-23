@@ -128,10 +128,10 @@ function obtenerProductoPorId($conexion, $id)
     return mysqli_fetch_assoc($resultado);
 }
 
-function obtenerProductosPorPlataforma($conexion, $plataforma)
+function obtenerJuegosPorPlataforma($conexion, $plataforma)
 {
     // 1. Preparamos la consulta con un placeholder (?)
-    $sql = "SELECT * FROM productos WHERE plataforma = ?";
+    $sql = "SELECT * FROM productos WHERE plataforma = ? AND tipo = 'Juego'";
 
     $stmt = mysqli_prepare($conexion, $sql);
 
@@ -146,6 +146,26 @@ function obtenerProductosPorPlataforma($conexion, $plataforma)
 
     return $resultado;
 }
+
+function obtenerConsolasPorPlataforma($conexion, $plataforma)
+{
+    // 1. Preparamos la consulta con un placeholder (?)
+    $sql = "SELECT * FROM productos WHERE plataforma = ? AND tipo = 'Consola'";
+
+    $stmt = mysqli_prepare($conexion, $sql);
+
+    // 2. Vinculamos el parámetro (s = string)
+    mysqli_stmt_bind_param($stmt, "s", $plataforma);
+
+    // 3. Ejecutamos
+    mysqli_stmt_execute($stmt);
+
+    // 4. Obtenemos el resultado
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    return $resultado;
+}
+
 
 function obtenerUltimos18Juegos($conexion)
 {

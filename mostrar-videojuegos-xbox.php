@@ -254,7 +254,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                 
                 
                 <?php
-                $productosXbox = obtenerProductosPorPlataforma($conexion, 'XBOX');
+                $productosXbox = obtenerJuegosPorPlataforma($conexion, 'XBOX');
                 while ($fila = mysqli_fetch_assoc($productosXbox)) {
                     ?>
                     <div class="card xbox col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">

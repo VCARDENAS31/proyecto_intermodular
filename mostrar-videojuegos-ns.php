@@ -254,7 +254,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                 
                 
                 <?php
-                $productosNS = obtenerProductosPorPlataforma($conexion, 'Switch');
+                $productosNS = obtenerJuegosPorPlataforma($conexion, 'Switch');
                 while ($fila = mysqli_fetch_assoc($productosNS)) {
                     ?>
                     <div class="card switch col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">

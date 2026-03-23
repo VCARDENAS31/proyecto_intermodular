@@ -254,11 +254,11 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                 
                 
                 <?php
-                $productosPS5 = obtenerJuegosPorPlataforma($conexion, 'PS5');
+                $productosPS5 = obtenerConsolasPorPlataforma($conexion, 'PS5');
                 while ($fila = mysqli_fetch_assoc($productosPS5)) {
                     ?>
-                    <div class="card ps5 col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                        <div class="card-img-container">
+                    <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                        <div>
                             <img class="card-img-top" src="assets/imagenes/<?php echo $fila['img_url']; ?>">
                         </div>
                         <div class="text-center">
