@@ -212,10 +212,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $juegosPs5Index = obtenerUltimos18JuegosPs5($conexion);
+                        $ultimos18JuegosPs5 = obtenerUltimos18JuegosPorPlataforma($conexion, 'PS5');
 
                         // Supongamos que $juegosPs5Index es el resultado de tu consulta SQL
-                        foreach ($juegosPs5Index as $producto) {
+                        foreach ($ultimos18JuegosPs5 as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
@@ -274,10 +274,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $juegosXboxIndex = obtenerUltimos18JuegosXbox($conexion);
+                        $ultimos18JuegosXbox = obtenerUltimos18JuegosPorPlataforma($conexion, 'Xbox');
 
                         // Supongamos que $juegosXboxIndex es el resultado de tu consulta SQL
-                        foreach ($juegosXboxIndex as $producto) {
+                        foreach ($ultimos18JuegosXbox as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
@@ -335,10 +335,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $juegosNintendoIndex = obtenerUltimos18JuegosNintendo($conexion);
+                        $ultimos18JuegosNintendo = obtenerUltimos18JuegosPorPlataforma($conexion, 'Switch');
 
                         // Supongamos que $juegosNintendoIndex es el resultado de tu consulta SQL
-                        foreach ($juegosNintendoIndex as $producto) {
+                        foreach ($ultimos18JuegosNintendo as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>

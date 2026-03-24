@@ -253,7 +253,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimosJuegos = obtenerUltimos18Juegos($conexion);
+                        $ultimosJuegos = obtenerUltimosJuegosIntercalados($conexion);
 
                         // Supongamos que $ultimosJuegos es el resultado de tu consulta SQL
                         foreach ($ultimosJuegos as $juego) {

@@ -212,10 +212,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $consolasPs5Index = obtenerUltimas8consolasPs5($conexion);
+                        $ultimas8ConsolasPs5= obtenerUltimas8consolasPorPlataforma($conexion, 'PS5');
 
                         // Supongamos que $consolasPs5Index es el resultado de tu consulta SQL
-                        foreach ($consolasPs5Index as $producto) {
+                        foreach ($ultimas8ConsolasPs5 as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
@@ -274,10 +274,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $consolasXboxIndex = obtenerUltimas8consolasXbox($conexion);
+                        $ultimas8ConsolasXbox = obtenerUltimas8consolasPorPlataforma($conexion, 'Xbox');
 
-                        // Supongamos que $consolasXboxIndex es el resultado de tu consulta SQL
-                        foreach ($consolasXboxIndex as $producto) {
+                        // Supongamos que $ultimas8ConsolasXbox es el resultado de tu consulta SQL
+                        foreach ($ultimas8ConsolasXbox as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
@@ -335,10 +335,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $consolasNintendoIndex = obtenerUltimas8consolasNintendo($conexion);
+                        $ultimas8ConsolasNintendo = obtenerUltimas8consolasPorPlataforma($conexion, 'Switch');
 
-                        // Supongamos que $consolasNintendoIndex es el resultado de tu consulta SQL
-                        foreach ($consolasNintendoIndex as $producto) {
+                        // Supongamos que $ultimas8ConsolasNintendo es el resultado de tu consulta SQL
+                        foreach ($ultimas8ConsolasNintendo as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>

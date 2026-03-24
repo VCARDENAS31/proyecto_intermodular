@@ -186,16 +186,16 @@ include 'consultas.php';
             </div>
         </div>
 
-        <!-- Videojuegos PS5 -->
+        <!-- Accesorios PS5 -->
         <section id="videojuegos-ps5">
             <div class="container p-4 mt-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
                     <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">CONSOLAS PS5</h6>
+                        <h6 class="fw-bold mb-0">ACCESORIOS PS5</h6>
                     </div>
                     <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">CONSOLAS PS5</h2>
+                        <h2 class="fw-bold mb-0">ACCESORIOS PS5</h2>
                     </div>
 
                     <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
@@ -212,10 +212,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $consolasPs5Index = obtenerUltimas8consolasPs5($conexion);
+                        $ultimos10AccesoriosPs5 = obtenerUltimos10AccesoriosPorPlataforma($conexion, 'PS5');
 
-                        // Supongamos que $consolasPs5Index es el resultado de tu consulta SQL
-                        foreach ($consolasPs5Index as $producto) {
+                        // Supongamos que $ultimos10AccesoriosPs5 es el resultado de tu consulta SQL
+                        foreach ($ultimos10AccesoriosPs5 as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
@@ -254,10 +254,10 @@ include 'consultas.php';
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
                     <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">CONSOLAS XBOX SERIES X/S</h6>
+                        <h6 class="fw-bold mb-0">ACCESORIOS XBOX SERIES X/S</h6>
                     </div>
                     <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">CONSOLAS XBOX SERIES X/S</h2>
+                        <h2 class="fw-bold mb-0">ACCESORIOS XBOX SERIES X/S</h2>
                     </div>
 
                     <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
@@ -274,10 +274,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $consolasXboxIndex = obtenerUltimas8consolasXbox($conexion);
+                        $ultimos10AccesoriosXbox = obtenerUltimos10AccesoriosPorPlataforma($conexion, 'Xbox');
 
-                        // Supongamos que $consolasXboxIndex es el resultado de tu consulta SQL
-                        foreach ($consolasXboxIndex as $producto) {
+                        // Supongamos que $ultimos10AccesoriosXbox es el resultado de tu consulta SQL
+                        foreach ($ultimos10AccesoriosXbox as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
@@ -315,10 +315,10 @@ include 'consultas.php';
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
                     <div class="d-md-none">
-                        <h6 class="fw-bold mb-0">CONSOLAS NINTENDO SWITCH</h6>
+                        <h6 class="fw-bold mb-0">ACCESORIOS NINTENDO SWITCH</h6>
                     </div>
                     <div class="d-none d-md-block">
-                        <h2 class="fw-bold mb-0">CONSOLAS NINTENDO SWITCH</h2>
+                        <h2 class="fw-bold mb-0">ACCESORIOS NINTENDO SWITCH</h2>
                     </div>
 
                     <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
@@ -335,10 +335,10 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $consolasNintendoIndex = obtenerUltimas8consolasNintendo($conexion);
+                        $ultimos10AccesoriosSwitch = obtenerUltimos10AccesoriosPorPlataforma($conexion, 'Switch');
 
-                        // Supongamos que $consolasNintendoIndex es el resultado de tu consulta SQL
-                        foreach ($consolasNintendoIndex as $producto) {
+                        // Supongamos que $ultimos10AccesoriosSwitch es el resultado de tu consulta SQL
+                        foreach ($ultimos10AccesoriosSwitch as $producto) {
                             // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
