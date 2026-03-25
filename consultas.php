@@ -190,7 +190,7 @@ function obtenerAccesoriosPorPlataforma($conexion, $plataforma)
 function obtenerUltimosJuegosIntercalados($conexion)
 {
     // Definimos las plataformas exactamente como están en tu base de datos
-    $plataformas = ['Xbox', 'PS5', 'Switch'];
+    $plataformas = ['PS5', 'Xbox', 'Switch'];
     $estantes = [];
     $nombresVistos = [];
     $listaFinal = [];

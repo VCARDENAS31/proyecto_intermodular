@@ -263,7 +263,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
                             <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div class="card-img-container">
-                                    <img class="card-img-top" src="assets/imagenes/<?php echo $juego['img_url']; ?>">
+                                    <img class="card-img-top rounded-3" src="assets/imagenes/<?php echo $juego['img_url']; ?>">
                                 </div>
                                 <div class="text-center">
                                     <p class="fw-bold mb-0 mt-3"><?php echo $juego['nombre']; ?></p>
@@ -273,9 +273,9 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
                                     </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                    <a href="producto.php?id=<?php echo $juego['id_producto']; ?>" class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 
@@ -333,9 +333,9 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
                                     </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                    <a href="producto.php?id=<?php echo $consolas['id_producto']; ?>" class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 
@@ -392,9 +392,9 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
                                     </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                    <a href="producto.php?id=<?php echo $accesorio['id_producto']; ?>" class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 
