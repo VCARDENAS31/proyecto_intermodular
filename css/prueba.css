@@ -441,6 +441,7 @@ div > .card {
 .ps5 .card-img-container::after { background-image: url('../assets/imagenes/marco_ps5.webp'); }
 .xbox .card-img-container::after { background-image: url('../assets/imagenes/marco_xbox.png'); }
 .switch .card-img-container::after { background-image: url('../assets/imagenes/marco_ns.png'); }
+
 .ps5 .card-img-container-ver-detalle::after { background-image: url('../assets/imagenes/marco_ps5.webp'); }
 .xbox .card-img-container-ver-detalle::after { background-image: url('../assets/imagenes/marco_xbox.png'); }
 .switch .card-img-container-ver-detalle::after { background-image: url('../assets/imagenes/marco_ns.png');}
@@ -453,11 +454,19 @@ div > .card {
     overflow: hidden;
 }
 
+
 .card-img-container-ver-detalle {
     height: 300px; /* Ajusta esta altura según prefieras */
     width: auto;
     position: relative;
 }
+
+.card-img-container-ver-detalle-modal {
+    height: 600px; /* Ajusta esta altura según prefieras */
+    width: auto;
+    position: relative;
+}
+
 
 
 .card-img-top {
@@ -466,4 +475,50 @@ div > .card {
     object-fit: cover; /* Mantiene la proporción y rellena el cuadro */
 }
 
+.container-modal-producto {
+    cursor: zoom-in;
+}
 
+
+div.modal-content, .container-modal-producto {
+    background-color: rgb(255, 255, 255); /* fondo oscuro para resaltar el efecto */
+    color: white;
+    border: 4px solid;
+    border-radius: 12px; 
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    
+    /* borde animado con gradiente */
+    border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
+    animation: borderGlow 4s linear infinite;
+    
+    /* sombra sutil para resaltar */
+    box-shadow: 0 0 15px rgba(255, 85, 85, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* animación del borde */
+@keyframes borderGlow {
+    0% {
+        border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
+    }
+    25% {
+        border-image: linear-gradient(90deg, #00ffff, #5500ff, #ff0055, #ff5500, #00ffff) 1;
+    }
+    50% {
+        border-image: linear-gradient(135deg, #ff5500, #00ffff, #5500ff, #ff0055, #ff5500) 1;
+    }
+    75% {
+        border-image: linear-gradient(180deg, #5500ff, #ff0055, #ff5500, #00ffff, #5500ff) 1;
+    }
+    100% {
+        border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
+    }
+}
+@media screen and (max-width: 768px) {
+    .card-img-container-ver-detalle-modal {
+        height: 400px; /* Ajusta esta altura para móviles */
+        width: auto;
+    }    
+}
