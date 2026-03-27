@@ -522,3 +522,77 @@ div.modal-content, .container-modal-producto {
         width: auto;
     }    
 }
+
+
+
+
+
+
+
+
+/* CONTENEDOR */
+.tabs-container {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+/* NAV DE TABS */
+.tabs {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* BOTONES */
+.tab {
+    background: transparent;
+    border: none;
+    padding: 10px 18px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* EFECTO LINEA ABAJO */
+.tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    transition: width 0.3s ease;
+}
+
+/* HOVER */
+.tab:hover {
+    color: #000;
+}
+
+/* ACTIVO */
+.tab.active {
+    color: #000;
+}
+
+.tab.active::after {
+    width: 100%;
+}
+
+/* CONTENIDO */
+.tab-content {
+    display: none;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);;
+}
+
+/* ACTIVO */
+.tab-content.active {
+    display: block;
+}

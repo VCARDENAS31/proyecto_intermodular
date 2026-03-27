@@ -130,30 +130,45 @@ if (!$producto) {
 
                 <span class="badge mb-3 p-2 bg-<?php
                 echo ($producto['plataforma'] == 'Xbox') ? 'success' :
-                    (($producto['plataforma'] == 'PS5') ? 'primary' : 'danger'); ?>">
+                    (($producto['plataforma'] == 'PS5') ? 'primary' : 'danger'); ?> w-25">
                     <?php echo $producto['plataforma']; ?>
                 </span>
 
                 <h2 class="text-dark mb-4">Precio: <?php echo $producto['precio']; ?>€</h2>
 
-                <div class="mb-4">
-                    <h5>Descripción</h5>
-                    <p class="text-black"><?php echo $producto['descripcion']; ?></p>
-                </div>
+                <div class="tabs-container">
 
-                <div class="card w-100 border-secondary p-3 mb-4">
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-2"><strong>Stock disponible:</strong> <?php echo $producto['stock']; ?> unidades
-                        </li>
-                        <li class="mb-2"><strong>Categoría:</strong> <?php echo $producto['categoria'] ?: 'General'; ?>
-                        </li>
+                    <!-- BOTONES -->
+                    <div class="tabs">
+                        <button class="tab active" onclick="mostrarTab('descripcion')">Descripción</button>
+                        <button class="tab" onclick="mostrarTab('detalles')">Ver detalles</button>
+                    </div>
 
-                        <?php if ($producto['tipo'] == 'Juego'): ?>
-                            <li><i class="bi bi-controller"></i><strong> Formato:</strong> Disco Físico</li>
-                        <?php elseif ($producto['tipo'] == 'Accesorio'): ?>
-                            <li><i class="bi bi-usb-plug"></i> <strong>Conectividad:</strong> USB / Inalámbrico</li>
-                        <?php endif; ?>
-                    </ul>
+                    <!-- CONTENIDO -->
+                    <div class="tab-content active" id="descripcion">
+                        <p><?php echo $producto['descripcion']; ?></p>
+                    </div>
+
+                    <div class="tab-content" id="detalles">
+                        <ul>
+                            <li><strong>Tipo:</strong> <?php echo $producto['tipo']; ?></li>
+                            <li><strong>Stock:</strong> <?php echo $producto['stock']; ?></li>
+                            <?php if ($producto['tipo'] == 'Juego'): ?>
+                                <li><strong>Categoría:</strong> <?php echo $producto['categoria'] ?: 'Accesorio'; ?></li
+                            <?php endif; ?>>
+                            <li><strong>Plataforma:</strong> <?php echo $producto['plataforma']; ?></li>
+                            <?php if ($producto['tipo'] == 'Consola'): ?>
+                                <li><strong>Almacenamiento:</strong>
+                                    <?php echo $producto['almacenamiento']; ?>
+                                </li>
+                                <li><strong>Lector de discos:</strong>
+                                    <?php echo ($producto['tieneLector'] == 1) ? 'Sí' : 'No (Digital)'; ?>
+                                </li>
+
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+
                 </div>
 
                 <button class="btn btn-primary btn-lg w-100 mb-2">
