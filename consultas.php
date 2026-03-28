@@ -228,6 +228,43 @@ function obtenerUltimosJuegosIntercalados($conexion)
     return $listaFinal;
 }
 
+function obtenerAccesoriosIntercalados($conexion)
+{
+    $plataformas = ['PS5', 'Xbox', 'Switch'];
+    $estantes = [];
+    $listaFinal = [];
+
+    // 1. Buscamos los últimos 20 accesorios de cada marca
+    foreach ($plataformas as $p) {
+        $sql = "SELECT * FROM productos 
+                WHERE tipo = 'Accesorio' AND plataforma = '$p' 
+                ORDER BY id_producto DESC 
+                LIMIT 20";
+        
+        $resultado = mysqli_query($conexion, $sql);
+        $estantes[$p] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    }
+
+    // 2. Mezclamos 1 de cada una hasta completar 18 para el slider
+    for ($i = 0; $i < 20; $i++) { 
+        foreach ($plataformas as $p) {
+            if (isset($estantes[$p][$i])) {
+                $listaFinal[] = $estantes[$p][$i];
+            }
+            if (count($listaFinal) >= 18) break 2;
+        }
+    }
+
+    return $listaFinal;
+}
+
+
+
+
+
+
+
+
 function obtenerUltimas18Consolas($conexion)
 {
     $sql = "SELECT * FROM productos 

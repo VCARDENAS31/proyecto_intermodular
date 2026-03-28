@@ -374,7 +374,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimosAccesorios = obtenerUltimos10Accesorios($conexion);
+                        $ultimosAccesorios = obtenerAccesoriosIntercalados($conexion);
 
                         // Supongamos que $ultimosAccesorios es el resultado de tu consulta SQL
                         foreach ($ultimosAccesorios as $accesorio) {

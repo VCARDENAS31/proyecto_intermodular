@@ -153,9 +153,7 @@ if (!$producto) {
                         <ul>
                             <li><strong>Tipo:</strong> <?php echo $producto['tipo']; ?></li>
                             <li><strong>Stock:</strong> <?php echo $producto['stock']; ?></li>
-                            <?php if ($producto['tipo'] == 'Juego'): ?>
-                                <li><strong>Categoría:</strong> <?php echo $producto['categoria'] ?: 'Accesorio'; ?></li
-                            <?php endif; ?>>
+                            <li><strong>Categoría:</strong> <?php echo $producto['categoria']?></li>
                             <li><strong>Plataforma:</strong> <?php echo $producto['plataforma']; ?></li>
                             <?php if ($producto['tipo'] == 'Consola'): ?>
                                 <li><strong>Almacenamiento:</strong>
