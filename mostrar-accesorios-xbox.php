@@ -251,10 +251,10 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-
-
+                
+                
                 <?php
-                $productosPS5 = obtenerAccesoriosPorPlataforma($conexion, 'PS5');
+                $productosPS5 = obtenerAccesoriosPorPlataforma($conexion, 'xbox');
                 while ($fila = mysqli_fetch_assoc($productosPS5)) {
                     ?>
                     <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">

@@ -228,7 +228,7 @@ function obtenerUltimosJuegosIntercalados($conexion)
     return $listaFinal;
 }
 
-function obtenerAccesoriosIntercalados($conexion)
+function obtenerUltimosAccesoriosIntercalados($conexion)
 {
     $plataformas = ['PS5', 'Xbox', 'Switch'];
     $estantes = [];
@@ -259,21 +259,36 @@ function obtenerAccesoriosIntercalados($conexion)
 }
 
 
-
-
-
-
-
-
-function obtenerUltimas18Consolas($conexion)
+function obtenerUltimasConsolasIntercaladas($conexion)
 {
-    $sql = "SELECT * FROM productos 
-            WHERE tipo = 'Consola'
-            ORDER BY id_producto DESC
-            LIMIT 18";
-    $resultado = mysqli_query($conexion, $sql);
-    return $resultado;
+    // Mapeamos tus categorías a los valores de la columna 'plataforma'
+    $plataformas = ['PS5', 'Xbox', 'Switch']; 
+    $estantes = [];
+    $listaFinal = [];
+
+    // 1. Obtenemos las consolas de cada marca
+    foreach ($plataformas as $p) {
+        $sql = "SELECT * FROM productos 
+                WHERE tipo = 'Consola' AND plataforma = '$p' 
+                ORDER BY id_producto DESC";
+        
+        $resultado = mysqli_query($conexion, $sql);
+        $estantes[$p] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    }
+
+    // 2. Intercalamos: Una de Sony (PS5), una de Microsoft (Xbox), una de Nintendo (Switch)
+    // Suponiendo que tienes un máximo de 10 modelos de consolas
+    for ($i = 0; $i < 10; $i++) { 
+        foreach ($plataformas as $p) {
+            if (isset($estantes[$p][$i])) {
+                $listaFinal[] = $estantes[$p][$i];
+            }
+        }
+    }
+
+    return $listaFinal;
 }
+
 
 function obtenerUltimos18JuegosPorPlataforma($conexion, $plataforma)
 {

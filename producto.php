@@ -153,17 +153,20 @@ if (!$producto) {
                         <ul>
                             <li><strong>Tipo:</strong> <?php echo $producto['tipo']; ?></li>
                             <li><strong>Stock:</strong> <?php echo $producto['stock']; ?></li>
-                            <li><strong>Categoría:</strong> <?php echo $producto['categoria']?></li>
+                            <li><strong>Categoría:</strong> <?php echo $producto['categoria'] ?></li>
                             <li><strong>Plataforma:</strong> <?php echo $producto['plataforma']; ?></li>
-                            <?php if ($producto['tipo'] == 'Consola'): ?>
-                                <li><strong>Almacenamiento:</strong>
-                                    <?php echo $producto['almacenamiento']; ?>
-                                </li>
+                            <?php if ($producto['almacenamiento'] == 'Consola'): ?>
                                 <li><strong>Lector de discos:</strong>
                                     <?php echo ($producto['tieneLector'] == 1) ? 'Sí' : 'No (Digital)'; ?>
                                 </li>
-
                             <?php endif; ?>
+
+                            <?php if ($producto['almacenamiento'] !== null): ?>
+                            <li><strong>Almacenamiento:</strong>
+                                <?php echo $producto['almacenamiento']; ?>
+                            </li>
+                            <?php endif; ?>
+
                         </ul>
                     </div>
 

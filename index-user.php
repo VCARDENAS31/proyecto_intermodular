@@ -19,81 +19,69 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 <body>
     <header>
         <!-- NAVBAR PRINCIPAL -->
-        <nav class="navbar-principal navbar navbar-expand-lg d-flex p-2 navbar-dark">
-            <!-- Botón menú móvil -->
-            <button class="navbar-toggler" type="button" id="botonMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar-principal navbar-dark">
 
-
-            <div class="logo">
-                <img class="img-fluid" src="assets/imagenes/logo_tienda.png">
-            </div>
-
-
-            <!-- SIDEBAR MÓVIL -->
-            <div id="sidebarMovil" class="d-flex flex-column">
-                <!-- Botón cerrar sidebar -->
-                <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-                    aria-label="Cerrar"></button>
-
-                <h2 class="text-white mt-5 text-center mb-5">Categorías</h2>
-                <!-- Menú categorías -->
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-controller"></i>
-                    VIDEOJUEGOS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-box-fill"></i>
-                    CONSOLAS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-headset"></i>
-                    ACCESORIOS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-calendar-event"></i>
-                    PRÓXIMOS
-                    LANZAMIENTOS</a>
-                </li>
-                </ul>
-                <!-- Buscador móvil -->
-                <form class="d-flex w-100 my-3 px-4">
-                    <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
-                </form>
-                <!-- Botón cerrar sesión -->
-                <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-                    CERRAR SESIÓN
+            <!-- IZQUIERDA -->
+            <div class="nav-left">
+                <button class="navbar-toggler d-lg-none" type="button" id="botonMenu">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
-            <!-- ===== FIN SIDEBAR ===== -->
 
-            <!-- Overlay -->
-            <div id="overlaySidebar"></div>
-
-            <!-- Buscador escritorio -->
-            <form class="d-none d-lg-flex w-100 my-3 px-4">
-                <input class="form-control rounded-pill px-4 d-flex" type="search" placeholder="Buscar videojuegos">
-            </form>
-
-            </div>
-
-            <!-- Iconos usuario y carrito -->
-            <div class="d-xs-none d-flex iconos-nav">
-                <div class="dropdown">
-                    <!-- icono login -->
-                    <a href="#" class="text-white " id="userMenu" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item btn-cerrar-sesion" href="#"><i
-                                    class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
-                    </ul>
+                <div class="logo">
+                    <img src="assets/imagenes/logo_tienda.png" alt="Logo">
                 </div>
-
-                <!-- icono Carrito -->
-                <a href="#" class="text-white">
-                    <i class="bi bi-cart fs-4"></i>
-                </a>
             </div>
+
+            <!-- BUSCADOR (SOLO ESCRITORIO) -->
+            <div class="nav-center">
+                <form class="buscador position-relative">
+                    <input type="search" class="form-control rounded-pill ps-4" placeholder="Buscar videojuegos...">
+                </form>
+            </div>
+
+            <!-- DERECHA -->
+            <div class="nav-right">
+                <i class="bi bi-person-circle"></i>
+                <i class="bi bi-cart"></i>
+            </div>
+
         </nav>
 
+        <!-- BUSCADOR SOLO MOVIL -->
+        <div class="buscador-movil-wrapper">
+            <div class="buscador-box">
+                <input type="text" placeholder="¿Qué buscas?">
+                <button>
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <!-- SIDEBAR MOVIL -->
+        <div id="sidebarMovil">
+            <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+                aria-label="Cerrar"></button>
+            <div class="user-section">
+                <i class="bi bi-person-circle"></i>
+                <p>Usuario</p>
+            </div>
+            <div class="menu-item">Inicio</div>
+            <div class="menu-item">Videojuegos</div>
+            <div class="menu-item">Consolas</div>
+            <div class="menu-item">Accesorios</div>
+            <div class="menu-item">Próximos lanzamientos</div>
+            <!-- Botón cerrar sesión -->
+            <button class="btn btn-danger logout-btn btn-cerrar-sesion">
+                CERRAR SESIÓN
+            </button>
+        </div>
+
+        <!-- OVERLAY para cerrar sidebar -->
+        <div id="overlaySidebar"></div>
 
         <!-- NAVBAR SECUNDARIO -->
-        <div class="navbar-secundario d-none d-lg-block">
+        <div class="navbar-secundario d-none d-md-block">
             <div class="container">
                 <ul class="nav w-100 justify-content-between text-center">
                     <li class="nav-item">
@@ -263,7 +251,8 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
                             <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div class="card-img-container">
-                                    <img class="card-img-top rounded-3" src="assets/imagenes/<?php echo $juego['img_url']; ?>">
+                                    <img class="card-img-top rounded-3"
+                                        src="assets/imagenes/<?php echo $juego['img_url']; ?>">
                                 </div>
                                 <div class="text-center">
                                     <p class="fw-bold mb-0 mt-3"><?php echo $juego['nombre']; ?></p>
@@ -273,7 +262,8 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
                                     </button>
-                                    <a href="producto.php?id=<?php echo $juego['id_producto']; ?>" class="btn btn-outline-secondary btn-sm w-100">
+                                    <a href="producto.php?id=<?php echo $juego['id_producto']; ?>"
+                                        class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -315,7 +305,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimasConsolas = obtenerUltimas18consolas($conexion);
+                        $ultimasConsolas = obtenerUltimasConsolasIntercaladas($conexion);
 
                         // Supongamos que $ultimasConsolas es el resultado de tu consulta SQL
                         foreach ($ultimasConsolas as $consolas) {
@@ -333,7 +323,8 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
                                     </button>
-                                    <a href="producto.php?id=<?php echo $consolas['id_producto']; ?>" class="btn btn-outline-secondary btn-sm w-100">
+                                    <a href="producto.php?id=<?php echo $consolas['id_producto']; ?>"
+                                        class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -374,7 +365,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimosAccesorios = obtenerAccesoriosIntercalados($conexion);
+                        $ultimosAccesorios = obtenerUltimosAccesoriosIntercalados($conexion);
 
                         // Supongamos que $ultimosAccesorios es el resultado de tu consulta SQL
                         foreach ($ultimosAccesorios as $accesorio) {
@@ -392,7 +383,8 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
                                         <i class="bi bi-cart"></i> COMPRAR
                                     </button>
-                                    <a href="producto.php?id=<?php echo $accesorio['id_producto']; ?>" class="btn btn-outline-secondary btn-sm w-100">
+                                    <a href="producto.php?id=<?php echo $accesorio['id_producto']; ?>"
+                                        class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>

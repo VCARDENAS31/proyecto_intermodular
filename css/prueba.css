@@ -11,9 +11,10 @@ hr {
     border: 1px solid black;
 }
 
-.logo {
-    width: 80px;
+.nav-left div.logo > img {
+    width: 100px;
 }
+
 
 .link-noticia {
     text-decoration: none;
@@ -23,11 +24,11 @@ hr {
 
 /*---------- Navbar user --------------*/
 
-.navbar-principal{
+.navbar-principal {
     background-color: #2a2753;
 }
 
-.navbar-secundario{
+.navbar-secundario {
     background-color: #1f1c3f;
 }
 
@@ -54,15 +55,15 @@ hr {
 
 /* ---------- Navbar ---------- */
 
-.iconos-nav {
-    gap: 20px;
-    font-size: 20px;
-}
+
+
+
+
 
 
 /* ---------- Carousel ---------- */
 
-.carousel-item > img {
+.carousel-item>img {
     border: 2px solid black;
 }
 
@@ -139,12 +140,7 @@ hr {
     right: -20px;
 }
 
-/* Ocultar flechas en móviles */
-@media (max-width: 768px) {
-    .btn-scroll {
-        display: none;
-    }
-}
+
 
 /* ---------- Noticias ---------- */
 
@@ -229,9 +225,17 @@ hr {
 }
 
 /* Colores redes */
-.bi-instagram { color: #e1306c; }
-.bi-facebook  { color: #1877f2; }
-.bi-twitter-x { color: #1da1f2; }
+.bi-instagram {
+    color: #e1306c;
+}
+
+.bi-facebook {
+    color: #1877f2;
+}
+
+.bi-twitter-x {
+    color: #1da1f2;
+}
 
 .footer-bottom {
     background: rgba(0, 0, 0, 0.15);
@@ -260,7 +264,7 @@ hr {
 /* ---------- Navbar ---------- */
 
 .navbar-admin {
-    background-color: rgb(0, 0, 0) ;
+    background-color: rgb(0, 0, 0);
 }
 
 /* ---------- Sidebar ---------- */
@@ -320,7 +324,7 @@ hr {
 }
 
 @media (min-width: 769px) {
-    #sidebarMovil.mostrar + #content {
+    #sidebarMovil.mostrar+#content {
         margin-left: 280px;
     }
 }
@@ -372,12 +376,14 @@ hr {
     display: block;
 }
 
-div > a , a, * > a{
+div>a,
+a,
+*>a {
     text-decoration: none;
     color: black;
 }
 
-*.contenido-gestion{
+*.contenido-gestion {
     min-height: 90vh;
 }
 
@@ -401,14 +407,14 @@ div > a , a, * > a{
     font-size: 0.9rem;
 }
 
-section.barra-filtro{
+section.barra-filtro {
     background-color: #151335;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 0.85rem;
 }
 
-div > .card {
+div>.card {
     width: 200px;
 }
 
@@ -438,17 +444,34 @@ div > .card {
 }
 
 /* Imágenes específicas por plataforma */
-.ps5 .card-img-container::after { background-image: url('../assets/imagenes/marco_ps5.webp'); }
-.xbox .card-img-container::after { background-image: url('../assets/imagenes/marco_xbox.png'); }
-.switch .card-img-container::after { background-image: url('../assets/imagenes/marco_ns.png'); }
+.ps5 .card-img-container::after {
+    background-image: url('../assets/imagenes/marco_ps5.webp');
+}
 
-.ps5 .card-img-container-ver-detalle::after { background-image: url('../assets/imagenes/marco_ps5.webp'); }
-.xbox .card-img-container-ver-detalle::after { background-image: url('../assets/imagenes/marco_xbox.png'); }
-.switch .card-img-container-ver-detalle::after { background-image: url('../assets/imagenes/marco_ns.png');}
+.xbox .card-img-container::after {
+    background-image: url('../assets/imagenes/marco_xbox.png');
+}
+
+.switch .card-img-container::after {
+    background-image: url('../assets/imagenes/marco_ns.png');
+}
+
+.ps5 .card-img-container-ver-detalle::after {
+    background-image: url('../assets/imagenes/marco_ps5.webp');
+}
+
+.xbox .card-img-container-ver-detalle::after {
+    background-image: url('../assets/imagenes/marco_xbox.png');
+}
+
+.switch .card-img-container-ver-detalle::after {
+    background-image: url('../assets/imagenes/marco_ns.png');
+}
 
 
 .card-img-container {
-    height: 250px; /* Ajusta esta altura según prefieras */
+    height: 250px;
+    /* Ajusta esta altura según prefieras */
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -456,13 +479,15 @@ div > .card {
 
 
 .card-img-container-ver-detalle {
-    height: 300px; /* Ajusta esta altura según prefieras */
+    height: 300px;
+    /* Ajusta esta altura según prefieras */
     width: auto;
     position: relative;
 }
 
 .card-img-container-ver-detalle-modal {
-    height: 600px; /* Ajusta esta altura según prefieras */
+    height: 600px;
+    /* Ajusta esta altura según prefieras */
     width: auto;
     position: relative;
 }
@@ -472,7 +497,8 @@ div > .card {
 .card-img-top {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Mantiene la proporción y rellena el cuadro */
+    object-fit: cover;
+    /* Mantiene la proporción y rellena el cuadro */
 }
 
 .container-modal-producto {
@@ -480,20 +506,22 @@ div > .card {
 }
 
 
-div.modal-content, .container-modal-producto {
-    background-color: rgb(255, 255, 255); /* fondo oscuro para resaltar el efecto */
+div.modal-content,
+.container-modal-producto {
+    background-color: rgb(255, 255, 255);
+    /* fondo oscuro para resaltar el efecto */
     color: white;
     border: 4px solid;
-    border-radius: 12px; 
+    border-radius: 12px;
     padding: 20px;
     position: relative;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
-    
+
     /* borde animado con gradiente */
     border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
     animation: borderGlow 4s linear infinite;
-    
+
     /* sombra sutil para resaltar */
     box-shadow: 0 0 15px rgba(255, 85, 85, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
 }
@@ -503,24 +531,30 @@ div.modal-content, .container-modal-producto {
     0% {
         border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
     }
+
     25% {
         border-image: linear-gradient(90deg, #00ffff, #5500ff, #ff0055, #ff5500, #00ffff) 1;
     }
+
     50% {
         border-image: linear-gradient(135deg, #ff5500, #00ffff, #5500ff, #ff0055, #ff5500) 1;
     }
+
     75% {
         border-image: linear-gradient(180deg, #5500ff, #ff0055, #ff5500, #00ffff, #5500ff) 1;
     }
+
     100% {
         border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
     }
 }
+
 @media screen and (max-width: 768px) {
     .card-img-container-ver-detalle-modal {
-        height: 400px; /* Ajusta esta altura para móviles */
+        height: 400px;
+        /* Ajusta esta altura para móviles */
         width: auto;
-    }    
+    }
 }
 
 
@@ -589,10 +623,188 @@ div.modal-content, .container-modal-producto {
     background: white;
     border-radius: 12px;
     margin-top: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    ;
 }
 
 /* ACTIVO */
 .tab-content.active {
     display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   NAVBAR GENERAL
+========================= */
+
+.navbar-principal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2a2753;
+    padding: 30px 15px 30px 0px;
+}
+
+/* BLOQUES */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* ICONOS */
+.nav-right i {
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+/* =========================
+   BUSCADOR ESCRITORIO
+========================= */
+
+.buscador {
+    width: 100%;
+    max-width: 500px;
+}
+
+.buscador input {
+    width: 100%;
+    padding: 15px 15px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+}
+
+@media (min-width: 992px) {
+    .buscador input {
+        width: 600px; /* Ajusta este valor (700px, 800px...) según qué tan largo lo quieras */
+    }
+}
+
+
+
+/* =========================
+   BUSCADOR MOVIL (ESTILO GAME)
+========================= */
+
+.buscador-movil-wrapper {
+    background: #d1cefc;
+    padding: 5% 15px 5%;
+}
+
+.buscador-box {
+    display: flex;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.buscador-box input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+
+
+
+.buscador-box button {
+    background: #2a2753;
+    border: none;
+    padding: 0 15px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================
+   RESPONSIVE CORRECTO 🔥
+========================= */
+
+/* 👉 SOLO MOVIL (menos de 768px) */
+@media (max-width: 767px) {
+
+    /* ocultar buscador del navbar */
+    .nav-left {
+        margin-left: 15px;
+    }
+
+    .nav-center {
+        display: none;
+    }
+
+    .nav-right {
+        gap: 30px;
+    }
+
+    .nav-right i {
+        font-size: 25px;
+    }
+
+    /* mostrar buscador debajo */
+    .buscador-movil-wrapper {
+        display: block;
+    }
+
+}
+
+/* 👉 TABLET + ESCRITORIO (768px o más) */
+@media (min-width: 768px) {
+
+    /* mostrar todo en una barra */
+    .nav-center {
+        display: flex;
+    }
+
+    .nav-left{
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+    .nav-right{
+        margin-right: 20px;
+        gap: 30px;
+        margin-left: 40px;
+    } 
+
+    /* ocultar buscador estilo GAME */
+    .buscador-movil-wrapper {
+        display: none;
+    }
+
+}
+
+/* 👉 Por defecto oculto */
+.navbar-toggler {
+    display: none;
+}
+
+/* 👉 SOLO móvil (menos de 768px) */
+@media (max-width: 767px) {
+    .navbar-toggler {
+        display: block;
+    }
 }
