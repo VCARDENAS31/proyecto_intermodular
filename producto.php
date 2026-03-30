@@ -21,6 +21,7 @@ if (!$producto) {
 
     <link rel="stylesheet" href="css/prueba.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 
 <body>

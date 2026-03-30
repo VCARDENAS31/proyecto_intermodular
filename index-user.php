@@ -13,7 +13,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/prueba.css">
-
+    <link href="https://googleapis.com" rel="stylesheet">
 </head>
 
 <body>
@@ -84,24 +84,68 @@ include 'conexion-bd.php'; // Tu conexión a la DB
         <div class="navbar-secundario d-none d-md-block">
             <div class="container">
                 <ul class="nav w-100 justify-content-between text-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
+
+                    <!-- VIDEOJUEGOS -->
+                    <li class="nav-item dropdown-mega">
+                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
+                            href="#">
                             <i class="bi bi-controller"></i> VIDEOJUEGOS
+                            <i class="bi bi-chevron-down flecha"></i>
                         </a>
+
+                        <div class="mega-menu">
+                            <div class="mega-content">
+                                <div class="mega-column">
+                                    <a href="#"><i class="bi bi-xbox"></i> Videojuegos Xbox</a>
+                                    <a href="#"><i class="bi bi-playstation"></i> Videojuegos PS5</a>
+                                    <a href="#"><i class="bi bi-nintendo-switch"></i> Videojuegos Nintendo Switch</a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
+
+                    <!-- CONSOLAS -->
+                    <li class="nav-item dropdown-mega">
+                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
+                            href="#">
                             <i class="bi bi-box-fill"></i> CONSOLAS
+                            <i class="bi bi-chevron-down flecha"></i>
                         </a>
+
+                        <div class="mega-menu">
+                            <div class="mega-content">
+                                <div class="mega-column">
+                                    <a href="#"><i class="bi bi-xbox"></i> Consolas Xbox</a>
+                                    <a href="#"><i class="bi bi-playstation"></i> Consolas PS5</a>
+                                    <a href="#"><i class="bi bi-nintendo-switch"></i> Consolas Nintendo Switch</a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
+
+                    <!-- ACCESORIOS -->
+                    <li class="nav-item dropdown-mega">
+                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
+                            href="#">
                             <i class="bi bi-headset"></i> ACCESORIOS
+                            <i class="bi bi-chevron-down flecha"></i>
                         </a>
+
+                        <div class="mega-menu">
+                            <div class="mega-content">
+                                <div class="mega-column">
+                                    <a href="#"><i class="bi bi-xbox"></i> Accesorios Xbox</a>
+                                    <a href="#"><i class="bi bi-playstation"></i> Accesorios PS5</a>
+                                    <a href="#"><i class="bi bi-nintendo-switch"></i> Accesorios Nintendo Switch</a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-calendar-event"></i> PRÓXIMOS LANZAMIENTOS
+
+                    <li class="nav-item dropdown-mega">
+                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
+                            href="#">
+                            <i class="bi bi-clock-history"></i> PRÓXIMAMENTE
                         </a>
                     </li>
                 </ul>
@@ -170,48 +214,51 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                 </div>
 
                 <hr>
+                <div class="contenedor-slider">
+                    <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
+                            class="bi bi-chevron-left"></i></button>
+                    <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
 
-                <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/code-vein.webp">
+                        </div>
 
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/code-vein.webp">
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/crimsom.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/dragon-quest.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/final-fantasy-2.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/juego-007.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/mario-tennis.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/monster-hunters.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/pokemon-pokopia.webp">
+                        </div>
+
+                        <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
+                            <img class="card-img-top img-fluid" src="assets/imagenes/resident-evil-requiem.webp">
+                        </div>
+
                     </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/crimsom.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/dragon-quest.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/final-fantasy-2.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/juego-007.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/mario-tennis.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/monster-hunters.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/pokemon-pokopia.webp">
-                    </div>
-
-                    <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
-                        <img class="card-img-top img-fluid" src="assets/imagenes/resident-evil-requiem.webp">
-                    </div>
-
+                    <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
+                            class="bi bi-chevron-right"></i></button>
                 </div>
-
-            </div>
 
         </section>
 
@@ -400,7 +447,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
         </section>
 
         <!-- ===== SECCIÓN NOTICIAS ===== -->
-        <section id="noticias-videojuegos" class="bg-light py-5">
+        <section id="noticias-videojuegos" class="py-5">
             <div class="container">
                 <hr class="mb-5">
 
