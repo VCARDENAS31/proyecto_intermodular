@@ -18,7 +18,8 @@ if (!$producto) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $producto['nombre']; ?> - Tienda</title>
-
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/prueba.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://googleapis.com" rel="stylesheet">
@@ -163,9 +164,9 @@ if (!$producto) {
                             <?php endif; ?>
 
                             <?php if ($producto['almacenamiento'] !== null): ?>
-                            <li><strong>Almacenamiento:</strong>
-                                <?php echo $producto['almacenamiento']; ?>
-                            </li>
+                                <li><strong>Almacenamiento:</strong>
+                                    <?php echo $producto['almacenamiento']; ?>
+                                </li>
                             <?php endif; ?>
 
                         </ul>
@@ -208,6 +209,9 @@ if (!$producto) {
             </div>
         </div>
     </div>
+
+    <!-- ================= FOOTER ================= -->
+    <?php include 'footer.php'; ?>
 
     <script src="efectos.js"></script>
     <script src="funciones.js"></script>

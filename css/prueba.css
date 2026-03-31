@@ -9,7 +9,7 @@ hr {
     border: 1px solid black;
 }
 
-.nav-left div.logo > img {
+.nav-left div.logo>img {
     width: 100px;
 }
 
@@ -49,7 +49,7 @@ hr {
     background-color: #f8ebfe;
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     cursor: pointer;
-        border: 1px solid #eac7f1;
+    border: 1px solid #eac7f1;
 
 }
 
@@ -711,7 +711,8 @@ div.modal-content,
 
 @media (min-width: 992px) {
     .buscador input {
-        width: 600px; /* Ajusta este valor (700px, 800px...) según qué tan largo lo quieras */
+        width: 600px;
+        /* Ajusta este valor (700px, 800px...) según qué tan largo lo quieras */
     }
 }
 
@@ -790,16 +791,16 @@ div.modal-content,
         display: flex;
     }
 
-    .nav-left{
+    .nav-left {
         margin-left: 20px;
         margin-right: 10px;
     }
 
-    .nav-right{
+    .nav-right {
         margin-right: 20px;
         gap: 30px;
         margin-left: 40px;
-    } 
+    }
 
     /* ocultar buscador estilo GAME */
     .buscador-movil-wrapper {
@@ -824,16 +825,17 @@ div.modal-content,
 
 .navbar-secundario .container {
     padding: 0 !important;
-    max-width: 100% !important; /* Asegura que llegue a los bordes */
+    max-width: 100% !important;
+    /* Asegura que llegue a los bordes */
 }
 
 /* 2. Hacemos que cada <li> crezca equitativamente */
 .navbar-secundario .nav-item {
-    flex: 1; 
+    flex: 1;
     display: flex;
 }
 
-.menu-item > i{
+.menu-item>i {
     margin-right: 10px;
 }
 
@@ -843,27 +845,35 @@ div.modal-content,
     width: 100%;
     align-items: center;
     justify-content: center;
-    padding: 25px !important; /* Ajusta la altura aquí */
+    padding: 25px !important;
+    /* Ajusta la altura aquí */
     margin: 0 !important;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border-bottom: 2px solid transparent; /* Reserva el espacio para la línea */
+    border-bottom: 2px solid transparent;
+    /* Reserva el espacio para la línea */
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border-bottom: 2px solid transparent; /* Reserva el espacio para la línea */
+    border-bottom: 2px solid transparent;
+    /* Reserva el espacio para la línea */
 }
 
 /* 4. Efecto Hover total */
 .navbar-secundario .menu-item:hover {
-    background-color: #312e4d; /* El color de tu imagen */
+    background-color: #312e4d;
+    /* El color de tu imagen */
     color: #fff !important;
 }
 
 
 /* EFECTO HOVER INNOVADOR */
 .navbar-secundario .menu-item:hover {
-    background: rgba(255, 255, 255, 0.08); /* Fondo sutil tipo cristal */
-    backdrop-filter: blur(4px);            /* Desenfoque de fondo moderno */
-    color: #00d4ff !important;             /* Cambia el texto a un color neón o el de tu marca */
-    transform: translateY(-2px);           /* Pequeña elevación */
+    background: rgba(255, 255, 255, 0.08);
+    /* Fondo sutil tipo cristal */
+    backdrop-filter: blur(4px);
+    /* Desenfoque de fondo moderno */
+    color: #00d4ff !important;
+    /* Cambia el texto a un color neón o el de tu marca */
+    transform: translateY(-2px);
+    /* Pequeña elevación */
 }
 
 /* Línea animada que aparece desde el centro */
@@ -874,20 +884,23 @@ div.modal-content,
     left: 50%;
     width: 0;
     height: 3px;
-    background: linear-gradient(90deg, #00d4ff, #0055ff); /* Degradado moderno */
+    background: linear-gradient(90deg, #00d4ff, #0055ff);
+    /* Degradado moderno */
     transition: all 0.4s ease;
     transform: translateX(-50%);
 }
 
 .navbar-secundario .menu-item:hover::after {
-    width: 100%; /* La línea se expande al 100% */
+    width: 100%;
+    /* La línea se expande al 100% */
 }
 
 /* Animación sutil para el icono al hacer hover */
 .navbar-secundario .menu-item:hover i {
     transform: scale(1.2) rotate(-5deg);
     transition: transform 0.3s ease;
-    display: inline-block; /* Asegura que la transformación funcione */
+    display: inline-block;
+    /* Asegura que la transformación funcione */
 }
 
 
@@ -904,12 +917,14 @@ div.modal-content,
 .navbar-secundario {
     position: relative;
     background: #1f1b3a;
-    overflow: visible; /* 🔥 clave */
+    overflow: visible;
+    /* 🔥 clave */
 }
 
 /* ITEM */
 .dropdown-mega {
-    position: relative; /* 🔥 permite ancho completo */
+    position: relative;
+    /* 🔥 permite ancho completo */
 }
 
 /* MENU DESPLEGABLE */
@@ -940,13 +955,16 @@ div.modal-content,
 
 
 .mega-column {
-    width: 100%; /* 🔥 importante */
+    width: 100%;
+    /* 🔥 importante */
 }
 
 .mega-column a {
     display: block;
-    width: 100%; /* 🔥 clave */
-    box-sizing: border-box; /* evita problemas con padding */
+    width: 100%;
+    /* 🔥 clave */
+    box-sizing: border-box;
+    /* evita problemas con padding */
 
     color: #ccc;
     text-decoration: none;
@@ -1000,64 +1018,155 @@ div.modal-content,
  */
 /* Exo thin font from Google. */
 @import url(https://fonts.googleapis.com/css?family=Exo:100);
+
 /* Background data (Original source: https://subtlepatterns.com/grid-me/) */
 /* Animations */
 @-webkit-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
+    100% {
+        background-position: 50px 50px;
+    }
 }
+
 @-moz-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
+    100% {
+        background-position: 50px 50px;
+    }
 }
+
 @-o-keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
+    100% {
+        background-position: 50px 50px;
+    }
 }
+
 @keyframes bg-scrolling-reverse {
-  100% {
-    background-position: 50px 50px;
-  }
+    100% {
+        background-position: 50px 50px;
+    }
 }
+
 @-webkit-keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
+    0% {
+        background-position: 50px 50px;
+    }
 }
+
 @-moz-keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
+    0% {
+        background-position: 50px 50px;
+    }
 }
+
 @-o-keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
+    0% {
+        background-position: 50px 50px;
+    }
 }
+
 @keyframes bg-scrolling {
-  0% {
-    background-position: 50px 50px;
-  }
+    0% {
+        background-position: 50px 50px;
+    }
 }
+
 /* Main styles */
 body {
-  font: 400 16px/1.5 exo, ubuntu,'Roboto Mono', monospace !important;
-  text-align: center;
-  /* img size is 50x50 */
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
-  -webkit-animation: bg-scrolling-reverse .92s infinite;
-  /* Safari 4+ */
-  -moz-animation: bg-scrolling-reverse .92s infinite;
-  /* Fx 5+ */
-  -o-animation: bg-scrolling-reverse .92s infinite;
-  /* Opera 12+ */
-  animation: bg-scrolling-reverse .92s infinite;
-  /* IE 10+ */
-  -webkit-animation-timing-function: linear;
-  -moz-animation-timing-function: linear;
-  -o-animation-timing-function: linear;
-  animation-timing-function: linear;
+    font: 400 16px/1.5 exo, ubuntu, 'Roboto Mono', monospace !important;
+    text-align: center;
+    /* img size is 50x50 */
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+    -webkit-animation: bg-scrolling-reverse .92s infinite;
+    /* Safari 4+ */
+    -moz-animation: bg-scrolling-reverse .92s infinite;
+    /* Fx 5+ */
+    -o-animation: bg-scrolling-reverse .92s infinite;
+    /* Opera 12+ */
+    animation: bg-scrolling-reverse .92s infinite;
+    /* IE 10+ */
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+
+
+
+
+
+/* Estilo para los botones de categoría */
+.btn-vicio {
+    display: block;
+    width: 100%;
+    min-width: 210px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    /* Texto siempre blanco */
+    border: 2px solid #8a2be2;
+    /* Borde morado inicial */
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+    overflow: hidden;
+    /* Importante para que el efecto no se salga */
+    background: transparent;
+}
+
+.btn-vicio span {
+    position: relative;
+    z-index: 2;
+    /* Mantiene el texto por encima del fondo morado */
+}
+
+.btn-vicio:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #8a2be2;
+    /* Fondo morado al hacer hover */
+    transition: all .35s;
+    z-index: 1;
+}
+
+
+
+
+
+.btn-primary:hover:after {
+    width: 110%;
+}
+
+.btn-primary:hover {
+    background-color: thistle;
+    color: #8e44ad !important;
+}
+
+.btn-primary:after {
+    content: '';
+    position: absolute !important;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: thistle;
+    z-index: -1 !important;
+    transition: width 150ms ease-in-out;
+}
+
+.btn-primary {
+    background-color: #8e44ad !important;
+    border-color: #8e44ad !important;
+    border-radius: 0;
+    color: thistle !important;
+    position: relative !important;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 150ms ease-in-out;
 }
