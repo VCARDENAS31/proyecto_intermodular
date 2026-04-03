@@ -128,6 +128,22 @@ function obtenerProductoPorId($conexion, $id)
     return mysqli_fetch_assoc($resultado);
 }
 
+
+function obtenerRecomendadosAleatorios($conexion, $plataforma, $id_actual)
+{
+    // Buscamos 10 productos aleatorios de la misma plataforma, excluyendo el actual
+    $sql = "SELECT * FROM productos 
+            WHERE plataforma = '$plataforma' 
+            AND id_producto != '$id_actual' 
+            ORDER BY RAND() 
+            LIMIT 10";
+            
+    $resultado = mysqli_query($conexion, $sql);
+    return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+}
+
+
+
 function obtenerJuegosPorPlataforma($conexion, $plataforma)
 {
     // 1. Preparamos la consulta con un placeholder (?)
@@ -339,6 +355,10 @@ function obtenerUltimos10AccesoriosPorPlataforma($conexion, $plataforma)
     $resultado = mysqli_stmt_get_result($stmt);
     return $resultado;
 }
+
+
+
+
 
 
 ?>

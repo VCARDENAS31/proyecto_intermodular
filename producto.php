@@ -18,7 +18,7 @@ if (!$producto) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $producto['nombre']; ?> - Tienda</title>
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/prueba.css">
     <link rel="stylesheet" href="css/style.css">
@@ -181,10 +181,61 @@ if (!$producto) {
             </div>
         </div>
 
-        <!-- RECOMENDADOS -->
         <div class="mt-5 pt-5 border-top border-secondary">
+
             <h3>También te puede interesar</h3>
+
         </div>
+
+        <div class="contenedor-slider">
+            <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
+                    class="bi bi-chevron-left"></i></button>
+
+            <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
+                <?php
+                // Llamamos a la función del archivo externo
+                $recomendadosAleatorios = obtenerRecomendadosAleatorios($conexion, $producto['plataforma'], $producto['id_producto']);
+
+                // Supongamos que $ultimasConsolas es el resultado de tu consulta SQL
+                foreach ($recomendadosAleatorios as $recomendado) {
+                    // Determinamos si lleva marco (solo si es Juego)
+                    $claseMarco = ($recomendado['tipo'] == 'Juego') ? strtolower($recomendado['plataforma']) : '';
+                    ?>
+
+                    <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2 <?php echo $claseMarco; ?>">
+                        <?php if (!empty($claseMarco)): ?>
+                            <div class="<?php echo $claseMarco; ?>">
+                                <div class="card-img-container rounded shadow-sm">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $recomendado['img_url']; ?>">
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <div>
+                                <img class="card-img-top" src="assets/imagenes/<?php echo $recomendado['img_url']; ?>">
+                            </div>
+                        <?php endif; ?>
+                        <div class="text-center">
+                            <p class="fw-bold mb-0 mt-3"><?php echo $recomendado['nombre']; ?></p>
+                            <p class="mb-3"><b>Precio:</b> <?php echo $recomendado['precio']; ?>€</p>
+                        </div>
+                        <div class="mt-auto">
+                            <button class="btn btn-primary btn-sm w-100 mb-1">
+                                <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                            </button>
+                            <a href="producto.php?id=<?php echo $recomendado['id_producto']; ?>"
+                                class="btn btn-secondary btn-sm w-100">
+                                <i class="bi bi-eye"></i> VER
+                            </a>
+                        </div>
+                    </div>
+
+                <?php }
+                ?>
+            </div>
+            <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
+                    class="bi bi-chevron-right"></i></button>
+        </div>
+
 
     </div>
 

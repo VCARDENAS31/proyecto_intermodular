@@ -1,32 +1,58 @@
-// ==========================
-// CONTROL DEL SIDEBAR MÓVIL
-// ==========================
 
-// Elementos del DOM
-const cerrarSidebar = document.getElementById('cerrarSidebar');
+// ==========================
+// ELEMENTOS
+// ==========================
 const botonMenu = document.getElementById('botonMenu');
-const sidebarMovil = document.getElementById('sidebarMovil');
-const overlaySidebar = document.getElementById('overlaySidebar');
+const cerrarMenu = document.getElementById('cerrarMenu');
+const sidebarMenu = document.getElementById('sidebarMenu');
+const overlayMenu = document.getElementById('overlaySidebarMenu');
+
+const botonCarrito = document.querySelector(".nav-right .bi-cart");
+const cerrarCarrito = document.getElementById("cerrarCarrito");
+const sidebarCarrito = document.getElementById("sidebarCarrito");
+const overlayCarrito = document.getElementById("overlayCarrito");
 
 
-// Abre/cierra sidebar al hacer clic en el botón del menú
+// ==========================
+// FUNCIONES GENERALES
+// ==========================
+
+// cerrar TODO
+function cerrarTodo() {
+    sidebarMenu.classList.remove('mostrar');
+    overlayMenu.classList.remove('mostrar');
+
+    sidebarCarrito.classList.remove('active');
+    overlayCarrito.classList.remove('active');
+}
+
+
+// ==========================
+// SIDEBAR MENU (IZQUIERDA)
+// ==========================
+
 botonMenu.addEventListener('click', () => {
-    sidebarMovil.classList.toggle('mostrar'); // Muestra u oculta el sidebar
-    overlaySidebar.classList.toggle('mostrar'); // Muestra u oculta el overlay
+    cerrarTodo(); // cierra todo antes
+    sidebarMenu.classList.add('mostrar');
+    overlayMenu.classList.add('mostrar');
 });
 
-// Cierra sidebar al hacer clic en el overlay
-overlaySidebar.addEventListener('click', () => {
-    sidebarMovil.classList.remove('mostrar'); // Oculta el sidebar
-    overlaySidebar.classList.remove('mostrar'); // Oculta el overlay
+cerrarMenu.addEventListener('click', cerrarTodo);
+overlayMenu.addEventListener('click', cerrarTodo);
+
+
+// ==========================
+// SIDEBAR CARRITO (DERECHA)
+// ==========================
+
+botonCarrito.addEventListener("click", () => {
+    cerrarTodo(); // 🔥 cierra todo antes
+    sidebarCarrito.classList.add("active");
+    overlayCarrito.classList.add("active");
 });
 
-// Cierra sidebar al hacer clic en la "X" del sidebar
-cerrarSidebar.addEventListener('click', () => {
-    sidebarMovil.classList.remove('mostrar'); // Oculta el sidebar
-    overlaySidebar.classList.remove('mostrar'); // Oculta el overlay
-});
-
+cerrarCarrito.addEventListener("click", cerrarTodo);
+overlayCarrito.addEventListener("click", cerrarTodo);
 
 // ==========================
 // FUNCIONALIDAD DE SCROLL EN SLIDER
@@ -38,7 +64,7 @@ cerrarSidebar.addEventListener('click', () => {
 function scrollSlider(boton, cantidadDesplazamiento) {
     // Busca el slider más cercano al botón dentro del contenedor
     const slider = boton.closest('.contenedor-slider').querySelector('#arrastrar-scroll');
-    
+
     // Desplaza suavemente la posición horizontal del slider
     slider.scrollBy({
         left: cantidadDesplazamiento,
@@ -55,12 +81,12 @@ function scrollSlider(boton, cantidadDesplazamiento) {
 
 // Selecciona todos los botones o enlaces que cierran sesión
 document.querySelectorAll('.btn-cerrar-sesion').forEach(boton => {
-    boton.addEventListener('click', function(e) {
+    boton.addEventListener('click', function (e) {
         e.preventDefault(); // Evita que el enlace navegue automáticamente
 
         // Pregunta de confirmación al usuario sobre el cierre de sesión
         const confirmar = confirm("¿Estás seguro de que deseas cerrar sesión?");
-        
+
         if (confirmar) {
             // Si acepta, redirige al script PHP que destruye la sesión
             window.location.href = 'logout.php';
@@ -92,4 +118,132 @@ function mostrarTab(tabId) {
     document.getElementById(tabId).classList.add('active');
 
     event.target.classList.add('active');
+}
+
+
+
+
+const toggles = document.querySelectorAll(".toggle-submenu");
+
+toggles.forEach(toggle => {
+    toggle.addEventListener("click", () => {
+        const submenu = toggle.nextElementSibling;
+
+        // cerrar otros
+        document.querySelectorAll(".submenu").forEach(sm => {
+            if (sm !== submenu) sm.classList.remove("active");
+        });
+
+        document.querySelectorAll(".menu-item").forEach(item => {
+            if (item !== toggle) item.classList.remove("active");
+        });
+
+        // toggle actual
+        submenu.classList.toggle("active");
+        toggle.classList.toggle("active");
+    });
+});
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("carrito") === "1") {
+
+        // 👇 usar "active" (como tu CSS)
+        sidebarCarrito.classList.add("active");
+        overlayCarrito.classList.add("active");
+
+        // limpiar URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+});
+
+
+
+
+
+
+
+
+document.querySelectorAll(".btn-add-carrito").forEach(boton => {
+
+    boton.addEventListener("click", () => {
+
+        const id = boton.dataset.id;
+
+        fetch(`agregar-carrito.php?id=${id}`)
+            .then(res => res.json())
+            .then(data => {
+
+                //abrir carrito
+                sidebarCarrito.classList.add("active");
+                overlayCarrito.classList.add("active");
+
+                //actualizar carrito en pantalla
+                actualizarCarrito(data.carrito);
+
+            });
+
+    });
+
+});
+
+
+document.querySelector(".carrito-body").addEventListener("click", (e) => {
+
+    const boton = e.target.closest(".btn-eliminar");
+
+    if (!boton) return;
+
+    e.preventDefault();
+
+    const id = boton.dataset.id;
+
+    fetch(`eliminar-producto-del-carrito.php?id=${id}`)
+        .then(res => res.json())
+        .then(data => {
+            actualizarCarrito(data.carrito);
+        });
+
+});
+
+
+function actualizarCarrito(carrito) {
+
+    const contenedor = document.querySelector(".carrito-body");
+    contenedor.innerHTML = "";
+
+    let total = 0;
+
+    for (let id in carrito) {
+
+        let producto = carrito[id];
+        let subtotal = producto.precio * producto.cantidad;
+        total += subtotal;
+
+        contenedor.innerHTML += `
+            <div class="carrito-item">
+                <img src="assets/imagenes/${producto.img}">
+                <div class="info">
+                    <p>${producto.nombre} - ${producto.plataforma}</p>
+                    <span>${producto.precio}€ x ${producto.cantidad}</span>
+                </div>
+                <a href="#" class="btn-eliminar" data-id="${id}">
+                    <i class="bi bi-trash eliminar"></i>
+                </a>
+            </div>
+        `;
+    }
+
+    if (Object.keys(carrito).length === 0) {
+        contenedor.innerHTML = "<p>Carrito vacío</p>";
+    }
+
+    document.querySelector(".total strong").textContent = total + "€";
 }

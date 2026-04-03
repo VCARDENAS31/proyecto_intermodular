@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+
+
 include 'consultas.php'; // Incluimos tus funciones
 include 'conexion-bd.php'; // Tu conexión a la DB
 ?>
@@ -59,18 +63,42 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
 
         <!-- SIDEBAR MOVIL -->
-        <div id="sidebarMovil">
-            <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+        <div id="sidebarMenu">
+            <button id="cerrarMenu" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
                 aria-label="Cerrar"></button>
             <div class="user-section">
                 <i class="bi bi-person-circle"></i>
                 <p>Usuario</p>
             </div>
-            <div class="menu-item">Inicio</div>
-            <div class="menu-item">Videojuegos</div>
-            <div class="menu-item">Consolas</div>
-            <div class="menu-item">Accesorios</div>
-            <div class="menu-item">Próximos lanzamientos</div>
+            <div class="menu-item toggle-submenu">
+                <i class="bi bi-controller"></i>Videojuegos <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="submenu">
+                <div><i class="bi bi-xbox"> </i> Videojuegos Xbox</div>
+                <div><i class="bi bi-playstation"> </i> Videojuegos PS5</div>
+                <div><i class="bi bi-nintendo-switch"> </i> Videojuegos Nintendo Switch</div>
+            </div>
+
+            <div class="menu-item toggle-submenu">
+                <i class="bi bi-box-fill"></i> Consolas <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="submenu">
+                <div><i class="bi bi-xbox"> </i> Consolas Xbox</div>
+                <div><i class="bi bi-playstation"> </i> Consolas PS5</div>
+                <div><i class="bi bi-nintendo-switch"> </i> Consolas Nintendo Switch</div>
+            </div>
+
+            <div class="menu-item toggle-submenu">
+                <i class="bi bi-headset"></i> Accesorios <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="submenu">
+                <div><i class="bi bi-xbox"> </i> Accesorios Xbox</div>
+                <div><i class="bi bi-playstation"> </i> Accesorios PS5</div>
+                <div><i class="bi bi-nintendo-switch"> </i> Accesorios Nintendo Switch</div>
+            </div>
+            <div class="menu-item">
+                <i class="bi bi-clock"></i> Próximamente
+            </div>
             <!-- Botón cerrar sesión -->
             <button class="btn btn-danger logout-btn btn-cerrar-sesion">
                 CERRAR SESIÓN
@@ -78,7 +106,72 @@ include 'conexion-bd.php'; // Tu conexión a la DB
         </div>
 
         <!-- OVERLAY para cerrar sidebar -->
-        <div id="overlaySidebar"></div>
+        <div id="overlaySidebarMenu"></div>
+
+
+        <!-- SIDEBAR CARRITO -->
+        <div id="sidebarCarrito">
+
+            <!-- HEADER -->
+            <div class="carrito-header">
+                <h5>Tu carrito</h5>
+                <button id="cerrarCarrito" class="btn-close btn-close-white"></button>
+            </div>
+
+            <!-- PRODUCTOS -->
+            <div class="carrito-body">
+
+                <?php
+                $total = 0;
+
+                if (!empty($_SESSION['carrito'])) {
+                    foreach ($_SESSION['carrito'] as $id => $producto) {
+
+                        $subtotal = round($producto['precio'] * $producto['cantidad'], 2);
+                        $total += $subtotal;
+
+                        ?>
+                        <div class="carrito-item">
+                            <img src="assets/imagenes/<?php echo $producto['img']; ?>">
+                            <div class="info">
+                                <p>
+                                    <?php echo $producto['nombre']; ?> - <?php echo $producto['plataforma']; ?>
+                                </p>
+                                <span>
+                                    <?php echo $producto['precio']; ?>€ x
+                                    <?php echo $producto['cantidad']; ?>
+                                </span>
+                            </div>
+
+                            <!-- eliminar -->
+                            <a href="#" class="btn-eliminar" data-id="<?php echo $id; ?>">
+                                <i class="bi bi-trash eliminar"></i>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "<p>Carrito vacío</p>";
+                }
+                ?>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="carrito-footer">
+                <div class="total">
+                    <strong>
+                        <?php echo $total; ?>€
+                    </strong>
+                </div>
+                <button class="btn btn-primary w-100">Comprar</button>
+            </div>
+
+        </div>
+
+        <!-- OVERLAY -->
+        <div id="overlayCarrito"></div>
+
 
         <!-- NAVBAR SECUNDARIO -->
         <div class="navbar-secundario d-none d-md-block">
@@ -306,11 +399,12 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <p class="mb-3"><b>Precio:</b> <?php echo $juego['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
+                                    <button class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                        data-id="<?php echo $juego['id_producto']; ?>">
+                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                     </button>
                                     <a href="producto.php?id=<?php echo $juego['id_producto']; ?>"
-                                        class="btn btn-outline-secondary btn-sm w-100">
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -368,10 +462,10 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
+                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                     </button>
                                     <a href="producto.php?id=<?php echo $consolas['id_producto']; ?>"
-                                        class="btn btn-outline-secondary btn-sm w-100">
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -428,10 +522,10 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
+                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                     </button>
                                     <a href="producto.php?id=<?php echo $accesorio['id_producto']; ?>"
-                                        class="btn btn-outline-secondary btn-sm w-100">
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>

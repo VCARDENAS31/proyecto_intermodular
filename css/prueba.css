@@ -74,8 +74,9 @@ hr {
 
 /* ---------- Carousel ---------- */
 
-.carousel-item>img {
+.carousel-item > img {
     border: 2px solid black;
+    width: 100%;
 }
 
 .carousel-indicators .active {
@@ -279,9 +280,29 @@ hr {
 }
 
 /* ---------- Sidebar ---------- */
+#overlaySidebarMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
-#sidebarMovil {
-    background-color: #18154b;
+    background: rgba(0, 0, 0, 0.5);
+
+    z-index: 1040;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#overlaySidebarMenu.mostrar {
+    display: block;
+    opacity: 1;
+}
+
+
+#sidebarMenu {
+    background-color: #0f172a;
     color: white;
     position: fixed;
     top: 0;
@@ -294,21 +315,21 @@ hr {
     flex-direction: column;
 }
 
-#sidebarMovil.mostrar {
+#sidebarMenu.mostrar {
     left: 0;
 }
 
-#sidebarMovil .user-section {
+#sidebarMenu .user-section {
     text-align: center;
     padding: 30px 10px;
 }
 
 
-#sidebarMovil .user-section i {
+#sidebarMenu .user-section i {
     font-size: 60px;
 }
 
-#sidebarMovil .menu-item {
+#sidebarMenu .menu-item {
     padding: 14px 22px;
     cursor: pointer;
     font-size: 15px;
@@ -316,7 +337,7 @@ hr {
     transition: 0.2s;
 }
 
-#sidebarMovil .menu-item:hover {
+#sidebarMenu .menu-item:hover {
     outline: 1px solid #bcbcbc;
 }
 
@@ -456,7 +477,7 @@ div>.card {
 
 /* Imágenes específicas por plataforma */
 .ps5 .card-img-container::after {
-    background-image: url('../assets/imagenes/marco_ps5.webp');
+    background-image: url('../assets/imagenes/marco_ps5.png');
 }
 
 .xbox .card-img-container::after {
@@ -468,7 +489,7 @@ div>.card {
 }
 
 .ps5 .card-img-container-ver-detalle::after {
-    background-image: url('../assets/imagenes/marco_ps5.webp');
+    background-image: url('../assets/imagenes/marco_ps5.png');
 }
 
 .xbox .card-img-container-ver-detalle::after {
@@ -723,7 +744,6 @@ div.modal-content,
 ========================= */
 
 .buscador-movil-wrapper {
-    background: #d1cefc;
     padding: 5% 15px 5%;
 }
 
@@ -736,7 +756,7 @@ div.modal-content,
 
 .buscador-box input {
     flex: 1;
-    border: none;
+    border: 2px solid #2b2854;
     padding: 10px;
     outline: none;
 }
@@ -1136,15 +1156,21 @@ body {
 
 
 
+.btn-primary {
+    background-color: #8e44ad !important;
+    border-color: #8e44ad !important;
+    border-radius: 0;
+    color: thistle !important;
+    position: relative !important;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 150ms ease-in-out;
+}
 
 .btn-primary:hover:after {
     width: 110%;
 }
 
-.btn-primary:hover {
-    background-color: thistle;
-    color: #8e44ad !important;
-}
 
 .btn-primary:after {
     content: '';
@@ -1160,9 +1186,22 @@ body {
     transition: width 150ms ease-in-out;
 }
 
-.btn-primary {
-    background-color: #8e44ad !important;
-    border-color: #8e44ad !important;
+
+
+.btn-primary:hover {
+    background-color: thistle;
+    color: #8e44ad !important;
+}
+
+
+
+
+
+
+
+.btn-secondary {
+    background-color: #3e0078 !important;
+    border-color: #3e0078 !important;
     border-radius: 0;
     color: thistle !important;
     position: relative !important;
@@ -1170,3 +1209,205 @@ body {
     z-index: 1;
     transition: color 150ms ease-in-out;
 }
+
+.btn-secondary:hover:after {
+    width: 110%;
+}
+
+
+.btn-secondary:after {
+    content: '';
+    position: absolute !important;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: thistle;
+    z-index: -1 !important;
+    transition: width 150ms ease-in-out;
+
+}
+
+
+
+.btn-secondary:hover {
+    color: #3e0078 !important;
+}
+
+
+
+
+
+
+/* ITEM PRINCIPAL */
+.menu-item {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* HOVER PRO */
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ICONO + TEXTO */
+.menu-item i {
+    font-size: 18px;
+}
+
+/* FLECHA */
+.menu-item .bi-chevron-down {
+    transition: transform 0.3s ease;
+    margin-left: 15px;
+}
+
+/* ROTACIÓN */
+.menu-item.active .bi-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* SUBMENU */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+/* CONTENIDO SUBMENU */
+.submenu div {
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #ccc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* HOVER SUBMENU */
+.submenu div:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+/* ACTIVO */
+.submenu.active {
+    max-height: 300px;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+/* SIDEBAR DERECHA */
+#sidebarCarrito {
+    position: fixed;
+    top: 0;
+    right: -350px;
+    width: 350px;
+    height: 100%;
+    background: #0f172a;
+    color: white;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.3s ease;
+}
+
+/* ACTIVO */
+#sidebarCarrito.active {
+    right: 0;
+}
+
+/* HEADER */
+.carrito-header {
+    padding: 20px;
+    border-bottom: 1px solid #1e293b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BODY */
+.carrito-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+/* ITEM */
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    background: #1e293b;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.carrito-item img {
+    width: 60px;
+    border-radius: 8px;
+}
+
+.carrito-item .info {
+    flex: 1;
+}
+
+.carrito-item p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.carrito-item span {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+/* ICONO ELIMINAR */
+.eliminar {
+    cursor: pointer;
+    color: #ef4444;
+}
+
+/* FOOTER */
+.carrito-footer {
+    padding: 15px;
+    border-top: 1px solid #1e293b;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* OVERLAY */
+#overlayCarrito {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+    display: none;
+}
+
+#overlayCarrito.active {
+    display: block;
+}
+
+
+
