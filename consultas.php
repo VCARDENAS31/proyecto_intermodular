@@ -114,6 +114,13 @@ function obtenerUsuarioPorId($conexion, $id)
     return mysqli_fetch_assoc($resultado);
 }
 
+
+function obtenerProductos($conexion)
+{
+    $sql = "SELECT * FROM productos";
+    return mysqli_query($conexion, $sql);
+}
+
 /**
  * Obtener un producto específico por su ID
  *

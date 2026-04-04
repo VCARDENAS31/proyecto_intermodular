@@ -19,11 +19,22 @@ const overlayCarrito = document.getElementById("overlayCarrito");
 
 // cerrar TODO
 function cerrarTodo() {
-    sidebarMenu.classList.remove('mostrar');
-    overlayMenu.classList.remove('mostrar');
 
-    sidebarCarrito.classList.remove('active');
-    overlayCarrito.classList.remove('active');
+    if (sidebarMenu) {
+        sidebarMenu.classList.remove('mostrar');
+    }
+
+    if (overlayMenu) {
+        overlayMenu.classList.remove('mostrar');
+    }
+
+    if (sidebarCarrito) {
+        sidebarCarrito.classList.remove('active');
+    }
+
+    if (overlayCarrito) {
+        overlayCarrito.classList.remove('active');
+    }
 }
 
 

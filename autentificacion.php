@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Redirige según el rol del usuario
             if ($usuario['rol'] === 'admin') {
-                header("Location: index-admin.html");   
+                header("Location: index-admin.php");   
             } else {
                 header("Location: index-user.php");
             }
@@ -53,3 +53,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
+
+

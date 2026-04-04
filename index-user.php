@@ -45,7 +45,22 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
             <!-- DERECHA -->
             <div class="nav-right">
-                <i class="bi bi-person-circle"></i>
+
+                <div class="perfil-menu">
+                    <i class="bi bi-person-circle"></i>
+
+                    <div class="dropdown-perfil">
+                        <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?> 
+                            <a href="mi-perfil.php">Mi perfil</a>
+                            <a href="historial.php">Historial de pedidos</a>
+                            <a href="logout.php">Cerrar sesión</a>
+                        <?php else: ?>
+                            <a href="login.php">Iniciar sesión</a>
+                            <a href="registro.php">Registrarse</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
                 <i class="bi bi-cart"></i>
             </div>
 

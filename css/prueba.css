@@ -1411,3 +1411,40 @@ body {
 
 
 
+
+
+
+
+
+.perfil-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-perfil {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 180px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+.dropdown-perfil a {
+    display: block;
+    padding: 8px;
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-perfil a:hover {
+    background: #f0f0f0;
+}
+
+.perfil-menu:hover .dropdown-perfil {
+    display: block;
+}
