@@ -22,78 +22,18 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 </head>
 
 <body>
-    <!-- ================= NAVBAR ADMIN ================= -->
-    <nav class="navbar-admin navbar-dark fixed-top d-flex justify-content-between p-3">
-
-        <!-- Botón menú lateral -->
-        <button class="btn btn-outline-light" id="botonMenu">
-            <i class="bi bi-list"></i>
-        </button>
-
-        <!-- Logo -->
-        <div class="logo">
-            <img class="img-fluid" src="assets/imagenes/logo_tienda.png" alt="Viciogames">
-        </div>
-
-        <!-- Menú usuario -->
-        <div class="dropdown">
-            <a href="#" class="text-white" id="userMenu" data-bs-toggle="dropdown">
-                <i class="bi bi-person-circle fs-4"></i>
-            </a>
-
-            <!-- Dropdown cerrar sesión -->
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                    <a class="dropdown-item btn-cerrar-sesion" href="#">
-                        <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- ================= FIN NAVBAR ================= -->
-
-
-    <div class="d-flex">
-
-        <!-- ================= SIDEBAR ================= -->
-        <div id="sidebarMovil" class="bg-dark">
-
-            <!-- Botón cerrar sidebar -->
-            <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-                aria-label="Cerrar">
-            </button>
-
-            <!-- Información del usuario -->
-            <div class="user-section">
-                <i class="bi bi-person-circle"></i>
-                <p class="mt-2 mb-0">BIENVENIDO</p>
-                <strong>NOMBRE</strong>
-            </div>
-
-            <!-- Opciones del menú -->
-            <div class="menu-item">GESTIONAR USUARIOS</div>
-            <div class="menu-item">GESTIONAR PRODUCTOS</div>
-            <div class="menu-item">GESTIONAR CUPONES</div>
-            <div class="menu-item">ACTUALIZAR PEDIDOS</div>
-
-            <!-- Botón cerrar sesión -->
-            <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-                CERRAR SESIÓN
-            </button>
-        </div>
-    </div>
+    <?php include 'header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
 
 
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
-                <div class="card shadow mt-5">
-                    <div class="card-header bg-dark text-white">
+                <div class="shadow bg-white mt-5">
+                    <div class="p-3 bg-dark text-white">
                         <h4 class="mb-0">Nuevo Usuario</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="p-3 card-body">
                         <form action="insertar-usuario.php" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>

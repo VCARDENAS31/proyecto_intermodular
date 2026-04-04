@@ -415,8 +415,8 @@ a,
     color: black;
 }
 
-*.contenido-gestion {
-    min-height: 90vh;
+*.contenido-gestion > * > h1{
+    margin-top: 150px;
 }
 
 

@@ -56,14 +56,21 @@ overlayMenu.addEventListener('click', cerrarTodo);
 // SIDEBAR CARRITO (DERECHA)
 // ==========================
 
-botonCarrito.addEventListener("click", () => {
-    cerrarTodo(); // 🔥 cierra todo antes
-    sidebarCarrito.classList.add("active");
-    overlayCarrito.classList.add("active");
-});
+if (botonCarrito && sidebarCarrito && overlayCarrito) {
+    botonCarrito.addEventListener("click", () => {
+        cerrarTodo();
+        sidebarCarrito.classList.add("active");
+        overlayCarrito.classList.add("active");
+    });
+}
 
-cerrarCarrito.addEventListener("click", cerrarTodo);
-overlayCarrito.addEventListener("click", cerrarTodo);
+if (cerrarCarrito) {
+    cerrarCarrito.addEventListener("click", cerrarTodo);
+}
+
+if (overlayCarrito) {
+    overlayCarrito.addEventListener("click", cerrarTodo);
+}
 
 // ==========================
 // FUNCIONALIDAD DE SCROLL EN SLIDER
@@ -206,23 +213,27 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 });
 
 
-document.querySelector(".carrito-body").addEventListener("click", (e) => {
+const carritoBody = document.querySelector(".carrito-body");
 
-    const boton = e.target.closest(".btn-eliminar");
+if (carritoBody) {
+    carritoBody.addEventListener("click", (e) => {
 
-    if (!boton) return;
+        const boton = e.target.closest(".btn-eliminar");
 
-    e.preventDefault();
+        if (!boton) return;
 
-    const id = boton.dataset.id;
+        e.preventDefault();
 
-    fetch(`eliminar-producto-del-carrito.php?id=${id}`)
-        .then(res => res.json())
-        .then(data => {
-            actualizarCarrito(data.carrito);
-        });
+        const id = boton.dataset.id;
 
-});
+        fetch(`eliminar-producto-del-carrito.php?id=${id}`)
+            .then(res => res.json())
+            .then(data => {
+                actualizarCarrito(data.carrito);
+            });
+
+    });
+}
 
 
 function actualizarCarrito(carrito) {
