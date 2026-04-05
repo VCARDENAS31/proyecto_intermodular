@@ -156,7 +156,9 @@
                     <?php echo $total; ?>€
                 </strong>
             </div>
-            <button class="btn btn-primary w-100">Comprar</button>
+            <a href="pasarela.php" class="btn btn-primary w-100">
+                Ir a pagar
+            </a>
         </div>
 
     </div>

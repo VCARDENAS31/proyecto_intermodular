@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
                 "precio" => $producto['precio'],
                 "img" => $producto['img_url'],
                 "plataforma" => $producto['plataforma'],
+                "tipo" => $producto['tipo'],
                 "cantidad" => 1
             ];
         }

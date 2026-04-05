@@ -213,6 +213,8 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 });
 
 
+
+
 const carritoBody = document.querySelector(".carrito-body");
 
 if (carritoBody) {
@@ -267,5 +269,6 @@ function actualizarCarrito(carrito) {
         contenedor.innerHTML = "<p>Carrito vacío</p>";
     }
 
-    document.querySelector(".total strong").textContent = total + "€";
+    document.querySelector(".total strong").textContent = total.toFixed(2) + "€";
 }
+
