@@ -5,10 +5,6 @@ include 'consultas.php';
 
 session_start();
 
-if (!isset($_SESSION['usuario_nombre'])) {
-    header("Location: login.php");
-    exit();
-}
 
 if (empty($_SESSION['carrito'])) {
     echo "Carrito vacío";
@@ -165,7 +161,7 @@ if (empty($_SESSION['carrito'])) {
 
                     <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
 
-                        <a href="procesar-pedido.php" class="btn btn-primary w-100">
+                        <a href="envio-pago.php" class="btn btn-primary w-100">
                             Finalizar compra
                         </a>
 

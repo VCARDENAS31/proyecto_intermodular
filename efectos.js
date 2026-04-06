@@ -239,17 +239,16 @@ if (carritoBody) {
 
 
 function actualizarCarrito(carrito) {
-
     const contenedor = document.querySelector(".carrito-body");
+    const btnPagar = document.getElementById("btnPagar"); // Seleccionamos el botón
     contenedor.innerHTML = "";
 
     let total = 0;
+    let numeroProductos = Object.keys(carrito).length; // Contamos cuántos productos hay
 
     for (let id in carrito) {
-
         let producto = carrito[id];
-        let subtotal = producto.precio * producto.cantidad;
-        total += subtotal;
+        total += producto.precio * producto.cantidad;
 
         contenedor.innerHTML += `
             <div class="carrito-item">
@@ -265,10 +264,30 @@ function actualizarCarrito(carrito) {
         `;
     }
 
-    if (Object.keys(carrito).length === 0) {
+    
+    // LÓGICA DEL BOTÓN Y MENSAJE VACÍO
+    if (numeroProductos === 0) {
         contenedor.innerHTML = "<p>Carrito vacío</p>";
+        btnPagar.classList.add("disabled"); // Deshabilitar si no hay nada
+    } else {
+        btnPagar.classList.remove("disabled"); // Habilitar si hay productos
     }
 
     document.querySelector(".total strong").textContent = total.toFixed(2) + "€";
 }
 
+
+
+
+const radios = document.querySelectorAll('input[name="pago"]');
+const tarjetaBox = document.getElementById('camposTarjeta');
+
+radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+        if (radio.value === 'tarjeta' && radio.checked) {
+            tarjetaBox.style.display = 'block';
+        } else {
+            tarjetaBox.style.display = 'none';
+        }
+    });
+});

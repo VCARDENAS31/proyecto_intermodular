@@ -150,16 +150,20 @@
         </div>
 
         <!-- FOOTER -->
+        <!-- FOOTER del sidebarCarrito -->
         <div class="carrito-footer">
             <div class="total">
-                <strong>
-                    <?php echo $total; ?>€
-                </strong>
+                <strong><?php echo $total; ?>€</strong>
             </div>
-            <a href="pasarela.php" class="btn btn-primary w-100">
+
+            <?php $estaVacio = empty($_SESSION['carrito']); ?>
+
+            <a href="pasarela.php" id="btnPagar"
+                class="btn btn-primary w-100 <?php echo $estaVacio ? 'disabled' : ''; ?>" <?php echo $estaVacio ?>>
                 Ir a pagar
             </a>
         </div>
+
 
     </div>
 
