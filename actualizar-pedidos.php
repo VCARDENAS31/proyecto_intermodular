@@ -2,105 +2,106 @@
 include 'conexion-bd.php';
 include 'consultas.php';
 
-//Iniciar sesión para poder leer los datos del usuario logueado
 session_start();
 
-//Comprobar si el usuario tiene permiso (debe ser admin)
+// Solo admin
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    // Si no es admin, lo mandamos al login o mostramos error
-    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+    die("Acceso denegado");
 }
 
-$resultado = obtenerProductos($conexion); // Llamamos a la función
+$resultado = obtenerPedidosAdmin($conexion);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <!-- Configuración básica -->
     <meta charset="UTF-8">
-    <title>Panel de Administración - Viciogames</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Actualizar Pedidos</title>
 
-    <!-- Estilos -->
-    <link rel="stylesheet" href="css/prueba.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Iconos Bootstrap -->
+    <link rel="stylesheet" href="css/prueba.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <?php include 'header-admin.php'; ?>
-    <!-- ================= FIN SIDEBAR ================= -->
+<?php include 'header-admin.php'; ?>
 
-    <!-- ================= CONTENIDO PRINCIPAL ================= -->
-    <div class="contenido-gestion p-4 flex-grow-1 d-flex justify-content-center align-items-center">
-        <div class="container">
+<div class="contenido-gestion p-4">
+    <div class="container">
 
-            <h1 class="text-center">Actualizar Pedidos</h1>
-            <br>
+        <h1 class="text-center mb-4">Gestión de Pedidos</h1>
 
+        <div class="table-responsive">
+            <table class="table table-bordered text-center align-middle">
 
-            <div class="table-responsive">
-                <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>ID Pedido</th>
-                            <th>Productos</th>
-                            <th>Nombre comprador</th>
-                            <th>Precio Total</th>
-                            <th>Fecha</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Productos</th>
+                        <th>Usuario</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <?php
+                $n = 1;
+                while ($pedido = mysqli_fetch_assoc($resultado)):
+                ?>
+
+                <tr>
+                    <td><?php echo $n++; ?></td>
+
+                    <td>#<?php echo $pedido['id_pedido']; ?></td>
+
+                    <!-- PRODUCTOS -->
+                    <td>
                         <?php
-                        $n = 1;
-                        while ($producto = mysqli_fetch_assoc($resultado)): ?>
-                            <tr>
-                                <td><?php echo $n++; ?></td>
-                                <td><?php echo $producto['id_producto']; ?></td>
-                                <td><?php echo $producto['nombre']; ?></td>
-                                <td><?php echo $producto['precio']; ?>€</td>
-                                <td><?php echo $producto['stock']; ?></td>
-                                <td><?php echo $producto['tipo']; ?></td>
-                                <td><?php echo $producto['categoria']; ?></td>
-                                <td><img src="assets/imagenes/<?php echo $producto['img_url']; ?>" alt="<?php echo $producto['nombre']; ?>"
-                                        width="80" height="auto"></td>
-                                <td><?php echo $producto['plataforma']; ?></td>
-                                <td class="text-nowrap">
-                                    <div class="d-flex justify-content-center gap-3">
-                                        <button class="btn btn-warning btn-sm text-white">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm"
-                                            onclick="confirmarEliminarProducto(<?php echo $producto['id_producto']; ?>)">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
+                        $detalles = obtenerDetallesPedido($conexion, $pedido['id_pedido']);
+                        while ($prod = mysqli_fetch_assoc($detalles)) {
+                            echo $prod['nombre'] . " x" . $prod['cantidad'] . "<br>";
+                        }
+                        ?>
+                    </td>
+
+                    <td><?php echo $pedido['nombre_usuario']; ?></td>
+
+                    <td><?php echo number_format($pedido['total'],2); ?>€</td>
+
+                    <td><?php echo $pedido['fecha_pedido']; ?></td>
+
+                    <!-- ESTADO -->
+                    <td>
+                        <form method="POST" action="cambiar-estado.php">
+                            <input type="hidden" name="id_pedido" value="<?php echo $pedido['id_pedido']; ?>">
+
+                            <select name="estado" class="form-select" onchange="this.form.submit()">
+
+                                <option value="recibido" <?php if($pedido['estado']=='recibido') echo 'selected'; ?>>Recibido</option>
+                                <option value="procesando" <?php if($pedido['estado']=='procesando') echo 'selected'; ?>>Procesando</option>
+                                <option value="enviado" <?php if($pedido['estado']=='enviado') echo 'selected'; ?>>Enviado</option>
+                                <option value="cancelado" <?php if($pedido['estado']=='cancelado') echo 'selected'; ?>>Cancelado</option>
+
+                            </select>
+                        </form>
+                    </td>
+
+                </tr>
+
+                <?php endwhile; ?>
+
+                </tbody>
+
+            </table>
         </div>
-    </div>
-    <!-- ================= FIN CONTENIDO ================= -->
 
     </div>
+</div>
 
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
-    <script src="efectos.js"></script>
 </body>
-
 </html>

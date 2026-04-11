@@ -19,6 +19,7 @@ if (isset($_GET['id'])) {
             $_SESSION['carrito'][$id]['cantidad']++;
         } else {
             $_SESSION['carrito'][$id] = [
+                "id_producto" => $id,
                 "nombre" => $producto['nombre'],
                 "precio" => $producto['precio'],
                 "img" => $producto['img_url'],

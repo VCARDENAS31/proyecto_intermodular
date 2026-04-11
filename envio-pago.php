@@ -251,7 +251,7 @@ $totalFinal = $total + 2.99;
             <p>Tu pedido se ha procesado correctamente</p>
 
             <div class="botones">
-                <a href="historial-pedidos.php" class="btn btn-primary">Ver mis pedidos</a>
+                <a href="historial.php" class="btn btn-primary">Ver mis pedidos</a>
                 <a href="index-user.php" class="btn btn-secondary">Ir al inicio</a>
             </div>
 
@@ -260,34 +260,45 @@ $totalFinal = $total + 2.99;
     </div>
 
     <!-- JS -->
-    <script>
-        const radios = document.querySelectorAll('input[name="pago"]');
-        const tarjetaBox = document.getElementById('camposTarjeta');
+<script>
+const form = document.getElementById('formCompra');
+const modal = document.getElementById('modalCompra');
+let enviando = false;
 
-        radios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                if (radio.value === 'tarjeta' && radio.checked) {
-                    tarjetaBox.style.display = 'block';
-                } else {
-                    tarjetaBox.style.display = 'none';
-                }
-            });
-        });
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-        const form = document.getElementById('formCompra');
-        const modal = document.getElementById('modalCompra');
+    if (enviando) return;
+    enviando = true;
 
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
+    const boton = form.querySelector('button');
+    boton.disabled = true;
+    boton.innerText = "Procesando...";
 
-            setTimeout(() => {
-                modal.classList.add('active');
+    const direccion = document.querySelector('input[placeholder="Dirección"]').value;
 
-                fetch('vaciar-carrito.php');
-            }, 800);
-        });
-    </script>
-
+    fetch('procesar-pedido.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'direccion=' + encodeURIComponent(direccion)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.ok) {
+            modal.classList.add('active');
+        } else {
+            alert("Error al procesar pedido");
+            enviando = false;
+            boton.disabled = false;
+        }
+    })
+    .catch(() => {
+        alert("Error de conexión");
+        enviando = false;
+        boton.disabled = false;
+    });
+});
+</script>
 </body>
 
 </html>

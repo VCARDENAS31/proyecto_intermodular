@@ -13,6 +13,34 @@ function obtenerUsuarios($conexion)
 }
 
 
+function crearPedido($conexion, $usuario_id, $carrito, $direccion, $total) {
+
+    $sql = "INSERT INTO pedidos (usuario_id, subtotal, total, direccion_envio)
+            VALUES ($usuario_id, $total, $total, '$direccion')";
+    mysqli_query($conexion, $sql);
+
+    $id_pedido = mysqli_insert_id($conexion);
+
+    foreach ($carrito as $producto) {
+
+        $id_producto = $producto['id_producto'];
+        $precio = $producto['precio'];
+        $cantidad = $producto['cantidad'];
+        $total_linea = $precio * $cantidad;
+
+        mysqli_query($conexion, "INSERT INTO detalles_pedidos 
+            (pedido_id, producto_id, precio_unitario, cantidad, total_linea)
+            VALUES ($id_pedido, $id_producto, $precio, $cantidad, $total_linea)");
+
+        mysqli_query($conexion, "UPDATE productos 
+            SET stock = stock - $cantidad 
+            WHERE id_producto = $id_producto");
+    }
+
+    return $id_pedido;
+}
+
+
 /**
  * Obtener todos los cupones de descuento
  * Tabla: cupones
@@ -27,14 +55,60 @@ function obtenerCupones($conexion)
  * Obtener los pedidos incluyendo el nombre del usuario
  * Tablas: pedidos y usuarios (JOIN)
  */
-function obtenerPedidos($conexion)
-{
-    $sql = "SELECT p.id_pedido, u.nombre, u.apellidos, p.total, p.estado, p.fecha_pedido 
-            FROM pedidos p 
-            INNER JOIN usuarios u ON p.usuario_id = u.id_usuario 
+
+// Obtener pedidos (admin)
+function obtenerPedidosAdmin($conexion) {
+    $sql = "SELECT p.*, u.nombre AS nombre_usuario
+            FROM pedidos p
+            JOIN usuarios u ON p.usuario_id = u.id_usuario
             ORDER BY p.fecha_pedido DESC";
+
     return mysqli_query($conexion, $sql);
 }
+
+
+function obtenerPedidosUsuario($conexion, $usuario_id)
+{
+    $sql = "SELECT * FROM pedidos 
+            WHERE usuario_id = ? 
+            ORDER BY fecha_pedido DESC";
+
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $usuario_id);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_stmt_get_result($stmt);
+}
+
+
+
+function obtenerDetallesPedido($conexion, $pedido_id)
+{
+    $sql = "SELECT dp.*, p.nombre 
+            FROM detalles_pedidos dp
+            JOIN productos p ON dp.producto_id = p.id_producto
+            WHERE dp.pedido_id = ?";
+
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $pedido_id);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_stmt_get_result($stmt);
+}
+
+
+// 🔹 Actualizar estado pedido
+function actualizarEstadoPedido($conexion, $id_pedido, $estado) {
+    $id_pedido = intval($id_pedido);
+    $estado = mysqli_real_escape_string($conexion, $estado);
+
+    $sql = "UPDATE pedidos 
+            SET estado = '$estado'
+            WHERE id_pedido = $id_pedido";
+
+    return mysqli_query($conexion, $sql);
+}
+
 
 function eliminarUsuario($conexion, $id)
 {
