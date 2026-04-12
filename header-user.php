@@ -8,9 +8,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="logo">
-                <img src="assets/imagenes/logo_tienda.png" alt="Logo">
-            </div>
+            <a href="index-user.php">
+                <div class="logo">
+                    <img src="assets/imagenes/logo_tienda.png" alt="Logo">
+                </div>
+            </a>
         </div>
 
         <!-- BUSCADOR (SOLO ESCRITORIO) -->

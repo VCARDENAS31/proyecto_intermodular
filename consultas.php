@@ -13,51 +13,118 @@ function obtenerUsuarios($conexion)
 }
 
 
-function crearPedido($conexion, $usuario_id, $carrito, $direccion, $total) {
+function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $total, $cupon_id = null)
+{
 
-    $sql = "INSERT INTO pedidos (usuario_id, subtotal, total, direccion_envio)
-            VALUES ($usuario_id, $total, $total, '$direccion')";
-    mysqli_query($conexion, $sql);
+    $direccion = mysqli_real_escape_string($conexion, $direccion);
+    $telefono = mysqli_real_escape_string($conexion, $telefono);
+
+    // 🔥 Asegurar NULL correcto
+    $cupon_sql = ($cupon_id !== null) ? $cupon_id : "NULL";
+
+    $sql = "INSERT INTO pedidos (usuario_id, total, direccion_envio, telefono, cupon_id)
+            VALUES ($usuario_id, $total, '$direccion', '$telefono', $cupon_sql)";
+
+    $res = mysqli_query($conexion, $sql);
+
+    if (!$res) {
+        return false;
+    }
 
     $id_pedido = mysqli_insert_id($conexion);
 
     foreach ($carrito as $producto) {
 
-        $id_producto = $producto['id_producto'];
+        // 🔥 MUY IMPORTANTE (por si cambia la clave)
+        $id_producto = $producto['id'] ?? $producto['id_producto'] ?? 0;
+
+        if ($id_producto == 0) {
+            die("ERROR: producto sin ID");
+        }
+
         $precio = $producto['precio'];
         $cantidad = $producto['cantidad'];
         $total_linea = $precio * $cantidad;
 
-        mysqli_query($conexion, "INSERT INTO detalles_pedidos 
+        $sqlDetalle = "INSERT INTO detalles_pedidos 
             (pedido_id, producto_id, precio_unitario, cantidad, total_linea)
-            VALUES ($id_pedido, $id_producto, $precio, $cantidad, $total_linea)");
+            VALUES ($id_pedido, $id_producto, $precio, $cantidad, $total_linea)";
 
-        mysqli_query($conexion, "UPDATE productos 
-            SET stock = stock - $cantidad 
-            WHERE id_producto = $id_producto");
+        $resDetalle = mysqli_query($conexion, $sqlDetalle);
+
+        if (!$resDetalle) {
+            return false;
+        }
+
+        $sqlStock = "UPDATE productos 
+                     SET stock = stock - $cantidad 
+                     WHERE id_producto = $id_producto";
+
+        $resStock = mysqli_query($conexion, $sqlStock);
+
+
+        if (!$resStock) {
+            return false;
+        }
     }
 
     return $id_pedido;
 }
-
-
-/**
- * Obtener todos los cupones de descuento
- * Tabla: cupones
- */
-function obtenerCupones($conexion)
+function obtenerCupon($conexion, $codigo)
 {
-    $sql = "SELECT id_cupon, codigo, descuento_porcentaje, fecha_caducidad, activo FROM cupones";
-    return mysqli_query($conexion, $sql);
+    $stmt = $conexion->prepare("
+        SELECT * FROM cupones 
+        WHERE codigo = ? 
+        AND activo = 1 
+        AND fecha_caducidad >= CURDATE()
+    ");
+    $stmt->bind_param("s", $codigo);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
 }
 
+function cuponUsado($conexion, $id_usuario, $id_cupon)
+{
+    $stmt = $conexion->prepare("
+        SELECT * FROM cupones_usuarios 
+        WHERE id_usuario = ? AND id_cupon = ?
+    ");
+    $stmt->bind_param("ii", $id_usuario, $id_cupon);
+    $stmt->execute();
+    return $stmt->get_result()->num_rows > 0;
+}
+
+
+function usuarioUsoCupon($conexion, $usuario_id, $cupon_id)
+{
+    $sql = "SELECT * FROM cupones_usuarios 
+            WHERE id_usuario = $usuario_id AND id_cupon = $cupon_id";
+    $res = mysqli_query($conexion, $sql);
+    return mysqli_num_rows($res) > 0;
+}
+
+function guardarUsoCupon($conexion, $usuario_id, $cupon_id)
+{
+    $sql = "INSERT INTO cupones_usuarios (id_usuario, id_cupon)
+            VALUES ($usuario_id, $cupon_id)";
+    mysqli_query($conexion, $sql);
+}
+
+function obtenerStockProducto($conexion, $id_producto)
+{
+    $sql = "SELECT stock FROM productos WHERE id_producto = $id_producto";
+    $res = mysqli_query($conexion, $sql);
+    $row = mysqli_fetch_assoc($res);
+    return $row['stock'];
+}
 /**
  * Obtener los pedidos incluyendo el nombre del usuario
  * Tablas: pedidos y usuarios (JOIN)
  */
 
 // Obtener pedidos (admin)
-function obtenerPedidosAdmin($conexion) {
+function obtenerPedidosAdmin($conexion)
+{
     $sql = "SELECT p.*, u.nombre AS nombre_usuario
             FROM pedidos p
             JOIN usuarios u ON p.usuario_id = u.id_usuario
@@ -98,7 +165,8 @@ function obtenerDetallesPedido($conexion, $pedido_id)
 
 
 // 🔹 Actualizar estado pedido
-function actualizarEstadoPedido($conexion, $id_pedido, $estado) {
+function actualizarEstadoPedido($conexion, $id_pedido, $estado)
+{
     $id_pedido = intval($id_pedido);
     $estado = mysqli_real_escape_string($conexion, $estado);
 
@@ -218,7 +286,7 @@ function obtenerRecomendadosAleatorios($conexion, $plataforma, $id_actual)
             AND id_producto != '$id_actual' 
             ORDER BY RAND() 
             LIMIT 10";
-            
+
     $resultado = mysqli_query($conexion, $sql);
     return mysqli_fetch_all($resultado, MYSQLI_ASSOC);
 }
@@ -298,14 +366,14 @@ function obtenerUltimosJuegosIntercalados($conexion)
                 WHERE tipo = 'Juego' AND plataforma = '$plataforma' 
                 ORDER BY id_producto DESC 
                 LIMIT 20"; // Traemos 20 de cada una para tener margen
-        
+
         $resultado = mysqli_query($conexion, $sql);
         $estantes[$plataforma] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
     }
 
     // 2. Lógica de intercalado (Round Robin)
     // Queremos 18 juegos en total (6 de cada consola si hay suficientes)
-    for ($i = 0; $i < 20; $i++) { 
+    for ($i = 0; $i < 20; $i++) {
         foreach ($plataformas as $p) {
             if (isset($estantes[$p][$i])) {
                 $juego = $estantes[$p][$i];
@@ -318,7 +386,8 @@ function obtenerUltimosJuegosIntercalados($conexion)
                 }
             }
             // Si ya llegamos a 18, dejamos de buscar
-            if (count($listaFinal) >= 18) break 2; 
+            if (count($listaFinal) >= 18)
+                break 2;
         }
     }
 
@@ -337,18 +406,19 @@ function obtenerUltimosAccesoriosIntercalados($conexion)
                 WHERE tipo = 'Accesorio' AND plataforma = '$p' 
                 ORDER BY id_producto DESC 
                 LIMIT 20";
-        
+
         $resultado = mysqli_query($conexion, $sql);
         $estantes[$p] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
     }
 
     // 2. Mezclamos 1 de cada una hasta completar 18 para el slider
-    for ($i = 0; $i < 20; $i++) { 
+    for ($i = 0; $i < 20; $i++) {
         foreach ($plataformas as $p) {
             if (isset($estantes[$p][$i])) {
                 $listaFinal[] = $estantes[$p][$i];
             }
-            if (count($listaFinal) >= 18) break 2;
+            if (count($listaFinal) >= 18)
+                break 2;
         }
     }
 
@@ -359,7 +429,7 @@ function obtenerUltimosAccesoriosIntercalados($conexion)
 function obtenerUltimasConsolasIntercaladas($conexion)
 {
     // Mapeamos tus categorías a los valores de la columna 'plataforma'
-    $plataformas = ['PS5', 'Xbox', 'Switch']; 
+    $plataformas = ['PS5', 'Xbox', 'Switch'];
     $estantes = [];
     $listaFinal = [];
 
@@ -368,14 +438,14 @@ function obtenerUltimasConsolasIntercaladas($conexion)
         $sql = "SELECT * FROM productos 
                 WHERE tipo = 'Consola' AND plataforma = '$p' 
                 ORDER BY id_producto DESC";
-        
+
         $resultado = mysqli_query($conexion, $sql);
         $estantes[$p] = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
     }
 
     // 2. Intercalamos: Una de Sony (PS5), una de Microsoft (Xbox), una de Nintendo (Switch)
     // Suponiendo que tienes un máximo de 10 modelos de consolas
-    for ($i = 0; $i < 10; $i++) { 
+    for ($i = 0; $i < 10; $i++) {
         foreach ($plataformas as $p) {
             if (isset($estantes[$p][$i])) {
                 $listaFinal[] = $estantes[$p][$i];

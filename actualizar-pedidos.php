@@ -17,7 +17,6 @@ $resultado = obtenerPedidosAdmin($conexion);
 <head>
     <meta charset="UTF-8">
     <title>Actualizar Pedidos</title>
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -82,10 +81,10 @@ $resultado = obtenerPedidosAdmin($conexion);
 
                             <select name="estado" class="form-select" onchange="this.form.submit()">
 
-                                <option value="recibido" <?php if($pedido['estado']=='recibido') echo 'selected'; ?>>Recibido</option>
-                                <option value="procesando" <?php if($pedido['estado']=='procesando') echo 'selected'; ?>>Procesando</option>
-                                <option value="enviado" <?php if($pedido['estado']=='enviado') echo 'selected'; ?>>Enviado</option>
-                                <option value="cancelado" <?php if($pedido['estado']=='cancelado') echo 'selected'; ?>>Cancelado</option>
+                                <option value="recibido" <?php if($pedido['estado']=='pendiente') echo 'selected'; ?>>Pendiente</option>
+                                <option value="procesando" <?php if($pedido['estado']=='enviado') echo 'selected'; ?>>Enviado</option>
+                                <option value="enviado" <?php if($pedido['estado']=='reparto') echo 'selected'; ?>>Reparto</option>
+                                <option value="cancelado" <?php if($pedido['estado']=='entregado') echo 'selected'; ?>>Entregado</option>
 
                             </select>
                         </form>
