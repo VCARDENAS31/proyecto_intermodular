@@ -36,11 +36,11 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
 
             <?php while ($pedido = mysqli_fetch_assoc($pedidos)): ?>
 
-                <div class="bg-white mb-4 p-3 shadow-sm">
+                <div class="bg-white mb-4 p-3 shadow-sm border border-primary rounded">
 
                     <div class="d-flex justify-content-between mb-2">
                         <div>
-                            <strong>Pedido #<?php echo $pedido['id_pedido']; ?></strong><br>
+                            <strong>ID Pedido #<?php echo $pedido['id_pedido']; ?></strong><br>
                             <small><?php echo $pedido['fecha_pedido']; ?></small>
                         </div>
 
@@ -52,9 +52,16 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
                     <p>Estado: <strong><?php echo $pedido['estado']; ?></strong></p>
 
                     <!-- PRODUCTOS -->
+                    <div class="d-flex justify-content-between border-top pt-2">
+                        <span>Gastos de envío</span>
+                        <span>3,99€</span>
+                    </div>
                     <?php
+                    $subtotal = 0;
                     $detalles = obtenerDetallesPedido($conexion, $pedido['id_pedido']);
+
                     while ($prod = mysqli_fetch_assoc($detalles)):
+                        $subtotal += $prod['total_linea'];
                         ?>
 
                         <div class="d-flex justify-content-between border-top pt-2">
@@ -63,6 +70,33 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
                         </div>
 
                     <?php endwhile; ?>
+
+                    <?php
+                    $envio = 2.99; // mismo que usas en compra
+                    $totalPedido = $pedido['total'];
+
+                    // 🔥 calcular descuento automáticamente
+                    $descuento = ($subtotal + $envio) - $totalPedido;
+                    ?>
+
+                    <div class="d-flex justify-content-between border-top pt-2">
+                        <span>Subtotal</span>
+                        <span><?php echo number_format($subtotal, 2); ?>€</span>
+                    </div>
+
+                    <?php if ($descuento > 0): ?>
+                        <div class="d-flex justify-content-between text-success">
+                            <span>Descuento</span>
+                            <span>-<?php echo number_format($descuento, 2); ?>€</span>
+                        </div>
+                    <?php endif; ?>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+                        <strong>Total</strong>
+                        <strong><?php echo number_format($totalPedido, 2); ?>€</strong>
+                    </div>
 
                 </div>
 

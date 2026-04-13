@@ -5,7 +5,6 @@ include 'consultas.php';
 
 header('Content-Type: application/json');
 
-// ❌ IMPORTANTE: no romper JSON con errores PHP
 ini_set('display_errors', 0);
 error_reporting(0);
 
@@ -29,22 +28,37 @@ if (empty($_SESSION['carrito'])) {
 $usuario_id = $_SESSION['usuario_id'];
 $carrito = $_SESSION['carrito'];
 
+/* 🔥 NUEVOS CAMPOS */
+$nombre = $_POST['nombre'] ?? '';
+$apellidos = $_POST['apellidos'] ?? '';
 $direccion = $_POST['direccion'] ?? '';
+$ciudad = $_POST['ciudad'] ?? '';
+$cp = $_POST['cp'] ?? '';
 $telefono = $_POST['telefono'] ?? '';
+$pago = $_POST['pago'] ?? '';
 
-if ($direccion == '' || $telefono == '') {
+if ($nombre == '' || $apellidos == '' || $direccion == '' || $ciudad == '' || $cp == '' || $telefono == '' || $pago == '') {
     respuesta(false, "Datos incompletos");
 }
 
+/* CONCATENAR */
+$nombre_completo = $nombre . " " . $apellidos;
+$direccion_completa = $direccion . ", " . $ciudad . " (" . $cp . ")";
+
+/* VALIDAR PAGO */
+if (!in_array($pago, ['tarjeta', 'contra'])) {
+    respuesta(false, "Método de pago inválido");
+}
+
+/* TOTAL */
 $total = 0;
 
-/* VALIDAR STOCK */
 foreach ($carrito as $producto) {
 
     $id_producto = $producto['id'] ?? $producto['id_producto'] ?? null;
 
     if (!$id_producto) {
-        respuesta(false, "Producto inválido en carrito");
+        respuesta(false, "Producto inválido");
     }
 
     $stockBD = obtenerStockProducto($conexion, $id_producto);
@@ -78,10 +92,12 @@ $id_pedido = crearPedido(
     $conexion,
     $usuario_id,
     $carrito,
-    $direccion,
+    $direccion_completa,
     $telefono,
     $totalFinal,
-    $cupon_id
+    $cupon_id,
+    $nombre_completo,
+    $pago
 );
 
 if (!$id_pedido) {

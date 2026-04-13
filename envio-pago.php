@@ -126,45 +126,45 @@ $totalFinal = $total - $descuento + 2.99;
                         </div>
 
                         <!-- PAGO -->
-<h4 class="fw-bold mb-3">Método de pago</h4>
+                        <h4 class="fw-bold mb-3">Método de pago</h4>
 
-<div class="form-check mb-2">
-    <input class="form-check-input" type="radio" name="pago" value="tarjeta" checked>
-    <label class="form-check-label">
-        <i class="bi bi-credit-card"></i> Tarjeta
-    </label>
-</div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="pago" value="tarjeta" checked>
+                            <label class="form-check-label">
+                                <i class="bi bi-credit-card"></i> Tarjeta
+                            </label>
+                        </div>
 
-<div id="camposTarjeta">
+                        <div id="camposTarjeta">
 
-    <div class="mb-3">
-        <input type="text" class="form-control" placeholder="Número de tarjeta">
-    </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Número de tarjeta">
+                            </div>
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <input type="text" class="form-control" placeholder="MM/AA">
-        </div>
-        <div class="col-md-6 mb-3">
-            <input type="text" class="form-control" placeholder="CVV">
-        </div>
-    </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="MM/AA">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="CVV">
+                                </div>
+                            </div>
 
-</div>
+                        </div>
 
-<div class="form-check mb-4">
-    <input class="form-check-input" type="radio" name="pago" value="contra">
-    <label class="form-check-label">
-        <i class="bi bi-cash"></i> Contra reembolso
-    </label>
-</div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="radio" name="pago" value="contra">
+                            <label class="form-check-label">
+                                <i class="bi bi-cash"></i> Contra reembolso
+                            </label>
+                        </div>
                         <button type="submit" class="btn btn-primary w-100">
                             Confirmar pedido
                         </button>
 
                     </form>
                 </div>
-                
+
             </div>
 
             <!-- RESUMEN -->
@@ -182,38 +182,38 @@ $totalFinal = $total - $descuento + 2.99;
 
                     <hr>
 
-<div class="d-flex justify-content-between">
-    <span>Subtotal</span>
-    <span><?php echo number_format($total, 2); ?>€</span>
-</div>
+                    <div class="d-flex justify-content-between">
+                        <span>Subtotal</span>
+                        <span><?php echo number_format($total, 2); ?>€</span>
+                    </div>
 
-<?php if ($descuento > 0): ?>
-    <div class="d-flex justify-content-between text-success">
-        <span>Descuento</span>
-        <span>-<?php echo number_format($descuento, 2); ?>€</span>
-    </div>
-<?php endif; ?>
+                    <?php if ($descuento > 0): ?>
+                        <div class="d-flex justify-content-between text-success">
+                            <span>Descuento</span>
+                            <span>-<?php echo number_format($descuento, 2); ?>€</span>
+                        </div>
+                    <?php endif; ?>
 
-<div class="d-flex justify-content-between">
-    <span>Envío</span>
-    <span>2,99€</span>
-</div>
+                    <div class="d-flex justify-content-between">
+                        <span>Envío</span>
+                        <span>2,99€</span>
+                    </div>
 
-<hr>
+                    <hr>
 
-<div class="d-flex justify-content-between">
-    <strong>Total</strong>
-    <strong><?php echo number_format($totalFinal, 2); ?>€</strong>
-</div>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total</strong>
+                        <strong><?php echo number_format($totalFinal, 2); ?>€</strong>
+                    </div>
 
                 </div>
             </div>
 
         </div>
-        
+
     </div>
 
-    
+
     <!-- MODAL -->
     <div id="modalCompra" class="modal-compra">
         <div class="modal-box">
@@ -230,32 +230,42 @@ $totalFinal = $total - $descuento + 2.99;
 
     <!-- JS -->
     <script>
-const form = document.getElementById('formCompra');
-const modal = document.getElementById('modalCompra');
-let enviando = false;
+        const form = document.getElementById('formCompra');
+        const modal = document.getElementById('modalCompra');
+        let enviando = false;
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-    const direccion = document.querySelector('input[name="direccion"]').value;
-    const telefono = document.querySelector('input[name="telefono"]').value;
+            const nombre = document.querySelector('input[placeholder="Nombre"]').value;
+            const apellidos = document.querySelector('input[placeholder="Apellidos"]').value;
+            const direccion = document.querySelector('input[name="direccion"]').value;
+            const ciudad = document.querySelector('input[name="ciudad"]').value;
+            const cp = document.querySelector('input[name="cp"]').value;
+            const telefono = document.querySelector('input[name="telefono"]').value;
+            const pago = document.querySelector('input[name="pago"]:checked').value;
 
-    fetch('procesar-pedido.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body:
-            'direccion=' + encodeURIComponent(direccion) +
-            '&telefono=' + encodeURIComponent(telefono)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.ok) {
-            document.getElementById('modalCompra').classList.add('active');
-        } else {
-            alert(data.msg);
-        }
-    });
-});
+            fetch('procesar-pedido.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body:
+                    'nombre=' + encodeURIComponent(nombre) +
+                    '&apellidos=' + encodeURIComponent(apellidos) +
+                    '&direccion=' + encodeURIComponent(direccion) +
+                    '&ciudad=' + encodeURIComponent(ciudad) +
+                    '&cp=' + encodeURIComponent(cp) +
+                    '&telefono=' + encodeURIComponent(telefono) +
+                    '&pago=' + encodeURIComponent(pago)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok) {
+                        document.getElementById('modalCompra').classList.add('active');
+                    } else {
+                        alert(data.msg);
+                    }
+                });
+        });
     </script>
 
 </body>

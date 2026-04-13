@@ -13,34 +13,31 @@ function obtenerUsuarios($conexion)
 }
 
 
-function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $total, $cupon_id = null)
-{
+function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $total, $cupon_id = null, $nombre_cliente = '', $metodo_pago = '') {
 
     $direccion = mysqli_real_escape_string($conexion, $direccion);
     $telefono = mysqli_real_escape_string($conexion, $telefono);
+    $nombre_cliente = mysqli_real_escape_string($conexion, $nombre_cliente);
+    $metodo_pago = mysqli_real_escape_string($conexion, $metodo_pago);
 
-    // 🔥 Asegurar NULL correcto
     $cupon_sql = ($cupon_id !== null) ? $cupon_id : "NULL";
 
-    $sql = "INSERT INTO pedidos (usuario_id, total, direccion_envio, telefono, cupon_id)
-            VALUES ($usuario_id, $total, '$direccion', '$telefono', $cupon_sql)";
+    $sql = "INSERT INTO pedidos 
+        (usuario_id, total, direccion_envio, telefono, cupon_id, nombre_cliente, metodo_pago)
+        VALUES 
+        ($usuario_id, $total, '$direccion', '$telefono', $cupon_sql, '$nombre_cliente', '$metodo_pago')";
 
     $res = mysqli_query($conexion, $sql);
 
-    if (!$res) {
-        return false;
-    }
+    if (!$res) return false;
 
     $id_pedido = mysqli_insert_id($conexion);
 
     foreach ($carrito as $producto) {
 
-        // 🔥 MUY IMPORTANTE (por si cambia la clave)
         $id_producto = $producto['id'] ?? $producto['id_producto'] ?? 0;
 
-        if ($id_producto == 0) {
-            die("ERROR: producto sin ID");
-        }
+        if ($id_producto == 0) return false;
 
         $precio = $producto['precio'];
         $cantidad = $producto['cantidad'];
@@ -50,26 +47,19 @@ function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $t
             (pedido_id, producto_id, precio_unitario, cantidad, total_linea)
             VALUES ($id_pedido, $id_producto, $precio, $cantidad, $total_linea)";
 
-        $resDetalle = mysqli_query($conexion, $sqlDetalle);
-
-        if (!$resDetalle) {
-            return false;
-        }
+        if (!mysqli_query($conexion, $sqlDetalle)) return false;
 
         $sqlStock = "UPDATE productos 
                      SET stock = stock - $cantidad 
                      WHERE id_producto = $id_producto";
 
-        $resStock = mysqli_query($conexion, $sqlStock);
-
-
-        if (!$resStock) {
-            return false;
-        }
+        if (!mysqli_query($conexion, $sqlStock)) return false;
     }
 
     return $id_pedido;
 }
+
+
 function obtenerCupon($conexion, $codigo)
 {
     $stmt = $conexion->prepare("

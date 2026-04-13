@@ -1504,3 +1504,26 @@ body {
     height: 2px;
     background: #ccc;
 }
+
+.estado-select {
+    font-weight: bold;
+    color: white;
+    border: none;
+}
+
+/* Estados */
+.estado-pendiente {
+    background-color: #ffc107;
+}
+
+.estado-enviado {
+    background-color: #0d6efd;
+}
+
+.estado-reparto {
+    background-color: #fd7e14;
+}
+
+.estado-entregado {
+    background-color: #198754;
+}

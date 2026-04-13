@@ -14,6 +14,7 @@ $resultado = obtenerPedidosAdmin($conexion);
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Actualizar Pedidos</title>
@@ -37,10 +38,15 @@ $resultado = obtenerPedidosAdmin($conexion);
                 <thead class="table-dark">
                     <tr>
                         <th>#</th>
-                        <th>ID</th>
-                        <th>Productos</th>
+                        <th>ID pedido</th>
+                        <th>ID usuario</th>
+                        <th>Cliente</th>
                         <th>Usuario</th>
+                        <th>Productos</th>
                         <th>Total</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Método pago</th>
                         <th>Fecha</th>
                         <th>Estado</th>
                     </tr>
@@ -57,34 +63,84 @@ $resultado = obtenerPedidosAdmin($conexion);
                     <td><?php echo $n++; ?></td>
 
                     <td>#<?php echo $pedido['id_pedido']; ?></td>
+                    <td>#<?php echo $pedido['usuario_id']; ?></td>
+
+                    <!-- 🔥 NUEVO: nombre cliente -->
+                    <td><?php echo $pedido['nombre_cliente'] ?? '—'; ?></td>
+
+                    <td><?php echo $pedido['nombre_usuario']; ?></td>
 
                     <!-- PRODUCTOS -->
                     <td>
                         <?php
                         $detalles = obtenerDetallesPedido($conexion, $pedido['id_pedido']);
                         while ($prod = mysqli_fetch_assoc($detalles)) {
-                            echo $prod['nombre'] . " x" . $prod['cantidad'] . "<br>";
+                            echo " - " . $prod['nombre'] . " x" . $prod['cantidad'] . "<br>";
                         }
                         ?>
                     </td>
 
-                    <td><?php echo $pedido['nombre_usuario']; ?></td>
+                    <td><?php echo number_format($pedido['total'], 2); ?>€</td>
 
-                    <td><?php echo number_format($pedido['total'],2); ?>€</td>
+                    <!-- 🔥 Dirección ya completa -->
+                    <td><?php echo $pedido['direccion_envio']; ?></td>
+
+                    <td><?php echo $pedido['telefono']; ?></td>
+
+                    <!-- 🔥 NUEVO: método de pago -->
+                    <td>
+                        <?php
+                        if ($pedido['metodo_pago'] == 'tarjeta') {
+                            echo '<span class="badge bg-primary">Tarjeta</span>';
+                        } elseif ($pedido['metodo_pago'] == 'contra') {
+                            echo '<span class="badge bg-secondary">Contra reembolso</span>';
+                        } else {
+                            echo '—';
+                        }
+                        ?>
+                    </td>
 
                     <td><?php echo $pedido['fecha_pedido']; ?></td>
 
-                    <!-- ESTADO -->
+                    <!-- ESTADO (NO TOCADO) -->
                     <td>
                         <form method="POST" action="cambiar-estado.php">
                             <input type="hidden" name="id_pedido" value="<?php echo $pedido['id_pedido']; ?>">
 
-                            <select name="estado" class="form-select" onchange="this.form.submit()">
+                            <?php
+                            $estado = $pedido['estado'];
 
-                                <option value="recibido" <?php if($pedido['estado']=='pendiente') echo 'selected'; ?>>Pendiente</option>
-                                <option value="procesando" <?php if($pedido['estado']=='enviado') echo 'selected'; ?>>Enviado</option>
-                                <option value="enviado" <?php if($pedido['estado']=='reparto') echo 'selected'; ?>>Reparto</option>
-                                <option value="cancelado" <?php if($pedido['estado']=='entregado') echo 'selected'; ?>>Entregado</option>
+                            $colorEstado = '';
+                            if ($estado == 'pendiente') {
+                                $colorEstado = 'estado-pendiente';
+                            } elseif ($estado == 'enviado') {
+                                $colorEstado = 'estado-enviado';
+                            } elseif ($estado == 'reparto') {
+                                $colorEstado = 'estado-reparto';
+                            } elseif ($estado == 'entregado') {
+                                $colorEstado = 'estado-entregado';
+                            }
+                            ?>
+
+                            <select name="estado"
+                                class="form-select estado-select <?php echo $colorEstado; ?>"
+                                onchange="cambiarColor(this); this.form.submit();">
+
+                                <option value="pendiente" <?php if ($estado == 'pendiente') echo 'selected'; ?>>
+                                    Pendiente
+                                </option>
+
+                                <option value="enviado" <?php if ($estado == 'enviado') echo 'selected'; ?>>
+                                    Enviado
+                                </option>
+
+                                <option value="reparto" <?php if ($estado == 'reparto') echo 'selected'; ?>>
+                                    En reparto
+                                </option>
+
+                                <option value="entregado" <?php if ($estado == 'entregado') echo 'selected'; ?>>
+                                    Entregado
+                                </option>
 
                             </select>
                         </form>
@@ -102,5 +158,7 @@ $resultado = obtenerPedidosAdmin($conexion);
     </div>
 </div>
 
+<script src="efectos.js"></script>
 </body>
+
 </html>
