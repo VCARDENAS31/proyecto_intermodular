@@ -5,19 +5,30 @@ include 'consultas.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $nombre     = $_POST['nombre'];
-    $precio     = $_POST['precio'];
-    $stock      = $_POST['stock'];
-    $tipo       = $_POST['tipo'];
-    $categoria  = $_POST['categoria'];
+    $nombre = $_POST['nombre'];
+    $precio = $_POST['precio'];
+    $stock = $_POST['stock'];
+    $tipo = $_POST['tipo'];
+    $categoria = $_POST['categoria'];
     $plataforma = $_POST['plataforma'];
     $descripcion = $_POST['descripcion'];
 
     $tipoCarpeta = $_POST['tipoCarpeta'] ?? '';
-    $subcarpeta  = $_POST['subcarpeta'] ?? '';
+    $subcarpeta = $_POST['subcarpeta'] ?? '';
 
-    // Ruta base
-    $rutaBase = "assets/imagenes/productos/$tipoCarpeta/$subcarpeta/";
+    // 🔥 RUTA SEGÚN ESTRUCTURA REAL
+    if ($tipoCarpeta == "videojuegos") {
+
+        // videojuegos NO tiene plataforma
+        $rutaBase = "assets/imagenes/productos/videojuegos/$subcarpeta/";
+        $rutaBD   = "productos/videojuegos/$subcarpeta/";
+
+    } else {
+
+        // accesorios y consolas SI tienen plataforma
+        $rutaBase = "assets/imagenes/productos/$tipoCarpeta/$subcarpeta/";
+        $rutaBD   = "productos/$tipoCarpeta/$subcarpeta/";
+    }
 
     // Imagen
     $nombreImagen = $_FILES['imagen']['name'];
@@ -33,12 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     move_uploaded_file($tmp, $rutaBase . $nombreFinal);
 
-    // Guardar en BD solo la ruta relativa
-    $rutaBD = "productos/$tipoCarpeta/$subcarpeta/" . $nombreFinal;
-
-    if (insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $rutaBD)) {
+    // Guardar en BD
+    if (insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $rutaBD . $nombreFinal)) {
         header("Location: gestionarProductos.php?res=ok");
     } else {
         header("Location: gestionarProductos.php?res=error");
     }
 }
+?>

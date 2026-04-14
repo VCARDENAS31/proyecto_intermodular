@@ -1,39 +1,55 @@
 <?php
 
-// Incluir archivos necesarios
 include 'conexion-bd.php';
 include 'consultas.php';
 
-// Iniciar sesión
 session_start();
 
-// Comprobar que:
-// 1. La petición sea POST (se envió un formulario)
-// 2. El usuario tenga rol de administrador
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['rol'] === 'admin') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
 
-    // Guardar los datos recibidos del formulario
-    $id_usuario = $_POST['id_usuario'];
+    $id_usuario = $_POST['id'];
     $nombre     = $_POST['nombre'];
     $apellidos  = $_POST['apellidos'];
     $email      = $_POST['email'];
     $rol        = $_POST['rol'];
+    $password   = $_POST['password'];
 
-    // Llamar a la función que actualiza el usuario en la base de datos
-    $resultado = actualizarUsuario(
-        $conexion,
-        $id_usuario,
-        $nombre,
-        $apellidos,
-        $email,
-        $rol
-    );
+    // 🔴 VALIDACIÓN PASSWORD
+    if (!empty($password) && strlen($password) < 6) {
+        header("Location: editar-usuario.php?id=$id_usuario&error=pass_corta");
+        exit;
+    }
 
-    // Redirigir según el resultado
+    // Si hay contraseña válida
+    if (!empty($password)) {
+
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        $resultado = actualizarUsuarioConPassword(
+            $conexion,
+            $id_usuario,
+            $nombre,
+            $apellidos,
+            $email,
+            $rol,
+            $password_hash
+        );
+
+    } else {
+        // Sin cambiar contraseña
+        $resultado = actualizarUsuario(
+            $conexion,
+            $id_usuario,
+            $nombre,
+            $apellidos,
+            $email,
+            $rol
+        );
+    }
+
     if ($resultado) {
         header("Location: gestionarUsuarios.php?res=edit_ok");
     } else {
         header("Location: gestionarUsuarios.php?res=error");
     }
 }
-?>

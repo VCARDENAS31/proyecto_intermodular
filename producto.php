@@ -27,65 +27,7 @@ if (!$producto) {
 
 <body>
 
-    <header>
-        <!-- TU NAVBAR TAL CUAL -->
-        <nav class="navbar-principal navbar navbar-expand-lg d-flex p-2 navbar-dark">
-
-            <button class="navbar-toggler" type="button" id="botonMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="logo">
-                <img class="img-fluid" src="assets/imagenes/logo_tienda.png">
-            </div>
-
-            <div id="sidebarMovil" class="d-flex flex-column">
-                <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"></button>
-
-                <h2 class="text-white mt-5 text-center mb-5">Categorías</h2>
-
-                <a href="#" class="text-white menu-item text-decoration-none">VIDEOJUEGOS</a>
-                <a href="#" class="text-white menu-item text-decoration-none">CONSOLAS</a>
-                <a href="#" class="text-white menu-item text-decoration-none">ACCESORIOS</a>
-                <a href="#" class="text-white menu-item text-decoration-none">PRÓXIMOS LANZAMIENTOS</a>
-
-                <form class="d-flex w-100 my-3 px-4">
-                    <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
-                </form>
-
-                <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-                    CERRAR SESIÓN
-                </button>
-            </div>
-
-            <div id="overlaySidebar"></div>
-
-            <form class="d-none d-lg-flex w-100 my-3 px-4">
-                <input class="form-control rounded-pill px-4 d-flex" type="search" placeholder="Buscar videojuegos">
-            </form>
-
-            <div class="d-flex iconos-nav">
-                <a href="#" class="text-white">
-                    <i class="bi bi-person-circle fs-4"></i>
-                </a>
-                <a href="#" class="text-white">
-                    <i class="bi bi-cart fs-4"></i>
-                </a>
-            </div>
-        </nav>
-
-        <!-- NAVBAR SECUNDARIO -->
-        <div class="navbar-secundario d-none d-lg-block">
-            <div class="container">
-                <ul class="nav w-100 justify-content-between text-center">
-                    <li class="nav-item"><a class="nav-link text-white p-3">VIDEOJUEGOS</a></li>
-                    <li class="nav-item"><a class="nav-link text-white p-3">CONSOLAS</a></li>
-                    <li class="nav-item"><a class="nav-link text-white p-3">ACCESORIOS</a></li>
-                    <li class="nav-item"><a class="nav-link text-white p-3">PRÓXIMOS LANZAMIENTOS</a></li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <?php include 'header-user.php'; ?>
 
     <!-- CONTENIDO -->
     <div class="container mt-5">
@@ -136,47 +78,59 @@ if (!$producto) {
                     <?php echo $producto['plataforma']; ?>
                 </span>
 
-                <h2 class="text-dark mb-4">Precio: <?php echo $producto['precio']; ?>€</h2>
+                <h4 class="text-dark mb-4">Precio: <?php echo $producto['precio']; ?>€</h2>
 
-                <div class="tabs-container">
+                    <h4 class="text-dark mb-4">Stock: <?php echo $producto['stock']; ?></h2>
 
-                    <!-- BOTONES -->
-                    <div class="tabs">
-                        <button class="tab active" onclick="mostrarTab('descripcion')">Descripción</button>
-                        <button class="tab" onclick="mostrarTab('detalles')">Ver detalles</button>
-                    </div>
+                        <div class="tabs-container">
 
-                    <!-- CONTENIDO -->
-                    <div class="tab-content active" id="descripcion">
-                        <p><?php echo $producto['descripcion']; ?></p>
-                    </div>
+                            <!-- BOTONES -->
+                            <div class="tabs">
+                                <button class="tab active" onclick="mostrarTab('descripcion')">Descripción</button>
+                                <button class="tab" onclick="mostrarTab('detalles')">Ver detalles</button>
+                            </div>
 
-                    <div class="tab-content" id="detalles">
-                        <ul>
-                            <li><strong>Tipo:</strong> <?php echo $producto['tipo']; ?></li>
-                            <li><strong>Stock:</strong> <?php echo $producto['stock']; ?></li>
-                            <li><strong>Categoría:</strong> <?php echo $producto['categoria'] ?></li>
-                            <li><strong>Plataforma:</strong> <?php echo $producto['plataforma']; ?></li>
-                            <?php if ($producto['almacenamiento'] == 'Consola'): ?>
-                                <li><strong>Lector de discos:</strong>
-                                    <?php echo ($producto['tieneLector'] == 1) ? 'Sí' : 'No (Digital)'; ?>
-                                </li>
-                            <?php endif; ?>
+                            <!-- CONTENIDO -->
+                            <div class="tab-content active" id="descripcion">
+                                <p><?php echo $producto['descripcion']; ?></p>
+                            </div>
 
-                            <?php if ($producto['almacenamiento'] !== null): ?>
-                                <li><strong>Almacenamiento:</strong>
-                                    <?php echo $producto['almacenamiento']; ?>
-                                </li>
-                            <?php endif; ?>
+                            <div class="tab-content" id="detalles">
+                                <ul>
+                                    <li><strong>Tipo:</strong> <?php echo $producto['tipo']; ?></li>
+                                    <li><strong>Categoría:</strong> <?php echo $producto['categoria'] ?></li>
+                                    <li><strong>Plataforma:</strong> <?php echo $producto['plataforma']; ?></li>
+                                    <?php if ($producto['almacenamiento'] == 'Consola'): ?>
+                                        <li><strong>Lector de discos:</strong>
+                                            <?php echo ($producto['tieneLector'] == 1) ? 'Sí' : 'No (Digital)'; ?>
+                                        </li>
+                                    <?php endif; ?>
 
-                        </ul>
-                    </div>
+                                    <?php if ($producto['almacenamiento'] !== null): ?>
+                                        <li><strong>Almacenamiento:</strong>
+                                            <?php echo $producto['almacenamiento']; ?>
+                                        </li>
+                                    <?php endif; ?>
 
-                </div>
+                                </ul>
+                            </div>
 
-                <button class="btn btn-primary btn-lg w-100 mb-2">
-                    <i class="bi bi-cart-plus"></i> Añadir al Carrito
-                </button>
+                        </div>
+
+                        <?php if ($producto['stock'] > 0): ?>
+
+                            <button class="btn btn-primary btn-lg w-100 mb-2 btn-add-carrito"
+                                data-id="<?php echo $producto['id_producto']; ?>">
+                                <i class="bi bi-cart-plus"></i> Añadir al Carrito
+                            </button>
+
+                        <?php else: ?>
+
+                            <button class="btn btn-secondary btn-lg w-100 mb-2" disabled>
+                                Sin stock
+                            </button>
+
+                        <?php endif; ?>
 
             </div>
         </div>

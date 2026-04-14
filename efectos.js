@@ -191,7 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 
-    boton.addEventListener("click", () => {
+    boton.addEventListener("click", (e) => {
+
+        e.preventDefault(); // 🔥 ESTO EVITA ERRORES
 
         const id = boton.dataset.id;
 
@@ -199,11 +201,14 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
             .then(res => res.json())
             .then(data => {
 
-                //abrir carrito
+                if (!data.ok) {
+                    alert(data.mensaje);
+                    return;
+                }
+
                 sidebarCarrito.classList.add("active");
                 overlayCarrito.classList.add("active");
 
-                //actualizar carrito en pantalla
                 actualizarCarrito(data.carrito);
 
             });
@@ -211,7 +216,6 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
     });
 
 });
-
 
 
 

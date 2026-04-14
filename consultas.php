@@ -213,6 +213,8 @@ function actualizarUsuario($conexion, $id, $nombre, $apellidos, $email, $rol)
     return mysqli_query($conexion, $sql);
 }
 
+
+
 /**
  * Actualizar datos de un producto (URL de imagen como texto)
  */
@@ -231,7 +233,20 @@ function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $tipo, $ca
     return mysqli_query($conexion, $sql);
 }
 
+function actualizarUsuarioConPassword($conexion, $id, $nombre, $apellidos, $email, $rol, $password)
+{
+    $id = intval($id);
 
+    $sql = "UPDATE usuarios SET 
+            nombre = '$nombre', 
+            apellidos = '$apellidos', 
+            email = '$email', 
+            rol = '$rol',
+            contraseña = '$password'
+            WHERE id_usuario = $id";
+
+    return mysqli_query($conexion, $sql);
+}
 /**
  * Obtener un usuario específico por su ID
  *

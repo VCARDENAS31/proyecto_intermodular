@@ -41,6 +41,11 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
                         <h4 class="mb-0">Editar Usuario</h4>
                     </div>
                     <div class="card-body p-3">
+                        <?php if (isset($_GET['error']) && $_GET['error'] == 'pass_corta'): ?>
+                            <div class="alert alert-danger">
+                                La contraseña debe tener al menos 6 caracteres
+                            </div>
+                        <?php endif; ?>
                         <form action="actualizar-usuario.php" method="POST">
                             <input type="hidden" name="id" value="<?php echo $user['id_usuario']; ?>">
 

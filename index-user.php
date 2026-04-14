@@ -175,10 +175,20 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                     <p class="mb-3"><b>Precio:</b> <?php echo $juego['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
-                                        data-id="<?php echo $juego['id_producto']; ?>">
-                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
-                                    </a>
+                                    <?php if ($juego['stock'] > 0): ?>
+
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                            data-id="<?php echo $juego['id_producto']; ?>">
+                                            <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                        </a>
+
+                                    <?php else: ?>
+
+                                        <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                            Sin stock
+                                        </button>
+
+                                    <?php endif; ?>
                                     <a href="producto.php?id=<?php echo $juego['id_producto']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
