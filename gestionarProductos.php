@@ -77,14 +77,15 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
                                 <td><?php echo $producto['stock']; ?></td>
                                 <td><?php echo $producto['tipo']; ?></td>
                                 <td><?php echo $producto['categoria']; ?></td>
-                                <td><img src="assets/imagenes/<?php echo $producto['img_url']; ?>" alt="<?php echo $producto['nombre']; ?>"
-                                        width="80" height="auto"></td>
+                                <td><img src="assets/imagenes/<?php echo $producto['img_url']; ?>"
+                                        alt="<?php echo $producto['nombre']; ?>" width="80" height="auto"></td>
                                 <td><?php echo $producto['plataforma']; ?></td>
                                 <td class="text-nowrap">
                                     <div class="d-flex justify-content-center gap-3">
-                                        <button class="btn btn-warning btn-sm text-white">
+                                        <a href="editar-producto.php?id=<?php echo $producto['id_producto']; ?>"
+                                            class="btn btn-warning btn-sm text-white">
                                             <i class="bi bi-pencil-square"></i>
-                                        </button>
+                                        </a>
                                         <button class="btn btn-danger btn-sm"
                                             onclick="confirmarEliminarProducto(<?php echo $producto['id_producto']; ?>)">
                                             <i class="bi bi-trash"></i>

@@ -228,7 +228,7 @@ function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $tipo, $ca
             tipo = '$tipo', 
             categoria = '$categoria', 
             plataforma = '$plataforma', 
-            imagen = '$imagen' 
+            img_url = '$imagen' 
             WHERE id_producto = $id";
     return mysqli_query($conexion, $sql);
 }
