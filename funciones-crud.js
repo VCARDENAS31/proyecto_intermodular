@@ -11,3 +11,9 @@ function confirmarEliminarProducto(id) {
         window.location.href = "eliminar-producto.php?id=" + id;
     }
 }
+
+function confirmarEliminarCupon(id) {
+    if (confirm("¿Eliminar este cupón?")) {
+        window.location.href = "eliminar-cupon.php?id=" + id;
+    }
+}

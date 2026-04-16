@@ -13,7 +13,8 @@ function obtenerUsuarios($conexion)
 }
 
 
-function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $total, $cupon_id = null, $nombre_cliente = '', $metodo_pago = '') {
+function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $total, $cupon_id = null, $nombre_cliente = '', $metodo_pago = '')
+{
 
     $direccion = mysqli_real_escape_string($conexion, $direccion);
     $telefono = mysqli_real_escape_string($conexion, $telefono);
@@ -29,7 +30,8 @@ function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $t
 
     $res = mysqli_query($conexion, $sql);
 
-    if (!$res) return false;
+    if (!$res)
+        return false;
 
     $id_pedido = mysqli_insert_id($conexion);
 
@@ -37,7 +39,8 @@ function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $t
 
         $id_producto = $producto['id'] ?? $producto['id_producto'] ?? 0;
 
-        if ($id_producto == 0) return false;
+        if ($id_producto == 0)
+            return false;
 
         $precio = $producto['precio'];
         $cantidad = $producto['cantidad'];
@@ -47,13 +50,15 @@ function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $t
             (pedido_id, producto_id, precio_unitario, cantidad, total_linea)
             VALUES ($id_pedido, $id_producto, $precio, $cantidad, $total_linea)";
 
-        if (!mysqli_query($conexion, $sqlDetalle)) return false;
+        if (!mysqli_query($conexion, $sqlDetalle))
+            return false;
 
         $sqlStock = "UPDATE productos 
                      SET stock = stock - $cantidad 
                      WHERE id_producto = $id_producto";
 
-        if (!mysqli_query($conexion, $sqlStock)) return false;
+        if (!mysqli_query($conexion, $sqlStock))
+            return false;
     }
 
     return $id_pedido;
@@ -97,6 +102,62 @@ function guardarUsoCupon($conexion, $usuario_id, $cupon_id)
 {
     $sql = "INSERT INTO cupones_usuarios (id_usuario, id_cupon)
             VALUES ($usuario_id, $cupon_id)";
+    mysqli_query($conexion, $sql);
+}
+
+
+function obtenerCupones($conexion)
+{
+    $sql = "SELECT * FROM cupones ORDER BY id_cupon DESC";
+    return mysqli_query($conexion, $sql);
+}
+
+
+// Obtener cupón por ID
+function obtenerCuponPorId($conexion, $id)
+{
+    $id = intval($id);
+    $sql = "SELECT * FROM cupones WHERE id_cupon = $id";
+    $res = mysqli_query($conexion, $sql);
+    return mysqli_fetch_assoc($res);
+}
+
+// Insertar cupón
+function insertarCupon($conexion, $codigo, $descuento, $fecha, $activo)
+{
+    $sql = "INSERT INTO cupones (codigo, descuento_porcentaje, fecha_caducidad, activo)
+            VALUES ('$codigo', $descuento, '$fecha', $activo)";
+    return mysqli_query($conexion, $sql);
+}
+
+// Actualizar cupón
+function actualizarCupon($conexion, $id, $codigo, $descuento, $fecha, $activo)
+{
+    $id = intval($id);
+
+    $sql = "UPDATE cupones SET
+            codigo = '$codigo',
+            descuento_porcentaje = $descuento,
+            fecha_caducidad = '$fecha',
+            activo = $activo
+            WHERE id_cupon = $id";
+
+    return mysqli_query($conexion, $sql);
+}
+
+// Eliminar cupón
+function eliminarCupon($conexion, $id)
+{
+    $id = intval($id);
+    $sql = "DELETE FROM cupones WHERE id_cupon = $id";
+    return mysqli_query($conexion, $sql);
+}
+function desactivarCuponesCaducados($conexion)
+{
+    $sql = "UPDATE cupones 
+            SET activo = 0 
+            WHERE fecha_caducidad < CURDATE() 
+            AND activo = 1";
     mysqli_query($conexion, $sql);
 }
 
@@ -218,18 +279,23 @@ function actualizarUsuario($conexion, $id, $nombre, $apellidos, $email, $rol)
 /**
  * Actualizar datos de un producto (URL de imagen como texto)
  */
-function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $tipo, $categoria, $plataforma, $imagen)
+function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $plataforma, $img_url)
 {
     $id = intval($id);
+    $nombre = mysqli_real_escape_string($conexion, $nombre);
+    $plataforma = mysqli_real_escape_string($conexion, $plataforma);
+
+    $precio = floatval(str_replace(',', '.', $precio));
+    $stock = intval($stock);
+
     $sql = "UPDATE productos SET 
-            nombre = '$nombre', 
-            precio = $precio, 
-            stock = $stock, 
-            tipo = '$tipo', 
-            categoria = '$categoria', 
-            plataforma = '$plataforma', 
-            img_url = '$imagen' 
+                nombre = '$nombre',
+                precio = $precio,
+                stock = $stock,
+                plataforma = '$plataforma',
+                img_url = '$img_url'
             WHERE id_producto = $id";
+
     return mysqli_query($conexion, $sql);
 }
 
