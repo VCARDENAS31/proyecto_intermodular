@@ -1,0 +1,91 @@
+<?php
+include 'conexion-bd.php';
+include 'consultas.php';
+session_start();
+
+if (!isset($_GET['q']) || empty(trim($_GET['q']))) {
+    header("Location: index-user.php");
+    exit();
+}
+
+$busqueda = trim($_GET['q']);
+$resultados = buscarProductos($conexion, $busqueda);
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados de búsqueda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prueba.css">
+</head>
+
+<body>
+
+<?php include 'header-user.php'; ?>
+
+<div class="container">
+
+    <h2 class="mt-4">Resultados para: "<?php echo htmlspecialchars($busqueda); ?>"</h2>
+    <hr>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+
+        <?php if (mysqli_num_rows($resultados) > 0): ?>
+
+            <?php while ($producto = mysqli_fetch_assoc($resultados)):
+                $claseMarco = ($producto['tipo'] == 'Juego') ? strtolower($producto['plataforma']) : '';
+            ?>
+
+                <div class="col d-flex justify-content-center">
+                    <div class="card h-100 p-2 <?php echo $claseMarco; ?>">
+
+                        <?php if (!empty($claseMarco)): ?>
+                            <div class="<?php echo $claseMarco; ?>">
+                                <div class="card-img-container rounded shadow-sm">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                        <?php endif; ?>
+
+                        <div class="text-center">
+                            <p class="fw-bold mb-0 mt-3"><?php echo $producto['nombre']; ?></p>
+                            <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
+                        </div>
+
+                        <div class="mt-auto">
+                            <button class="btn btn-primary btn-sm w-100 mb-1">
+                                <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                            </button>
+
+                            <a href="producto.php?id=<?php echo $producto['id_producto']; ?>"
+                               class="btn btn-secondary btn-sm w-100">
+                                <i class="bi bi-eye"></i> VER
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            <?php endwhile; ?>
+
+        <?php else: ?>
+            <div class="col-12 text-center">
+                <p>No se encontraron resultados.</p>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</div>
+
+<script src="efectos.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

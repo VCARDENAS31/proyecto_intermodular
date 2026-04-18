@@ -17,8 +17,9 @@
 
         <!-- BUSCADOR (SOLO ESCRITORIO) -->
         <div class="nav-center">
-            <form class="buscador position-relative">
-                <input type="search" class="form-control rounded-pill ps-4" placeholder="Buscar videojuegos...">
+            <form class="buscador position-relative" action="buscar.php" method="GET">
+                <input type="search" name="q" class="form-control rounded-pill ps-4" placeholder="Buscar videojuegos..."
+                    required>
             </form>
         </div>
 
@@ -47,12 +48,12 @@
 
     <!-- BUSCADOR SOLO MOVIL -->
     <div class="buscador-movil-wrapper">
-        <div class="buscador-box">
-            <input type="text" placeholder="¿Qué buscas?">
-            <button>
+        <form action="buscar.php" method="GET" class="buscador-box">
+            <input type="text" name="q" placeholder="¿Qué buscas?">
+            <button type="submit">
                 <i class="bi bi-search"></i>
             </button>
-        </div>
+        </form>
     </div>
 
 
