@@ -1,6 +1,10 @@
 <?php
 include 'consultas.php'; // Incluimos tus funciones
 include 'conexion-bd.php'; // Tu conexión a la DB
+
+$categoria = $_GET['categoria'] ?? '';
+$precio = $_GET['precio'] ?? '';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,110 +20,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 </head>
 
 <body>
-    <header>
-        <!-- NAVBAR PRINCIPAL -->
-        <nav class="navbar-principal navbar navbar-expand-lg d-flex p-2 navbar-dark">
-            <!-- Botón menú móvil -->
-            <button class="navbar-toggler" type="button" id="botonMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-
-            <div class="logo">
-                <img class="img-fluid" src="assets/imagenes/logo_tienda.png">
-            </div>
-
-
-            <!-- SIDEBAR MÓVIL -->
-            <div id="sidebarMovil" class="d-flex flex-column">
-                <!-- Botón cerrar sidebar -->
-                <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-                    aria-label="Cerrar"></button>
-
-                <h2 class="text-white mt-5 text-center mb-5">Categorías</h2>
-                <!-- Menú categorías -->
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-controller"></i>
-                    VIDEOJUEGOS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-box-fill"></i>
-                    CONSOLAS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-headset"></i>
-                    ACCESORIOS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-calendar-event"></i>
-                    PRÓXIMOS
-                    LANZAMIENTOS</a>
-                </li>
-                </ul>
-                <!-- Buscador móvil -->
-                <form class="d-flex w-100 my-3 px-4">
-                    <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
-                </form>
-                <!-- Botón cerrar sesión -->
-                <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-                    CERRAR SESIÓN
-                </button>
-            </div>
-            <!-- ===== FIN SIDEBAR ===== -->
-
-            <!-- Overlay -->
-            <div id="overlaySidebar"></div>
-
-            <!-- Buscador escritorio -->
-            <form class="d-none d-lg-flex w-100 my-3 px-4">
-                <input class="form-control rounded-pill px-4 d-flex" type="search" placeholder="Buscar videojuegos">
-            </form>
-
-            </div>
-
-            <!-- Iconos usuario y carrito -->
-            <div class="d-xs-none d-flex iconos-nav">
-                <div class="dropdown">
-                    <!-- icono login -->
-                    <a href="#" class="text-white " id="userMenu" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item btn-cerrar-sesion" href="#"><i
-                                    class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
-                    </ul>
-                </div>
-
-                <!-- icono Carrito -->
-                <a href="#" class="text-white">
-                    <i class="bi bi-cart fs-4"></i>
-                </a>
-            </div>
-        </nav>
-
-
-        <!-- NAVBAR SECUNDARIO -->
-        <div class="navbar-secundario d-none d-lg-block">
-            <div class="container">
-                <ul class="nav w-100 justify-content-between text-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-controller"></i> VIDEOJUEGOS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-box-fill"></i> CONSOLAS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-headset"></i> ACCESORIOS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-calendar-event"></i> PRÓXIMOS LANZAMIENTOS
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </header>
+    <?php include 'header-user.php'; ?>
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
@@ -186,66 +87,122 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
 
         <section class="barra-filtro p-4 mb-5 shadow-lg">
-            <form class="row g-3 align-items-end justify-content-center">
+            <form method="GET" class="row g-3 align-items-end justify-content-center">
+
+                <!-- 🔽 CATEGORÍA -->
                 <div class="col-12 col-md-4">
-                    <label class="form-label text-info small fw-bold mb-2 uppercase">Filtrar por Género</label>
+                    <label class="form-label text-info small fw-bold mb-2 uppercase">Filtrar por Categoría</label>
+
                     <div class="dropdown">
                         <button
                             class="btn btn-dark w-100 dropdown-toggle text-start d-flex justify-content-between align-items-center border-secondary"
                             type="button" data-bs-toggle="dropdown">
-                            Categorías
+
+                            <?php echo $categoria ? $categoria : 'Categorías'; ?>
+
                         </button>
+
                         <ul class="dropdown-menu dropdown-menu-dark p-3 w-100 shadow-lg">
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat1"><label
-                                        class="form-check-label" for="cat1">Deportes</label></div>
+                                <input type="radio" name="categoria" value="Figuras" <?php if ($categoria == 'Figuras')
+                                    echo 'checked'; ?>>
+                                Figuras
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat2"><label
-                                        class="form-check-label" for="cat2">Acción</label></div>
+                                <input type="radio" name="categoria" value="Fundas y protectores" <?php if ($categoria == 'Fundas y protectores')
+                                    echo 'checked'; ?>>
+                                Fundas y protectores
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat3"><label
-                                        class="form-check-label" for="cat3">Aventura</label></div>
+                                <input type="radio" name="categoria" value="Soportes" <?php if ($categoria == 'Soportes')
+                                    echo 'checked'; ?>>
+                                Soportes
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat4"><label
-                                        class="form-check-label" for="cat4">Terror</label></div>
+                                <input type="radio" name="categoria" value="Adaptadores" <?php if ($categoria == 'Adaptadores')
+                                    echo 'checked'; ?>>
+                                Adaptadores
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat5"><label
-                                        class="form-check-label" for="cat5">RPG</label></div>
+                                <input type="radio" name="categoria" value="Controles" <?php if ($categoria == 'Controles')
+                                    echo 'checked'; ?>>
+                                Controles
                             </li>
+
+                            <li>
+                                <input type="radio" name="categoria" value="Memorias" <?php if ($categoria == 'Memorias')
+                                    echo 'checked'; ?>>
+                                Memorias
+                            </li>
+
                         </ul>
                     </div>
                 </div>
 
+                <!-- 🔽 PRECIO -->
                 <div class="col-12 col-md-4">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">Presupuesto</label>
+
                     <div class="dropdown">
                         <button
                             class="btn btn-dark w-100 dropdown-toggle text-start d-flex justify-content-between align-items-center border-secondary"
                             type="button" data-bs-toggle="dropdown">
-                            Rango de Precio
+
+                            <?php
+                            if ($precio == '0-20')
+                                echo 'Menos de 20€';
+                            elseif ($precio == '20-50')
+                                echo '20€ - 50€';
+                            elseif ($precio == '50+')
+                                echo 'Más de 50€';
+                            else
+                                echo 'Rango de Precio';
+                            ?>
+
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-dark p-3 w-100">
+
+                        <ul class="dropdown-menu dropdown-menu-dark p-3 w-100 shadow-lg">
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="p1"><label
-                                        class="form-check-label" for="p1">Menos de 20€</label></div>
+                                <input type="radio" name="precio" value="0-20" <?php if ($precio == '0-20')
+                                    echo 'checked'; ?>>
+                                Menos de 20€
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="p2"><label
-                                        class="form-check-label" for="p2">20€ - 50€</label></div>
+                                <input type="radio" name="precio" value="20-50" <?php if ($precio == '20-50')
+                                    echo 'checked'; ?>>
+                                20€ - 50€
                             </li>
+
+                            <li>
+                                <input type="radio" name="precio" value="50+" <?php if ($precio == '50+')
+                                    echo 'checked'; ?>>
+                                Más de 50€
+                            </li>
+
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-3">
-                    <button type="submit" class="btn btn-info w-100 fw-bold py-2 shadow-sm text-uppercase">
+                <!-- 🔥 BOTONES -->
+                <div class="col-12 col-md-3 d-flex gap-2">
+
+                    <button type="submit" class="btn btn-info w-100 fw-bold text-uppercase">
                         <i class="bi bi-filter"></i> Aplicar
                     </button>
+
+                    <a href="mostrar-accesorios-nintendo-switch.php" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+
                 </div>
+
             </form>
         </section>
 
@@ -254,8 +211,13 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
 
                 <?php
-                $productosPS5 = obtenerAccesoriosPorPlataforma($conexion, 'switch');
-                while ($fila = mysqli_fetch_assoc($productosPS5)) {
+                $productos = obtenerAccesoriosPorPlataformaFiltrados(
+                    $conexion,
+                    'Switch', // cambia a PS5 o Switch según página
+                    $categoria,
+                    $precio
+                );
+                while ($fila = mysqli_fetch_assoc($productos)) {
                     ?>
                     <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                         <div>
@@ -268,14 +230,14 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                         <div class="mt-auto">
                             <button class="btn btn-primary btn-sm w-100 mb-1">
                                 <i class="bi bi-cart"></i> COMPRAR
-                            </button>
-                            <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
-                                class="btn btn-outline-secondary btn-sm w-100">
-                                <i class="bi bi-eye"></i> VER
-                            </a>
+                                </button>
+                                <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
+                                    class="btn btn-outline-secondary btn-sm w-100">
+                                    <i class="bi bi-eye"></i> VER
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <?php
+                        <?php
                 }
                 ?>
             </div>

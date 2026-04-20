@@ -1,6 +1,10 @@
 <?php
 include 'consultas.php'; // Incluimos tus funciones
 include 'conexion-bd.php'; // Tu conexión a la DB
+
+$categoria = $_GET['categoria'] ?? '';
+$precio = $_GET['precio'] ?? '';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,142 +20,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 </head>
 
 <body>
-        <header>
-        <!-- NAVBAR PRINCIPAL -->
-        <nav class="navbar-principal navbar-dark">
-
-            <!-- IZQUIERDA -->
-            <div class="nav-left">
-                <button class="navbar-toggler d-lg-none" type="button" id="botonMenu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="logo">
-                    <img src="assets/imagenes/logo_tienda.png" alt="Logo">
-                </div>
-            </div>
-
-            <!-- BUSCADOR (SOLO ESCRITORIO) -->
-            <div class="nav-center">
-                <form class="buscador position-relative">
-                    <input type="search" class="form-control rounded-pill ps-4" placeholder="Buscar videojuegos...">
-                </form>
-            </div>
-
-            <!-- DERECHA -->
-            <div class="nav-right">
-                <i class="bi bi-person-circle"></i>
-                <i class="bi bi-cart"></i>
-            </div>
-
-        </nav>
-
-        <!-- BUSCADOR SOLO MOVIL -->
-        <div class="buscador-movil-wrapper">
-            <div class="buscador-box">
-                <input type="text" placeholder="¿Qué buscas?">
-                <button>
-                    <i class="bi bi-search"></i>
-                </button>
-            </div>
-        </div>
-
-
-        <!-- SIDEBAR MOVIL -->
-        <div id="sidebarMovil">
-            <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-                aria-label="Cerrar"></button>
-            <div class="user-section">
-                <i class="bi bi-person-circle"></i>
-                <p>Usuario</p>
-            </div>
-            <div class="menu-item">Inicio</div>
-            <div class="menu-item">Videojuegos</div>
-            <div class="menu-item">Consolas</div>
-            <div class="menu-item">Accesorios</div>
-            <div class="menu-item">Próximos lanzamientos</div>
-            <!-- Botón cerrar sesión -->
-            <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-                CERRAR SESIÓN
-            </button>
-        </div>
-
-        <!-- OVERLAY para cerrar sidebar -->
-        <div id="overlaySidebar"></div>
-
-        <!-- NAVBAR SECUNDARIO -->
-        <div class="navbar-secundario d-none d-md-block">
-            <div class="container">
-                <ul class="nav w-100 justify-content-between text-center">
-
-                    <!-- VIDEOJUEGOS -->
-                    <li class="nav-item dropdown-mega">
-                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                            href="#">
-                            <i class="bi bi-controller"></i> VIDEOJUEGOS
-                            <i class="bi bi-chevron-down flecha"></i>
-                        </a>
-
-                        <div class="mega-menu">
-                            <div class="mega-content">
-                                <div class="mega-column">
-                                    <a href="#"><i class="bi bi-xbox"></i> Videojuegos Xbox</a>
-                                    <a href="#"><i class="bi bi-playstation"></i> Videojuegos PS5</a>
-                                    <a href="#"><i class="bi bi-nintendo-switch"></i> Videojuegos Nintendo Switch</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- CONSOLAS -->
-                    <li class="nav-item dropdown-mega">
-                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                            href="#">
-                            <i class="bi bi-box-fill"></i> CONSOLAS
-                            <i class="bi bi-chevron-down flecha"></i>
-                        </a>
-
-                        <div class="mega-menu">
-                            <div class="mega-content">
-                                <div class="mega-column">
-                                    <a href="#"><i class="bi bi-xbox"></i> Consolas Xbox</a>
-                                    <a href="#"><i class="bi bi-playstation"></i> Consolas PS5</a>
-                                    <a href="#"><i class="bi bi-nintendo-switch"></i> Consolas Nintendo Switch</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- ACCESORIOS -->
-                    <li class="nav-item dropdown-mega">
-                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                            href="#">
-                            <i class="bi bi-headset"></i> ACCESORIOS
-                            <i class="bi bi-chevron-down flecha"></i>
-                        </a>
-
-                        <div class="mega-menu">
-                            <div class="mega-content">
-                                <div class="mega-column">
-                                    <a href="#"><i class="bi bi-xbox"></i> Accesorios Xbox</a>
-                                    <a href="#"><i class="bi bi-playstation"></i> Accesorios PS5</a>
-                                    <a href="#"><i class="bi bi-nintendo-switch"></i> Accesorios Nintendo Switch</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown-mega">
-                        <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                            href="#">
-                            <i class="bi bi-clock-history"></i> PRÓXIMAMENTE
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </header>
+    <?php include 'header-user.php'; ?>
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
@@ -216,78 +85,139 @@ include 'conexion-bd.php'; // Tu conexión a la DB
             </div>
         </div>
 
-
         <section class="barra-filtro p-4 mb-5 shadow-lg">
-            <form class="row g-3 align-items-end justify-content-center">
+            <form method="GET" class="row g-3 align-items-end justify-content-center">
+
+                <!-- 🔽 CATEGORÍA -->
                 <div class="col-12 col-md-4">
-                    <label class="form-label text-info small fw-bold mb-2 uppercase">Filtrar por Género</label>
+                    <label class="form-label text-info small fw-bold mb-2 uppercase">Filtrar por Categoría</label>
+
                     <div class="dropdown">
                         <button
                             class="btn btn-dark w-100 dropdown-toggle text-start d-flex justify-content-between align-items-center border-secondary"
                             type="button" data-bs-toggle="dropdown">
-                            Categorías
+
+                            <?php echo $categoria ? $categoria : 'Categorías'; ?>
+
                         </button>
+
                         <ul class="dropdown-menu dropdown-menu-dark p-3 w-100 shadow-lg">
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat1"><label
-                                        class="form-check-label" for="cat1">Deportes</label></div>
+                                <input type="radio" name="categoria" value="Dualsense" <?php if ($categoria == 'Dualsense')
+                                    echo 'checked'; ?>>
+                                Dualsense
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat2"><label
-                                        class="form-check-label" for="cat2">Acción</label></div>
+                                <input type="radio" name="categoria" value="Cargadores" <?php if ($categoria == 'Cargadores')
+                                    echo 'checked'; ?>>
+                                Cargadores
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat3"><label
-                                        class="form-check-label" for="cat3">Aventura</label></div>
+                                <input type="radio" name="categoria" value="Ventiladores" <?php if ($categoria == 'Ventiladores')
+                                    echo 'checked'; ?>>
+                                Ventiladores
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat4"><label
-                                        class="form-check-label" for="cat4">Terror</label></div>
+                                <input type="radio" name="categoria" value="Cables" <?php if ($categoria == 'Cables')
+                                    echo 'checked'; ?>>
+                                Cables
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat5"><label
-                                        class="form-check-label" for="cat5">RPG</label></div>
+                                <input type="radio" name="categoria" value="Fundas y estuches" <?php if ($categoria == 'Fundas y estuches')
+                                    echo 'checked'; ?>>
+                                Fundas y estuches
                             </li>
+
+                            <li>
+                                <input type="radio" name="categoria" value="Memorias" <?php if ($categoria == 'Memorias')
+                                    echo 'checked'; ?>>
+                                Memorias
+                            </li>
+
                         </ul>
                     </div>
                 </div>
 
+                <!-- 🔽 PRECIO -->
                 <div class="col-12 col-md-4">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">Presupuesto</label>
+
                     <div class="dropdown">
                         <button
                             class="btn btn-dark w-100 dropdown-toggle text-start d-flex justify-content-between align-items-center border-secondary"
                             type="button" data-bs-toggle="dropdown">
-                            Rango de Precio
+
+                            <?php
+                            if ($precio == '0-20')
+                                echo 'Menos de 20€';
+                            elseif ($precio == '20-50')
+                                echo '20€ - 50€';
+                            elseif ($precio == '50+')
+                                echo 'Más de 50€';
+                            else
+                                echo 'Rango de Precio';
+                            ?>
+
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-dark p-3 w-100">
+
+                        <ul class="dropdown-menu dropdown-menu-dark p-3 w-100 shadow-lg">
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="p1"><label
-                                        class="form-check-label" for="p1">Menos de 20€</label></div>
+                                <input type="radio" name="precio" value="0-20" <?php if ($precio == '0-20')
+                                    echo 'checked'; ?>>
+                                Menos de 20€
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="p2"><label
-                                        class="form-check-label" for="p2">20€ - 50€</label></div>
+                                <input type="radio" name="precio" value="20-50" <?php if ($precio == '20-50')
+                                    echo 'checked'; ?>>
+                                20€ - 50€
                             </li>
+
+                            <li>
+                                <input type="radio" name="precio" value="50+" <?php if ($precio == '50+')
+                                    echo 'checked'; ?>>
+                                Más de 50€
+                            </li>
+
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-3">
-                    <button type="submit" class="btn btn-info w-100 fw-bold py-2 shadow-sm text-uppercase">
+                <!-- 🔥 BOTONES -->
+                <div class="col-12 col-md-3 d-flex gap-2">
+
+                    <button type="submit" class="btn btn-info w-100 fw-bold text-uppercase">
                         <i class="bi bi-filter"></i> Aplicar
                     </button>
+
+                    <a href="mostrar-accesorios-ps5.php" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+
                 </div>
+
             </form>
         </section>
+
 
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
 
 
                 <?php
-                $productosPS5 = obtenerAccesoriosPorPlataforma($conexion, 'PS5');
-                while ($fila = mysqli_fetch_assoc($productosPS5)) {
+                $productos = obtenerAccesoriosPorPlataformaFiltrados(
+                    $conexion,
+                    'PS5', // cambia a PS5 o Switch según página
+                    $categoria,
+                    $precio
+                );
+                while ($fila = mysqli_fetch_assoc($productos)) {
                     ?>
                     <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                         <div>
@@ -301,13 +231,13 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                             <button class="btn btn-primary btn-sm w-100 mb-1">
                                 <i class="bi bi-cart"></i> COMPRAR
                             </button>
-                            <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
-                                class="btn btn-outline-secondary btn-sm w-100">
-                                <i class="bi bi-eye"></i> VER
-                            </a>
+                                <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
+                                    class="btn btn-outline-secondary btn-sm w-100">
+                                    <i class="bi bi-eye"></i> VER
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <?php
+                        <?php
                 }
                 ?>
             </div>

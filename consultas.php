@@ -383,6 +383,134 @@ function obtenerJuegosPorPlataforma($conexion, $plataforma)
     return $resultado;
 }
 
+
+// 🔥 JUEGOS FILTRADOS (GENÉRICO)
+function obtenerJuegosPorPlataformaFiltrados($conexion, $plataforma, $categoria = null, $precio = null)
+{
+    $sql = "SELECT * FROM productos WHERE tipo = 'Juego' AND plataforma = ?";
+
+    $params = [$plataforma];
+    $types = "s";
+
+    if ($categoria) {
+        $sql .= " AND categoria = ?";
+        $params[] = $categoria;
+        $types .= "s";
+    }
+
+    if ($precio) {
+
+        if ($precio == "0-20") {
+            $sql .= " AND precio < ?";
+            $params[] = 20;
+            $types .= "i";
+        }
+
+        if ($precio == "20-50") {
+            $sql .= " AND precio BETWEEN ? AND ?";
+            $params[] = 20;
+            $params[] = 50;
+            $types .= "ii";
+        }
+
+        if ($precio == "50+") {
+            $sql .= " AND precio > ?";
+            $params[] = 50;
+            $types .= "i";
+        }
+    }
+
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_stmt_get_result($stmt);
+}
+
+
+function obtenerConsolasFiltradas($conexion, $plataforma, $precio = null, $tieneLector = null, $almacenamiento = null)
+{
+    $sql = "SELECT * FROM productos WHERE tipo = 'Consola' AND plataforma = ?";
+    $params = [$plataforma];
+    $types = "s";
+
+    if (!empty($precio)) {
+        if ($precio == "0-400") {
+            $sql .= " AND precio < 400";
+        } elseif ($precio == "400-600") {
+            $sql .= " AND precio BETWEEN 400 AND 600";
+        } elseif ($precio == "+600") {
+            $sql .= " AND precio > 600";
+        }
+    }
+
+    if ($tieneLector !== null) {
+        $sql .= " AND tieneLector = ?";
+        $params[] = $tieneLector;
+        $types .= "i";
+    }
+
+    if (!empty($almacenamiento)) {
+        $sql .= " AND almacenamiento = ?";
+        $params[] = $almacenamiento;
+        $types .= "s";
+    }
+
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_stmt_get_result($stmt);
+}
+
+
+
+
+// 🔥 ACCESORIOS FILTRADOS
+function obtenerAccesoriosPorPlataformaFiltrados($conexion, $plataforma, $categoria = null, $precio = null)
+{
+    $sql = "SELECT * FROM productos WHERE tipo = 'Accesorio' AND plataforma = ?";
+
+    $params = [$plataforma];
+    $types = "s";
+
+    if ($categoria) {
+        $sql .= " AND categoria = ?";
+        $params[] = $categoria;
+        $types .= "s";
+    }
+
+    if ($precio) {
+
+        if ($precio == "0-20") {
+            $sql .= " AND precio < ?";
+            $params[] = 20;
+            $types .= "i";
+        }
+
+        if ($precio == "20-50") {
+            $sql .= " AND precio BETWEEN ? AND ?";
+            $params[] = 20;
+            $params[] = 50;
+            $types .= "ii";
+        }
+
+        if ($precio == "50+") {
+            $sql .= " AND precio > ?";
+            $params[] = 50;
+            $types .= "i";
+        }
+    }
+
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, $types, ...$params);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_stmt_get_result($stmt);
+}
+
+
+
 function obtenerConsolasPorPlataforma($conexion, $plataforma)
 {
     // 1. Preparamos la consulta con un placeholder (?)

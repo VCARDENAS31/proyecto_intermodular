@@ -1,6 +1,10 @@
 <?php
 include 'consultas.php'; // Incluimos tus funciones
 include 'conexion-bd.php'; // Tu conexión a la DB
+
+$categoria = $_GET['categoria'] ?? '';
+$precio = $_GET['precio'] ?? '';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,76 +87,132 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 
 
         <section class="barra-filtro p-4 mb-5 shadow-lg">
-            <form class="row g-3 align-items-end justify-content-center">
+            <form method="GET" class="row g-3 align-items-end justify-content-center">
+
+                <!-- 🔽 CATEGORÍA -->
                 <div class="col-12 col-md-4">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">Filtrar por Género</label>
+
                     <div class="dropdown">
                         <button
                             class="btn btn-dark w-100 dropdown-toggle text-start d-flex justify-content-between align-items-center border-secondary"
                             type="button" data-bs-toggle="dropdown">
-                            Categorías
+                            <?php echo $categoria ? $categoria : 'Categorías'; ?>
                         </button>
+
                         <ul class="dropdown-menu dropdown-menu-dark p-3 w-100 shadow-lg">
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat1"><label
-                                        class="form-check-label" for="cat1">Deportes</label></div>
+                                <input type="radio" name="categoria" value="Deportes" <?php if ($categoria == 'Deportes')
+                                    echo 'checked'; ?>>
+                                Deportes
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat2"><label
-                                        class="form-check-label" for="cat2">Acción</label></div>
+                                <input type="radio" name="categoria" value="Acción" <?php if ($categoria == 'Acción')
+                                    echo 'checked'; ?>>
+                                Acción
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat3"><label
-                                        class="form-check-label" for="cat3">Aventura</label></div>
+                                <input type="radio" name="categoria" value="Aventura" <?php if ($categoria == 'Aventura')
+                                    echo 'checked'; ?>>
+                                Aventura
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat4"><label
-                                        class="form-check-label" for="cat4">Terror</label></div>
+                                <input type="radio" name="categoria" value="Terror" <?php if ($categoria == 'Terror')
+                                    echo 'checked'; ?>>
+                                Terror
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="cat5"><label
-                                        class="form-check-label" for="cat5">RPG</label></div>
+                                <input type="radio" name="categoria" value="RPG" <?php if ($categoria == 'RPG')
+                                    echo 'checked'; ?>>
+                                RPG
                             </li>
+
                         </ul>
                     </div>
                 </div>
 
+                <!-- 🔽 PRECIO -->
                 <div class="col-12 col-md-4">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">Presupuesto</label>
+
                     <div class="dropdown">
                         <button
                             class="btn btn-dark w-100 dropdown-toggle text-start d-flex justify-content-between align-items-center border-secondary"
                             type="button" data-bs-toggle="dropdown">
-                            Rango de Precio
+                            <?php
+                            if ($precio == '0-20')
+                                echo 'Menos de 20€';
+                            elseif ($precio == '20-50')
+                                echo '20€ - 50€';
+                            elseif ($precio == '50+')
+                                echo 'Más de 50€';
+                            else
+                                echo 'Rango de Precio';
+                            ?>
                         </button>
+
                         <ul class="dropdown-menu dropdown-menu-dark p-3 w-100">
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="p1"><label
-                                        class="form-check-label" for="p1">Menos de 20€</label></div>
+                                <input type="radio" name="precio" value="0-20" <?php if ($precio == '0-20')
+                                    echo 'checked'; ?>>
+                                Menos de 20€
                             </li>
+
                             <li>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="p2"><label
-                                        class="form-check-label" for="p2">20€ - 50€</label></div>
+                                <input type="radio" name="precio" value="20-50" <?php if ($precio == '20-50')
+                                    echo 'checked'; ?>>
+                                20€ - 50€
                             </li>
+
+                            <li>
+                                <input type="radio" name="precio" value="50+" <?php if ($precio == '50+')
+                                    echo 'checked'; ?>>
+                                Más de 50€
+                            </li>
+
                         </ul>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-3">
-                    <button type="submit" class="btn btn-info w-100 fw-bold py-2 shadow-sm text-uppercase">
+                <!-- 🔥 BOTONES -->
+                <div class="col-12 col-md-3 d-flex gap-2">
+
+                    <button type="submit" class="btn btn-info w-100 fw-bold text-uppercase">
                         <i class="bi bi-filter"></i> Aplicar
                     </button>
+
+                    <!-- ⚠️ CAMBIA EL NOMBRE -->
+                    <a href="mostrar-videojuegos-ps5.php" class="btn btn-secondary w-100">
+                        Reset
+                    </a>
+
                 </div>
+
             </form>
         </section>
 
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-                
-                
+
+
                 <?php
-                $productosPS5 = obtenerJuegosPorPlataforma($conexion, 'PS5');
-                while ($fila = mysqli_fetch_assoc($productosPS5)) {
+                $categoria = $_GET['categoria'] ?? null;
+                $precio = $_GET['precio'] ?? null;
+
+                $productos = obtenerJuegosPorPlataformaFiltrados(
+                    $conexion,
+                    'PS5',
+                    $categoria,
+                    $precio
+                );
+
+                while ($fila = mysqli_fetch_assoc($productos)) {
                     ?>
                     <div class="card ps5 col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                         <div class="card-img-container">
@@ -177,6 +237,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
             </div>
         </div>
     </main>
+    <?php include 'footer.php'; ?>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="funciones-crud.js"></script>
