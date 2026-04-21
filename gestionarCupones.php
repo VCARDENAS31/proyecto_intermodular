@@ -31,10 +31,34 @@ $resultado = obtenerCupones($conexion); // Llamamos a la función
     <!-- Iconos Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+<div class="modal fade" id="modalConfirm" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow text-black">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p id="modalMensaje">¿Seguro?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnConfirmar">
+                    Confirmar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <body>
     <?php include 'header-admin.php'; ?>
-    <!-- ================= FIN SIDEBAR ================= -->
 
     <!-- ================= CONTENIDO PRINCIPAL ================= -->
     <div class="contenido-gestion p-4 flex-grow-1 d-flex justify-content-center align-items-center">
@@ -118,8 +142,6 @@ $resultado = obtenerCupones($conexion); // Llamamos a la función
 
         </div>
     </div>
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
 
     <!-- Scripts -->
     <script src="efectos.js"></script>

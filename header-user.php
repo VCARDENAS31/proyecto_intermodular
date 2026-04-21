@@ -33,7 +33,7 @@
                     <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
                         <a href="mi-perfil.php">Mi perfil</a>
                         <a href="historial.php">Historial de pedidos</a>
-                        <a href="logout.php">Cerrar sesión</a>
+                        <a class="btn-cerrar-sesion" href="logout.php">Cerrar sesión</a>
                     <?php else: ?>
                         <a href="login.php">Iniciar sesión</a>
                         <a href="registro.php">Registrarse</a>
@@ -247,3 +247,29 @@
     </div>
 
 </header>
+
+<div class="modal fade" id="modalConfirm" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-3 shadow">
+
+      <div class="modal-header">
+        <h5 class="modal-title text-black">Confirmación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p id="modalMensaje" class="text-black">¿Seguro?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-danger" id="btnConfirmar">
+          Confirmar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

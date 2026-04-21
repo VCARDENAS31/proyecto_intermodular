@@ -78,7 +78,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                     <optgroup label="Videojuegos">
                                         <option value="Acción">Acción</option>
                                         <option value="Aventura">Aventura</option>
-                                        <option value="Deporte">Deporte</option>
+                                        <option value="Deportes">Deportes</option>
                                         <option value="RPG">RPG</option>
                                         <option value="Terror">Terror</option>
                                     </optgroup>

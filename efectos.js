@@ -100,15 +100,14 @@ function scrollSlider(boton, cantidadDesplazamiento) {
 // Selecciona todos los botones o enlaces que cierran sesión
 document.querySelectorAll('.btn-cerrar-sesion').forEach(boton => {
     boton.addEventListener('click', function (e) {
-        e.preventDefault(); // Evita que el enlace navegue automáticamente
+        e.preventDefault();
 
-        // Pregunta de confirmación al usuario sobre el cierre de sesión
-        const confirmar = confirm("¿Estás seguro de que deseas cerrar sesión?");
-
-        if (confirmar) {
-            // Si acepta, redirige al script PHP que destruye la sesión
-            window.location.href = 'logout.php';
-        }
+        confirmarAccion(
+            "¿Cerrar sesión?",
+            () => {
+                window.location.href = 'logout.php';
+            }
+        );
     });
 });
 
@@ -193,7 +192,7 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 
     boton.addEventListener("click", (e) => {
 
-        e.preventDefault(); // 🔥 ESTO EVITA ERRORES
+        e.preventDefault();
 
         const id = boton.dataset.id;
 
@@ -202,9 +201,47 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
             .then(data => {
 
                 if (!data.ok) {
-                    alert(data.mensaje);
+
+                    // 🔥 ALERTA BONITA SIN FUNCIONES
+                    const alerta = document.createElement("div");
+                    alerta.textContent = data.mensaje;
+
+                    alerta.style.position = "fixed";
+                    alerta.style.top = "20px";
+                    alerta.style.right = "20px";
+                    alerta.style.background = "#dc3545";
+                    alerta.style.color = "#fff";
+                    alerta.style.padding = "12px 18px";
+                    alerta.style.borderRadius = "8px";
+                    alerta.style.zIndex = "9999";
+
+                    document.body.appendChild(alerta);
+
+                    setTimeout(() => {
+                        alerta.remove();
+                    }, 2500);
+
                     return;
                 }
+
+                // ✅ éxito
+                const ok = document.createElement("div");
+                ok.textContent = "Producto añadido";
+
+                ok.style.position = "fixed";
+                ok.style.top = "20px";
+                ok.style.right = "20px";
+                ok.style.background = "#198754";
+                ok.style.color = "#fff";
+                ok.style.padding = "12px 18px";
+                ok.style.borderRadius = "8px";
+                ok.style.zIndex = "9999";
+
+                document.body.appendChild(ok);
+
+                setTimeout(() => {
+                    ok.remove();
+                }, 2000);
 
                 sidebarCarrito.classList.add("active");
                 overlayCarrito.classList.add("active");
@@ -308,3 +345,24 @@ function cambiarColor(select) {
 
     select.classList.add('estado-' + select.value);
 }
+
+
+let accionConfirmada = null;
+
+function confirmarAccion(mensaje, callback) {
+    document.getElementById("modalMensaje").innerText = mensaje;
+
+    const modal = new bootstrap.Modal(document.getElementById('modalConfirm'));
+    modal.show();
+
+    const btn = document.getElementById("btnConfirmar");
+
+    // limpiar eventos anteriores
+    btn.onclick = null;
+
+    btn.onclick = function () {
+        modal.hide();
+        callback();
+    };
+}
+

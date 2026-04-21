@@ -11,7 +11,14 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     die("Acceso denegado: No tienes permisos para realizar esta acción.");
 }
 
-$resultado = obtenerUsuarios($conexion); // Llamamos a la función
+// 🔍 BUSCADOR
+if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
+    $idBuscar = $_GET['buscar'];
+    $resultado = buscarUsuarioPorId($conexion, $idBuscar);
+} else {
+    $resultado = obtenerUsuarios($conexion);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +38,33 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
+<div class="modal fade" id="modalConfirm" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow text-black">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p id="modalMensaje">¿Seguro?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnConfirmar">
+                    Confirmar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 <body>
     <?php include 'header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
@@ -40,6 +74,7 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
         <div class="container">
 
             <h1 class="text-center">Gestionar Usuarios</h1><br>
+
             <div class="d-flex justify-content-end align-items-center mb-4">
                 <a href="anadir-usuario.php">
                     <button class="btn btn-success shadow-sm">
@@ -47,6 +82,20 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                     </button>
                 </a>
             </div>
+
+            <form method="GET" class="mb-4 d-flex justify-content-center gap-2">
+                <input type="number" name="buscar" class="form-control w-25" placeholder="Buscar por ID"
+                    value="<?php echo $_GET['buscar'] ?? ''; ?>">
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-search"></i>
+                </button>
+
+                <a href="gestionarUsuarios.php" class="btn btn-secondary">
+                    Reset
+                </a>
+            </form>
+
 
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
@@ -60,6 +109,11 @@ $resultado = obtenerUsuarios($conexion); // Llamamos a la función
                             <th>Acciones</th>
                         </tr>
                     </thead>
+                    <?php if (mysqli_num_rows($resultado) == 0): ?>
+                        <tr>
+                            <td colspan="6">No se encontró ningún usuario</td>
+                        </tr>
+                    <?php endif; ?>
                     <?php
                     $n = 1;
                     while ($user = mysqli_fetch_assoc($resultado)): ?>

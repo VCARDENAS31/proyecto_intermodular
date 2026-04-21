@@ -11,7 +11,14 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     die("Acceso denegado: No tienes permisos para realizar esta acción.");
 }
 
-$resultado = obtenerProductos($conexion); // Llamamos a la función
+// BUSCADOR
+if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
+    $idBuscar = $_GET['buscar'];
+    $resultado = buscarProductoPorId($conexion, $idBuscar);
+} else {
+    $resultado = obtenerProductos($conexion);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +29,6 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
     <meta charset="UTF-8">
     <title>Panel de Administración - Viciogames</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Estilos -->
     <link rel="stylesheet" href="css/prueba.css">
     <link rel="stylesheet" href="css/style.css">
@@ -30,6 +36,32 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
     <!-- Iconos Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
+<div class="modal fade" id="modalConfirm" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow text-black">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p id="modalMensaje">¿Seguro?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnConfirmar">
+                    Confirmar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <body>
 
@@ -47,7 +79,20 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
                     <i class="bi bi-plus-circle me-2"></i>Añadir producto
                 </a>
             </div>
+            <form method="GET" class="mb-4 d-flex justify-content-center gap-2">
 
+                <input type="number" name="buscar" class="form-control w-25" placeholder="Buscar producto por ID"
+                    value="<?php echo $_GET['buscar'] ?? ''; ?>">
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-search"></i>
+                </button>
+
+                <a href="gestionarProductos.php" class="btn btn-secondary">
+                    Reset
+                </a>
+
+            </form>
 
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
@@ -66,6 +111,11 @@ $resultado = obtenerProductos($conexion); // Llamamos a la función
                         </tr>
                     </thead>
                     <tbody>
+                        <?php if (mysqli_num_rows($resultado) == 0): ?>
+                            <tr>
+                                <td colspan="10">No se encontró ningún producto</td>
+                            </tr>
+                        <?php endif; ?>
                         <?php
                         $n = 1;
                         while ($producto = mysqli_fetch_assoc($resultado)): ?>

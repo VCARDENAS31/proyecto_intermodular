@@ -12,6 +12,44 @@ function obtenerUsuarios($conexion)
     return mysqli_query($conexion, $sql);
 }
 
+function buscarUsuarioPorId($conexion, $id)
+{
+    $id = intval($id);
+    $sql = "SELECT id_usuario, nombre, apellidos, email, rol 
+            FROM usuarios 
+            WHERE id_usuario = $id";
+
+    return mysqli_query($conexion, $sql);
+}
+
+function buscarProductoPorId($conexion, $id)
+{
+    $id = intval($id);
+    $sql = "SELECT * FROM productos WHERE id_producto = $id";
+    return mysqli_query($conexion, $sql);
+}
+
+function buscarPedidosFiltrados($conexion, $id = null, $estado = null)
+{
+    $sql = "SELECT p.*, u.nombre AS nombre_usuario
+            FROM pedidos p
+            JOIN usuarios u ON p.usuario_id = u.id_usuario
+            WHERE 1=1";
+
+    if (!empty($id)) {
+        $id = intval($id);
+        $sql .= " AND p.id_pedido = $id";
+    }
+
+    if (!empty($estado)) {
+        $estado = mysqli_real_escape_string($conexion, $estado);
+        $sql .= " AND p.estado = '$estado'";
+    }
+
+    $sql .= " ORDER BY p.fecha_pedido DESC";
+
+    return mysqli_query($conexion, $sql);
+}
 
 function crearPedido($conexion, $usuario_id, $carrito, $direccion, $telefono, $total, $cupon_id = null, $nombre_cliente = '', $metodo_pago = '')
 {
