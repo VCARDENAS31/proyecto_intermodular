@@ -49,7 +49,9 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Contraseña</label>
-                                <input type="password" name="password" class="form-control" required>
+                                <input type="password" name="password" class="form-control" placeholder="Contraseña"
+                                    required pattern="^(?=.*[A-Z])(?=.*[\W_]).{5,}$"
+                                    title="Debe tener mínimo 5 caracteres, una mayúscula y un carácter especial">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Rol de Usuario</label>
@@ -68,7 +70,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
             </div>
         </div>
     </div>
-        <!-- ================= FIN CONTENIDO PRINCIPAL ================= -->
+    <!-- ================= FIN CONTENIDO PRINCIPAL ================= -->
 
     <!-- Overlay para cerrar sidebar -->
     <div id="overlaySidebar"></div>
@@ -77,4 +79,5 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     <script src="funciones-crud.js"></script>
     <script src="efectos.js"></script>
 </body>
+
 </html>

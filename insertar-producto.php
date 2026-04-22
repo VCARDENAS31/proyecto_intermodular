@@ -21,26 +21,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // videojuegos NO tiene plataforma
         $rutaBase = "assets/imagenes/productos/videojuegos/$subcarpeta/";
-        $rutaBD   = "productos/videojuegos/$subcarpeta/";
+        $rutaBD = "productos/videojuegos/$subcarpeta/";
 
     } else {
 
         // accesorios y consolas SI tienen plataforma
         $rutaBase = "assets/imagenes/productos/$tipoCarpeta/$subcarpeta/";
-        $rutaBD   = "productos/$tipoCarpeta/$subcarpeta/";
+        $rutaBD = "productos/$tipoCarpeta/$subcarpeta/";
     }
 
-    // Imagen
+    if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== 0) {
+        header("Location: anadir-producto.php?error=img");
+        exit();
+    }
+
     $nombreImagen = $_FILES['imagen']['name'];
     $tmp = $_FILES['imagen']['tmp_name'];
+
+    // VALIDACIÓN REAL WEBP
+    $tipoMime = mime_content_type($tmp);
+
+    if ($tipoMime !== 'image/webp') {
+        header("Location: anadir-producto.php?error=img");
+        exit();
+    }
 
     // Crear carpeta si no existe
     if (!file_exists($rutaBase)) {
         mkdir($rutaBase, 0777, true);
     }
 
-    // Evitar nombres duplicados
-    $nombreFinal = time() . "_" . $nombreImagen;
+    // nombre seguro
+    $nombreFinal = time() . ".webp";
 
     move_uploaded_file($tmp, $rutaBase . $nombreFinal);
 

@@ -41,7 +41,8 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Precio (€)</label>
-                                    <input type="number" step="0.01" name="precio" class="form-control" placeholder="Ej: 29.99" required>
+                                    <input type="number" step="0.01" name="precio" class="form-control"
+                                        placeholder="Ej: 29.99" required>
                                 </div>
                             </div>
 
@@ -115,14 +116,15 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 
                             <div class="mb-3">
                                 <label class="form-label">Descripción</label>
-                                <textarea name="descripcion" class="form-control" rows="3"
+                                <textarea name="descripcion" class="form-control" rows="3" minlength="10"
+                                    maxlength="1100" required
                                     placeholder="Breve descripción del producto..."></textarea>
                             </div>
                             <div class="row">
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tipo carpeta</label>
-                                    <select id="tipoCarpeta" name="tipoCarpeta" class="form-select">
+                                    <select id="tipoCarpeta" name="tipoCarpeta" class="form-select" required>
                                         <option value="">Seleccionar</option>
                                         <option value="videojuegos">Videojuegos</option>
                                         <option value="accesorios">Accesorios</option>
@@ -132,16 +134,20 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Subcarpeta</label>
-                                    <select id="subcarpeta" name="subcarpeta" class="form-select">
+                                    <select id="subcarpeta" name="subcarpeta" class="form-select" required>
                                         <option value="">Primero elige tipo</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="mb-4">
-                                <label class="form-label">Imagen del producto</label>
-                                <input type="file" name="imagen" class="form-control" required>
+                                <label class="form-label">Imagen del producto (Solo webp)</label>
+                                <input type="file" name="imagen" class="form-control" accept=".webp" required>
                             </div>
+
+                            <?php if (isset($_GET['error']) && $_GET['error'] == 'img'): ?>
+                                <div class="alert alert-danger">Solo se permiten imágenes WEBP</div>
+                            <?php endif; ?>
 
                             <div class="d-flex justify-content-between">
                                 <a href="gestionarProductos.php" class="btn btn-secondary">Volver</a>

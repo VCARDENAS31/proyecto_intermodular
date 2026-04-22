@@ -43,7 +43,7 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
                     <div class="card-body p-3">
                         <?php if (isset($_GET['error']) && $_GET['error'] == 'pass_corta'): ?>
                             <div class="alert alert-danger">
-                                La contraseña debe tener al menos 6 caracteres
+                                La contraseña debe tener al menos 5 caracteres, una mayúscula y un carácter especial.
                             </div>
                         <?php endif; ?>
                         <form action="actualizar-usuario.php" method="POST">

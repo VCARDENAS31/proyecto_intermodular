@@ -8,14 +8,14 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
 
     $id_usuario = $_POST['id'];
-    $nombre     = $_POST['nombre'];
-    $apellidos  = $_POST['apellidos'];
-    $email      = $_POST['email'];
-    $rol        = $_POST['rol'];
-    $password   = $_POST['password'];
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $email = $_POST['email'];
+    $rol = $_POST['rol'];
+    $password = $_POST['password'];
 
     // 🔴 VALIDACIÓN PASSWORD
-    if (!empty($password) && strlen($password) < 6) {
+    if (!empty($password) && !preg_match('/^(?=.*[A-Z])(?=.*[\W_]).{5,}$/', $password)) {
         header("Location: editar-usuario.php?id=$id_usuario&error=pass_corta");
         exit;
     }

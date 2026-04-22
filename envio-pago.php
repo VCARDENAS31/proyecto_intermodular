@@ -101,10 +101,12 @@ $totalFinal = $total - $descuento + 2.99;
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Nombre" required>
+                                <input type="text" class="form-control" placeholder="Nombre" name="nombre"
+                                    pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Solo letras" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Apellidos" required>
+                                <input type="text" class="form-control" placeholder="Apellidos" name="apellidos"
+                                    pattern="[A-Za-záéíóúÁÉÍÓÚñÑ\s]+" title="Solo letras" required>
                             </div>
                         </div>
 
@@ -117,19 +119,22 @@ $totalFinal = $total - $descuento + 2.99;
                                 <input type="text" name="ciudad" class="form-control" placeholder="Ciudad" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <input type="text" name="cp" class="form-control" placeholder="Código Postal" required>
+                                <input type="text" name="cp" class="form-control" placeholder="Código Postal"
+                                    pattern="[0-9]{5}" title="Debe tener 5 números" required>
                             </div>
                         </div>
 
                         <div class="mb-4">
-                            <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required>
+                            <input type="text" name="telefono" class="form-control" placeholder="Teléfono"
+                                pattern="[69][0-9]{8}" title="Debe tener 9 números y empezar por 6 o 9" required>
                         </div>
 
                         <!-- PAGO -->
                         <h4 class="fw-bold mb-3">Método de pago</h4>
 
                         <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="pago" value="tarjeta" checked>
+                            <input class="form-check-input" type="radio" name="pago" value="tarjeta" checked
+                                onclick="toggleTarjeta(true)">
                             <label class="form-check-label">
                                 <i class="bi bi-credit-card"></i> Tarjeta
                             </label>
@@ -138,26 +143,35 @@ $totalFinal = $total - $descuento + 2.99;
                         <div id="camposTarjeta">
 
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Número de tarjeta">
+                                <input type="text" id="tarjeta" class="form-control" placeholder="Número de tarjeta"
+                                    pattern="[0-9]{16}" title="16 números">
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="MM/AA">
+                                <div class="mb-3 col-md-6">
+                                    <input type="text" id="fecha" class="form-control" placeholder="MM/AA"
+                                        pattern="(0[1-9]|1[0-2])\/[0-9]{2}" title="Formato MM/AA">
+
+                                    <small id="errorFecha" class="text-danger" style="display: none;">
+                                        La tarjeta está caducada
+                                    </small>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="CVV">
+                                    <input type="text" id="cvv" class="form-control" placeholder="CVV"
+                                        pattern="[0-9]{3}" title="3 números">
                                 </div>
                             </div>
 
                         </div>
-
                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="radio" name="pago" value="contra">
+                            <input class="form-check-input" type="radio" name="pago" value="contra"
+                                onclick="toggleTarjeta(false)">
                             <label class="form-check-label">
                                 <i class="bi bi-cash"></i> Contra reembolso
                             </label>
                         </div>
+
+
                         <button type="submit" class="btn btn-primary w-100">
                             Confirmar pedido
                         </button>
@@ -232,10 +246,66 @@ $totalFinal = $total - $descuento + 2.99;
     <script>
         const form = document.getElementById('formCompra');
         const modal = document.getElementById('modalCompra');
-        let enviando = false;
 
+        //SOLO UNA FUNCIÓN
+        function toggleTarjeta(activo) {
+            const campos = ['tarjeta', 'fecha', 'cvv'];
+
+            campos.forEach(id => {
+                const input = document.getElementById(id);
+                if (activo) {
+                    input.setAttribute("required", "true");
+                } else {
+                    input.removeAttribute("required");
+                }
+            });
+        }
+
+        // AL CARGAR → activar tarjeta porque está marcada
+        window.addEventListener('DOMContentLoaded', () => {
+            const metodo = document.querySelector('input[name="pago"]:checked');
+
+            if (metodo && metodo.value === 'tarjeta') {
+                toggleTarjeta(true);
+            }
+        });
+
+        // VALIDACIÓN + ENVÍO
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const pago = document.querySelector('input[name="pago"]:checked').value;
+            const errorFecha = document.getElementById('errorFecha');
+            const inputFecha = document.getElementById('fecha');
+
+            // reset estado
+            errorFecha.style.display = "none";
+            inputFecha.classList.remove('input-error');
+
+            if (pago === 'tarjeta') {
+                const fechaInput = inputFecha.value;
+                const [mes, anio] = fechaInput.split('/');
+
+                const mesNum = parseInt(mes, 10);
+                const anioNum = 2000 + parseInt(anio, 10);
+
+                const hoy = new Date();
+                const mesActual = hoy.getMonth() + 1;
+                const anioActual = hoy.getFullYear();
+
+                if (
+                    anioNum < anioActual ||
+                    (anioNum === anioActual && mesNum < mesActual)
+                ) {
+                    errorFecha.style.display = "block";
+                    return;
+                }
+            }
 
             const nombre = document.querySelector('input[placeholder="Nombre"]').value;
             const apellidos = document.querySelector('input[placeholder="Apellidos"]').value;
@@ -243,7 +313,6 @@ $totalFinal = $total - $descuento + 2.99;
             const ciudad = document.querySelector('input[name="ciudad"]').value;
             const cp = document.querySelector('input[name="cp"]').value;
             const telefono = document.querySelector('input[name="telefono"]').value;
-            const pago = document.querySelector('input[name="pago"]:checked').value;
 
             fetch('procesar-pedido.php', {
                 method: 'POST',
@@ -260,7 +329,7 @@ $totalFinal = $total - $descuento + 2.99;
                 .then(res => res.json())
                 .then(data => {
                     if (data.ok) {
-                        document.getElementById('modalCompra').classList.add('active');
+                        modal.classList.add('active');
                     } else {
                         alert(data.msg);
                     }

@@ -61,7 +61,9 @@ session_start();
                     <span class="input-group-text">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña" required
+                        pattern="^(?=.*[A-Z])(?=.*[\W_]).{5,}$"
+                        title="Debe tener mínimo 5 caracteres, una mayúscula y un carácter especial">
                 </div>
 
                 <!-- Muestra mensaje de error si existe en la sesión -->

@@ -19,9 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['rol'] === 'admin') {
 
         $archivo = $_FILES['imagen'];
 
-        $extension = strtolower(pathinfo($archivo['name'], PATHINFO_EXTENSION));
+        // 🔒 VALIDACIÓN REAL WEBP (no extensión)
+        $tipoMime = mime_content_type($archivo['tmp_name']);
 
-        if ($extension !== 'webp') {
+        if ($tipoMime !== 'image/webp') {
             header("Location: editar-producto.php?id=$id&error=img");
             exit();
         }
@@ -40,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_SESSION['rol'] === 'admin') {
                 unlink("assets/imagenes/" . $img_actual);
             }
 
-            // guardar misma ruta con nuevo nombre
             $img_final = $carpeta_relativa . "/" . $nuevo_nombre;
 
         } else {
