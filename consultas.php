@@ -297,6 +297,21 @@ function eliminarProducto($conexion, $id)
     return mysqli_query($conexion, $sql);
 }
 
+
+function eliminarPedido($conexion, $id)
+{
+    $id = intval($id);
+
+    // BORRAR DETALLES DEL PEDIDO
+    $sql1 = "DELETE FROM detalles_pedidos WHERE pedido_id = $id";
+    mysqli_query($conexion, $sql1);
+
+    // BORRAR PEDIDO
+    $sql2 = "DELETE FROM pedidos WHERE id_pedido = $id";
+    return mysqli_query($conexion, $sql2);
+}
+
+
 /**
  * Actualizar datos de un usuario
  */

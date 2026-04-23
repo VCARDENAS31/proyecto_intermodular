@@ -25,3 +25,12 @@ function confirmarEliminarCupon(id) {
         }
     );
 }
+
+function confirmarEliminarPedido(id) {
+    confirmarAccion(
+        "¿Eliminar este pedido? Esta acción no se puede deshacer.",
+        () => {
+            window.location.href = "eliminar-pedido.php?id=" + id;
+        }
+    );
+}

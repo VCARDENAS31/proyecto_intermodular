@@ -153,9 +153,6 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
 
     </div>
 
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="funciones-crud.js"></script>

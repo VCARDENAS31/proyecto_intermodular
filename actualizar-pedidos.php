@@ -32,6 +32,32 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
+<div class="modal fade" id="modalConfirm" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow text-black">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p id="modalMensaje">¿Seguro?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnConfirmar">
+                    Confirmar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <body>
 
     <?php include 'header-admin.php'; ?>
@@ -103,6 +129,7 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
                             <th>Método pago</th>
                             <th>Fecha</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
 
@@ -206,7 +233,12 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
                                         </select>
                                     </form>
                                 </td>
-
+                                <td>
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="confirmarEliminarPedido(<?php echo $pedido['id_pedido']; ?>)">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
                             </tr>
 
                         <?php endwhile; ?>
@@ -218,7 +250,9 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 
         </div>
     </div>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="funciones-crud.js"></script>
     <script src="efectos.js"></script>
 </body>
 

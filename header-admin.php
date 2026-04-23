@@ -18,7 +18,7 @@
             <i class="bi bi-person-circle text-white fs-4"></i>
 
             <div class="dropdown-perfil">
-                <a href="logout.php">Cerrar sesión</a>
+                <a class="btn-cerrar-sesion" href="logout.php">Cerrar sesión</a>
             </div>
         </div>
     </div>
