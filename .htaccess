@@ -1,0 +1,29 @@
+RewriteEngine On
+
+# Evitar reescribir archivos o carpetas reales
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# PRODUCTO
+RewriteRule ^producto/([0-9]+)$ producto.php?id=$1 [L,QSA]
+
+# CATEGORIA
+RewriteRule ^categoria/([a-zA-Z0-9_-]+)$ categoria.php?nombre=$1 [L,QSA]
+
+# BUSQUEDA
+RewriteRule ^buscar/(.+)$ buscar.php?q=$1 [L,QSA]
+
+# CARRITO
+RewriteRule ^carrito$ carrito.php [L,QSA]
+
+# CHECKOUT
+RewriteRule ^checkout$ envio-pago.php [L,QSA]
+
+# PEDIDOS
+RewriteRule ^pedido/([0-9]+)$ pedido.php?id=$1 [L,QSA]
+
+# ADMIN
+RewriteRule ^admin/pedidos$ actualizar-pedidos.php [L,QSA]
+
+# HOME (IMPORTANTE)
+RewriteRule ^$ index-user.php [L,QSA]

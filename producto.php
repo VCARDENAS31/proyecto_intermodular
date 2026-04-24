@@ -15,6 +15,7 @@ if (!$producto) {
 <html lang="es">
 
 <head>
+        <base href="http://localhost/proyecto_intermodular/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $producto['nombre']; ?> - Tienda</title>

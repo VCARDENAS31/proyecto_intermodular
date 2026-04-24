@@ -181,7 +181,6 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                             data-id="<?php echo $juego['id_producto']; ?>">
                                             <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                         </a>
-
                                     <?php else: ?>
 
                                         <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
@@ -189,7 +188,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                         </button>
 
                                     <?php endif; ?>
-                                    <a href="producto.php?id=<?php echo $juego['id_producto']; ?>"
+                                    <a href="producto/<?php echo $juego['id_producto']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
