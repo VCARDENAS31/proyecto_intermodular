@@ -6,30 +6,54 @@ RewriteRule ^ %1 [R=301,L]
 
 
 # ACCESORIOS
-RewriteRule ^accesorios$ accesorios.php [L,QSA]
+RewriteRule ^accesorios$ vistas/vistas-user/accesorios/accesorios.php [L,QSA]
 
 # ACCESORIOS PS5
-RewriteRule ^accesorios/ps5$ accesorios-ps5.php [L,QSA]
+RewriteRule ^accesorios/ps5$ vistas/vistas-user/accesorios/accesorios-ps5.php [L,QSA]
 
 # ACCESORIOS XBOX
-RewriteRule ^accesorios/xbox$ accesorios-xbox.php [L,QSA]
+RewriteRule ^accesorios/xbox$ vistas/vistas-user/accesorios/accesorios-xbox.php [L,QSA]
 
 # ACCESORIOS SWITCH
-RewriteRule ^accesorios/switch$ accesorios-nintendo-switch.php [L,QSA]
+RewriteRule ^accesorios/switch$ vistas/vistas-user/accesorios/accesorios-nintendo-switch.php [L,QSA]
 
 
 
 # VIDEOJUEGOS
-RewriteRule ^videojuegos$ videojuegos.php [L,QSA]
+RewriteRule ^videojuegos$ vistas/vistas-user/videojuegos/videojuegos.php [L,QSA]
 
 # VIDEOJUEGOS PS5
-RewriteRule ^videojuegos/ps5$ videojuegos-ps5.php [L,QSA]
+RewriteRule ^videojuegos/ps5$ vistas/vistas-user/videojuegos/videojuegos-ps5.php [L,QSA]
 
 # VIDEOJUEGOS XBOX
-RewriteRule ^videojuegos/xbox$ videojuegos-xbox.php [L,QSA]
+RewriteRule ^videojuegos/xbox$ vistas/vistas-user/videojuegos/videojuegos-xbox.php [L,QSA]
 
 # VIDEOJUEGOS SWITCH
-RewriteRule ^videojuegos/switch$ videojuegos-nintendo-switch.php [L,QSA]
+RewriteRule ^videojuegos/switch$ vistas/vistas-user/videojuegos/videojuegos-nintendo-switch.php [L,QSA]
+
+
+
+# CONSOLAS
+RewriteRule ^consolas$ vistas/vistas-user/consolas/consolas.php [L,QSA]
+
+# CONSOLAS PS5
+RewriteRule ^consolas/ps5$ vistas/vistas-user/consolas/consolas-ps5.php [L,QSA]
+
+# CONSOLAS XBOX
+RewriteRule ^consolas/xbox$ vistas/vistas-user/consolas/consolas-xbox.php [L,QSA]
+
+# CONSOLAS SWITCH
+RewriteRule ^consolas/switch$ vistas/vistas-user/consolas/consolas-nintendo-switch.php [L,QSA]
+
+
+# PERFIL CUENTA
+RewriteRule ^perfil$ vistas/vistas-user/cuenta/perfil.php [L,QSA]
+
+# HISTORIAL DE PEDIDOS
+RewriteRule ^historial$ vistas/vistas-user/cuenta/historial.php [L,QSA]
+
+
+
 
 
 # AUTENTIFICACION
@@ -51,20 +75,6 @@ RewriteRule ^registro$ vistas/vistas-login/registro.php [L,QSA]
 
 
 
-# CONSOLAS
-RewriteRule ^consolas$ consolas.php [L,QSA]
-
-
-# CONSOLAS PS5
-RewriteRule ^consolas/ps5$ consolas-ps5.php [L,QSA]
-
-# CONSOLAS XBOX
-RewriteRule ^consolas/xbox$ consolas-xbox.php [L,QSA]
-
-# CONSOLAS SWITCH
-RewriteRule ^consolas/switch$ consolas-nintendo-switch.php [L,QSA]
-
-
 
 
 
@@ -82,8 +92,15 @@ RewriteRule ^agregar-carrito$ acciones/carrito/agregar-carrito.php [L,QSA]
 # ELIMINAR DEL CARRITO
 RewriteRule ^eliminar-carrito$ acciones/carrito/eliminar-producto-del-carrito.php [L,QSA]
 
+
 # CHECKOUT
-RewriteRule ^checkout$ envio-pago.php [L,QSA]
+RewriteRule ^aplicar-cupon$ acciones/cupones/aplicar-cupon.php [L,QSA]
+
+# CHECKOUT
+RewriteRule ^pasarela$ vistas/vistas-user/proceso-pago/pasarela.php [L,QSA]
+
+# CHECKOUT
+RewriteRule ^checkout$ vistas/vistas-user/proceso-pago/envio-pago.php [L,QSA]
 
 # PEDIDOS
 RewriteRule ^pedido/([0-9]+)$ pedido.php?id=$1 [L,QSA]

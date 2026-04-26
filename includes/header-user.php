@@ -26,13 +26,15 @@
         <!-- DERECHA -->
         <div class="nav-right">
 
+            <a href="" class="text-white"><i class="bi bi-telephone"></i> Contacto</a>
+
             <div class="perfil-menu">
                 <i class="bi bi-person-circle"></i>
 
                 <div class="dropdown-perfil">
                     <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
-                        <a href="mi-perfil.php">Mi perfil</a>
-                        <a href="historial.php">Historial de pedidos</a>
+                        <a href="/perfil">Mi perfil</a>
+                        <a href="/historial">Historial de pedidos</a>
                         <a class="btn-cerrar-sesion" href="/logout">Cerrar sesión</a>
                     <?php else: ?>
                         <a href="/login">Iniciar sesión</a>
@@ -41,7 +43,9 @@
                 </div>
             </div>
 
+
             <i class="bi bi-cart"></i>
+
         </div>
 
     </nav>
@@ -66,7 +70,7 @@
             <p>Usuario</p>
         </div>
         <div class="menu-item toggle-submenu">
-            <i class="bi bi-controller"></i>Videojuegos <i class="bi bi-chevron-down"></i>
+            <a href="/videojuegos"><i class="bi bi-controller"></i>Videojuegos <i class="bi bi-chevron-down"></i></a>
         </div>
         <div class="submenu">
             <div><i class="bi bi-xbox"> </i> Videojuegos Xbox</div>
@@ -163,8 +167,8 @@
 
             <?php $estaVacio = empty($_SESSION['carrito']); ?>
 
-            <a href="pasarela.php" id="btnPagar"
-                class="btn btn-primary w-100 <?php echo $estaVacio ? 'disabled' : ''; ?>" <?php echo $estaVacio ?>>
+            <a href="/pasarela" id="btnPagar" class="btn btn-primary w-100 <?php echo $estaVacio ? 'disabled' : ''; ?>"
+                <?php echo $estaVacio ?>>
                 Ir a pagar
             </a>
         </div>
@@ -181,10 +185,15 @@
         <div class="container">
             <ul class="nav w-100 justify-content-between text-center">
 
+                <li class="nav-item dropdown-mega">
+                    <a class="menu-item" href="#">
+                        <i class="bi bi-house"></i> INICIO
+                    </a>
+                </li>
+
                 <!-- VIDEOJUEGOS -->
                 <li class="nav-item dropdown-mega">
-                    <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                        href="#">
+                    <a class="menu-item" href="/videojuegos">
                         <i class="bi bi-controller"></i> VIDEOJUEGOS
                         <i class="bi bi-chevron-down flecha"></i>
                     </a>
@@ -202,8 +211,7 @@
 
                 <!-- CONSOLAS -->
                 <li class="nav-item dropdown-mega">
-                    <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                        href="#">
+                    <a class="menu-item" href="#">
                         <i class="bi bi-box-fill"></i> CONSOLAS
                         <i class="bi bi-chevron-down flecha"></i>
                     </a>
@@ -221,8 +229,7 @@
 
                 <!-- ACCESORIOS -->
                 <li class="nav-item dropdown-mega">
-                    <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                        href="#">
+                    <a class="menu-item" href="#">
                         <i class="bi bi-headset"></i> ACCESORIOS
                         <i class="bi bi-chevron-down flecha"></i>
                     </a>
@@ -238,12 +245,6 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown-mega">
-                    <a class="nav-link text-white p-3 menu-item d-flex justify-content-center align-items-center gap-2"
-                        href="#">
-                        <i class="bi bi-clock-history"></i> PRÓXIMAMENTE
-                    </a>
-                </li>
             </ul>
         </div>
     </div>

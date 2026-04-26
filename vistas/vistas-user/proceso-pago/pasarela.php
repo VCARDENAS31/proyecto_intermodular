@@ -1,8 +1,5 @@
 <?php
 
-include 'conexion-bd.php';
-include 'consultas.php';
-
 session_start();
 
 if (empty($_SESSION['carrito'])) {
@@ -20,6 +17,7 @@ $total = 0;
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda de Videojuegos</title>
@@ -181,7 +179,7 @@ $total = 0;
                             Debes iniciar sesión para comprar
                         </div>
 
-                        <a href="login.php" class="btn btn-primary w-100">
+                        <a href="/login" class="btn btn-primary w-100">
                             Iniciar sesión
                         </a>
 
@@ -193,36 +191,7 @@ $total = 0;
         </div>
     </div>
 
-    <!-- JS CUPÓN -->
-    <script>
-        document.getElementById("btnCupon").addEventListener("click", () => {
-
-            const codigo = document.getElementById("inputCupon").value;
-
-            fetch('aplicar-cupon.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'codigo=' + encodeURIComponent(codigo)
-            })
-                .then(res => res.json())
-                .then(data => {
-
-                    const msg = document.getElementById("mensajeCupon");
-
-                    if (data.ok) {
-                        msg.innerHTML = `<span style="color:green;">Cupón aplicado (-${data.descuento}%)</span>`;
-                        setTimeout(() => location.reload(), 500);
-                    } else {
-                        msg.innerHTML = `<span style="color:red;">${data.msg}</span>`;
-                    }
-
-                });
-        });
-    </script>
-
-    <script src="efectos.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

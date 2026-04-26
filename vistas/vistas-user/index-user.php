@@ -1,6 +1,8 @@
 <?php
-require_once 'dao/conexion-bd.php'; // Tu conexión a la DB
-require_once 'dao/productoDAO.php'; // Incluimos tus funciones
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . '/dao/conexion-bd.php';
+require_once ROOT_PATH . '/dao/productoDAO.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ require_once 'dao/productoDAO.php'; // Incluimos tus funciones
 </head>
 
 <body>
-    <?php include 'includes/header-user.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-user.php'; ?>
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
