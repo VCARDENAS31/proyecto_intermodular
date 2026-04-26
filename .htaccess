@@ -1,20 +1,86 @@
 RewriteEngine On
 
-# Evitar reescribir archivos o carpetas reales
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# eliminar .php
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+
+# ACCESORIOS
+RewriteRule ^accesorios$ accesorios.php [L,QSA]
+
+# ACCESORIOS PS5
+RewriteRule ^accesorios/ps5$ accesorios-ps5.php [L,QSA]
+
+# ACCESORIOS XBOX
+RewriteRule ^accesorios/xbox$ accesorios-xbox.php [L,QSA]
+
+# ACCESORIOS SWITCH
+RewriteRule ^accesorios/switch$ accesorios-nintendo-switch.php [L,QSA]
+
+
+
+# VIDEOJUEGOS
+RewriteRule ^videojuegos$ videojuegos.php [L,QSA]
+
+# VIDEOJUEGOS PS5
+RewriteRule ^videojuegos/ps5$ videojuegos-ps5.php [L,QSA]
+
+# VIDEOJUEGOS XBOX
+RewriteRule ^videojuegos/xbox$ videojuegos-xbox.php [L,QSA]
+
+# VIDEOJUEGOS SWITCH
+RewriteRule ^videojuegos/switch$ videojuegos-nintendo-switch.php [L,QSA]
+
+
+# AUTENTIFICACION
+RewriteRule ^autentificacion$ acciones/login/autentificacion.php [L,QSA]
+
+# PROCESAR REGISTRO
+RewriteRule ^procesar-registro$ acciones/login/procesar-registro.php [L,QSA]
+
+# LOGOUT
+RewriteRule ^logout$ acciones/login/logout.php [L,QSA]
+
+# LOGIN
+RewriteRule ^login$ vistas/vistas-login/login.php [L,QSA]
+
+# REGISTRO
+RewriteRule ^registro$ vistas/vistas-login/registro.php [L,QSA]
+
+
+
+
+
+# CONSOLAS
+RewriteRule ^consolas$ consolas.php [L,QSA]
+
+
+# CONSOLAS PS5
+RewriteRule ^consolas/ps5$ consolas-ps5.php [L,QSA]
+
+# CONSOLAS XBOX
+RewriteRule ^consolas/xbox$ consolas-xbox.php [L,QSA]
+
+# CONSOLAS SWITCH
+RewriteRule ^consolas/switch$ consolas-nintendo-switch.php [L,QSA]
+
+
+
+
+
+
 
 # PRODUCTO
-RewriteRule ^producto/([0-9]+)$ producto.php?id=$1 [L,QSA]
+RewriteRule ^producto/([a-zA-Z0-9-]+)$ producto.php?slug=$1 [L,QSA]
 
 # CATEGORIA
 RewriteRule ^categoria/([a-zA-Z0-9_-]+)$ categoria.php?nombre=$1 [L,QSA]
 
-# BUSQUEDA
-RewriteRule ^buscar/(.+)$ buscar.php?q=$1 [L,QSA]
+# AGREGAR AL CARRITO
+RewriteRule ^agregar-carrito$ acciones/carrito/agregar-carrito.php [L,QSA]
 
-# CARRITO
-RewriteRule ^carrito$ carrito.php [L,QSA]
+# ELIMINAR DEL CARRITO
+RewriteRule ^eliminar-carrito$ acciones/carrito/eliminar-producto-del-carrito.php [L,QSA]
 
 # CHECKOUT
 RewriteRule ^checkout$ envio-pago.php [L,QSA]
@@ -26,4 +92,11 @@ RewriteRule ^pedido/([0-9]+)$ pedido.php?id=$1 [L,QSA]
 RewriteRule ^admin/pedidos$ actualizar-pedidos.php [L,QSA]
 
 # HOME (IMPORTANTE)
-RewriteRule ^$ index-user.php [L,QSA]
+RewriteRule ^$ index.php [L,QSA]
+
+
+
+# si existe archivo .php, úsalo automáticamente
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]

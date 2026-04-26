@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once __DIR__ . '/../../dao/conexion-bd.php';
+require_once __DIR__ . '/../../dao/productoDAO.php';
 
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];

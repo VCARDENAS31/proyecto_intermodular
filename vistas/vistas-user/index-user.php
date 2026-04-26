@@ -1,16 +1,13 @@
 <?php
-
-session_start();
-
-
-include 'consultas.php'; // Incluimos tus funciones
-include 'conexion-bd.php'; // Tu conexión a la DB
+require_once 'dao/conexion-bd.php'; // Tu conexión a la DB
+require_once 'dao/productoDAO.php'; // Incluimos tus funciones
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda de Videojuegos</title>
@@ -21,7 +18,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
 </head>
 
 <body>
-    <?php include 'header-user.php'; ?>
+    <?php include 'includes/header-user.php'; ?>
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
@@ -188,8 +185,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
                                         </button>
 
                                     <?php endif; ?>
-                                    <a href="producto/<?php echo $juego['id_producto']; ?>"
-                                        class="btn btn-secondary btn-sm w-100">
+                                    <a href="producto/<?php echo $juego['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -385,7 +381,7 @@ include 'conexion-bd.php'; // Tu conexión a la DB
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <?php include 'footer.php'; ?>
+    <?php include 'includes/footer.php'; ?>
 
     <!-- Scripts requeridos para Bootstrap -->
     <script src="efectos.js"></script>

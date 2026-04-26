@@ -6,6 +6,7 @@ session_start();
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear cuenta | VicioGames</title>
@@ -30,7 +31,7 @@ session_start();
             </div>
 
             <!-- Formulario de registro -->
-            <form action="procesar-registro.php" method="POST">
+            <form action="/procesar-registro" method="POST">
 
                 <!-- Campo nombre -->
                 <div class="mb-3 input-group">
@@ -86,7 +87,7 @@ session_start();
 
             <!-- Enlace para ir a la página de login -->
             <div class="auth-links">
-                <a href="login.php">¿Ya tienes cuenta? Inicia sesión</a>
+                <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
             </div>
 
         </div>

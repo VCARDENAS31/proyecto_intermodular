@@ -105,7 +105,7 @@ document.querySelectorAll('.btn-cerrar-sesion').forEach(boton => {
         confirmarAccion(
             "¿Cerrar sesión?",
             () => {
-                window.location.href = 'logout.php';
+                window.location.href = '/logout';
             }
         );
     });
@@ -196,7 +196,7 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 
         const id = boton.dataset.id;
 
-        fetch(`agregar-carrito.php?id=${id}`)
+        fetch(`/agregar-carrito?id=${id}`)
             .then(res => res.json())
             .then(data => {
 
@@ -269,7 +269,7 @@ if (carritoBody) {
 
         const id = boton.dataset.id;
 
-        fetch(`eliminar-producto-del-carrito.php?id=${id}`)
+        fetch(`/eliminar-carrito?id=${id}`)
             .then(res => res.json())
             .then(data => {
                 actualizarCarrito(data.carrito);
@@ -305,7 +305,7 @@ function actualizarCarrito(carrito) {
         `;
     }
 
-    
+
     // LÓGICA DEL BOTÓN Y MENSAJE VACÍO
     if (numeroProductos === 0) {
         contenedor.innerHTML = "<p>Carrito vacío</p>";

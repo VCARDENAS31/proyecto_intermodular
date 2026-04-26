@@ -1,12 +1,18 @@
 <?php
 session_start();
 
-include('conexion-bd.php');
+// Conexión a la BD (ruta correcta desde acciones/login/)
+require_once __DIR__ . '/../../dao/conexion-bd.php';
+
+
+// Mostrar errores de MySQL (opcional, útil en desarrollo)
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Recoger datos
+    // ==============================
+    // RECOGER DATOS
+    // ==============================
     $nombre = trim($_POST['nombre']);
     $apellidos = trim($_POST['apellidos']);
     $email = trim($_POST['email']);
@@ -21,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         !preg_match('/[\W_]/', $password_plana)
     ) {
         $_SESSION['error_registro'] = "La contraseña debe tener mínimo 5 caracteres, una mayúscula y un carácter especial.";
-        header("Location: registro.php");
+        header("Location: /registro");
         exit();
     }
 
@@ -30,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ==============================
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error_registro'] = "Email no válido.";
-        header("Location: registro.php");
+        header("Location: /registro");
         exit();
     }
 
@@ -42,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ==============================
     // INSERTAR USUARIO
     // ==============================
-    $sql = "INSERT INTO usuarios (email, contraseña, nombre, apellidos, rol) 
+    $sql = "INSERT INTO usuarios (email, contrasena, nombre, apellidos, rol) 
             VALUES (?, ?, ?, ?, 'user')";
 
     $stmt = mysqli_prepare($conexion, $sql);
@@ -51,20 +57,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         mysqli_stmt_execute($stmt);
 
-        // Registro correcto
-        header("Location: login.php?registro=exito");
+        // MENSAJE DE ÉXITO
+        $_SESSION['exito_registro'] = "Usuario creado correctamente. Ya puedes iniciar sesión.";
+
+        // Redirigir al login (URL limpia)
+        header("Location: /login");
         exit();
 
     } catch (mysqli_sql_exception $e) {
 
-        // EMAIL DUPLICADO
+        // ==============================
+        // CONTROL DE ERRORES
+        // ==============================
         if ($e->getCode() == 1062) {
             $_SESSION['error_registro'] = "El correo ya está registrado.";
         } else {
             $_SESSION['error_registro'] = "Error al registrar usuario.";
         }
 
-        header("Location: registro.php");
+        header("Location: /registro");
         exit();
     }
 }

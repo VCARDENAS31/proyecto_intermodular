@@ -8,7 +8,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a href="index-user.php">
+            <a href="/">
                 <div class="logo">
                     <img src="assets/imagenes/logo_tienda.png" alt="Logo">
                 </div>
@@ -17,7 +17,7 @@
 
         <!-- BUSCADOR (SOLO ESCRITORIO) -->
         <div class="nav-center">
-            <form class="buscador position-relative" action="buscar.php" method="GET">
+            <form class="buscador position-relative" action="buscar" method="GET">
                 <input type="search" name="q" class="form-control rounded-pill ps-4" placeholder="Buscar videojuegos..."
                     required>
             </form>
@@ -33,10 +33,10 @@
                     <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
                         <a href="mi-perfil.php">Mi perfil</a>
                         <a href="historial.php">Historial de pedidos</a>
-                        <a class="btn-cerrar-sesion" href="logout.php">Cerrar sesión</a>
+                        <a class="btn-cerrar-sesion" href="/logout">Cerrar sesión</a>
                     <?php else: ?>
-                        <a href="login.php">Iniciar sesión</a>
-                        <a href="registro.php">Registrarse</a>
+                        <a href="/login">Iniciar sesión</a>
+                        <a href="/registro">Registrarse</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
     <!-- BUSCADOR SOLO MOVIL -->
     <div class="buscador-movil-wrapper">
-        <form action="buscar.php" method="GET" class="buscador-box">
+        <form action="buscar" method="GET" class="buscador-box">
             <input type="text" name="q" placeholder="¿Qué buscas?">
             <button type="submit">
                 <i class="bi bi-search"></i>
@@ -84,20 +84,22 @@
         </div>
 
         <div class="menu-item toggle-submenu">
-            <i class="bi bi-headset"></i> Accesorios <i class="bi bi-chevron-down"></i>
+            <a href="accesorios"><i class="bi bi-headset"></i> Accesorios <i class="bi bi-chevron-down"></i></a>
         </div>
         <div class="submenu">
             <div><i class="bi bi-xbox"> </i> Accesorios Xbox</div>
-            <div><i class="bi bi-playstation"> </i> Accesorios PS5</div>
+            <div><a href="accesorios/ps5"><i class="bi bi-playstation"> </i> Accesorios PS5</div></a>
             <div><i class="bi bi-nintendo-switch"> </i> Accesorios Nintendo Switch</div>
         </div>
         <div class="menu-item">
             <i class="bi bi-clock"></i> Próximamente
         </div>
         <!-- Botón cerrar sesión -->
-        <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-            CERRAR SESIÓN
-        </button>
+        <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
+            <a href="/logout" class="btn btn-danger logout-btn btn-cerrar-sesion">
+                CERRAR SESIÓN
+            </a>
+        <?php endif; ?>
     </div>
 
     <!-- OVERLAY para cerrar sidebar -->
@@ -249,27 +251,27 @@
 </header>
 
 <div class="modal fade" id="modalConfirm" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-3 shadow">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3 shadow">
 
-      <div class="modal-header">
-        <h5 class="modal-title text-black">Confirmación</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+            <div class="modal-header">
+                <h5 class="modal-title text-black">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
 
-      <div class="modal-body">
-        <p id="modalMensaje" class="text-black">¿Seguro?</p>
-      </div>
+            <div class="modal-body">
+                <p id="modalMensaje" class="text-black">¿Seguro?</p>
+            </div>
 
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancelar
-        </button>
-        <button type="button" class="btn btn-danger" id="btnConfirmar">
-          Confirmar
-        </button>
-      </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-danger" id="btnConfirmar">
+                    Confirmar
+                </button>
+            </div>
 
+        </div>
     </div>
-  </div>
 </div>

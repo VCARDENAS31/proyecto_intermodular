@@ -2,12 +2,16 @@
 include 'conexion-bd.php';
 include 'consultas.php';
 
-$id = $_GET['id'] ?? 0;
-$producto = obtenerProductoPorId($conexion, $id);
+$slug = $_GET['slug'] ?? null;
+
+if (!$slug) {
+    die("Producto no encontrado");
+}
+
+$producto = obtenerProductoPorSlug($conexion, $slug);
 
 if (!$producto) {
-    header("Location: index.php");
-    exit;
+    die("Producto no existe");
 }
 ?>
 
@@ -15,11 +19,10 @@ if (!$producto) {
 <html lang="es">
 
 <head>
-        <base href="http://localhost/proyecto_intermodular/">
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $producto['nombre']; ?> - Tienda</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/prueba.css">
     <link rel="stylesheet" href="css/style.css">
@@ -177,8 +180,7 @@ if (!$producto) {
                             <button class="btn btn-primary btn-sm w-100 mb-1">
                                 <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                             </button>
-                            <a href="producto.php?id=<?php echo $recomendado['id_producto']; ?>"
-                                class="btn btn-secondary btn-sm w-100">
+                            <a href="producto/<?php echo $recomendado['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                 <i class="bi bi-eye"></i> VER
                             </a>
                         </div>

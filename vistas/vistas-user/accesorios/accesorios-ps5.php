@@ -10,6 +10,7 @@ $precio = $_GET['precio'] ?? '';
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda de Videojuegos</title>
@@ -231,13 +232,13 @@ $precio = $_GET['precio'] ?? '';
                             <button class="btn btn-primary btn-sm w-100 mb-1">
                                 <i class="bi bi-cart"></i> COMPRAR
                             </button>
-                                <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
-                                    class="btn btn-outline-secondary btn-sm w-100">
-                                    <i class="bi bi-eye"></i> VER
-                                </a>
-                            </div>
+                            <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
+                                class="btn btn-outline-secondary btn-sm w-100">
+                                <i class="bi bi-eye"></i> VER
+                            </a>
                         </div>
-                        <?php
+                    </div>
+                    <?php
                 }
                 ?>
             </div>
