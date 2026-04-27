@@ -75,7 +75,19 @@ RewriteRule ^registro$ vistas/vistas-login/registro.php [L,QSA]
 
 
 
+#RUTAS FUNCIONES ADMINISTRADOR
 
+# GESTIONAR CUPONES
+RewriteRule ^gestionar-cupones$ vistas/vistas-admin/cupones/gestionarCupones.php [L,QSA]
+
+# GESTIONAR PEDIDOS
+RewriteRule ^gestionar-pedidos$ vistas/vistas-admin/pedidos/actualizar-pedidos.php [L,QSA]
+
+# GESTIONAR PRODUCTOS
+RewriteRule ^gestionar-productos$ vistas/vistas-admin/productos/gestionarProductos.php [L,QSA]
+
+# GESTIONAR USUARIOS
+RewriteRule ^gestionar-usuarios$ vistas/vistas-admin/usuarios/gestionarUsuarios.php [L,QSA]
 
 
 

@@ -386,7 +386,10 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
     <?php include 'includes/footer.php'; ?>
 
     <!-- Scripts requeridos para Bootstrap -->
-    <script src="efectos.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/ui/submenu.js"></script>
+    <script src="js/carrito/carrito-ui.js"></script>
+    <script src="js/carrito/carrito-api.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

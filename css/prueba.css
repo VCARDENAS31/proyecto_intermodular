@@ -2,6 +2,9 @@
    ESTILOS GENERALES / REUTILIZABLES
 ====================================================== */
 
+a {
+    text-decoration: none !important;
+}
 
 
 
@@ -372,6 +375,7 @@ hr {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 
 .card-action i {
@@ -408,12 +412,6 @@ hr {
     display: block;
 }
 
-div>a,
-a,
-*>a {
-    text-decoration: none;
-    color: black;
-}
 
 *.contenido-gestion > * > h1{
     margin-top: 150px;
@@ -852,7 +850,8 @@ div.modal-content,
 /* 2. Hacemos que cada <li> crezca equitativamente */
 .navbar-secundario .nav-item {
     flex: 1;
-    display: flex;
+    display: block;
+    text-align: center;
 }
 
 .menu-item>i {
@@ -1282,12 +1281,19 @@ body {
 }
 
 /* CONTENIDO SUBMENU */
-.submenu div {
+.submenu div{
     padding: 10px 15px;
     font-size: 14px;
     color: #ccc;
     border-radius: 8px;
     transition: all 0.2s ease;
+}
+
+#sidebarMenu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
 }
 
 /* HOVER SUBMENU */
@@ -1301,13 +1307,6 @@ body {
     max-height: 300px;
     margin-top: 5px;
 }
-
-
-
-
-
-
-
 
 /* SIDEBAR DERECHA */
 #sidebarCarrito {

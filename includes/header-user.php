@@ -69,38 +69,41 @@
             <i class="bi bi-person-circle"></i>
             <p>Usuario</p>
         </div>
-        <div class="menu-item toggle-submenu">
-            <a href="/videojuegos"><i class="bi bi-controller"></i>Videojuegos <i class="bi bi-chevron-down"></i></a>
-        </div>
-        <div class="submenu">
-            <div><i class="bi bi-xbox"> </i> Videojuegos Xbox</div>
-            <div><i class="bi bi-playstation"> </i> Videojuegos PS5</div>
-            <div><i class="bi bi-nintendo-switch"> </i> Videojuegos Nintendo Switch</div>
-        </div>
-
-        <div class="menu-item toggle-submenu">
-            <i class="bi bi-box-fill"></i> Consolas <i class="bi bi-chevron-down"></i>
-        </div>
-        <div class="submenu">
-            <div><i class="bi bi-xbox"> </i> Consolas Xbox</div>
-            <div><i class="bi bi-playstation"> </i> Consolas PS5</div>
-            <div><i class="bi bi-nintendo-switch"> </i> Consolas Nintendo Switch</div>
-        </div>
-
-        <div class="menu-item toggle-submenu">
-            <a href="accesorios"><i class="bi bi-headset"></i> Accesorios <i class="bi bi-chevron-down"></i></a>
-        </div>
-        <div class="submenu">
-            <div><i class="bi bi-xbox"> </i> Accesorios Xbox</div>
-            <div><a href="accesorios/ps5"><i class="bi bi-playstation"> </i> Accesorios PS5</div></a>
-            <div><i class="bi bi-nintendo-switch"> </i> Accesorios Nintendo Switch</div>
-        </div>
         <div class="menu-item">
-            <i class="bi bi-clock"></i> Próximamente
+            <a href="/"><i class="bi bi-house"></i> Inicio</a>
+        </div>
+        <div class="menu-item toggle-submenu">
+            <a href="/videojuegos"><i class="bi bi-controller"></i> Videojuegos </a><i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="submenu">
+            <div><a href="/videojuegos/xbox"><i class="bi bi-xbox"> </i> Videojuegos Xbox</a></div>
+            <div><a href="/videojuegos/ps5"><i class="bi bi-playstation"></i> Videojuegos PS5</a></div>
+            <div><a href="/videojuegos/switch"></a><i class="bi bi-nintendo-switch"> </i> Videojuegos Nintendo
+                Switch</a></div>
+        </div>
+
+        <div class="menu-item toggle-submenu">
+            <a href="/consolas"><i class="bi bi-box-fill"></i> Consolas </a><i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="submenu">
+            <div><a href="/consolas/xbox"><i class="bi bi-xbox"> </i> Consolas Xbox</a></div>
+            <div><a href="/consolas/ps5"></a><i class="bi bi-playstation"> </i> Consolas PS5</a></div>
+            <div><a href="/consolas/switch"></a><i class="bi bi-nintendo-switch"> </i> Consolas Nintendo Switch</a>
+            </div>
+        </div>
+
+        <div class="menu-item toggle-submenu">
+            <a href="/accesorios"><i class="bi bi-headset"></i> Accesorios </a><i class="bi bi-chevron-down"></i>
+        </div>
+        <div class="submenu">
+            <div><a href="/accesorios/xbox"><i class="bi bi-xbox"> </i> Accesorios Xbox</a></div>
+            <div><a href="/accesorios/ps5"><i class="bi bi-playstation"> </i> Accesorios PS5</a></div>
+            <div><a href="/accesorios/switch"><i class="bi bi-nintendo-switch"> </i> Accesorios Nintendo Switch</a>
+            </div>
         </div>
         <!-- Botón cerrar sesión -->
         <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
-            <a href="/logout" class="btn btn-danger logout-btn btn-cerrar-sesion">
+            <a href="/logout" class="btn btn-danger logout-btn btn-cerrar-sesion w-75">
                 CERRAR SESIÓN
             </a>
         <?php endif; ?>
@@ -186,7 +189,7 @@
             <ul class="nav w-100 justify-content-between text-center">
 
                 <li class="nav-item dropdown-mega">
-                    <a class="menu-item" href="#">
+                    <a class="menu-item" href="/">
                         <i class="bi bi-house"></i> INICIO
                     </a>
                 </li>
@@ -201,9 +204,10 @@
                     <div class="mega-menu">
                         <div class="mega-content">
                             <div class="mega-column">
-                                <a href="#"><i class="bi bi-xbox"></i> Videojuegos Xbox</a>
-                                <a href="#"><i class="bi bi-playstation"></i> Videojuegos PS5</a>
-                                <a href="#"><i class="bi bi-nintendo-switch"></i> Videojuegos Nintendo Switch</a>
+                                <a href="/videojuegos/xbox"><i class="bi bi-xbox"></i> Videojuegos Xbox</a>
+                                <a href="/videojuegos/ps5"><i class="bi bi-playstation"></i> Videojuegos PS5</a>
+                                <a href="/videojuegos/switch"><i class="bi bi-nintendo-switch"></i> Videojuegos Nintendo
+                                    Switch</a>
                             </div>
                         </div>
                     </div>
@@ -211,7 +215,7 @@
 
                 <!-- CONSOLAS -->
                 <li class="nav-item dropdown-mega">
-                    <a class="menu-item" href="#">
+                    <a class="menu-item" href="/consolas">
                         <i class="bi bi-box-fill"></i> CONSOLAS
                         <i class="bi bi-chevron-down flecha"></i>
                     </a>
@@ -219,9 +223,10 @@
                     <div class="mega-menu">
                         <div class="mega-content">
                             <div class="mega-column">
-                                <a href="#"><i class="bi bi-xbox"></i> Consolas Xbox</a>
-                                <a href="#"><i class="bi bi-playstation"></i> Consolas PS5</a>
-                                <a href="#"><i class="bi bi-nintendo-switch"></i> Consolas Nintendo Switch</a>
+                                <a href="/consolas/xbox"><i class="bi bi-xbox"></i> Consolas Xbox</a>
+                                <a href="/consolas/ps5"><i class="bi bi-playstation"></i> Consolas PS5</a>
+                                <a href="/consolas/switch"><i class="bi bi-nintendo-switch"></i> Consolas Nintendo
+                                    Switch</a>
                             </div>
                         </div>
                     </div>
@@ -229,7 +234,7 @@
 
                 <!-- ACCESORIOS -->
                 <li class="nav-item dropdown-mega">
-                    <a class="menu-item" href="#">
+                    <a class="menu-item" href="/accesorios">
                         <i class="bi bi-headset"></i> ACCESORIOS
                         <i class="bi bi-chevron-down flecha"></i>
                     </a>
@@ -237,9 +242,10 @@
                     <div class="mega-menu">
                         <div class="mega-content">
                             <div class="mega-column">
-                                <a href="#"><i class="bi bi-xbox"></i> Accesorios Xbox</a>
-                                <a href="#"><i class="bi bi-playstation"></i> Accesorios PS5</a>
-                                <a href="#"><i class="bi bi-nintendo-switch"></i> Accesorios Nintendo Switch</a>
+                                <a href="/accesorios/xbox"><i class="bi bi-xbox"></i> Accesorios Xbox</a>
+                                <a href="/accesorios/ps5"><i class="bi bi-playstation"></i> Accesorios PS5</a>
+                                <a href="/accesorios/switch"><i class="bi bi-nintendo-switch"></i> Accesorios Nintendo
+                                    Switch</a>
                             </div>
                         </div>
                     </div>

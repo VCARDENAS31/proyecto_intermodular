@@ -1,6 +1,8 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . '/dao/conexion-bd.php';
+require_once ROOT_PATH . '/dao/productoDAO.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ include 'consultas.php';
 </head>
 
 <body>
-    <?php include "header-user.php"; ?>
+    <?php include ROOT_PATH . 'includes/header-user.php'; ?>
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
@@ -65,18 +67,18 @@ include 'consultas.php';
         <div class="navbar-secundario">
             <div class="container p-0">
                 <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item" href="/accesorios/ps5">
                             <i class="bi bi-controller"></i> PS5
                         </a>
                     </li>
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item" href="/accesorios/xbox">
                             <i class="bi bi-xbox"></i> XBOX SERIES X/S
                         </a>
                     </li>
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item " href="/accesorios/switch">
                             <i class="bi bi-nintendo-switch"></i> NINTENDO SWITCH
                         </a>
                     </li>
@@ -96,7 +98,7 @@ include 'consultas.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS PS5</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="/accesorios/ps5" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -158,7 +160,7 @@ include 'consultas.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS XBOX SERIES X/S</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="/accesorios/xbox" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -219,7 +221,7 @@ include 'consultas.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS NINTENDO SWITCH</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="/accesorios/switch" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
