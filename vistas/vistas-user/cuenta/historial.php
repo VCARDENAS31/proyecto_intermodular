@@ -1,7 +1,8 @@
 <?php
 session_start();
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/pedidoDAO.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
@@ -16,6 +17,7 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Mis pedidos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +28,7 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
 </head>
 
 <body>
-    <?php include 'header-user.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-user.php'; ?>
 
     <div class="container my-5">
 

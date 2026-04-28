@@ -1,12 +1,15 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda de Videojuegos</title>
@@ -17,111 +20,8 @@ include 'consultas.php';
 </head>
 
 <body>
-    <header>
-        <!-- NAVBAR PRINCIPAL -->
-        <nav class="navbar-principal navbar navbar-expand-lg d-flex p-2 navbar-dark">
-            <!-- Botón menú móvil -->
-            <button class="navbar-toggler" type="button" id="botonMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-
-            <div class="logo">
-                <img class="img-fluid" src="assets/imagenes/logo_tienda.png">
-            </div>
-
-
-            <!-- SIDEBAR MÓVIL -->
-            <div id="sidebarMovil" class="d-flex flex-column">
-                <!-- Botón cerrar sidebar -->
-                <button id="cerrarSidebar" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
-                    aria-label="Cerrar"></button>
-
-                <h2 class="text-white mt-5 text-center mb-5">Categorías</h2>
-                <!-- Menú categorías -->
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-controller"></i>
-                    VIDEOJUEGOS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-box-fill"></i>
-                    CONSOLAS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-headset"></i>
-                    ACCESORIOS</a></li>
-                <a href="#" class="text-white menu-item text-decoration-none"><i class="bi bi-calendar-event"></i>
-                    PRÓXIMOS
-                    LANZAMIENTOS</a>
-                </li>
-                </ul>
-                <!-- Buscador móvil -->
-                <form class="d-flex w-100 my-3 px-4">
-                    <input class="form-control rounded-pill px-4" type="search" placeholder="Buscar videojuegos">
-                </form>
-                <!-- Botón cerrar sesión -->
-                <button class="btn btn-danger logout-btn btn-cerrar-sesion">
-                    CERRAR SESIÓN
-                </button>
-            </div>
-            <!-- ===== FIN SIDEBAR ===== -->
-
-            <!-- Overlay -->
-            <div id="overlaySidebar"></div>
-
-            <!-- Buscador escritorio -->
-            <form class="d-none d-lg-flex w-100 my-3 px-4">
-                <input class="form-control rounded-pill px-4 d-flex" type="search" placeholder="Buscar videojuegos">
-            </form>
-
-            </div>
-
-            <!-- Iconos usuario y carrito -->
-            <div class="d-xs-none d-flex iconos-nav">
-                <div class="dropdown">
-                    <!-- icono login -->
-                    <a href="#" class="text-white " id="userMenu" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item btn-cerrar-sesion" href="#"><i
-                                    class="bi bi-box-arrow-right me-2"></i>Cerrar sesión</a></li>
-                    </ul>
-                </div>
-
-                <!-- icono Carrito -->
-                <a href="#" class="text-white">
-                    <i class="bi bi-cart fs-4"></i>
-                </a>
-            </div>
-        </nav>
-
-
-        <!-- NAVBAR SECUNDARIO -->
-        <div class="navbar-secundario d-none d-lg-block">
-            <div class="container">
-                <ul class="nav w-100 justify-content-between text-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-controller"></i> VIDEOJUEGOS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-box-fill"></i> CONSOLAS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-headset"></i> ACCESORIOS
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white p-3 menu-item mb-3 mt-2" href="#">
-                            <i class="bi bi-calendar-event"></i> PRÓXIMOS LANZAMIENTOS
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </header>
-
+    <?php include ROOT_PATH . 'includes/header-user.php'; ?>
+    
     <main>
         <!-- CAROUSEL RESPONSIVO -->
         <div class="container-fluid p-0">
@@ -167,18 +67,18 @@ include 'consultas.php';
         <div class="navbar-secundario">
             <div class="container p-0">
                 <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item" href="consolas/ps5">
                             <i class="bi bi-controller"></i> PS5
                         </a>
                     </li>
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item" href="consolas/ps5">
                             <i class="bi bi-xbox"></i> XBOX SERIES X/S
                         </a>
                     </li>
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item " href="consolas/switch">
                             <i class="bi bi-nintendo-switch"></i> NINTENDO SWITCH
                         </a>
                     </li>
@@ -198,7 +98,7 @@ include 'consultas.php';
                         <h2 class="fw-bold mb-0">CONSOLAS PS5</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="consolas/ps5" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -212,7 +112,7 @@ include 'consultas.php';
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
                         // Llamamos a la función del archivo externo
-                        $ultimas8ConsolasPs5= obtenerUltimas8consolasPorPlataforma($conexion, 'PS5');
+                        $ultimas8ConsolasPs5 = obtenerUltimas8consolasPorPlataforma($conexion, 'PS5');
 
                         // Supongamos que $consolasPs5Index es el resultado de tu consulta SQL
                         foreach ($ultimas8ConsolasPs5 as $producto) {
@@ -260,7 +160,7 @@ include 'consultas.php';
                         <h2 class="fw-bold mb-0">CONSOLAS XBOX SERIES X/S</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="consolas/xbox" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -321,7 +221,7 @@ include 'consultas.php';
                         <h2 class="fw-bold mb-0">CONSOLAS NINTENDO SWITCH</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="consolas/switch" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -372,64 +272,7 @@ include 'consultas.php';
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="footer mt-5">
-
-        <!-- Barra superior -->
-        <div class="footer-top text-center py-3">
-            <img src="assets/imagenes/logo_tienda.png" alt="VicioGames" class="footer-logo">
-        </div>
-
-        <!-- Contenido -->
-        <div class="container py-5">
-            <div class="row text-white align-items-start">
-
-                <!-- CATEGORÍAS -->
-                <div class="col-md-4 mb-4 mb-md-0 footer-col">
-                    <h6 class="footer-title">CATEGORÍAS</h6>
-
-                    <ul class="list-unstyled footer-links text-center">
-                        <li><a href="#" class="d-block w-50">Videojuegos</a></li>
-                        <li><a href="#" class="d-block w-50">Consolas</a></li>
-                        <li><a href="#" class="d-block w-50">Accesorios</a></li>
-                        <li><a href="#" class="d-block w-50">Próximos lanzamientos</a></li>
-                    </ul>
-                </div>
-
-                <!-- CONTACTO -->
-                <div class="col-md-4 mb-4 mb-md-0 footer-col text-center">
-                    <h6 class="footer-title">CONTACTO</h6>
-
-                    <p class="footer-contact">
-                        <i class="bi bi-telephone-fill"></i>
-                        +34 626 45 33 43
-                    </p>
-
-                    <p class="footer-contact">
-                        <i class="bi bi-envelope-fill"></i>
-                        viciogames@gmail.com
-                    </p>
-                </div>
-
-                <!-- REDES -->
-                <div class="col-md-4 footer-col text-md-end text-center">
-                    <h6 class="footer-title">SÍGUENOS</h6>
-
-                    <ul class="list-unstyled footer-social">
-                        <li><i class="bi bi-instagram"></i> Instagram</li>
-                        <li><i class="bi bi-facebook"></i> Facebook</li>
-                        <li><i class="bi bi-twitter-x"></i> Twitter</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom text-center py-3">
-            <small>© 2025 VicioGames. Todos los derechos reservados.</small>
-        </div>
-
-    </footer>
+    <?php include ROOT_PATH . 'includes/footer.php'; ?>
     <!-- Scripts requeridos para Bootstrap -->
     <script src="efectos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

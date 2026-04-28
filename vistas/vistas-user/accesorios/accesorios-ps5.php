@@ -1,6 +1,8 @@
 <?php
-include 'consultas.php'; // Incluimos tus funciones
-include 'conexion-bd.php'; // Tu conexión a la DB
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 
 $categoria = $_GET['categoria'] ?? '';
 $precio = $_GET['precio'] ?? '';
@@ -21,7 +23,7 @@ $precio = $_GET['precio'] ?? '';
 </head>
 
 <body>
-    <?php include 'header-user.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-user.php'; ?>
 
     <main>
         <!-- CAROUSEL RESPONSIVO -->
@@ -67,18 +69,18 @@ $precio = $_GET['precio'] ?? '';
         <div class="navbar-secundario">
             <div class="container p-0">
                 <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item" href="/accesorios/ps5">
                             <i class="bi bi-controller"></i> PS5
                         </a>
                     </li>
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item" href="/accesorios/xbox">
                             <i class="bi bi-xbox"></i> XBOX SERIES X/S
                         </a>
                     </li>
-                    <li class="nav-item border-bottom border-secondary border-opacity-25 border-lg-0">
-                        <a class="text-white nav-link p-3 p-lg-4" href="#">
+                    <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
+                        <a class="menu-item " href="/accesorios/switch">
                             <i class="bi bi-nintendo-switch"></i> NINTENDO SWITCH
                         </a>
                     </li>
@@ -244,6 +246,7 @@ $precio = $_GET['precio'] ?? '';
             </div>
         </div>
     </main>
+    <?php include ROOT_PATH . 'includes/footer.php'; ?>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="funciones-crud.js"></script>

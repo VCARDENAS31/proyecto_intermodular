@@ -1,6 +1,7 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 
 $slug = $_GET['slug'] ?? null;
 
@@ -31,8 +32,7 @@ if (!$producto) {
 
 <body>
 
-    <?php include 'header-user.php'; ?>
-
+<?php include ROOT_PATH . 'includes/header-user.php'; ?>
     <!-- CONTENIDO -->
     <div class="container mt-5">
 
@@ -219,7 +219,7 @@ if (!$producto) {
     </div>
 
     <!-- ================= FOOTER ================= -->
-    <?php include 'footer.php'; ?>
+<?php include ROOT_PATH . 'includes/footer.php'; ?>
 
     <script src="efectos.js"></script>
     <script src="funciones.js"></script>

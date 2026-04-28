@@ -91,10 +91,6 @@ $total = 0;
                             <div class="col-md-6">
                                 <h5 class="fw-bold m-3"><?php echo $producto['nombre']; ?></h5>
                                 <p class="text-muted mb-1">Plataforma: <?php echo $producto['plataforma']; ?></p>
-
-                                <a href="#" class="text-danger btn-eliminar" data-id="<?php echo $id; ?>">
-                                    Eliminar
-                                </a>
                             </div>
 
                             <div class="col-md-3 text-end">
@@ -169,7 +165,7 @@ $total = 0;
 
                     <?php if (isset($_SESSION['usuario_nombre'])): ?>
 
-                        <a href="envio-pago.php" class="btn btn-primary w-100">
+                        <a href="checkout" class="btn btn-primary w-100">
                             Finalizar compra
                         </a>
 
@@ -179,7 +175,7 @@ $total = 0;
                             Debes iniciar sesión para comprar
                         </div>
 
-                        <a href="/login" class="btn btn-primary w-100">
+                        <a href="login" class="btn btn-primary w-100">
                             Iniciar sesión
                         </a>
 
@@ -191,6 +187,7 @@ $total = 0;
         </div>
     </div>
 
+    <script src="js/cupon/cupon.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -26,7 +26,9 @@ $totalFinal = $total - $descuento + 2.99;
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
+    <base href="http://viciogames.test">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Envío y Pago</title>
 
     <link rel="stylesheet" href="css/style.css">
@@ -236,107 +238,18 @@ $totalFinal = $total - $descuento + 2.99;
             <p>Tu pedido se ha procesado correctamente</p>
 
             <div class="botones">
-                <a href="historial.php" class="btn btn-primary">Ver mis pedidos</a>
-                <a href="index-user.php" class="btn btn-secondary">Ir al inicio</a>
+                <a href="historial" class="btn btn-primary">Ver mis pedidos</a>
+                <a href="/" class="btn btn-secondary">Ir al inicio</a>
             </div>
         </div>
     </div>
 
     <!-- JS -->
-    <script>
-        const form = document.getElementById('formCompra');
-        const modal = document.getElementById('modalCompra');
-
-        //SOLO UNA FUNCIÓN
-        function toggleTarjeta(activo) {
-            const campos = ['tarjeta', 'fecha', 'cvv'];
-
-            campos.forEach(id => {
-                const input = document.getElementById(id);
-                if (activo) {
-                    input.setAttribute("required", "true");
-                } else {
-                    input.removeAttribute("required");
-                }
-            });
-        }
-
-        // AL CARGAR → activar tarjeta porque está marcada
-        window.addEventListener('DOMContentLoaded', () => {
-            const metodo = document.querySelector('input[name="pago"]:checked');
-
-            if (metodo && metodo.value === 'tarjeta') {
-                toggleTarjeta(true);
-            }
-        });
-
-        // VALIDACIÓN + ENVÍO
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            if (!form.checkValidity()) {
-                form.reportValidity();
-                return;
-            }
-
-            const pago = document.querySelector('input[name="pago"]:checked').value;
-            const errorFecha = document.getElementById('errorFecha');
-            const inputFecha = document.getElementById('fecha');
-
-            // reset estado
-            errorFecha.style.display = "none";
-            inputFecha.classList.remove('input-error');
-
-            if (pago === 'tarjeta') {
-                const fechaInput = inputFecha.value;
-                const [mes, anio] = fechaInput.split('/');
-
-                const mesNum = parseInt(mes, 10);
-                const anioNum = 2000 + parseInt(anio, 10);
-
-                const hoy = new Date();
-                const mesActual = hoy.getMonth() + 1;
-                const anioActual = hoy.getFullYear();
-
-                if (
-                    anioNum < anioActual ||
-                    (anioNum === anioActual && mesNum < mesActual)
-                ) {
-                    errorFecha.style.display = "block";
-                    return;
-                }
-            }
-
-            const nombre = document.querySelector('input[placeholder="Nombre"]').value;
-            const apellidos = document.querySelector('input[placeholder="Apellidos"]').value;
-            const direccion = document.querySelector('input[name="direccion"]').value;
-            const ciudad = document.querySelector('input[name="ciudad"]').value;
-            const cp = document.querySelector('input[name="cp"]').value;
-            const telefono = document.querySelector('input[name="telefono"]').value;
-
-            fetch('procesar-pedido.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body:
-                    'nombre=' + encodeURIComponent(nombre) +
-                    '&apellidos=' + encodeURIComponent(apellidos) +
-                    '&direccion=' + encodeURIComponent(direccion) +
-                    '&ciudad=' + encodeURIComponent(ciudad) +
-                    '&cp=' + encodeURIComponent(cp) +
-                    '&telefono=' + encodeURIComponent(telefono) +
-                    '&pago=' + encodeURIComponent(pago)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.ok) {
-                        modal.classList.add('active');
-                    } else {
-                        alert(data.msg);
-                    }
-                });
-        });
-    </script>
-
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/pago/pago.js"></script>
+    <script src="js/pago/tarjeta.js"></script>
+    <script src="js/pago/checkout.js"></script>
+    <script src="js/cupon/cupon.js"></script>
 </body>
 
 </html>

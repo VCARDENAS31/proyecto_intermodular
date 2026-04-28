@@ -2,7 +2,10 @@
 session_start();
 
 // forma PRO
-require_once __DIR__ . '/../../dao/conexion-bd.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

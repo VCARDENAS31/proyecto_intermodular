@@ -52,7 +52,8 @@ RewriteRule ^perfil$ vistas/vistas-user/cuenta/perfil.php [L,QSA]
 # HISTORIAL DE PEDIDOS
 RewriteRule ^historial$ vistas/vistas-user/cuenta/historial.php [L,QSA]
 
-
+#CONTACTO
+RewriteRule ^contacto$ vistas/vistas-user/contacto.php [L,QSA]
 
 
 
@@ -90,11 +91,6 @@ RewriteRule ^gestionar-productos$ vistas/vistas-admin/productos/gestionarProduct
 RewriteRule ^gestionar-usuarios$ vistas/vistas-admin/usuarios/gestionarUsuarios.php [L,QSA]
 
 
-
-
-# PRODUCTO
-RewriteRule ^producto/([a-zA-Z0-9-]+)$ producto.php?slug=$1 [L,QSA]
-
 # CATEGORIA
 RewriteRule ^categoria/([a-zA-Z0-9_-]+)$ categoria.php?nombre=$1 [L,QSA]
 
@@ -104,6 +100,8 @@ RewriteRule ^agregar-carrito$ acciones/carrito/agregar-carrito.php [L,QSA]
 # ELIMINAR DEL CARRITO
 RewriteRule ^eliminar-carrito$ acciones/carrito/eliminar-producto-del-carrito.php [L,QSA]
 
+#BUSCAR
+RewriteRule ^buscar$ vistas/vistas-user/buscar.php [L,QSA]
 
 # CHECKOUT
 RewriteRule ^aplicar-cupon$ acciones/cupones/aplicar-cupon.php [L,QSA]
@@ -114,8 +112,11 @@ RewriteRule ^pasarela$ vistas/vistas-user/proceso-pago/pasarela.php [L,QSA]
 # CHECKOUT
 RewriteRule ^checkout$ vistas/vistas-user/proceso-pago/envio-pago.php [L,QSA]
 
-# PEDIDOS
-RewriteRule ^pedido/([0-9]+)$ pedido.php?id=$1 [L,QSA]
+# PROCESAR PEDIDO
+RewriteRule ^procesar-pedido$ acciones/pedidos/procesar-pedido.php [L,QSA]
+
+#VER PRODUCTO
+RewriteRule ^producto/([a-zA-Z0-9-]+)$ vistas/vistas-user/producto.php?slug=$1 [L,QSA]
 
 # ADMIN
 RewriteRule ^admin/pedidos$ actualizar-pedidos.php [L,QSA]

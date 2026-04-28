@@ -2,8 +2,8 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
-require_once ROOT_PATH . '/dao/conexion-bd.php';
-require_once ROOT_PATH . '/dao/productoDAO.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/cuponDAO.php';
 
 header('Content-Type: application/json');
 

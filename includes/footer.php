@@ -9,16 +9,16 @@
     <div class="container py-5">
         <div class="row text-white">
 
-<!-- CATEGORÍAS -->
-<div class="col-md-4 mb-4 mb-md-0 footer-col text-center">
-    <h4 class="mb-4">CATEGORÍAS</h4>
-    <ul class="list-unstyled footer-links d-flex flex-column align-items-center gap-2">
-        <li><a href="#" class="btn-vicio"><span>Videojuegos</span></a></li>
-        <li><a href="#" class="btn-vicio"><span>Consolas</span></a></li>
-        <li><a href="#" class="btn-vicio"><span>Accesorios</span></a></li>
-        <li><a href="#" class="btn-vicio"><span>Próximos lanzamientos</span></a></li>
-    </ul>
-</div>
+            <!-- CATEGORÍAS -->
+            <div class="col-md-4 mb-4 mb-md-0 footer-col text-center">
+                <h4 class="mb-4">CATEGORÍAS</h4>
+                <ul class="list-unstyled footer-links d-flex flex-column align-items-center gap-2">
+                    <li><a href="#" class="btn-vicio"><span>Videojuegos</span></a></li>
+                    <li><a href="#" class="btn-vicio"><span>Consolas</span></a></li>
+                    <li><a href="#" class="btn-vicio"><span>Accesorios</span></a></li>
+                    <li><a href="#" class="btn-vicio"><span>Próximos lanzamientos</span></a></li>
+                </ul>
+            </div>
 
 
             <!-- CONTACTO -->
@@ -34,17 +34,29 @@
                     <i class="bi bi-envelope-fill"></i>
                     viciogames@gmail.com
                 </p>
-            </div>
-
-            <!-- REDES -->
-            <div class="col-md-4 footer-col text-center">
-                <h4 class="mb-4">REDES SOCIALES</h4>
 
                 <ul class="list-unstyled footer-social">
                     <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
                     <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
                     <li><a href="#" class="text-white"><i class="bi bi-twitter-x"></i> Twitter</a></li>
                 </ul>
+            </div>
+
+            <!-- UBICACIÓN -->
+            <div class="col-md-4 footer-col text-center">
+                <h4 class="mb-4">UBICACIÓN</h4>
+
+                <div>
+                    <iframe 
+                        src="https://www.google.com/maps?q=Pamplona&output=embed"
+                        width="300" 
+                        height="250" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <p class="m-3">Pamplona 31123, Navarra, España</p>
             </div>
 
         </div>

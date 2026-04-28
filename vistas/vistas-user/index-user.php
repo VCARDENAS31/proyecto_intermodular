@@ -1,8 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
-require_once ROOT_PATH . '/dao/conexion-bd.php';
-require_once ROOT_PATH . '/dao/productoDAO.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 ?>
 
 <!DOCTYPE html>
@@ -75,10 +75,6 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">PRÓXIMAMENTE</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
-                        Ver todo
-                    </a>
-
                 </div>
 
                 <hr>
@@ -142,7 +138,7 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">VIDEOJUEGOS</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="videojuegos" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -215,7 +211,7 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">CONSOLAS</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="consolas" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -275,7 +271,7 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS</h2>
                     </div>
 
-                    <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="accesorios" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -391,6 +387,8 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
     <script src="js/carrito/carrito-ui.js"></script>
     <script src="js/carrito/carrito-api.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/usuario/logout.js"></script>
+    <script src="js/utils/modal.js"></script>
 </body>
 
 </html>

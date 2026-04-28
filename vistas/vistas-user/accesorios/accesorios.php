@@ -1,8 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
-require_once ROOT_PATH . '/dao/conexion-bd.php';
-require_once ROOT_PATH . '/dao/productoDAO.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 ?>
 
 <!DOCTYPE html>
@@ -272,64 +272,8 @@ require_once ROOT_PATH . '/dao/productoDAO.php';
     </main>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="footer mt-5">
+    <?php include ROOT_PATH . 'includes/footer.php'; ?>
 
-        <!-- Barra superior -->
-        <div class="footer-top text-center py-3">
-            <img src="assets/imagenes/logo_tienda.png" alt="VicioGames" class="footer-logo">
-        </div>
-
-        <!-- Contenido -->
-        <div class="container py-5">
-            <div class="row text-white align-items-start">
-
-                <!-- CATEGORÍAS -->
-                <div class="col-md-4 mb-4 mb-md-0 footer-col">
-                    <h6 class="footer-title">CATEGORÍAS</h6>
-
-                    <ul class="list-unstyled footer-links text-center">
-                        <li><a href="#" class="d-block w-50">Videojuegos</a></li>
-                        <li><a href="#" class="d-block w-50">Consolas</a></li>
-                        <li><a href="#" class="d-block w-50">Accesorios</a></li>
-                        <li><a href="#" class="d-block w-50">Próximos lanzamientos</a></li>
-                    </ul>
-                </div>
-
-                <!-- CONTACTO -->
-                <div class="col-md-4 mb-4 mb-md-0 footer-col text-center">
-                    <h6 class="footer-title">CONTACTO</h6>
-
-                    <p class="footer-contact">
-                        <i class="bi bi-telephone-fill"></i>
-                        +34 626 45 33 43
-                    </p>
-
-                    <p class="footer-contact">
-                        <i class="bi bi-envelope-fill"></i>
-                        viciogames@gmail.com
-                    </p>
-                </div>
-
-                <!-- REDES -->
-                <div class="col-md-4 footer-col text-md-end text-center">
-                    <h6 class="footer-title">SÍGUENOS</h6>
-
-                    <ul class="list-unstyled footer-social">
-                        <li><i class="bi bi-instagram"></i> Instagram</li>
-                        <li><i class="bi bi-facebook"></i> Facebook</li>
-                        <li><i class="bi bi-twitter-x"></i> Twitter</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom text-center py-3">
-            <small>© 2025 VicioGames. Todos los derechos reservados.</small>
-        </div>
-
-    </footer>
     <!-- Scripts requeridos para Bootstrap -->
     <script src="efectos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

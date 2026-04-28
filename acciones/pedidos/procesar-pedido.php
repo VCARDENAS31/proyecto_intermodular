@@ -1,7 +1,10 @@
 <?php
 session_start();
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/pedidoDAO.php';
+require_once ROOT_PATH . 'dao/cuponDAO.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
 
 header('Content-Type: application/json');
 
