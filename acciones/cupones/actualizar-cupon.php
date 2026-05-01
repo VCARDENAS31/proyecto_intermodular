@@ -1,10 +1,12 @@
 <?php
+
+session_start();
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
 require_once ROOT_PATH . 'dao/conexion-bd.php';
-require_once ROOT_PATH . 'dao/productoDAO.php';
+require_once ROOT_PATH . 'dao/cuponDAO.php';
 
-session_start();
 
 // Seguridad
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
@@ -22,7 +24,7 @@ $hoy = date('Y-m-d');
 
 // Validación
 if (!empty($fecha) && $fecha < $hoy && $activo == 1) {
-    header("Location: gestionar-cupones?error=cupon_caducado");
+    header("Location: gestionar-cupones.php?error=cupon_caducado");
     exit();
 }
 
@@ -31,8 +33,8 @@ $res = actualizarCupon($conexion, $id, $codigo, $descuento, $fecha, $activo);
 
 // Redirección
 if ($res) {
-    header("Location: gestionar-cupones?res=edit_ok");
+    header("Location: gestionar-cupones.php?res=edit_ok");
 } else {
-    header("Location: gestionar-cupones?res=error");
+    header("Location: gestionar-cupones.php?res=error");
 }
 exit();

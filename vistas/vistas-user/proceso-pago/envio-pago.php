@@ -35,36 +35,6 @@ $totalFinal = $total - $descuento + 2.99;
     <link rel="stylesheet" href="css/prueba.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-    <style>
-        .modal-compra {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .modal-compra.active {
-            display: flex;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .check {
-            font-size: 60px;
-            color: green;
-        }
-    </style>
 </head>
 
 <body>

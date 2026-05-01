@@ -1,8 +1,8 @@
 <?php
-session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/pedidoDAO.php';
+session_start();
 
 // SOLO ADMIN
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
@@ -17,15 +17,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     if (eliminarPedido($conexion, $id)) {
 
         // REDIRECCIÓN CON MENSAJE
-        header("Location: actualizar-pedidos.php?res=deleted");
+        header("Location: /gestionar-pedidos?msj=eliminado");
         exit();
 
     } else {
-        header("Location: actualizar-pedidos.php?res=error");
+        header("Location: /gestionar-pedidos?error=1");
         exit();
     }
 
 } else {
-    header("Location: actualizar-pedidos.php?res=invalid");
+    header("Location: /gestionar-pedidos");
     exit();
 }

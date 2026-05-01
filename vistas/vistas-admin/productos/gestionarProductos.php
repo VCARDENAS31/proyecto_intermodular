@@ -77,9 +77,15 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
                 </div>
             <?php endif; ?>
 
-            <?php if (isset($_GET['msj'])): ?>
+            <?php if (isset($_GET['msj']) && $_GET['msj'] == 'eliminado' ): ?>
                 <div class="alert alert-success">
                     <i class="bi bi-check-circle"></i> Producto eliminado correctamente
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['res']) && $_GET['res'] == 'edit_ok'): ?>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> Producto editado correctamente
                 </div>
             <?php endif; ?>
 
@@ -121,7 +127,7 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
                                 <td><?php echo $producto['plataforma']; ?></td>
                                 <td class="text-nowrap">
                                     <div class="d-flex justify-content-center gap-3">
-                                        <a href="editar-producto.php?id=<?php echo $producto['id_producto']; ?>"
+                                        <a href="editar-producto/<?php echo $producto['id_producto']; ?>"
                                             class="btn btn-warning btn-sm text-white">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>

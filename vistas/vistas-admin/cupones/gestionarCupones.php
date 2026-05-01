@@ -74,7 +74,13 @@ $resultado = obtenerCupones($conexion); // Llamamos a la función
 
             <?php if (isset($_GET['msj'])): ?>
                 <div class="alert alert-success">
-                    <i class="fas fa-check-circle"></i> Cupón eliminado
+                    <i class="fas fa-check-circle"></i> Cupón eliminado correctamente
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['res']) && $_GET['res'] == 'edit_ok'): ?>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> Cupón editado correctamente
                 </div>
             <?php endif; ?>
 
@@ -124,7 +130,7 @@ $resultado = obtenerCupones($conexion); // Llamamos a la función
                                     <div class="d-flex justify-content-center gap-3">
 
                                         <!-- EDITAR -->
-                                        <a href="editar-cupon.php?id=<?php echo $cupon['id_cupon']; ?>">
+                                        <a href="editar-cupon/<?php echo $cupon['id_cupon']; ?>">
                                             <button class="btn btn-warning btn-sm text-white">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>

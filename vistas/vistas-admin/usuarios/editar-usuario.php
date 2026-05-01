@@ -49,7 +49,7 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
                                 La contraseña debe tener al menos 5 caracteres, una mayúscula y un carácter especial.
                             </div>
                         <?php endif; ?>
-                        <form action="actualizar-usuario.php" method="POST">
+                        <form action="actualizar-usuario" method="POST">
                             <input type="hidden" name="id" value="<?php echo $user['id_usuario']; ?>">
 
                             <div class="mb-3">
@@ -81,7 +81,7 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <a href="gestionar-usuarios.php" class="btn btn-secondary">Cancelar</a>
+                                <a href="gestionar-usuarios" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-success">Guardar Cambios</button>
                             </div>
                         </form>

@@ -1,10 +1,10 @@
 <?php
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/productoDAO.php';
 
-session_start();
 
 // Seguridad
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {

@@ -45,7 +45,7 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
 
                     <div class="card-body p-3">
 
-                        <form action="actualizar-producto.php" method="POST" enctype="multipart/form-data">
+                        <form action="actualizar-producto" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" value="<?php echo $producto['id_producto']; ?>">
 
                             <div class="mb-3">

@@ -1,10 +1,10 @@
 <?php
+session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/cuponDAO.php';
 
-session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' || !isset($_GET['id'])) {
     header("Location: gestionar-cupones");
@@ -19,12 +19,13 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
 
 <head>
     <base href="http://viciogames.test">
-
     <meta charset="UTF-8">
     <title>Editar Cupón</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -42,7 +43,7 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
 
                     <div class="p-3">
 
-                        <form action="actualizar-cupon.php" method="POST">
+                        <form action="actualizar-cupon" method="POST">
 
                             <input type="hidden" name="id" value="<?php echo $cupon['id_cupon']; ?>">
 
@@ -73,7 +74,7 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="gestionar-cupones.php" class="btn btn-secondary">Cancelar</a>
+                                <a href="gestionar-cupones" class="btn btn-secondary">Cancelar</a>
                                 <button class="btn btn-success">Guardar cambios</button>
                             </div>
 
@@ -86,6 +87,7 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
         </div>
     </div>
 
+    <script src="js/ui/sidebar.js"></script>
 </body>
 
 </html>

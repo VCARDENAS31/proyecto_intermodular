@@ -78,11 +78,11 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 
                 <!-- BOTONES -->
                 <div class="col-12 col-md-3 d-flex gap-2">
-                    <button type="submit" class="btn btn-primary w-100">
-                        <i class="bi bi-search"></i> Buscar
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i>
                     </button>
 
-                    <a href="gestionar-pedidos" class="btn btn-secondary w-100">
+                    <a href="gestionar-pedidos" class="btn btn-secondary">
                         Reset
                     </a>
                 </div>
@@ -90,9 +90,17 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
             </form>
 
             <?php if (isset($_GET['msj'])): ?>
-                <div class="alert alert-success">Pedido eliminado</div>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> Pedido eliminado correctamente
+                </div>
             <?php endif; ?>
-        
+
+            <?php if (isset($_GET['error'])): ?>
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-triangle"></i> Error al eliminar el pedido
+                </div>
+            <?php endif; ?>
+
             <div class="table-responsive">
                 <table class="table table-bordered text-center align-middle">
 
@@ -117,7 +125,7 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
                     <tbody>
                         <?php if (mysqli_num_rows($resultado) == 0): ?>
                             <tr>
-                                <td colspan="12">No se encontraron pedidos</td>
+                                <td colspan="13">No se encontraron pedidos</td>
                             </tr>
                         <?php endif; ?>
                         <?php

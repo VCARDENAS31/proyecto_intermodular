@@ -84,6 +84,12 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
                 </div>
             <?php endif; ?>
 
+            <?php if (isset($_GET['res']) && $_GET['res'] == 'edit_ok'): ?>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> Usuario editado correctamente
+                </div>
+            <?php endif; ?>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
                     <thead class="table-dark">
@@ -126,7 +132,7 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
                                 </td>
                                 <td class="text-nowrap">
                                     <div class="d-flex justify-content-center gap-3">
-                                        <a href="editar-usuario.php?id=<?php echo $user['id_usuario']; ?>">
+                                        <a href="editar-usuario/<?php echo $user['id_usuario']; ?>">
                                             <button class="btn btn-warning btn-sm text-white"><i
                                                     class="bi bi-pencil-square"></i></button>
                                         </a>

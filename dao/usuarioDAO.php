@@ -78,7 +78,7 @@ function actualizarUsuarioConPassword($conexion, $id, $nombre, $apellidos, $emai
             apellidos = ?, 
             email = ?, 
             rol = ?,
-            contraseña = ?
+            contrasena = ?
             WHERE id_usuario = ?";
 
     $stmt = mysqli_prepare($conexion, $sql);
