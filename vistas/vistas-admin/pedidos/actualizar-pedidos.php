@@ -1,6 +1,8 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/pedidoDAO.php';
 
 session_start();
 
@@ -25,6 +27,7 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Actualizar Pedidos</title>
     <link rel="stylesheet" href="css/style.css">
@@ -32,35 +35,9 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
-<div class="modal fade" id="modalConfirm" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-3 shadow text-black">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Confirmación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body">
-                <p id="modalMensaje">¿Seguro?</p>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cancelar
-                </button>
-                <button type="button" class="btn btn-danger" id="btnConfirmar">
-                    Confirmar
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <body>
 
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
 
     <div class="contenido-gestion p-4">
         <div class="container">
@@ -105,13 +82,17 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
                         <i class="bi bi-search"></i> Buscar
                     </button>
 
-                    <a href="actualizar-pedidos.php" class="btn btn-secondary w-100">
+                    <a href="gestionar-pedidos" class="btn btn-secondary w-100">
                         Reset
                     </a>
                 </div>
 
             </form>
 
+            <?php if (isset($_GET['msj'])): ?>
+                <div class="alert alert-success">Pedido eliminado</div>
+            <?php endif; ?>
+        
             <div class="table-responsive">
                 <table class="table table-bordered text-center align-middle">
 
@@ -150,7 +131,7 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
                                 <td>#<?php echo $pedido['id_pedido']; ?></td>
                                 <td>#<?php echo $pedido['usuario_id']; ?></td>
 
-                                <!-- 🔥 NUEVO: nombre cliente -->
+                                <!--  nombre cliente -->
                                 <td><?php echo $pedido['nombre_cliente'] ?? '—'; ?></td>
 
                                 <td><?php echo $pedido['nombre_usuario']; ?></td>
@@ -167,12 +148,12 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 
                                 <td><?php echo number_format($pedido['total'], 2); ?>€</td>
 
-                                <!-- 🔥 Dirección ya completa -->
+                                <!-- Dirección ya completa -->
                                 <td><?php echo $pedido['direccion_envio']; ?></td>
 
                                 <td><?php echo $pedido['telefono']; ?></td>
 
-                                <!-- 🔥 NUEVO: método de pago -->
+                                <!--  método de pago -->
                                 <td>
                                     <?php
                                     if ($pedido['metodo_pago'] == 'tarjeta') {
@@ -189,7 +170,7 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 
                                 <!-- ESTADO (NO TOCADO) -->
                                 <td>
-                                    <form method="POST" action="cambiar-estado.php">
+                                    <form method="POST" action="cambiar-estado">
                                         <input type="hidden" name="id_pedido" value="<?php echo $pedido['id_pedido']; ?>">
 
                                         <?php
@@ -250,10 +231,12 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 
         </div>
     </div>
-    
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
-    <script src="efectos.js"></script>
+    <script src="js/admin/funciones-crud.js"></script>
+    <script src="js/ui/estado.js"></script>
+    <script src="js/utils/modal.js"></script>
 </body>
 
 </html>

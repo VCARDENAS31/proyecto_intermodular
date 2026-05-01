@@ -1,10 +1,12 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/usuarioDAO.php';
+
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' || !isset($_GET['id'])) {
-    header("Location: gestionarUsuarios.php");
+    header("Location: gestionar-usuarios.php");
     exit();
 }
 
@@ -16,6 +18,7 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Editar Usuario - Viciogames</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +32,7 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
 </head>
 
 <body>
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
 
     <!-- ================= CONTENIDO PRINCIPAL ================= -->
@@ -78,7 +81,7 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
                                 </select>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <a href="gestionarUsuarios.php" class="btn btn-secondary">Cancelar</a>
+                                <a href="gestionar-usuarios.php" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-success">Guardar Cambios</button>
                             </div>
                         </form>
@@ -89,8 +92,6 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
     </div>
     <!-- ================= FIN CONTENIDO PRINCIPAL ================= -->
 
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="funciones-crud.js"></script>

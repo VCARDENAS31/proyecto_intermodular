@@ -1,7 +1,11 @@
 <?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+
 session_start();
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 ?>
@@ -9,6 +13,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Añadir Usuario - Viciogames</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +27,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 </head>
 
 <body>
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
 
     <div class="container mt-5">
@@ -33,7 +38,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                         <h4 class="mb-0">Registrar Nuevo Producto</h4>
                     </div>
                     <div class="p-3 card-body">
-                        <form action="insertar-producto.php" method="POST" enctype="multipart/form-data">
+                        <form action="insertar-producto" method="POST" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-md-8 mb-3">
                                     <label class="form-label">Nombre del Videojuego</label>
@@ -93,7 +98,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                         <option value="Fundas y estuches">Fundas y estuches</option>
                                         <option value="Memorias">Memorias</option>
                                         <option value="Cámaras">Cámaras</option>
-                                        <option value="Mando">Mando</option>
+                                        <option value="Mandos">Mandos</option>
                                         <option value="Baterías">Baterías</option>
                                         <option value="Grips">Grips</option>
                                         <option value="Auriculares">Auriculares</option>
@@ -140,17 +145,55 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                 </div>
                             </div>
 
+
+
+
                             <div class="mb-4">
                                 <label class="form-label">Imagen del producto (Solo webp)</label>
-                                <input type="file" name="imagen" class="form-control" accept=".webp" required>
+                                <input type="file" name="imagen" class="form-control" accept=".webp">
                             </div>
 
-                            <?php if (isset($_GET['error']) && $_GET['error'] == 'img'): ?>
-                                <div class="alert alert-danger">Solo se permiten imágenes WEBP</div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Usar imagen existente</label>
+                                <select name="imagen_existente" class="form-select">
+                                    <option value="">-- Subir nueva imagen --</option>
+
+                                    <?php
+                                    $query = "SELECT DISTINCT img_url FROM productos ORDER BY img_url ASC";
+                                    $result = mysqli_query($conexion, $query);
+
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='{$row['img_url']}'>{$row['img_url']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+                            <?php if (isset($_GET['error'])): ?>
+
+                                <?php if ($_GET['error'] == 'img'): ?>
+                                    <div class="alert alert-danger">
+                                        ❌ Debes subir una imagen o seleccionar una existente (solo WEBP)
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($_GET['error'] == 'upload'): ?>
+                                    <div class="alert alert-danger">
+                                        ❌ Error al subir la imagen
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($_GET['error'] == 'general'): ?>
+                                    <div class="alert alert-danger">
+                                        ❌ Error al crear el producto
+                                    </div>
+                                <?php endif; ?>
+
                             <?php endif; ?>
 
                             <div class="d-flex justify-content-between">
-                                <a href="gestionarProductos.php" class="btn btn-secondary">Volver</a>
+                                <a href="gestionar-productos" class="btn btn-secondary">Volver</a>
                                 <button type="submit" class="btn btn-success">Guardar Producto</button>
                             </div>
                         </form>
@@ -161,51 +204,9 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     </div>
     <!-- ================= FIN CONTENIDO PRINCIPAL ================= -->
 
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
-
-    <script>
-        const tipoCarpeta = document.getElementById("tipoCarpeta");
-        const subcarpeta = document.getElementById("subcarpeta");
-
-        tipoCarpeta.addEventListener("change", () => {
-
-            let opciones = "";
-
-            switch (tipoCarpeta.value) {
-
-                case "accesorios":
-                case "consolas":
-                    opciones = `
-                <option value="">Selecciona plataforma</option>
-                <option value="ps5">PS5</option>
-                <option value="xbox-series-sx">Xbox Series</option>
-                <option value="nintendo-switch">Nintendo Switch</option>
-            `;
-                    break;
-
-                case "videojuegos":
-                    opciones = `
-                <option value="">Selecciona categoría</option>
-                <option value="accion">Acción</option>
-                <option value="aventura">Aventura</option>
-                <option value="deporte">Deporte</option>
-                <option value="rpg">RPG</option>
-                <option value="terror">Terror</option>
-            `;
-                    break;
-
-                default:
-                    opciones = `<option value="">Selecciona tipo</option>`;
-            }
-
-            subcarpeta.innerHTML = opciones;
-        });
-    </script>
-
+    <script src="js/admin/producto-form.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
-    <script src="efectos.js"></script>
+
 </body>
 
 </html>

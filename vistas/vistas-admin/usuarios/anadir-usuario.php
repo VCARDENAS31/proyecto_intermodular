@@ -1,4 +1,7 @@
 <?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
 session_start();
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     header("Location: login.php");
@@ -9,6 +12,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Añadir Usuario - Viciogames</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +26,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 </head>
 
 <body>
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
 
 
@@ -34,7 +38,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                         <h4 class="mb-0">Nuevo Usuario</h4>
                     </div>
                     <div class="p-3 card-body">
-                        <form action="insertar-usuario.php" method="POST">
+                        <form action="insertar-usuario" method="POST">
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" name="nombre" class="form-control" required>
@@ -48,10 +52,9 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                 <input type="email" name="email" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Contraseña</label>
+                                <label class="form-label">Contraseña (mínimo 5 caracteres, con mayúscula y símbolo)</label>
                                 <input type="password" name="password" class="form-control" placeholder="Contraseña"
-                                    required pattern="^(?=.*[A-Z])(?=.*[\W_]).{5,}$"
-                                    title="Debe tener mínimo 5 caracteres, una mayúscula y un carácter especial">
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Rol de Usuario</label>
@@ -60,8 +63,25 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                     <option value="admin">Administrador (admin)</option>
                                 </select>
                             </div>
+
+                            <?php if (isset($_GET['error'])): ?>
+
+                                <?php if ($_GET['error'] == 'pass'): ?>
+                                    <div class="alert alert-danger">
+                                        La contraseña debe tener mayúscula, símbolo y mínimo 5 caracteres
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($_GET['error'] == 'email'): ?>
+                                    <div class="alert alert-danger">
+                                        El email ya está registrado
+                                    </div>
+                                <?php endif; ?>
+
+                            <?php endif; ?>
+
                             <div class="d-flex justify-content-between">
-                                <a href="gestionarUsuarios.php" class="btn btn-secondary">Cancelar</a>
+                                <a href="gestionar-usuarios" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-success">Guardar Usuario</button>
                             </div>
                         </form>
@@ -72,12 +92,8 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     </div>
     <!-- ================= FIN CONTENIDO PRINCIPAL ================= -->
 
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
-    <script src="efectos.js"></script>
 </body>
 
 </html>

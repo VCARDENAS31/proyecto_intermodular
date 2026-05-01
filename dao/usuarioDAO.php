@@ -10,6 +10,18 @@ function obtenerUsuarios($conexion)
     return mysqli_query($conexion, $sql);
 }
 
+function insertarUsuario($conexion, $nombre, $apellidos, $email, $password, $rol) {
+
+    $stmt = $conexion->prepare("
+        INSERT INTO usuarios (nombre, apellidos, email, contrasena, rol)
+        VALUES (?, ?, ?, ?, ?)
+    ");
+
+    $stmt->bind_param("sssss", $nombre, $apellidos, $email, $password, $rol);
+
+    return $stmt->execute();
+}
+
 function buscarUsuarioPorId($conexion, $id)
 {
     $sql = "SELECT id_usuario, nombre, apellidos, email, rol 

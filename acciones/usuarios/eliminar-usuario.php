@@ -1,26 +1,37 @@
 <?php
-//Iniciar sesión para poder leer los datos del usuario logueado
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/usuarioDAO.php';
+
 session_start();
 
-//Comprobar si el usuario tiene permiso (debe ser admin)
+// Seguridad: solo admin
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    // Si no es admin, lo mandamos al login o mostramos error
-    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+    die("Acceso denegado");
 }
 
-include 'conexion-bd.php';
-include 'consultas.php'; 
+// Validar ID correctamente
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = (int) $_GET['id'];
 
-    // Llamamos a la función de consultas.php
     if (eliminarUsuario($conexion, $id)) {
-        header("Location: gestionarUsuarios.php?msj=Eliminado");
-        exit(); // Siempre usa exit después de un header Location
+
+        // REDIRECCIÓN LIMPIA
+        header("Location: /gestionar-usuarios?msj=eliminado");
+        exit();
+
     } else {
-        echo "No se pudo eliminar: El usuario tiene historial de pedidos.";
-        echo "<br><a href='gestionarUsuarios.php'>Volver</a>";
+
+        // Error controlado
+        header("Location: /gestionar-usuarios?error=historial");
+        exit();
     }
+
+} else {
+
+    // Si no viene ID válido
+    header("Location: /gestionar-usuarios");
+    exit();
 }
-?>

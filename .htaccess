@@ -76,21 +76,6 @@ RewriteRule ^registro$ vistas/vistas-login/registro.php [L,QSA]
 
 
 
-#RUTAS FUNCIONES ADMINISTRADOR
-
-# GESTIONAR CUPONES
-RewriteRule ^gestionar-cupones$ vistas/vistas-admin/cupones/gestionarCupones.php [L,QSA]
-
-# GESTIONAR PEDIDOS
-RewriteRule ^gestionar-pedidos$ vistas/vistas-admin/pedidos/actualizar-pedidos.php [L,QSA]
-
-# GESTIONAR PRODUCTOS
-RewriteRule ^gestionar-productos$ vistas/vistas-admin/productos/gestionarProductos.php [L,QSA]
-
-# GESTIONAR USUARIOS
-RewriteRule ^gestionar-usuarios$ vistas/vistas-admin/usuarios/gestionarUsuarios.php [L,QSA]
-
-
 # CATEGORIA
 RewriteRule ^categoria/([a-zA-Z0-9_-]+)$ categoria.php?nombre=$1 [L,QSA]
 
@@ -118,8 +103,68 @@ RewriteRule ^procesar-pedido$ acciones/pedidos/procesar-pedido.php [L,QSA]
 #VER PRODUCTO
 RewriteRule ^producto/([a-zA-Z0-9-]+)$ vistas/vistas-user/producto.php?slug=$1 [L,QSA]
 
-# ADMIN
-RewriteRule ^admin/pedidos$ actualizar-pedidos.php [L,QSA]
+
+# ACCIONES ADMIN
+RewriteRule ^gestionar-usuarios$ vistas/vistas-admin/usuarios/gestionarUsuarios.php [L,QSA]
+
+RewriteRule ^gestionar-productos$ vistas/vistas-admin/productos/gestionarProductos.php [L,QSA]
+
+RewriteRule ^gestionar-cupones$ vistas/vistas-admin/cupones/gestionarCupones.php [L,QSA]
+
+RewriteRule ^gestionar-pedidos$ vistas/vistas-admin/pedidos/actualizar-pedidos.php [L,QSA]
+
+# ELIMINAR USUARIO
+RewriteRule ^eliminar-usuario/([0-9]+)$ acciones/usuarios/eliminar-usuario.php?id=$1 [L,QSA]
+
+# ELIMINAR PRODUCTO
+RewriteRule ^eliminar-producto/([0-9]+)$ acciones/productos/eliminar-producto.php?id=$1 [L,QSA]
+
+# ELIMINAR CUPON
+RewriteRule ^eliminar-cupon/([0-9]+)$ acciones/cupones/eliminar-cupon.php?id=$1 [L,QSA]
+
+# ELIMINAR PEDIDO
+RewriteRule ^eliminar-pedido/([0-9]+)$ acciones/pedidos/eliminar-pedido.php?id=$1 [L,QSA]
+
+
+# =========================
+# FORMULARIOS (ADMIN)
+# =========================
+
+# AÑADIR
+RewriteRule ^anadir-usuario$ vistas/vistas-admin/usuarios/anadir-usuario.php [L,QSA]
+RewriteRule ^anadir-producto$ vistas/vistas-admin/productos/anadir-producto.php [L,QSA]
+RewriteRule ^anadir-cupon$ vistas/vistas-admin/cupones/anadir-cupon.php [L,QSA]
+
+# EDITAR (con ID)
+RewriteRule ^editar-usuario/([0-9]+)$ vistas/vistas-admin/usuarios/editar-usuario.php?id=$1 [L,QSA]
+RewriteRule ^editar-producto/([0-9]+)$ vistas/vistas-admin/productos/editar-producto.php?id=$1 [L,QSA]
+RewriteRule ^editar-cupon/([0-9]+)$ vistas/vistas-admin/cupones/editar-cupon.php?id=$1 [L,QSA]
+
+
+# =========================
+# INSERTAR
+# =========================
+
+RewriteRule ^insertar-usuario$ acciones/usuarios/insertar-usuario.php [L,QSA]
+RewriteRule ^insertar-producto$ acciones/productos/insertar-producto.php [L,QSA]
+RewriteRule ^insertar-cupon$ acciones/cupones/insertar-cupon.php [L,QSA]
+
+# =========================
+# ACTUALIZAR
+# =========================
+
+RewriteRule ^actualizar-usuario$ acciones/usuarios/actualizar-usuario.php [L,QSA]
+RewriteRule ^actualizar-producto$ acciones/productos/actualizar-producto.php [L,QSA]
+RewriteRule ^actualizar-cupon$ acciones/cupones/actualizar-cupon.php [L,QSA]
+RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
+
+# =========================
+# CAMBIAR ESTADO (PEDIDOS)
+# =========================
+
+RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
+
+
 
 # HOME (IMPORTANTE)
 RewriteRule ^$ index.php [L,QSA]

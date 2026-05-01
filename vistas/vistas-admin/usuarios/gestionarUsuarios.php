@@ -1,6 +1,9 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/usuarioDAO.php';
+
 
 //Iniciar sesión para poder leer los datos del usuario logueado
 session_start();
@@ -26,6 +29,7 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
 
 <head>
     <!-- Configuración básica -->
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Panel de Administración - Viciogames</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,35 +42,9 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
-<div class="modal fade" id="modalConfirm" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-3 shadow text-black">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Confirmación</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body">
-                <p id="modalMensaje">¿Seguro?</p>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cancelar
-                </button>
-                <button type="button" class="btn btn-danger" id="btnConfirmar">
-                    Confirmar
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 
 <body>
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
 
     <!-- ================= CONTENIDO PRINCIPAL ================= -->
@@ -76,7 +54,7 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
             <h1 class="text-center">Gestionar Usuarios</h1><br>
 
             <div class="d-flex justify-content-end align-items-center mb-4">
-                <a href="anadir-usuario.php">
+                <a href="anadir-usuario">
                     <button class="btn btn-success shadow-sm">
                         <i class="bi bi-person-plus-fill me-2"></i>Añadir Usuario
                     </button>
@@ -91,11 +69,20 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
                     <i class="bi bi-search"></i>
                 </button>
 
-                <a href="gestionarUsuarios.php" class="btn btn-secondary">
+                <a href="gestionar-usuarios.php" class="btn btn-secondary">
                     Reset
                 </a>
             </form>
 
+            <?php if (isset($_GET['msj']) && $_GET['msj'] === 'eliminado'): ?>
+                <div class="alert alert-success"> <i class="bi bi-check-circle"></i> Usuario eliminado correctamente</div>
+            <?php endif; ?>
+
+            <?php if (isset($_GET['res']) && $_GET['res'] == 'ok'): ?>
+                <div class="alert alert-success">
+                    <i class="bi bi-check-circle"></i> Usuario creado correctamente
+                </div>
+            <?php endif; ?>
 
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered mb-0 text-center align-middle">
@@ -158,13 +145,11 @@ if (isset($_GET['buscar']) && !empty($_GET['buscar'])) {
 
         </div>
     </div>
-    <!-- Overlay para cerrar sidebar -->
-    <div id="overlaySidebar"></div>
 
     <!-- Scripts -->
-    <script src="efectos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
+    <script src="js/admin/funciones-crud.js"></script>
+    <script src="js/utils/modal.js"></script>
 </body>
 
 </html>

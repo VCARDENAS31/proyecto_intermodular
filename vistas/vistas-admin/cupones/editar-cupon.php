@@ -1,10 +1,13 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/cuponDAO.php';
+
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' || !isset($_GET['id'])) {
-    header("Location: gestionarCupones.php");
+    header("Location: gestionar-cupones");
     exit();
 }
 
@@ -15,6 +18,8 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
+
     <meta charset="UTF-8">
     <title>Editar Cupón</title>
 
@@ -24,7 +29,7 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
 
 <body>
 
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
 
     <div class="contenido-gestion p-4 flex-grow-1 mt-5">
         <div class="row justify-content-center mt-5">
@@ -68,7 +73,7 @@ $cupon = obtenerCuponPorId($conexion, $_GET['id']);
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="gestionarCupones.php" class="btn btn-secondary">Cancelar</a>
+                                <a href="gestionar-cupones.php" class="btn btn-secondary">Cancelar</a>
                                 <button class="btn btn-success">Guardar cambios</button>
                             </div>
 

@@ -1,17 +1,30 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/cuponDAO.php';
+
 session_start();
 
-if (isset($_GET['id']) && $_SESSION['rol'] === 'admin') {
+// SOLO ADMIN
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+    die("Acceso denegado");
+}
 
-    $id = $_GET['id'];
+// Validar ID
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
-    $res = eliminarCupon($conexion, $id);
+    $id = (int) $_GET['id'];
 
-    if ($res) {
-        header("Location: gestionarCupones.php?res=del_ok");
+    if (eliminarCupon($conexion, $id)) {
+        header("Location: /gestionar-cupones?msj=eliminado");
+        exit();
     } else {
-        header("Location: gestionarCupones.php?res=error");
+        header("Location: /gestionar-cupones?error=1");
+        exit();
     }
+
+} else {
+    header("Location: /gestionar-cupones");
+    exit();
 }

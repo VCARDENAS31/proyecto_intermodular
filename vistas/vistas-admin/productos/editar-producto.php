@@ -1,10 +1,12 @@
 <?php
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/productoDAO.php';
+
 session_start();
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' || !isset($_GET['id'])) {
-    header("Location: gestionarProductos.php");
+    header("Location: gestionar-productos.php");
     exit();
 }
 
@@ -15,6 +17,7 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Editar Producto - Viciogames</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +32,7 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
 
 <body>
 
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
 
     <div class="contenido-gestion p-4 flex-grow-1 mt-5">
         <div class="row h-100 align-items-center justify-content-center mt-5">
@@ -83,7 +86,7 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
                             <?php endif; ?>
 
                             <div class="d-flex justify-content-between">
-                                <a href="gestionarProductos.php" class="btn btn-secondary">Cancelar</a>
+                                <a href="gestionar-productos.php" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-success">Guardar Cambios</button>
                             </div>
 
@@ -96,7 +99,6 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
         </div>
     </div>
 
-    <div id="overlaySidebar"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="funciones-crud.js"></script>

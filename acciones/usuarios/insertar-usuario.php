@@ -1,34 +1,60 @@
 <?php
-include 'conexion-bd.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/usuarioDAO.php';
 
-//Iniciar sesión para poder leer los datos del usuario logueado
 session_start();
 
-//Comprobar si el usuario tiene permiso (debe ser admin)
+//  SOLO ADMIN
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    // Si no es admin, lo mandamos al login o mostramos error
-    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+    header("Location: login");
+    exit();
 }
 
-// Recoger datos del formulario
-$nombre    = $_POST['nombre'];
-$apellidos = $_POST['apellidos'];
-$email     = $_POST['email'];
-$pass      = $_POST['password']; // En un entorno real, usa password_hash()
-$rol       = $_POST['rol'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-// Consulta SQL para insertar en la tabla 'usuarios'
-$sql = "INSERT INTO usuarios (nombre, apellidos, email, contraseña, rol) 
-        VALUES ('$nombre', '$apellidos', '$email', '$pass', '$rol')";
+    //  DATOS
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $rol = $_POST['rol'];
 
-if (mysqli_query($conexion, $sql)) {
-    // Redirigir a la gestión de usuarios si tiene éxito
-    header("Location: gestionarUsuarios.php?res=success");
-} else {
-    // Mostrar error si el email ya existe (es UNIQUE en tu BD)
-    echo "Error: " . mysqli_error($conexion);
-    echo "<br><a href='insertar-usuario.html'>Intentar de nuevo</a>";
+    //  VALIDACIÓN PASSWORD
+    if (!preg_match('/^(?=.*[A-Z])(?=.*[\W_]).{5,}$/', $password)) {
+        header("Location: anadir-usuario.php?error=pass");
+        exit();
+    }
+
+    //  HASH SEGURO
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    //  USAR DAO
+    try {
+
+        $resultado = insertarUsuario(
+            $conexion,
+            $nombre,
+            $apellidos,
+            $email,
+            $password_hash,
+            $rol
+        );
+
+        header("Location: gestionar-usuarios.php?res=ok");
+        exit();
+
+    } catch (mysqli_sql_exception $e) {
+
+        //  ERROR EMAIL DUPLICADO
+        if ($e->getCode() == 1062) {
+            header("Location: anadir-usuario.php?error=email");
+            exit();
+        }
+
+        //  OTRO ERROR
+        header("Location: anadir-usuario.php?error=general");
+        exit();
+    }
 }
-
-mysqli_close($conexion);
 ?>

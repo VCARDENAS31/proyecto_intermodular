@@ -221,8 +221,7 @@ if (!$producto) {
     <!-- ================= FOOTER ================= -->
 <?php include ROOT_PATH . 'includes/footer.php'; ?>
 
-    <script src="efectos.js"></script>
-    <script src="funciones.js"></script>
+    <script src="js/ui/tabs.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

@@ -1,24 +1,31 @@
 <?php
 session_start();
-include 'conexion-bd.php';
-include 'consultas.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+require_once ROOT_PATH . 'dao/conexion-bd.php';
+require_once ROOT_PATH . 'dao/pedidoDAO.php';
 
 // SOLO ADMIN
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     die("Acceso no autorizado.");
 }
 
-if (isset($_GET['id'])) {
+// VALIDAR ID
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
-    $id = $_GET['id'];
+    $id = (int) $_GET['id'];
 
     if (eliminarPedido($conexion, $id)) {
 
-        header("Location: actualizar-pedidos.php?status=deleted");
+        // REDIRECCIÓN CON MENSAJE
+        header("Location: actualizar-pedidos.php?res=deleted");
         exit();
 
     } else {
-        echo "Error al eliminar el pedido.";
-        echo "<br><a href='actualizar-pedidos.php'>Volver</a>";
+        header("Location: actualizar-pedidos.php?res=error");
+        exit();
     }
+
+} else {
+    header("Location: actualizar-pedidos.php?res=invalid");
+    exit();
 }

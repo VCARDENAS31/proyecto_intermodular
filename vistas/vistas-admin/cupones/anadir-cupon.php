@@ -1,7 +1,11 @@
 <?php
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+
+
 session_start();
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 ?>
@@ -10,16 +14,16 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 <html lang="es">
 
 <head>
+    <base href="http://viciogames.test">
     <meta charset="UTF-8">
     <title>Añadir Cupón</title>
-
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
 </head>
 
 <body>
 
-    <?php include 'header-admin.php'; ?>
+    <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -31,7 +35,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                     </div>
 
                     <div class="p-3">
-                        <form action="insertar-cupon.php" method="POST">
+                        <form action="insertar-cupon" method="POST">
 
                             <div class="mb-3">
                                 <label>Código</label>
@@ -57,8 +61,14 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                 </select>
                             </div>
 
+                            <?php if (isset($_GET['error']) && $_GET['error'] == 'codigo_duplicado'): ?>
+                                <div class="alert alert-danger">
+                                    <i class="fas fa-exclamation-triangle"></i> El código de cupón ya existe
+                                </div>
+                            <?php endif; ?>
+
                             <div class="d-flex justify-content-between">
-                                <a href="gestionarCupones.php" class="btn btn-secondary">Volver</a>
+                                <a href="gestionar-cupones" class="btn btn-secondary">Volver</a>
                                 <button class="btn btn-success">Guardar</button>
                             </div>
 
