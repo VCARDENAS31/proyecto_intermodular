@@ -18,16 +18,14 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <title>Editar Producto - Viciogames</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Estilos -->
-    <link rel="stylesheet" href="css/prueba.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Bootstrap Icons -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viciogames | Editar Producto</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prueba.css">
 </head>
 
 <body>
@@ -67,23 +65,9 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Plataforma</label>
-                                <select name="plataforma" class="form-select">
-                                    <option value="PS5" <?php echo $producto['plataforma'] == 'PS5' ? 'selected' : ''; ?>>
-                                        PS5</option>
-                                    <option value="Xbox" <?php echo $producto['plataforma'] == 'Xbox' ? 'selected' : ''; ?>>Xbox</option>
-                                    <option value="Switch" <?php echo $producto['plataforma'] == 'Switch' ? 'selected' : ''; ?>>Switch</option>
-                                </select>
+                                <label class="form-label">Descripción</label>
+                                <textarea name="descripcion" class="form-control" rows="4" required><?php echo $producto['descripcion']; ?></textarea>
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Imagen (solo WEBP)</label>
-                                <input type="file" name="imagen" class="form-control" accept=".webp">
-                            </div>
-
-                            <?php if (isset($_GET['error']) && $_GET['error'] == 'img'): ?>
-                                <div class="alert alert-danger">Solo se permiten imágenes WEBP</div>
-                            <?php endif; ?>
 
                             <div class="d-flex justify-content-between">
                                 <a href="gestionar-productos.php" class="btn btn-secondary">Cancelar</a>
@@ -100,10 +84,10 @@ $producto = obtenerProductoPorId($conexion, $_GET['id']);
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="funciones-crud.js"></script>
-    <script src="efectos.js"></script>
-
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/usuario/logout.js"></script>
 </body>
 
 </html>

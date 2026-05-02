@@ -6,7 +6,7 @@ require_once ROOT_PATH . 'dao/busquedaDAO.php';
 session_start();
 
 if (!isset($_GET['q']) || empty(trim($_GET['q']))) {
-    header("Location: index-user.php");
+    header("Location: /");
     exit();
 }
 
@@ -22,6 +22,8 @@ $resultados = buscarProductos($conexion, $busqueda);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resultados de búsqueda</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
@@ -91,9 +93,15 @@ $resultados = buscarProductos($conexion, $busqueda);
     <?php include ROOT_PATH . 'includes/footer.php'; ?>
 
 
-    <script src="efectos.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- ================= SCRIPTS ================= -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/ui/submenu.js"></script>
+    <script src="js/carrito/carrito-ui.js"></script>
+    <script src="js/carrito/carrito-api.js"></script>
+    <script src="js/usuario/logout.js"></script>
 </body>
 
 </html>

@@ -2,12 +2,6 @@
 
 session_start();
 
-if (empty($_SESSION['carrito'])) {
-    echo "Carrito vacío";
-    exit();
-}
-
-// CUPÓN EN SESIÓN
 $cupon = $_SESSION['cupon'] ?? null;
 
 $total = 0;
@@ -20,20 +14,23 @@ $total = 0;
     <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda de Videojuegos</title>
-
+    <title>Pasarela de pago</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="checkout-nav py-3 px-4 d-flex justify-content-between align-items-center">
 
+    <a href="/">
         <div class="logo-checkout">
-            <img src="assets/imagenes/logo_tienda.png" height="40">
+            <img src="assets/imagenes/logo/logo_tienda.png" height="40">
         </div>
+    </a>
 
         <div class="checkout-steps d-flex align-items-center gap-3">
             <div class="step active">
@@ -70,7 +67,7 @@ $total = 0;
                     ?>
 
                     <div class="mb-3 p-3 shadow-sm">
-                        <div class="row align-items-center bg-white border border-primary p-3 rounded">
+                        <div class="row align-items-center bg-white p-3 rounded">
 
                             <div class="col-md-3 text-center justify-content-center d-flex">
                                 <div class="card">
@@ -88,7 +85,7 @@ $total = 0;
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-center text-md-start">
                                 <h5 class="fw-bold m-3"><?php echo $producto['nombre']; ?></h5>
                                 <p class="text-muted mb-1">Plataforma: <?php echo $producto['plataforma']; ?></p>
                             </div>
@@ -172,7 +169,7 @@ $total = 0;
                     <?php else: ?>
 
                         <div class="alert alert-danger text-center">
-                            Debes iniciar sesión para comprar
+                            Debes iniciar sesión para Añadir a la cesta
                         </div>
 
                         <a href="login" class="btn btn-primary w-100">
@@ -187,8 +184,8 @@ $total = 0;
         </div>
     </div>
 
-    <script src="js/cupon/cupon.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/cupon/cupon.js"></script>
 </body>
 
 </html>

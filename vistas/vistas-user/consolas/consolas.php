@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
 require_once ROOT_PATH . 'dao/conexion-bd.php';
@@ -12,16 +14,17 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
     <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda de Videojuegos</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Viciogames | Consolas</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
-
 </head>
 
 <body>
     <?php include ROOT_PATH . 'includes/header-user.php'; ?>
-    
+
     <main>
         <!-- CAROUSEL RESPONSIVO -->
         <div class="container-fluid p-0">
@@ -73,7 +76,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         </a>
                     </li>
                     <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
-                        <a class="menu-item" href="consolas/ps5">
+                        <a class="menu-item" href="consolas/xbox">
                             <i class="bi bi-xbox"></i> XBOX SERIES X/S
                         </a>
                     </li>
@@ -130,7 +133,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
+                                        <i class="bi bi-cart"></i> Añadir a la cesta
                                     </button>
                                     <button class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
@@ -192,7 +195,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
+                                        <i class="bi bi-cart"></i> Añadir a la cesta
                                     </button>
                                     <button class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
@@ -253,7 +256,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                 </div>
                                 <div class="mt-auto">
                                     <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> COMPRAR
+                                        <i class="bi bi-cart"></i> Añadir a la cesta
                                     </button>
                                     <button class="btn btn-outline-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
@@ -273,9 +276,16 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
 
     <!-- ================= FOOTER ================= -->
     <?php include ROOT_PATH . 'includes/footer.php'; ?>
-    <!-- Scripts requeridos para Bootstrap -->
-    <script src="efectos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/ui/submenu.js"></script>
+    <script src="js/ui/slider.js"></script>
+    <script src="js/carrito/carrito-ui.js"></script>
+    <script src="js/carrito/carrito-api.js"></script>
+    <script src="js/usuario/logout.js"></script>
 </body>
 
 </html>

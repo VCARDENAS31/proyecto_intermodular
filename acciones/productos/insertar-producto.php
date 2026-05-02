@@ -1,11 +1,11 @@
 <?php
 session_start();
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/productoDAO.php';
 
-
-//  SOLO ADMIN
+// 🔒 SOLO ADMIN
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     header("Location: login");
     exit();
@@ -13,7 +13,9 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    //  DATOS
+    // =========================
+    // DATOS
+    // =========================
     $nombre = $_POST['nombre'];
     $precio = $_POST['precio'];
     $stock = $_POST['stock'];
@@ -21,33 +23,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $categoria = $_POST['categoria'];
     $plataforma = $_POST['plataforma'];
     $descripcion = $_POST['descripcion'];
+    $slug = $_POST['slug'];
 
     $tipoCarpeta = $_POST['tipoCarpeta'] ?? '';
     $subcarpeta = $_POST['subcarpeta'] ?? '';
 
-    //  RUTA SEGÚN ESTRUCTURA
+    // =========================
+    // LIMPIAR SLUG
+    // =========================
+    $slug = strtolower(trim($slug));
+    $slug = preg_replace('/[^a-z0-9-]/', '', $slug);
+
+    // =========================
+    // VALIDAR SLUG DUPLICADO
+    // =========================
+    if (existeSlug($conexion, $slug)) {
+        header("Location: anadir-producto.php?error=slug");
+        exit();
+    }
+
+    // =========================
+    // RUTAS
+    // =========================
     if ($tipoCarpeta == "videojuegos") {
-
-        $rutaBase = "assets/imagenes/productos/videojuegos/$subcarpeta/";
+        $rutaBase = ROOT_PATH . "assets/imagenes/productos/videojuegos/$subcarpeta/";
         $rutaBD = "productos/videojuegos/$subcarpeta/";
-
     } else {
-
-        $rutaBase = "assets/imagenes/productos/$tipoCarpeta/$subcarpeta/";
+        $rutaBase = ROOT_PATH . "assets/imagenes/productos/$tipoCarpeta/$subcarpeta/";
         $rutaBD = "productos/$tipoCarpeta/$subcarpeta/";
     }
 
-    //  IMAGEN (OBLIGATORIA: NUEVA O EXISTENTE)
+    // =========================
+    //IMAGEN
+    // =========================
     $imagen_existente = $_POST['imagen_existente'] ?? '';
 
     if (!empty($imagen_existente)) {
 
-        //  Usar imagen existente
+        // Usar imagen existente
         $rutaFinalBD = $imagen_existente;
 
     } else {
 
-        //  Obligamos a subir imagen
+        // Obligatorio subir imagen
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== 0) {
             header("Location: anadir-producto.php?error=img");
             exit();
@@ -55,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $tmp = $_FILES['imagen']['tmp_name'];
 
-        //  VALIDAR WEBP REAL
+        // Validar MIME real
         $tipoMime = mime_content_type($tmp);
 
         if ($tipoMime !== 'image/webp') {
@@ -63,15 +81,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        //  Crear carpeta si no existe
+        // Crear carpeta si no existe
         if (!file_exists($rutaBase)) {
             mkdir($rutaBase, 0777, true);
         }
 
-        //   Nombre único
-        $nombreFinal = uniqid() . ".webp";
+// =========================
+//  NOMBRE DE IMAGEN = ORIGINAL DEL ARCHIVO
+// =========================
+        $nombreOriginal = pathinfo($_FILES['imagen']['name'], PATHINFO_FILENAME);
+        $nombreOriginal = strtolower(trim($nombreOriginal));
+        $nombreOriginal = preg_replace('/[^a-z0-9-]/', '', $nombreOriginal);
 
-        if (!move_uploaded_file($tmp, $rutaBase . $nombreFinal)) {
+        // opcional: evitar colisiones
+        $nombreFinal = $nombreOriginal . ".webp";
+        $rutaCompleta = $rutaBase . $nombreFinal;
+
+        
+        // 🚫 Evitar sobrescribir imágenes
+        if (file_exists($rutaCompleta)) {
+            header("Location: anadir-producto.php?error=img-existe");
+            exit();
+        }
+
+        // 📦 Mover archivo
+        if (!move_uploaded_file($tmp, $rutaCompleta)) {
             header("Location: anadir-producto.php?error=upload");
             exit();
         }
@@ -79,7 +113,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $rutaFinalBD = $rutaBD . $nombreFinal;
     }
 
-    //  INSERTAR EN BD
+    // =========================
+    // 💾 INSERTAR
+    // =========================
     $resultado = insertarProducto(
         $conexion,
         $nombre,
@@ -89,14 +125,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $categoria,
         $descripcion,
         $plataforma,
-        $rutaFinalBD
+        $rutaFinalBD,
+        $slug
     );
 
-    //  REDIRECCIÓN FINAL
+    // =========================
+    // 🔁 REDIRECCIÓN
+    // =========================
     if ($resultado) {
         header("Location: gestionar-productos.php?res=ok");
     } else {
-        header("Location: gestionar-productos.php?res=error");
+        header("Location: anadir-producto.php?error=general");
     }
 
     exit();

@@ -1,21 +1,23 @@
 /* ======================================================
-   ESTILOS GENERALES / REUTILIZABLES
+   GENERAL
+   Se importará desde: _general.scss
 ====================================================== */
+
+body {
+    font-family: 'Exo', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
 
 a {
     text-decoration: none !important;
 }
 
-
-
 hr {
     border: 1px solid black;
 }
-
-.nav-left div.logo>img {
-    width: 100px;
-}
-
 
 .link-noticia {
     text-decoration: none;
@@ -23,7 +25,14 @@ hr {
     display: block;
 }
 
-/*---------- Navbar user --------------*/
+/* ======================================================
+   NAVBAR (General)
+   Se importará desde: _navbar.scss
+====================================================== */
+
+.nav-left div.logo>img {
+    width: 100px;
+}
 
 .navbar-principal {
     background-color: #2a2753;
@@ -33,7 +42,10 @@ hr {
     background-color: #1f1c3f;
 }
 
-/* ---------- Cards reutilizables ---------- */
+/* ======================================================
+   CARDS (Reutilizables)
+   Se importará desde: _cards.scss
+====================================================== */
 
 .card {
     border: 1px solid #c2c1c1;
@@ -53,7 +65,6 @@ hr {
     transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     cursor: pointer;
     border: 1px solid #eac7f1;
-
 }
 
 .card-action:hover,
@@ -64,12 +75,9 @@ hr {
 }
 
 /* ======================================================
-   ESTILOS PÁGINA USER
+   CAROUSEL
+   Se importará desde: _carousel.scss
 ====================================================== */
-
-/* ---------- Navbar ---------- */
-
-
 
 
 
@@ -87,13 +95,20 @@ hr {
     opacity: 1;
 }
 
-/* ---------- Botones ---------- */
+/* ======================================================
+   BOTONES
+   Se importará desde: _buttons.scss
+====================================================== */
 
 .btn-ver-todo:hover {
     background-color: #bcbcbc;
 }
 
-/* ---------- Slider productos ---------- */
+
+/* ======================================================
+   SLIDER DE PRODUCTOS
+   Se importará desde: _slider.scss
+====================================================== */
 
 #arrastrar-scroll {
     overflow-x: auto;
@@ -123,7 +138,11 @@ hr {
     align-items: center;
 }
 
-/* ---------- Flechas slider ---------- */
+
+/* ======================================================
+   FLECHAS SLIDER
+   Se importará desde: _slider.scss
+====================================================== */
 
 .btn-scroll {
     position: absolute;
@@ -156,8 +175,10 @@ hr {
 }
 
 
-
-/* ---------- Noticias ---------- */
+/* ======================================================
+   NOTICIAS
+   Se importará desde: _news.scss
+====================================================== */
 
 .card-noticia {
     overflow: hidden;
@@ -171,7 +192,11 @@ hr {
     transform: scale(1.08);
 }
 
-/* ---------- Footer ---------- */
+
+/* ======================================================
+   FOOTER
+   Se importará desde: _footer.scss
+====================================================== */
 
 .footer {
     background: linear-gradient(180deg, #2d2959, #2a2753);
@@ -272,17 +297,23 @@ hr {
 
 
 
-/* ======================================================
-   ESTILOS PÁGINA ADMIN
-====================================================== */
 
-/* ---------- Navbar ---------- */
+
+/* ======================================================
+   ADMIN - NAVBAR
+   Se importará desde: _admin-navbar.scss
+====================================================== */
 
 .navbar-admin {
     background-color: rgb(0, 0, 0);
 }
 
-/* ---------- Sidebar ---------- */
+
+/* ======================================================
+   ADMIN - SIDEBAR
+   Se importará desde: _admin-sidebar.scss
+====================================================== */
+
 #overlaySidebarMenu {
     position: fixed;
     top: 0;
@@ -349,7 +380,12 @@ hr {
     font-weight: bold;
 }
 
-/* ---------- Contenido ---------- */
+
+
+/* ======================================================
+   ADMIN - CONTENIDO
+   Se importará desde: _admin-content.scss
+====================================================== */
 
 #content {
     flex-grow: 1;
@@ -364,7 +400,12 @@ hr {
     }
 }
 
-/* ---------- Cards Admin ---------- */
+
+
+/* ======================================================
+   ADMIN - CARDS
+   Se importará desde: _admin-cards.scss
+====================================================== */
 
 .card-action {
     border: 1px solid #ddd;
@@ -395,7 +436,12 @@ hr {
     text-transform: uppercase;
 }
 
-/* ---------- Overlay ---------- */
+
+
+/* ======================================================
+   ADMIN - OVERLAY
+   Se importará desde: _admin-overlay.scss
+====================================================== */
 
 #overlaySidebar {
     position: fixed;
@@ -422,7 +468,13 @@ hr {
 
 
 
-/* Filtros */
+
+
+/* ======================================================
+   ADMIN - FILTROS
+   Se importará desde: _admin-filters.scss
+====================================================== */
+
 .filter-bar {
     border: 1px solid #333;
     background-color: #1a1a1a !important;
@@ -454,7 +506,13 @@ div>.card {
 
 
 
-/* Regla general para todos los marcos */
+
+
+/* ======================================================
+   MARCOS DE PLATAFORMAS (PS5, Xbox, Nintendo Switch)
+   Se importará desde: _platform-frames.scss
+====================================================== */
+
 .ps5 .card-img-container::after,
 .xbox .card-img-container::after,
 .switch .card-img-container::after,
@@ -498,6 +556,10 @@ div>.card {
     background-image: url('../assets/imagenes/marco_ns.png');
 }
 
+/* ======================================================
+   CONTENEDORES DE IMAGEN
+   Se importará desde: _image-containers.scss
+====================================================== */
 
 .card-img-container {
     height: 250px;
@@ -535,7 +597,6 @@ div>.card {
     cursor: zoom-in;
 }
 
-
 div.modal-content,
 .container-modal-producto {
     background-color: rgb(255, 255, 255);
@@ -555,6 +616,11 @@ div.modal-content,
     /* sombra sutil para resaltar */
     box-shadow: 0 0 15px rgba(255, 85, 85, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
 }
+
+/* ======================================================
+   MODAL - ANIMACIONES
+   Se importará desde: _modal-animations.scss
+====================================================== */
 
 /* animación del borde */
 @keyframes borderGlow {
@@ -586,6 +652,8 @@ div.modal-content,
         width: auto;
     }
 }
+
+
 
 
 
@@ -1022,93 +1090,6 @@ div.modal-content,
 .dropdown-mega:hover .flecha {
     transform: rotate(180deg);
 }
-
-
-
-
-
-
-
-
-
-
-/* Cool infinite background scrolling animation.
- * Twitter: @kootoopas
- */
-/* Exo thin font from Google. */
-@import url(https://fonts.googleapis.com/css?family=Exo:100);
-
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
-/* Animations */
-@-webkit-keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
-}
-
-@-moz-keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
-}
-
-@-o-keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
-}
-
-@keyframes bg-scrolling-reverse {
-    100% {
-        background-position: 50px 50px;
-    }
-}
-
-@-webkit-keyframes bg-scrolling {
-    0% {
-        background-position: 50px 50px;
-    }
-}
-
-@-moz-keyframes bg-scrolling {
-    0% {
-        background-position: 50px 50px;
-    }
-}
-
-@-o-keyframes bg-scrolling {
-    0% {
-        background-position: 50px 50px;
-    }
-}
-
-@keyframes bg-scrolling {
-    0% {
-        background-position: 50px 50px;
-    }
-}
-
-/* Main styles */
-body {
-    font: 400 16px/1.5 exo, ubuntu, 'Roboto Mono', monospace !important;
-    text-align: center;
-    /* img size is 50x50 */
-    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
-    -webkit-animation: bg-scrolling-reverse .92s infinite;
-    /* Safari 4+ */
-    -moz-animation: bg-scrolling-reverse .92s infinite;
-    /* Fx 5+ */
-    -o-animation: bg-scrolling-reverse .92s infinite;
-    /* Opera 12+ */
-    animation: bg-scrolling-reverse .92s infinite;
-    /* IE 10+ */
-    -webkit-animation-timing-function: linear;
-    -moz-animation-timing-function: linear;
-    -o-animation-timing-function: linear;
-    animation-timing-function: linear;
-}
-
-
 
 
 

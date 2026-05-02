@@ -28,11 +28,14 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <title>Actualizar Pedidos</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viciogames | Gestionar Pedidos</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -241,10 +244,13 @@ if (!empty($idBuscar) || !empty($estadoFiltro)) {
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/admin/funciones-crud.js"></script>
     <script src="js/ui/estado.js"></script>
     <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/usuario/logout.js"></script>
+    
 </body>
 
 </html>

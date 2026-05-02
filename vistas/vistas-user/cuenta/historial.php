@@ -5,7 +5,7 @@ require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/pedidoDAO.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
@@ -18,13 +18,14 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <title>Mis pedidos</title>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis pedidos</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -56,7 +57,7 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
                     <!-- PRODUCTOS -->
                     <div class="d-flex justify-content-between border-top pt-2">
                         <span>Gastos de envío</span>
-                        <span>3,99€</span>
+                        <span>2,99€</span>
                     </div>
                     <?php
                     $subtotal = 0;
@@ -77,8 +78,9 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
                     $envio = 2.99; // mismo que usas en compra
                     $totalPedido = $pedido['total'];
 
-                    // 🔥 calcular descuento automáticamente
-                    $descuento = ($subtotal + $envio) - $totalPedido;
+                    $subtotal += $envio;
+                    // calcular descuento automáticamente
+                    $descuento = $subtotal - $totalPedido;
                     ?>
 
                     <div class="d-flex justify-content-between border-top pt-2">
@@ -113,7 +115,15 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
         <?php endif; ?>
 
     </div>
-    <script src="efectos.js"></script>
+
+    <!-- Scripts -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/ui/submenu.js"></script>
+    <script src="js/carrito/carrito-ui.js"></script>
+    <script src="js/carrito/carrito-api.js"></script>
+    <script src="js/usuario/logout.js"></script>
 </body>
 
 </html>

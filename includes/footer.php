@@ -2,7 +2,7 @@
 
     <!-- Barra superior -->
     <div class="footer-top text-center py-3">
-        <img src="assets/imagenes/logo_tienda.png" alt="VicioGames" class="footer-logo">
+        <img src="assets/imagenes/logo/logo_tienda.png" alt="VicioGames" class="footer-logo">
     </div>
 
     <!-- Contenido -->

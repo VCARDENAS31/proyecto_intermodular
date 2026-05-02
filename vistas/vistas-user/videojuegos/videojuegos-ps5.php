@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
 require_once ROOT_PATH . 'dao/conexion-bd.php';
@@ -15,11 +18,12 @@ $precio = $_GET['precio'] ?? '';
     <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda de Videojuegos</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Viciogames | Videojuegos PS5</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
-
 </head>
 
 <body>
@@ -227,7 +231,7 @@ $precio = $_GET['precio'] ?? '';
                         </div>
                         <div class="mt-auto">
                             <button class="btn btn-primary btn-sm w-100 mb-1">
-                                <i class="bi bi-cart"></i> COMPRAR
+                                <i class="bi bi-cart"></i> Añadir a la cesta
                             </button>
                             <button class="btn btn-outline-secondary btn-sm w-100">
                                 <i class="bi bi-eye"></i> VER
@@ -241,9 +245,15 @@ $precio = $_GET['precio'] ?? '';
         </div>
     </main>
     <?php include ROOT_PATH . 'includes/footer.php'; ?>
+
+    <!-- Scripts -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/ui/submenu.js"></script>
+    <script src="js/carrito/carrito-ui.js"></script>
+    <script src="js/carrito/carrito-api.js"></script>
+    <script src="js/usuario/logout.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="funciones-crud.js"></script>
-<script src="efectos.js"></script>
 
 </html>

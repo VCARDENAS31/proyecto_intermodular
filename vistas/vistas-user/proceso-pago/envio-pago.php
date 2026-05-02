@@ -2,7 +2,12 @@
 session_start();
 
 if (empty($_SESSION['carrito'])) {
-    echo "Carrito vacío";
+    header("Location: /");
+    exit();
+}
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login");
     exit();
 }
 
@@ -41,9 +46,11 @@ $totalFinal = $total - $descuento + 2.99;
 
     <!-- NAV -->
     <div class="checkout-nav py-3 px-4 d-flex justify-content-between align-items-center">
-        <div class="logo-checkout">
-            <img src="assets/imagenes/logo_tienda.png" height="40">
-        </div>
+        <a href="/">
+            <div class="logo-checkout">
+                <img src="assets/imagenes/logo/logo_tienda.png" height="40">
+            </div>
+        </a>
 
         <div class="checkout-steps d-flex align-items-center gap-3">
             <div class="step">

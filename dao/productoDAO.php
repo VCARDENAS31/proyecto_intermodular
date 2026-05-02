@@ -33,12 +33,43 @@ function obtenerProductoPorId($conexion, $id)
 }
 
 
-function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $imagen)
+function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $imagen, $slug)
 {
-    $sql = "INSERT INTO productos (nombre, precio, stock, tipo, categoria, descripcion, plataforma, img_url) 
-            VALUES ('$nombre', $precio, $stock, '$tipo', '$categoria', '$descripcion', '$plataforma', '$imagen')";
+    $sql = "INSERT INTO productos 
+            (nombre, precio, stock, tipo, categoria, descripcion, plataforma, img_url, slug) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    return mysqli_query($conexion, $sql);
+    $stmt = mysqli_prepare($conexion, $sql);
+
+    mysqli_stmt_bind_param(
+        $stmt,
+        "sdissssss",
+        $nombre,
+        $precio,
+        $stock,
+        $tipo,
+        $categoria,
+        $descripcion,
+        $plataforma,
+        $imagen,
+        $slug
+    );
+
+    return mysqli_stmt_execute($stmt);
+}
+
+function existeSlug($conexion, $slug)
+{
+    $sql = "SELECT COUNT(*) as total FROM productos WHERE slug = ?";
+    
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $slug);
+    mysqli_stmt_execute($stmt);
+
+    $res = mysqli_stmt_get_result($stmt);
+    $row = mysqli_fetch_assoc($res);
+
+    return $row['total'] > 0;
 }
 
 
@@ -57,11 +88,11 @@ function eliminarProducto($conexion, $id)
 /**
  * Actualizar datos de un producto (URL de imagen como texto)
  */
-function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $plataforma, $img_url)
+function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $descripcion)
 {
     $id = intval($id);
     $nombre = mysqli_real_escape_string($conexion, $nombre);
-    $plataforma = mysqli_real_escape_string($conexion, $plataforma);
+    $descripcion = mysqli_real_escape_string($conexion, $descripcion);
 
     $precio = floatval(str_replace(',', '.', $precio));
     $stock = intval($stock);
@@ -70,8 +101,7 @@ function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $plataform
                 nombre = '$nombre',
                 precio = $precio,
                 stock = $stock,
-                plataforma = '$plataforma',
-                img_url = '$img_url'
+                descripcion = '$descripcion'
             WHERE id_producto = $id";
 
     return mysqli_query($conexion, $sql);

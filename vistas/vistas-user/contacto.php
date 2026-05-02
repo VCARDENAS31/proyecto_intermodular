@@ -7,13 +7,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - VicioGames</title>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viciogames | Contacto</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/prueba.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -99,9 +100,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
             <h4 class="mb-4">REDES SOCIALES</h4>
 
             <ul class="list-unstyled footer-social">
-                <li><a href="#" class="text-black"><i class="bi bi-instagram"></i> Instagram</a></li>
-                <li><a href="#" class="text-black"><i class="bi bi-facebook"></i> Facebook</a></li>
-                <li><a href="#" class="text-black"><i class="bi bi-twitter-x"></i> Twitter</a></li>
+                <li><a href="https://www.instagram.com" class="text-black"><i class="bi bi-instagram"></i> Instagram</a></li>
+                <li><a href="https://www.facebook.com" class="text-black"><i class="bi bi-facebook"></i> Facebook</a></li>
+                <li><a href="https://www.twitter.com" class="text-black"><i class="bi bi-twitter-x"></i> Twitter</a></li>
             </ul>
 
         </div>

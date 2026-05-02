@@ -10,7 +10,7 @@
 
             <a href="/">
                 <div class="logo">
-                    <img src="assets/imagenes/logo_tienda.png" alt="Logo">
+                    <img src="assets/imagenes/logo/logo_tienda.png" alt="Logo">
                 </div>
             </a>
         </div>
@@ -65,10 +65,16 @@
     <div id="sidebarMenu">
         <button id="cerrarMenu" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
             aria-label="Cerrar"></button>
+
         <div class="user-section">
             <i class="bi bi-person-circle"></i>
-            <p>Usuario</p>
+            <p class="mt-2 mb-0">BIENVENIDO</p>
+
+            <strong>
+                <?php echo isset($_SESSION['usuario_nombre']) ? htmlspecialchars($_SESSION['usuario_nombre']) : 'Invitado'; ?>
+            </strong>
         </div>
+
         <div class="menu-item">
             <a href="/"><i class="bi bi-house"></i> Inicio</a>
         </div>
@@ -215,7 +221,7 @@
 
                 <!-- CONSOLAS -->
                 <li class="nav-item dropdown-mega">
-                    <a class="menu-item" href="/consolas">
+                    <a class="menu-item" href="consolas">
                         <i class="bi bi-box-fill"></i> CONSOLAS
                         <i class="bi bi-chevron-down flecha"></i>
                     </a>

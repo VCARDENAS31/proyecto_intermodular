@@ -14,23 +14,21 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <title>Añadir Usuario - Viciogames</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Estilos -->
-    <link rel="stylesheet" href="css/prueba.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Iconos Bootstrap -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viciogames | Añadir Producto</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prueba.css">
 </head>
 
 <body>
     <?php include ROOT_PATH . 'includes/header-admin.php'; ?>
     <!-- ================= FIN SIDEBAR ================= -->
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-8">
                 <div class="bg-white shadow mt-5">
@@ -170,26 +168,38 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
                                 </select>
                             </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">Slug (URL amigable)</label>
+                                <input type="text" name="slug" class="form-control" required
+                                    placeholder="ej: god-of-war-ragnarok-ps5">
+                            </div>
+
+
                             <?php if (isset($_GET['error'])): ?>
+
+                                <?php if ($_GET['error'] == 'slug'): ?>
+                                    <div class="alert alert-danger">
+                                        Ese slug ya existe, usa otro diferente
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($_GET['error'] == 'img-existe'): ?>
+                                    <div class="alert alert-danger">
+                                        Ya existe una imagen igual, selecciona la imagen existente o sube una nueva con un nombre diferente
+                                    </div>
+                                <?php endif; ?>
 
                                 <?php if ($_GET['error'] == 'img'): ?>
                                     <div class="alert alert-danger">
-                                        ❌ Debes subir una imagen o seleccionar una existente (solo WEBP)
+                                        Debes subir una imagen o seleccionar una existente (solo WEBP)
                                     </div>
                                 <?php endif; ?>
 
                                 <?php if ($_GET['error'] == 'upload'): ?>
                                     <div class="alert alert-danger">
-                                        ❌ Error al subir la imagen
+                                        Error al subir la imagen
                                     </div>
                                 <?php endif; ?>
-
-                                <?php if ($_GET['error'] == 'general'): ?>
-                                    <div class="alert alert-danger">
-                                        ❌ Error al crear el producto
-                                    </div>
-                                <?php endif; ?>
-
                             <?php endif; ?>
 
                             <div class="d-flex justify-content-between">
@@ -204,9 +214,11 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     </div>
     <!-- ================= FIN CONTENIDO PRINCIPAL ================= -->
 
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/admin/producto-form.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="js/utils/modal.js"></script>
+    <script src="js/ui/sidebar.js"></script>
+    <script src="js/usuario/logout.js"></script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
     </button>
     <a href="/">
       <div class="logo">
-        <img src="assets/imagenes/logo_tienda.png" alt="Logo">
+        <img src="assets/imagenes/logo/logo_tienda.png" alt="Logo">
       </div>
     </a>
   </div>
@@ -19,7 +19,7 @@
       <i class="bi bi-person-circle text-white fs-4"></i>
 
       <div class="dropdown-perfil">
-        <a class="btn-cerrar-sesion" href="/logout">Cerrar sesión</a>
+        <a class="btn-cerrar-sesion" href="logout">Cerrar sesión</a>
       </div>
     </div>
   </div>
@@ -47,21 +47,21 @@
     <div class="menu-item">INICIO
   </a>
 </div>
-<a href="/gestionar-usuarios">
+<a href="gestionar-usuarios">
   <div class="menu-item">GESTIONAR USUARIOS</div>
 </a>
-<a href="/gestionar-productos">
+<a href="gestionar-productos">
   <div class="menu-item">GESTIONAR PRODUCTOS</div>
 </a>
-<a href="/gestionar-cupones">
+<a href="gestionar-cupones">
   <div class="menu-item">GESTIONAR CUPONES</div>
 </a>
-<a href="/gestionar-pedidos">
+<a href="gestionar-pedidos">
   <div class="menu-item">ACTUALIZAR PEDIDOS</div>
 </a>
 
 <!-- Logout -->
-<a href="/logout" class="btn btn-danger logout-btn btn-cerrar-sesion w-75">
+<a href="logout" class="btn btn-danger logout-btn btn-cerrar-sesion w-75">
   CERRAR SESIÓN
 </a>
 
@@ -97,4 +97,3 @@
     </div>
   </div>
 </div>
-
