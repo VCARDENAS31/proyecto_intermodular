@@ -1,6 +1,45 @@
 
 
-// Importar Bootstrap 4 (path a node_modules)
+// =====================================================
+// STYLE.SCSS - ARCHIVO PRINCIPAL
+// =====================================================
+// Estructura de imports organizados
+
+// Bootstrap
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+// =====================================================
+// GENERALES
+// =====================================================
+@import "general";
+@import "navbar";
+@import "cards";
+@import "carousel";
+@import "buttons";
+@import "slider";
+@import "footer";
+
+// =====================================================
+// ADMIN
+// =====================================================
+@import "admin-navbar";
+@import "admin-sidebar";
+@import "admin-content";
+@import "admin-cards";
+@import "admin-overlay";
+@import "admin-filters";
+
+// =====================================================
+// FEATURES
+// =====================================================
+@import "platform-frames";
+@import "image-containers";
+@import "modal-animations";
+@import "tabs";
+@import "buttons-vicio";
+@import "sidebar-carrito";
+@import "perfil";
+@import "checkout";
+@import "modal-compra";
 
 

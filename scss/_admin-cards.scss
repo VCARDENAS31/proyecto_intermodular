@@ -1,0 +1,28 @@
+.card-action {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 40px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.card-action i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.card-action:hover i {
+    color: #0b3c6f;
+}
+
+.card-action h6 {
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}

@@ -1,0 +1,21 @@
+@keyframes borderGlow {
+    0% {
+        border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
+    }
+
+    25% {
+        border-image: linear-gradient(90deg, #00ffff, #5500ff, #ff0055, #ff5500, #00ffff) 1;
+    }
+
+    50% {
+        border-image: linear-gradient(135deg, #ff5500, #00ffff, #5500ff, #ff0055, #ff5500) 1;
+    }
+
+    75% {
+        border-image: linear-gradient(180deg, #5500ff, #ff0055, #ff5500, #00ffff, #5500ff) 1;
+    }
+
+    100% {
+        border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;
+    }
+}

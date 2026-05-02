@@ -1,0 +1,12 @@
+#content {
+    flex-grow: 1;
+    margin-top: 56px;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+@media (min-width: 769px) {
+    #sidebarMovil.mostrar+#content {
+        margin-left: 280px;
+    }
+}

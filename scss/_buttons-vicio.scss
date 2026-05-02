@@ -1,0 +1,99 @@
+.btn-vicio {
+    display: block;
+    width: 100%;
+    min-width: 210px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    border: 2px solid #8a2be2;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+    overflow: hidden;
+    background: transparent;
+}
+
+.btn-vicio span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-vicio:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #8a2be2;
+    transition: all .35s;
+    z-index: 1;
+}
+
+.btn-primary {
+    background-color: #8e44ad !important;
+    border-color: #8e44ad !important;
+    border-radius: 0;
+    color: thistle !important;
+    position: relative !important;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 150ms ease-in-out;
+}
+
+.btn-primary:hover:after {
+    width: 110%;
+}
+
+.btn-primary:after {
+    content: '';
+    position: absolute !important;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: thistle;
+    z-index: -1 !important;
+    transition: width 150ms ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: thistle;
+    color: #8e44ad !important;
+}
+
+.btn-secondary {
+    background-color: #3e0078 !important;
+    border-color: #3e0078 !important;
+    border-radius: 0;
+    color: thistle !important;
+    position: relative !important;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 150ms ease-in-out;
+}
+
+.btn-secondary:hover:after {
+    width: 110%;
+}
+
+.btn-secondary:after {
+    content: '';
+    position: absolute !important;
+    display: block;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 100%;
+    background: thistle;
+    z-index: -1 !important;
+    transition: width 150ms ease-in-out;
+}
+
+.btn-secondary:hover {
+    color: #3e0078 !important;
+}

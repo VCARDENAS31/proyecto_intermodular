@@ -1,0 +1,38 @@
+.card {
+    border: 1px solid #c2c1c1;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    border: 1px solid #0d6efd;
+    box-shadow: 0 0 12px rgba(13, 110, 253, 0.5);
+}
+
+.card-action,
+.card-noticia {
+    border-radius: 12px;
+    background-color: #f8ebfe;
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+    cursor: pointer;
+    border: 1px solid #eac7f1;
+}
+
+.card-action:hover,
+.card-noticia:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border: 2px solid #0b3c6f;
+}
+
+.card-noticia {
+    overflow: hidden;
+}
+
+.card-noticia img {
+    transition: transform 0.5s;
+}
+
+.card-noticia:hover img {
+    transform: scale(1.08);
+}

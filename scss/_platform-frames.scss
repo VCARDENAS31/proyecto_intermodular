@@ -1,0 +1,41 @@
+.ps5 .card-img-container::after,
+.xbox .card-img-container::after,
+.switch .card-img-container::after,
+.ps5 .card-img-container-ver-detalle::after,
+.xbox .card-img-container-ver-detalle::after,
+.switch .card-img-container-ver-detalle::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.ps5 .card-img-container::after {
+    background-image: url('../assets/imagenes/marco_ps5.png');
+}
+
+.xbox .card-img-container::after {
+    background-image: url('../assets/imagenes/marco_xbox.png');
+}
+
+.switch .card-img-container::after {
+    background-image: url('../assets/imagenes/marco_ns.png');
+}
+
+.ps5 .card-img-container-ver-detalle::after {
+    background-image: url('../assets/imagenes/marco_ps5.png');
+}
+
+.xbox .card-img-container-ver-detalle::after {
+    background-image: url('../assets/imagenes/marco_xbox.png');
+}
+
+.switch .card-img-container-ver-detalle::after {
+    background-image: url('../assets/imagenes/marco_ns.png');
+}
