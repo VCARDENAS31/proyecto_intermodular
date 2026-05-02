@@ -17,7 +17,6 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/prueba.css">
 </head>
 
 <body>
@@ -384,7 +383,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
 
     <!-- Scripts -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <script src="js/utils/modal.js"></script>
     <script src="js/ui/sidebar.js"></script>
     <script src="js/ui/submenu.js"></script>

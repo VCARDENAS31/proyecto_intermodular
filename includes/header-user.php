@@ -26,7 +26,7 @@
         <!-- DERECHA -->
         <div class="nav-right">
 
-            <a href="contacto" class="text-white"><i class="bi bi-telephone"></i> Contacto</a>
+            <a href="contacto" class="text-white"><i class="bi bi-telephone"></i></a>
 
             <div class="perfil-menu">
                 <i class="bi bi-person-circle"></i>

@@ -1,45 +1,41 @@
-
-
 // =====================================================
-// STYLE.SCSS - ARCHIVO PRINCIPAL
+// STYLE.SCSS - ARCHIVO PRINCIPAL (MODERNIZADO)
 // =====================================================
-// Estructura de imports organizados
+// Estructura de módulos organizados con @use
 
 // Bootstrap
-@import "../node_modules/bootstrap/scss/bootstrap";
+@use "../node_modules/bootstrap/scss/bootstrap";
 
 // =====================================================
 // GENERALES
 // =====================================================
-@import "general";
-@import "navbar";
-@import "cards";
-@import "carousel";
-@import "buttons";
-@import "slider";
-@import "footer";
+@use "general";
+@use "navbar";
+@use "cards";
+@use "carousel";
+@use "buttons";
+@use "slider";
+@use "footer";
 
 // =====================================================
 // ADMIN
 // =====================================================
-@import "admin-navbar";
-@import "admin-sidebar";
-@import "admin-content";
-@import "admin-cards";
-@import "admin-overlay";
-@import "admin-filters";
+@use "admin-navbar";
+@use "admin-sidebar";
+@use "admin-content";
+@use "admin-cards"; 
+@use "admin-overlay";
+@use "admin-filters";
 
 // =====================================================
 // FEATURES
 // =====================================================
-@import "platform-frames";
-@import "image-containers";
-@import "modal-animations";
-@import "tabs";
-@import "buttons-vicio";
-@import "sidebar-carrito";
-@import "perfil";
-@import "checkout";
-@import "modal-compra";
-
-
+@use "platform-frames";
+@use "image-containers";
+@use "modal-animations";
+@use "tabs";
+@use "buttons-vicio";
+@use "sidebar-carrito";
+@use "perfil";
+@use "checkout";
+@use "modal-compra";

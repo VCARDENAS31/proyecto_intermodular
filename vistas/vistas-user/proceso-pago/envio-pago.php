@@ -37,7 +37,6 @@ $totalFinal = $total - $descuento + 2.99;
     <title>Envío y Pago</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/prueba.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>

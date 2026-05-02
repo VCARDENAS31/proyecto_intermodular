@@ -25,7 +25,6 @@ $pedidos = obtenerPedidosUsuario($conexion, $usuario_id);
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/prueba.css">
 </head>
 
 <body>

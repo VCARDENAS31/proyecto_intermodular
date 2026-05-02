@@ -1,50 +1,58 @@
-#arrastrar-scroll { overflow-x: auto; }
+#arrastrar-scroll {
+    overflow-x: auto;
+}
 
 #arrastrar-scroll img {
-  pointer-events: none;
-  user-select: none;
+    pointer-events: none;
+    user-select: none;
 }
 
 #arrastrar-scroll .card {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 #arrastrar-scroll .card-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .contenedor-slider {
-  position: relative;
-  display: flex;
-  align-items: center;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 /* Flechas */
 .btn-scroll {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: #4B4682;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  z-index: 10;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #4B4682;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-scroll:hover {
-  background: #2D2959;
-  transform: scale(1.1);
+    background: #2D2959;
+    transform: scale(1.1);
 }
 
-.prev-btn { left: -20px; }
-.next-btn { right: -20px; }
+.prev-btn {
+    left: -10px;
+}
+
+.next-btn {
+    right: -10px;
+}
+

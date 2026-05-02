@@ -49,8 +49,8 @@
                 <div>
                     <iframe 
                         src="https://www.google.com/maps?q=Pamplona&output=embed"
-                        width="300" 
-                        height="250" 
+                        width="200" 
+                        height="200" 
                         style="border:0;" 
                         allowfullscreen="" 
                         loading="lazy">
