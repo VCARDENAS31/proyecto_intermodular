@@ -128,6 +128,7 @@ RewriteRule ^eliminar-cupon/([0-9]+)$ acciones/cupones/eliminar-cupon.php?id=$1 
 RewriteRule ^eliminar-pedido/([0-9]+)$ acciones/pedidos/eliminar-pedido.php?id=$1 [L,QSA]
 
 
+
 # =========================
 # FORMULARIOS (ADMIN)
 # =========================
@@ -159,6 +160,7 @@ RewriteRule ^actualizar-usuario$ acciones/usuarios/actualizar-usuario.php [L,QSA
 RewriteRule ^actualizar-producto$ acciones/productos/actualizar-producto.php [L,QSA]
 RewriteRule ^actualizar-cupon$ acciones/cupones/actualizar-cupon.php [L,QSA]
 RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
+RewriteRule ^actualizar-perfil$ acciones/usuarios/actualizar-perfil.php [L,QSA]
 
 # =========================
 # CAMBIAR ESTADO (PEDIDOS)
@@ -166,10 +168,11 @@ RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
 
 RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
 
-
-
 # HOME (IMPORTANTE)
 RewriteRule ^$ index.php [L,QSA]
+
+# ERROR RUTA DESCONOCIDA
+RewriteRule ^error-404$ vistas/errores/404.php [L,QSA]
 
 
 
@@ -177,3 +180,7 @@ RewriteRule ^$ index.php [L,QSA]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L]
+
+
+# Página de error personalizada
+ErrorDocument 404 /error-404

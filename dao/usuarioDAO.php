@@ -104,4 +104,18 @@ function obtenerUsuarioPorId($conexion, $id)
     return mysqli_fetch_assoc($res);
 }
 
+
+
+function actualizarPerfilUsuario($conexion, $id, $nombre, $apellidos, $email)
+{
+    $sql = "UPDATE usuarios 
+            SET nombre = ?, apellidos = ?, email = ?
+            WHERE id_usuario = ?";
+
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "sssi", $nombre, $apellidos, $email, $id);
+
+    return mysqli_stmt_execute($stmt);
+}
+
 ?>

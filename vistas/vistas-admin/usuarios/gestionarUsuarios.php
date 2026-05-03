@@ -8,10 +8,10 @@ require_once ROOT_PATH . 'dao/usuarioDAO.php';
 //Iniciar sesión para poder leer los datos del usuario logueado
 session_start();
 
-//Comprobar si el usuario tiene permiso (debe ser admin)
+// Protección básica (opcional pero recomendable)
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    // Si no es admin, lo mandamos al login o mostramos error
-    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+    header("Location: error-404");
+    exit();
 }
 
 // 🔍 BUSCADOR

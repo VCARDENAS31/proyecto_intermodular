@@ -13,10 +13,10 @@
             <div class="col-md-4 mb-4 mb-md-0 footer-col text-center">
                 <h4 class="mb-4">CATEGORÍAS</h4>
                 <ul class="list-unstyled footer-links d-flex flex-column align-items-center gap-2">
-                    <li><a href="#" class="btn-vicio"><span>Videojuegos</span></a></li>
-                    <li><a href="#" class="btn-vicio"><span>Consolas</span></a></li>
-                    <li><a href="#" class="btn-vicio"><span>Accesorios</span></a></li>
-                    <li><a href="#" class="btn-vicio"><span>Próximos lanzamientos</span></a></li>
+                    <li><a href="videojuegos" class="btn-vicio"><span>Videojuegos</span></a></li>
+                    <li><a href="consolas" class="btn-vicio"><span>Consolas</span></a></li>
+                    <li><a href="accesorios" class="btn-vicio"><span>Accesorios</span></a></li>
+                    <li><a href="contacto" class="btn-vicio"><span>Contacto</span></a></li>
                 </ul>
             </div>
 
@@ -36,9 +36,9 @@
                 </p>
 
                 <ul class="list-unstyled footer-social">
-                    <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
-                    <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
-                    <li><a href="#" class="text-white"><i class="bi bi-twitter-x"></i> Twitter</a></li>
+                    <li><a href="https://www.instagram.com" class="text-white"><i class="bi bi-instagram"></i> Instagram</a></li>
+                    <li><a href="https://www.facebook.com" class="text-white"><i class="bi bi-facebook"></i> Facebook</a></li>
+                    <li><a href="https://www.twitter.com" class="text-white"><i class="bi bi-twitter-x"></i> Twitter</a></li>
                 </ul>
             </div>
 

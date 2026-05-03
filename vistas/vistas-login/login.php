@@ -1,17 +1,20 @@
 <?php
 // Inicia la sesión
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | VicioGames</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viciogames | Login</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
 
@@ -24,8 +27,8 @@ session_start();
 
             <!-- Logo y título -->
             <div class="auth-logo">
-                <img src="assets/imagenes/logo_tienda.png" class="img-fluid">
-                <p class="text-light mt-2">Inicia sesión</p>
+                <img src="assets/imagenes/logo/logo_tienda.png" class="img-fluid">
+                <p class="text-light mt-4">Inicia sesión</p>
             </div>
 
             <!-- Mensaje de error -->
@@ -49,7 +52,7 @@ session_start();
             <?php endif; ?>
 
             <!-- Formulario de inicio de sesión -->
-            <form action="/autentificacion" method="POST">
+            <form action="autentificacion" method="POST">
 
 
                 <!-- Input de email con icono -->
@@ -72,7 +75,7 @@ session_start();
 
             <!-- Enlace a la página de registro -->
             <div class="auth-links">
-                <a href="/registro">¿No tienes cuenta? Crear una cuenta</a>
+                <a href="registro">¿No tienes cuenta? Crear una cuenta</a>
             </div>
 
         </div>

@@ -7,14 +7,13 @@ session_start();
 
 <head>
     <base href="http://viciogames.test">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear cuenta | VicioGames</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viciogames | Registro</title>
+    <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
 
@@ -25,13 +24,13 @@ session_start();
 
             <!-- Logo y título del formulario -->
             <div class="auth-logo">
-                <img src="assets/imagenes/logo_tienda.png" class="img-fluid">
+                <img src="assets/imagenes/logo/logo_tienda.png" class="img-fluid">
                 <br><br>
                 <p class="text-light mb-0">Regístrate</p>
             </div>
 
             <!-- Formulario de registro -->
-            <form action="/procesar-registro" method="POST">
+            <form action="procesar-registro" method="POST">
 
                 <!-- Campo nombre -->
                 <div class="mb-3 input-group">
@@ -87,7 +86,7 @@ session_start();
 
             <!-- Enlace para ir a la página de login -->
             <div class="auth-links">
-                <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
+                <a href="login">¿Ya tienes cuenta? Inicia sesión</a>
             </div>
 
         </div>

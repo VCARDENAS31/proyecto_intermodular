@@ -91,7 +91,7 @@ if (!$producto) {
                     </div>
 
                     <div class="tab-content active" id="descripcion">
-                        <p><?php echo $producto['descripcion']; ?></p>
+                        <p class="text-break"><?php echo $producto['descripcion']; ?></p>
                     </div>
 
                     <div class="tab-content" id="detalles">

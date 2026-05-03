@@ -10,8 +10,8 @@ session_start();
 
 //Comprobar si el usuario tiene permiso (debe ser admin)
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    // Si no es admin, lo mandamos al login o mostramos error
-    die("Acceso denegado: No tienes permisos para realizar esta acción.");
+    header("Location: /error-404");
+    exit();
 }
 desactivarCuponesCaducados($conexion);
 
