@@ -320,12 +320,12 @@ function obtenerConsolasFiltradas($conexion, $plataforma, $precio = null, $tiene
  */
 
 
-function obtenerRecomendadosAleatorios($conexion, $plataforma, $id_actual)
+function obtenerRecomendadosAleatorios($conexion, $plataforma, $id_actual, $tipo)
 {
     // Buscamos 10 productos aleatorios de la misma plataforma, excluyendo el actual
     $sql = "SELECT * FROM productos 
             WHERE plataforma = '$plataforma' 
-            AND id_producto != '$id_actual' 
+            AND id_producto != '$id_actual' AND tipo = '$tipo' 
             ORDER BY RAND() 
             LIMIT 10";
 

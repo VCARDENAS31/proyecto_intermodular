@@ -147,7 +147,8 @@ if (!$producto) {
                 $recomendadosAleatorios = obtenerRecomendadosAleatorios(
                     $conexion,
                     $producto['plataforma'],
-                    $producto['id_producto']
+                    $producto['id_producto'],
+                    $tipo = $producto['tipo'],
                 );
 
                 foreach ($recomendadosAleatorios as $recomendado):
