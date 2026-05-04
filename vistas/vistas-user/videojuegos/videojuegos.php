@@ -39,14 +39,13 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-0"
-                            alt="">
+                        <img src="assets/imagenes/" class="d-block w-100" alt="">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/re2_remake.png" class="d-block w-100 img-fluid rounded-0" alt="">
+                        <img src="assets/imagenes/" class="d-block w-100" alt="">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100  rounded-0" alt="">
+                        <img src="assets/imagenes/" class="d-block w-100" alt="">
                     </div>
                 </div>
 
@@ -130,12 +129,23 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> Añadir a la cesta
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                    <?php if ($producto['stock'] > 0): ?>
+
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                            data-id="<?php echo $producto['id_producto']; ?>">
+                                            <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                        </a>
+                                    <?php else: ?>
+
+                                        <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                            Sin stock
+                                        </button>
+
+                                    <?php endif; ?>
+                                    <a href="producto/<?php echo $producto['slug']; ?>"
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 
@@ -192,12 +202,20 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> Añadir a la cesta
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                    <?php if ($producto['stock'] > 0): ?>
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                            data-id="<?php echo $producto['id_producto']; ?>">
+                                            <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                        </a>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                            Sin stock
+                                        </button>
+                                    <?php endif; ?>
+                                    <a href="producto/<?php echo $producto['slug']; ?>"
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 
@@ -253,12 +271,20 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     <p class="mb-3"><b>Precio:</b> <?php echo $producto['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> Añadir a la cesta
-                                    </button>
-                                    <button class="btn btn-outline-secondary btn-sm w-100">
+                                    <?php if ($producto['stock'] > 0): ?>
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                            data-id="<?php echo $producto['id_producto']; ?>">
+                                            <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                        </a>
+                                    <?php else: ?>
+                                        <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                            Sin stock
+                                        </button>
+                                    <?php endif; ?>
+                                    <a href="producto/<?php echo $producto['slug']; ?>"
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 

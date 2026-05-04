@@ -96,7 +96,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
         <section class="barra-filtro p-4 mb-5 shadow-lg">
             <form method="GET" class="row g-3 align-items-end justify-content-center">
 
-                <!-- 🔽 PRECIO -->
+                <!-- PRECIO -->
                 <div class="col-md-3">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">
                         Filtrar por Precio
@@ -127,7 +127,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                     </div>
                 </div>
 
-                <!-- 🔽 LECTOR -->
+                <!-- LECTOR -->
                 <div class="col-md-3">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">
                         Tipo de Consola
@@ -154,7 +154,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                     </div>
                 </div>
 
-                <!-- 🔽 ALMACENAMIENTO -->
+                <!-- ALMACENAMIENTO -->
                 <div class="col-md-3">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">
                         Almacenamiento
@@ -174,7 +174,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                     </div>
                 </div>
 
-                <!-- 🔥 BOTONES -->
+                <!-- BOTONES -->
                 <div class="col-md-3 d-flex gap-2 align-items-end">
                     <button type="submit" class="btn btn-info w-100">Aplicar</button>
                     <a href="mostrar-consolas-xbox.php" class="btn btn-secondary w-100">Reset</a>
@@ -206,12 +206,22 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                             <p class=" mb-3"><b>Precio:</b> <?php echo $fila['precio']; ?>€</p>
                         </div>
                         <div class="mt-auto">
-                            <button class="btn btn-primary btn-sm w-100 mb-1">
-                                <i class="bi bi-cart"></i> Añadir a la cesta
-                            </button>
-                            <button class="btn btn-outline-secondary btn-sm w-100">
+                            <?php if ($fila['stock'] > 0): ?>
+
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                    data-id="<?php echo $fila['id_producto']; ?>">
+                                    <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                </a>
+                            <?php else: ?>
+
+                                <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                    Sin stock
+                                </button>
+
+                            <?php endif; ?>
+                            <a href="producto/<?php echo $fila['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                 <i class="bi bi-eye"></i> VER
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <?php

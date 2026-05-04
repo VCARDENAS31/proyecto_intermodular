@@ -6,9 +6,8 @@ if (empty($_SESSION['carrito'])) {
     exit();
 }
 
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login");
-    exit();
+if (!usuarioLogueado()) {
+    redirigir('login');
 }
 
 $total = 0;

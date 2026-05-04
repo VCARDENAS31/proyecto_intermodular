@@ -2,12 +2,12 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
-
 session_start();
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: login");
-    exit();
+
+if (!esAdmin()) {
+    accesoDenegado();
 }
+
 ?>
 
 <!DOCTYPE html>

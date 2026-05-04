@@ -6,9 +6,8 @@ require_once ROOT_PATH . 'dao/pedidoDAO.php';
 
 session_start();
 
-// Solo admin
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    die("Acceso denegado");
+if (!esAdmin()) {
+    accesoDenegado();
 }
 
 // FILTROS

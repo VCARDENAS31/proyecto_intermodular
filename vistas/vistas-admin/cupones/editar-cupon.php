@@ -6,9 +6,8 @@ require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/cuponDAO.php';
 
 
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' || !isset($_GET['id'])) {
-    header("Location: gestionar-cupones");
-    exit();
+if (!esAdmin()) {
+    accesoDenegado();
 }
 
 $cupon = obtenerCuponPorId($conexion, $_GET['id']);

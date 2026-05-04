@@ -5,7 +5,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/usuarioDAO.php';
 
-
+if (!usuarioLogueado()) {
+    redirigir('login');
+}
 
 $usuario_id = $_SESSION['usuario_id'] ?? null;
 $usuario = obtenerUsuarioPorId($conexion, $usuario_id);

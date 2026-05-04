@@ -34,7 +34,7 @@ $resultados = buscarProductos($conexion, $busqueda);
 
     <div class="container">
 
-        <h2 class="mt-4">Resultados para: "<?php echo htmlspecialchars($busqueda); ?>"</h2>
+        <h2 class="mt-5">Resultados para: "<?php echo htmlspecialchars($busqueda); ?>"</h2>
         <hr>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
@@ -55,7 +55,9 @@ $resultados = buscarProductos($conexion, $busqueda);
                                     </div>
                                 </div>
                             <?php else: ?>
-                                <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                <div>
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
+                                </div>
                             <?php endif; ?>
 
                             <div class="text-center">
@@ -64,12 +66,20 @@ $resultados = buscarProductos($conexion, $busqueda);
                             </div>
 
                             <div class="mt-auto">
-                                <button class="btn btn-primary btn-sm w-100 mb-1">
-                                    <i class="bi bi-cart"></i> AÑADIR AL CARRITO
-                                </button>
+                                <?php if ($producto['stock'] > 0): ?>
 
-                                <a href="producto.php?id=<?php echo $producto['id_producto']; ?>"
-                                    class="btn btn-secondary btn-sm w-100">
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                        data-id="<?php echo $producto['id_producto']; ?>">
+                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                    </a>
+                                <?php else: ?>
+
+                                    <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                        Sin stock
+                                    </button>
+
+                                <?php endif; ?>
+                                <a href="producto/<?php echo $producto['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                     <i class="bi bi-eye"></i> VER
                                 </a>
                             </div>

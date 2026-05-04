@@ -12169,11 +12169,24 @@ hr {
   transform: scale(1.08);
 }
 
-.carousel-item > img {
-  border: 2px solid black;
+.carousel-item img {
   width: 100%;
+  height: 500px;
+  object-fit: cover;
 }
 
+/* Tablet */
+@media (max-width: 992px) {
+  .carousel-item img {
+    height: 350px;
+  }
+}
+/* Móvil */
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 220px;
+  }
+}
 .carousel-indicators .active {
   background-color: #4B4682;
   opacity: 1;

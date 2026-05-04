@@ -240,10 +240,20 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     <p class="mb-3"><b>Precio:</b> <?php echo $consolas['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
-                                    </button>
-                                    <a href="producto.php?id=<?php echo $consolas['id_producto']; ?>"
+                                    <?php if ($consolas['stock'] > 0): ?>
+
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                            data-id="<?php echo $consolas['id_producto']; ?>">
+                                            <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                        </a>
+                                    <?php else: ?>
+
+                                        <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                            Sin stock
+                                        </button>
+
+                                    <?php endif; ?>
+                                    <a href="producto/<?php echo $consolas['slug']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
@@ -300,10 +310,20 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     <p class="mb-3"><b>Precio:</b> <?php echo $accesorio['precio']; ?>€</p>
                                 </div>
                                 <div class="mt-auto">
-                                    <button class="btn btn-primary btn-sm w-100 mb-1">
-                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
-                                    </button>
-                                    <a href="producto.php?id=<?php echo $accesorio['id_producto']; ?>"
+                                    <?php if ($accesorio['stock'] > 0): ?>
+
+                                        <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                            data-id="<?php echo $accesorio['id_producto']; ?>">
+                                            <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                        </a>
+                                    <?php else: ?>
+
+                                        <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                            Sin stock
+                                        </button>
+
+                                    <?php endif; ?>
+                                    <a href="producto/<?php echo $accesorio['slug']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
@@ -337,8 +357,8 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     <p>Sony anuncia una nueva línea de mandos profesionales con acabados metálicos que
                                         llegarán a las tiendas el próximo mes.</p>
                                 </div>
+                            </a>
                         </div>
-                        </a>
                     </div>
 
                     <div class="col-md-4">
@@ -383,7 +403,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
 
     <!-- Scripts -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <script src="js/utils/modal.js"></script>
     <script src="js/ui/sidebar.js"></script>
     <script src="js/ui/submenu.js"></script>

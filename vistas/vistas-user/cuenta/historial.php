@@ -4,9 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/pedidoDAO.php';
 
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: login");
-    exit();
+if (!usuarioLogueado()) {
+    redirigir('login');
 }
 
 $usuario_id = $_SESSION['usuario_id'];

@@ -71,17 +71,17 @@ $precio = $_GET['precio'] ?? '';
             <div class="container p-0">
                 <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
                     <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
-                        <a class="menu-item" href="/accesorios/ps5">
+                        <a class="menu-item" href="accesorios/ps5">
                             <i class="bi bi-controller"></i> PS5
                         </a>
                     </li>
                     <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
-                        <a class="menu-item" href="/accesorios/xbox">
+                        <a class="menu-item" href="accesorios/xbox">
                             <i class="bi bi-xbox"></i> XBOX SERIES X/S
                         </a>
                     </li>
                     <li class="nav-item border-bottom border-secondary border-opacity-0 border-lg-0">
-                        <a class="menu-item " href="/accesorios/switch">
+                        <a class="menu-item " href="accesorios/switch">
                             <i class="bi bi-nintendo-switch"></i> NINTENDO SWITCH
                         </a>
                     </li>
@@ -93,7 +93,7 @@ $precio = $_GET['precio'] ?? '';
         <section class="barra-filtro p-4 mb-5 shadow-lg">
             <form method="GET" class="row g-3 align-items-end justify-content-center">
 
-                <!-- 🔽 CATEGORÍA -->
+                <!-- CATEGORÍA -->
                 <div class="col-12 col-md-4">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">Filtrar por Categoría</label>
 
@@ -148,7 +148,7 @@ $precio = $_GET['precio'] ?? '';
                     </div>
                 </div>
 
-                <!-- 🔽 PRECIO -->
+                <!-- PRECIO -->
                 <div class="col-12 col-md-4">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">Presupuesto</label>
 
@@ -194,7 +194,7 @@ $precio = $_GET['precio'] ?? '';
                     </div>
                 </div>
 
-                <!-- 🔥 BOTONES -->
+                <!-- BOTONES -->
                 <div class="col-12 col-md-3 d-flex gap-2">
 
                     <button type="submit" class="btn btn-info w-100 fw-bold text-uppercase">
@@ -232,11 +232,17 @@ $precio = $_GET['precio'] ?? '';
                             <p class=" mb-3"><b>Precio:</b> <?php echo $fila['precio']; ?>€</p>
                         </div>
                         <div class="mt-auto">
-                            <button class="btn btn-primary btn-sm w-100 mb-1">
-                                <i class="bi bi-cart"></i> Añadir a la cesta
-                            </button>
-                            <a href="producto.php?id=<?php echo $fila['id_producto']; ?>"
-                                class="btn btn-outline-secondary btn-sm w-100">
+                            <?php if ($fila['stock'] > 0): ?>
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                    data-id="<?php echo $fila['id_producto']; ?>">
+                                    <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                </a>
+                            <?php else: ?>
+                                <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                    Sin stock
+                                </button>
+                            <?php endif; ?>
+                            <a href="producto/<?php echo $fila['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                 <i class="bi bi-eye"></i> VER
                             </a>
                         </div>

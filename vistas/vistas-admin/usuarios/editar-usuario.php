@@ -5,10 +5,8 @@ require_once ROOT_PATH . 'dao/usuarioDAO.php';
 
 session_start();
 
-// Protección básica (opcional pero recomendable)
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: error-404");
-    exit();
+if (!esAdmin()) {
+    accesoDenegado();
 }
 
 $user = obtenerUsuarioPorId($conexion, $_GET['id']);

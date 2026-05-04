@@ -156,11 +156,17 @@ if (!$producto) {
 
                     <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2 <?php echo $claseMarco; ?>">
 
-                        <div class="<?php echo $claseMarco; ?>">
-                            <div class="card-img-container rounded shadow-sm">
+                        <?php if (!empty($claseMarco)): ?>
+                            <div class="<?php echo $claseMarco; ?>">
+                                <div class="card-img-container rounded shadow-sm">
+                                    <img class="card-img-top" src="assets/imagenes/<?php echo $recomendado['img_url']; ?>">
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <div>
                                 <img class="card-img-top" src="assets/imagenes/<?php echo $recomendado['img_url']; ?>">
                             </div>
-                        </div>
+                        <?php endif; ?>
 
                         <div class="text-center">
                             <p class="fw-bold mb-0 mt-3"><?php echo $recomendado['nombre']; ?></p>
@@ -168,10 +174,19 @@ if (!$producto) {
                         </div>
 
                         <div class="mt-auto">
-                            <button class="btn btn-primary btn-sm w-100 mb-1">
-                                <i class="bi bi-cart"></i> AÑADIR AL CARRITO
-                            </button>
+                            <?php if ($recomendado['stock'] > 0): ?>
 
+                                <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                    data-id="<?php echo $recomendado['id_producto']; ?>">
+                                    <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                </a>
+                            <?php else: ?>
+
+                                <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                    Sin stock
+                                </button>
+
+                            <?php endif; ?>
                             <a href="producto/<?php echo $recomendado['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                 <i class="bi bi-eye"></i> VER
                             </a>

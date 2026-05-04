@@ -8,11 +8,10 @@ require_once ROOT_PATH . 'dao/cuponDAO.php';
 //Iniciar sesión para poder leer los datos del usuario logueado
 session_start();
 
-//Comprobar si el usuario tiene permiso (debe ser admin)
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: /error-404");
-    exit();
+if (!esAdmin()) {
+    accesoDenegado();
 }
+
 desactivarCuponesCaducados($conexion);
 
 $resultado = obtenerCupones($conexion); // Llamamos a la función

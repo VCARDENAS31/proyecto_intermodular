@@ -5,9 +5,8 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
 
 session_start();
 
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' || !isset($_GET['id'])) {
-    header("Location: gestionar-productos.php");
-    exit();
+if (!esAdmin()) {
+    accesoDenegado();
 }
 
 $producto = obtenerProductoPorId($conexion, $_GET['id']);
