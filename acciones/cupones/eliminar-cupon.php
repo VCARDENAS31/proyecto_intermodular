@@ -17,14 +17,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = (int) $_GET['id'];
 
     if (eliminarCupon($conexion, $id)) {
-        header("Location: /gestionar-cupones?msj=eliminado");
+        header("Location: gestionar-cupones?msj=eliminado");
         exit();
     } else {
-        header("Location: /gestionar-cupones?error=1");
+        header("Location: gestionar-cupones?error=1");
         exit();
     }
 
 } else {
-    header("Location: /gestionar-cupones");
+    header("Location: gestionar-cupones");
     exit();
 }
