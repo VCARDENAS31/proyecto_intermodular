@@ -39,13 +39,13 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/" class="d-block w-100" alt="">
+                        <img src="assets/imagenes/banner1-videojuegos-ps5.webp" class="d-block w-100" alt="Banner videojuegos PS5">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/" class="d-block w-100" alt="">
+                        <img src="assets/imagenes/banner1-videojuegos-xbox.webp" class="d-block w-100" alt="Banner videojuegos XBOX Series X/S">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/" class="d-block w-100" alt="">
+                        <img src="assets/imagenes/banner1-videojuegos-nintendo.webp" class="d-block w-100" alt="Banner videojuegos Nintendo Switch">
                     </div>
                 </div>
 

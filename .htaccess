@@ -1,186 +1,146 @@
 RewriteEngine On
 
-
-
-# eliminar .php
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+# ========================================
+#  ELIMINAR .php DE LA URL (SEO)
+# ========================================
+RewriteCond %{THE_REQUEST} \s([^.]+)\.php [NC]
 RewriteRule ^ %1 [R=301,L]
 
 
-# ACCESORIOS
-RewriteRule ^accesorios$ vistas/vistas-user/accesorios/accesorios.php [L,QSA]
-
-# ACCESORIOS PS5
-RewriteRule ^accesorios/ps5$ vistas/vistas-user/accesorios/accesorios-ps5.php [L,QSA]
-
-# ACCESORIOS XBOX
-RewriteRule ^accesorios/xbox$ vistas/vistas-user/accesorios/accesorios-xbox.php [L,QSA]
-
-# ACCESORIOS SWITCH
-RewriteRule ^accesorios/switch$ vistas/vistas-user/accesorios/accesorios-nintendo-switch.php [L,QSA]
+# ========================================
+#  HOME
+# ========================================
+RewriteRule ^$ index.php [L,QSA]
 
 
-
-# VIDEOJUEGOS
-RewriteRule ^videojuegos$ vistas/vistas-user/videojuegos/videojuegos.php [L,QSA]
-
-# VIDEOJUEGOS PS5
-RewriteRule ^videojuegos/ps5$ vistas/vistas-user/videojuegos/videojuegos-ps5.php [L,QSA]
-
-# VIDEOJUEGOS XBOX
-RewriteRule ^videojuegos/xbox$ vistas/vistas-user/videojuegos/videojuegos-xbox.php [L,QSA]
-
-# VIDEOJUEGOS SWITCH
-RewriteRule ^videojuegos/switch$ vistas/vistas-user/videojuegos/videojuegos-nintendo-switch.php [L,QSA]
-
-
-
-# CONSOLAS
-RewriteRule ^consolas$ vistas/vistas-user/consolas/consolas.php [L,QSA]
-
-# CONSOLAS PS5
-RewriteRule ^consolas/ps5$ vistas/vistas-user/consolas/consolas-ps5.php [L,QSA]
-
-# CONSOLAS XBOX
-RewriteRule ^consolas/xbox$ vistas/vistas-user/consolas/consolas-xbox.php [L,QSA]
-
-# CONSOLAS SWITCH
-RewriteRule ^consolas/switch$ vistas/vistas-user/consolas/consolas-nintendo-switch.php [L,QSA]
-
-
-# PERFIL CUENTA
+# ========================================
+#  CUENTA USUARIO
+# ========================================
 RewriteRule ^perfil$ vistas/vistas-user/cuenta/perfil.php [L,QSA]
-
-# HISTORIAL DE PEDIDOS
 RewriteRule ^historial$ vistas/vistas-user/cuenta/historial.php [L,QSA]
 
-#CONTACTO
+
+# ========================================
+#  CONTACTO
+# ========================================
 RewriteRule ^contacto$ vistas/vistas-user/contacto.php [L,QSA]
 
 
-
-# AUTENTIFICACION
-RewriteRule ^autentificacion$ acciones/login/autentificacion.php [L,QSA]
-
-# PROCESAR REGISTRO
-RewriteRule ^procesar-registro$ acciones/login/procesar-registro.php [L,QSA]
-
-# LOGOUT
-RewriteRule ^logout$ acciones/login/logout.php [L,QSA]
-
-# LOGIN
+# ========================================
+#  AUTENTICACIÓN
+# ========================================
 RewriteRule ^login$ vistas/vistas-login/login.php [L,QSA]
-
-# REGISTRO
 RewriteRule ^registro$ vistas/vistas-login/registro.php [L,QSA]
 
+RewriteRule ^autentificacion$ acciones/login/autentificacion.php [L,QSA]
+RewriteRule ^procesar-registro$ acciones/login/procesar-registro.php [L,QSA]
+RewriteRule ^logout$ acciones/login/logout.php [L,QSA]
 
 
-
-
-# CATEGORIA
-RewriteRule ^categoria/([a-zA-Z0-9_-]+)$ categoria.php?nombre=$1 [L,QSA]
-
-# AGREGAR AL CARRITO
+# ========================================
+#  CARRITO / PEDIDOS
+# ========================================
 RewriteRule ^agregar-carrito$ acciones/carrito/agregar-carrito.php [L,QSA]
-
-# ELIMINAR DEL CARRITO
 RewriteRule ^eliminar-carrito$ acciones/carrito/eliminar-producto-del-carrito.php [L,QSA]
 
-#BUSCAR
-RewriteRule ^buscar$ vistas/vistas-user/buscar.php [L,QSA]
-
-# CHECKOUT
-RewriteRule ^aplicar-cupon$ acciones/cupones/aplicar-cupon.php [L,QSA]
-
-# CHECKOUT
-RewriteRule ^pasarela$ vistas/vistas-user/proceso-pago/pasarela.php [L,QSA]
-
-# CHECKOUT
 RewriteRule ^checkout$ vistas/vistas-user/proceso-pago/envio-pago.php [L,QSA]
-
-# PROCESAR PEDIDO
+RewriteRule ^pasarela$ vistas/vistas-user/proceso-pago/pasarela.php [L,QSA]
 RewriteRule ^procesar-pedido$ acciones/pedidos/procesar-pedido.php [L,QSA]
 
-#VER PRODUCTO
+RewriteRule ^aplicar-cupon$ acciones/cupones/aplicar-cupon.php [L,QSA]
+
+
+# ========================================
+#  BÚSQUEDA / CATEGORÍA / PRODUCTO
+# ========================================
+RewriteRule ^buscar$ vistas/vistas-user/buscar.php [L,QSA]
+
+RewriteRule ^categoria/([a-zA-Z0-9_-]+)$ categoria.php?nombre=$1 [L,QSA]
 RewriteRule ^producto/([a-zA-Z0-9-]+)$ vistas/vistas-user/producto.php?slug=$1 [L,QSA]
 
 
-# ACCIONES ADMIN
+# ========================================
+#  VIDEOJUEGOS
+# ========================================
+RewriteRule ^videojuegos$ vistas/vistas-user/videojuegos/videojuegos.php [L,QSA]
+RewriteRule ^videojuegos/ps5$ vistas/vistas-user/videojuegos/videojuegos-ps5.php [L,QSA]
+RewriteRule ^videojuegos/xbox$ vistas/vistas-user/videojuegos/videojuegos-xbox.php [L,QSA]
+RewriteRule ^videojuegos/switch$ vistas/vistas-user/videojuegos/videojuegos-nintendo-switch.php [L,QSA]
+
+
+# ========================================
+#  CONSOLAS
+# ========================================
+RewriteRule ^consolas$ vistas/vistas-user/consolas/consolas.php [L,QSA]
+RewriteRule ^consolas/ps5$ vistas/vistas-user/consolas/consolas-ps5.php [L,QSA]
+RewriteRule ^consolas/xbox$ vistas/vistas-user/consolas/consolas-xbox.php [L,QSA]
+RewriteRule ^consolas/switch$ vistas/vistas-user/consolas/consolas-nintendo-switch.php [L,QSA]
+
+
+# ========================================
+#  ACCESORIOS
+# ========================================
+RewriteRule ^accesorios$ vistas/vistas-user/accesorios/accesorios.php [L,QSA]
+RewriteRule ^accesorios/ps5$ vistas/vistas-user/accesorios/accesorios-ps5.php [L,QSA]
+RewriteRule ^accesorios/xbox$ vistas/vistas-user/accesorios/accesorios-xbox.php [L,QSA]
+RewriteRule ^accesorios/switch$ vistas/vistas-user/accesorios/accesorios-nintendo-switch.php [L,QSA]
+
+
+# ========================================
+#  PANEL ADMIN
+# ========================================
 RewriteRule ^gestionar-usuarios$ vistas/vistas-admin/usuarios/gestionarUsuarios.php [L,QSA]
-
 RewriteRule ^gestionar-productos$ vistas/vistas-admin/productos/gestionarProductos.php [L,QSA]
-
 RewriteRule ^gestionar-cupones$ vistas/vistas-admin/cupones/gestionarCupones.php [L,QSA]
-
 RewriteRule ^gestionar-pedidos$ vistas/vistas-admin/pedidos/actualizar-pedidos.php [L,QSA]
 
-# ELIMINAR USUARIO
-RewriteRule ^eliminar-usuario/([0-9]+)$ acciones/usuarios/eliminar-usuario.php?id=$1 [L,QSA]
 
-# ELIMINAR PRODUCTO
-RewriteRule ^eliminar-producto/([0-9]+)$ acciones/productos/eliminar-producto.php?id=$1 [L,QSA]
-
-# ELIMINAR CUPON
-RewriteRule ^eliminar-cupon/([0-9]+)$ acciones/cupones/eliminar-cupon.php?id=$1 [L,QSA]
-
-# ELIMINAR PEDIDO
-RewriteRule ^eliminar-pedido/([0-9]+)$ acciones/pedidos/eliminar-pedido.php?id=$1 [L,QSA]
-
-
-
-# =========================
-# FORMULARIOS (ADMIN)
-# =========================
-
-# AÑADIR
+# ========================================
+#  FORMULARIOS ADMIN
+# ========================================
 RewriteRule ^anadir-usuario$ vistas/vistas-admin/usuarios/anadir-usuario.php [L,QSA]
 RewriteRule ^anadir-producto$ vistas/vistas-admin/productos/anadir-producto.php [L,QSA]
 RewriteRule ^anadir-cupon$ vistas/vistas-admin/cupones/anadir-cupon.php [L,QSA]
 
-# EDITAR (con ID)
 RewriteRule ^editar-usuario/([0-9]+)$ vistas/vistas-admin/usuarios/editar-usuario.php?id=$1 [L,QSA]
 RewriteRule ^editar-producto/([0-9]+)$ vistas/vistas-admin/productos/editar-producto.php?id=$1 [L,QSA]
 RewriteRule ^editar-cupon/([0-9]+)$ vistas/vistas-admin/cupones/editar-cupon.php?id=$1 [L,QSA]
 
 
-# =========================
-# INSERTAR
-# =========================
-
+# ========================================
+#  ACCIONES (CRUD)
+# ========================================
 RewriteRule ^insertar-usuario$ acciones/usuarios/insertar-usuario.php [L,QSA]
 RewriteRule ^insertar-producto$ acciones/productos/insertar-producto.php [L,QSA]
 RewriteRule ^insertar-cupon$ acciones/cupones/insertar-cupon.php [L,QSA]
 
-# =========================
-# ACTUALIZAR
-# =========================
-
 RewriteRule ^actualizar-usuario$ acciones/usuarios/actualizar-usuario.php [L,QSA]
 RewriteRule ^actualizar-producto$ acciones/productos/actualizar-producto.php [L,QSA]
 RewriteRule ^actualizar-cupon$ acciones/cupones/actualizar-cupon.php [L,QSA]
-RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
 RewriteRule ^actualizar-perfil$ acciones/usuarios/actualizar-perfil.php [L,QSA]
 
-# =========================
-# CAMBIAR ESTADO (PEDIDOS)
-# =========================
-
 RewriteRule ^cambiar-estado$ acciones/pedidos/cambiar-estado.php [L,QSA]
 
-# HOME (IMPORTANTE)
-RewriteRule ^$ index.php [L,QSA]
 
-# ERROR RUTA DESCONOCIDA
-RewriteRule ^error-404$ vistas/errores/404.php [L,QSA]
+# ========================================
+#  ELIMINAR
+# ========================================
+RewriteRule ^eliminar-usuario/([0-9]+)$ acciones/usuarios/eliminar-usuario.php?id=$1 [L,QSA]
+RewriteRule ^eliminar-producto/([0-9]+)$ acciones/productos/eliminar-producto.php?id=$1 [L,QSA]
+RewriteRule ^eliminar-cupon/([0-9]+)$ acciones/cupones/eliminar-cupon.php?id=$1 [L,QSA]
+RewriteRule ^eliminar-pedido/([0-9]+)$ acciones/pedidos/eliminar-pedido.php?id=$1 [L,QSA]
 
 
-
-# si existe archivo .php, úsalo automáticamente
+# ========================================
+#  AUTO CARGAR .php SI EXISTE
+# ========================================
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L]
 
 
-# Página de error personalizada
+# ========================================
+#  ERROR 404 PERSONALIZADO
+# ========================================
+RewriteRule ^error-404$ vistas/errores/404.php [L,QSA]
 ErrorDocument 404 /error-404

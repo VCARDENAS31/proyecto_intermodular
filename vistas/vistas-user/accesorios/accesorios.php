@@ -39,14 +39,16 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-0"
-                            alt="">
+                        <img src="assets/imagenes/banner1-accesorios-ps5.webp" class="d-block w-100"
+                            alt="Banner accesorios PS5">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/re2_remake.png" class="d-block w-100 img-fluid rounded-0" alt="">
+                        <img src="assets/imagenes/banner1-accesorios-xbox.webp" class="d-block w-100"
+                            alt="Banner accesorios XBOX Series X/S">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100  rounded-0" alt="">
+                        <img src="assets/imagenes/banner1-accesorios-nintendo.webp" class="d-block w-100"
+                            alt="Banner accesorios Nintendo Switch">
                     </div>
                 </div>
 
@@ -88,7 +90,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
         </div>
 
         <!-- Accesorios PS5 -->
-        <section id="videojuegos-ps5">
+        <section id="accesorios-ps5">
             <div class="container p-4 mt-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
@@ -99,7 +101,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS PS5</h2>
                     </div>
 
-                    <a href="/accesorios/ps5" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="accesorios/ps5" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -143,7 +145,8 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                         </button>
 
                                     <?php endif; ?>
-                                    <a href="producto/<?php echo $producto['slug']; ?>" class="btn btn-secondary btn-sm w-100">
+                                    <a href="producto/<?php echo $producto['slug']; ?>"
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -160,7 +163,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
 
 
         <!-- Videojuegos XBOX SERIES X/S -->
-        <section id="videojuegos-xbox">
+        <section id="accesorios-xbox">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
@@ -171,7 +174,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS XBOX SERIES X/S</h2>
                     </div>
 
-                    <a href="/accesorios/xbox" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="accesorios/xbox" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -212,7 +215,8 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                             Sin stock
                                         </button>
                                     <?php endif; ?>
-                                    <a href="producto/<?php echo $producto['slug']; ?>" class="btn btn-secondary btn-sm w-100">
+                                    <a href="producto/<?php echo $producto['slug']; ?>"
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>
@@ -228,7 +232,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
         </section>
 
         <!-- VIDEOJUEGOS NINTENDO SWITCH -->
-        <section id="videojuegos-nintendo">
+        <section id="accesorios-nintendo">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
 
@@ -239,7 +243,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         <h2 class="fw-bold mb-0">ACCESORIOS NINTENDO SWITCH</h2>
                     </div>
 
-                    <a href="/accesorios/switch" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
+                    <a href="accesorios/switch" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
 
@@ -280,7 +284,8 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                             Sin stock
                                         </button>
                                     <?php endif; ?>
-                                    <a href="producto/<?php echo $producto['slug']; ?>" class="btn btn-secondary btn-sm w-100">
+                                    <a href="producto/<?php echo $producto['slug']; ?>"
+                                        class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
                                 </div>

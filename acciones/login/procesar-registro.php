@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         !preg_match('/[\W_]/', $password_plana)
     ) {
         $_SESSION['error_registro'] = "La contraseña debe tener mínimo 5 caracteres, una mayúscula y un carácter especial.";
-        header("Location: /registro");
+        header("Location: registro");
         exit();
     }
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ==============================
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['error_registro'] = "Email no válido.";
-        header("Location: /registro");
+        header("Location: registro");
         exit();
     }
 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['exito_registro'] = "Usuario creado correctamente. Ya puedes iniciar sesión.";
 
         // Redirigir al login (URL limpia)
-        header("Location: /login");
+        header("Location: login");
         exit();
 
     } catch (mysqli_sql_exception $e) {
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['error_registro'] = "Error al registrar usuario.";
         }
 
-        header("Location: /registro");
+        header("Location: registro");
         exit();
     }
 }

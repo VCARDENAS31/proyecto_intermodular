@@ -38,14 +38,13 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-4"
-                            alt="">
+                        <img src="assets/imagenes/banner1-principal.webp" class="d-block w-100 img-fluid rounded-4" alt="Banner principal">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/re2_remake.png" class="d-block w-100 img-fluid rounded-4" alt="">
+                        <img src="assets/imagenes/banner2-principal.webp" class="d-block w-100 img-fluid rounded-4" alt="Banner secundario">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100  rounded-4" alt="">
+                        <img src="assets/imagenes/banner3-principal.webp" class="d-block w-100 img-fluid rounded-4" alt="Banner terciario">
                     </div>
                 </div>
 

@@ -12175,16 +12175,18 @@ hr {
   object-fit: cover;
 }
 
-/* Tablet */
-@media (max-width: 992px) {
-  .carousel-item img {
-    height: 350px;
-  }
-}
-/* Móvil */
+/* 📱 MÓVIL: no recortar */
 @media (max-width: 576px) {
   .carousel-item img {
-    height: 220px;
+    height: auto;
+    object-fit: cover;
+  }
+}
+/* Tablet */
+@media (max-width: 1024px) {
+  .carousel-item img {
+    height: auto;
+    object-fit: cover;
   }
 }
 .carousel-indicators .active {

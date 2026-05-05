@@ -39,20 +39,17 @@ $precio = $_GET['precio'] ?? '';
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="0"
                         class="active"></button>
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="2"></button>
                 </div>
 
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/the_last_of_us_II.png" class="d-block w-100 img-fluid rounded-0"
-                            alt="">
+                        <img src="assets/imagenes/banner1-videojuegos-xbox.webp" class="d-block w-100"
+                            alt="Banner videojuegos Xbox Series X/S">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/re2_remake.png" class="d-block w-100 img-fluid rounded-0" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/imagenes/gow_ragnarok.png" class="d-block w-100  rounded-0" alt="">
+                        <img src="assets/imagenes/banner2-videojuegos-xbox.webp" class="d-block w-100"
+                            alt="Banner videojuegos Xbox Series X/S">
                     </div>
                 </div>
 
@@ -65,6 +62,7 @@ $precio = $_GET['precio'] ?? '';
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
+
             </div>
         </div>
 
@@ -188,17 +186,9 @@ $precio = $_GET['precio'] ?? '';
                 </div>
 
                 <!-- BOTONES -->
-                <div class="col-12 col-md-3 d-flex gap-2">
-
-                    <button type="submit" class="btn btn-info w-100 fw-bold text-uppercase">
-                        <i class="bi bi-filter"></i> Aplicar
-                    </button>
-
-                    <!-- CAMBIA EL NOMBRE -->
-                    <a href="mostrar-videojuegos-xbox.php" class="btn btn-secondary w-100">
-                        Reset
-                    </a>
-
+                <div class="col-md-3 d-flex gap-2 align-items-end">
+                    <button type="submit" class="btn btn-info w-100">Aplicar</button>
+                    <a href="videojuegos-xbox.php" class="btn btn-secondary w-100">Reset</a>
                 </div>
 
             </form>

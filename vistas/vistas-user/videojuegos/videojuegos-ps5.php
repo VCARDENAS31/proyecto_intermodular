@@ -38,19 +38,15 @@ $precio = $_GET['precio'] ?? '';
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="0"
                         class="active"></button>
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="1"></button>
-                    <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="2"></button>
                 </div>
 
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="assets/imagenes/banner1-videojuegos-ps5.webp" class="d-block w-100" alt="">
+                        <img src="assets/imagenes/banner1-videojuegos-ps5.webp" class="d-block w-100" alt="Banner 1 videojuegos PS5">
                     </div>
                     <div class="carousel-item">
-                        <img src="assets/imagenes/banner2-videojuegos-ps5.webp" class="d-block w-100" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/imagenes/banner3-videojuegos-ps5.webp" class="d-block w-100" alt="">
+                        <img src="assets/imagenes/banner2-videojuegos-ps5.webp" class="d-block w-100" alt="Banner 2 videojuegos PS5">
                     </div>
                 </div>
 
@@ -187,17 +183,9 @@ $precio = $_GET['precio'] ?? '';
                 </div>
 
                 <!-- BOTONES -->
-                <div class="col-12 col-md-3 d-flex gap-2">
-
-                    <button type="submit" class="btn btn-info w-100 fw-bold text-uppercase">
-                        <i class="bi bi-filter"></i> Aplicar
-                    </button>
-
-                    <!-- CAMBIA EL NOMBRE -->
-                    <a href="mostrar-videojuegos-ps5.php" class="btn btn-secondary w-100">
-                        Reset
-                    </a>
-
+                <div class="col-md-3 d-flex gap-2 align-items-end">
+                    <button type="submit" class="btn btn-info w-100">Aplicar</button>
+                    <a href="videojuegos-ps5.php" class="btn btn-secondary w-100">Reset</a>
                 </div>
 
             </form>

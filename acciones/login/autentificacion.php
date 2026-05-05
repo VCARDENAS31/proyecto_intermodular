@@ -40,6 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error_login'] = "Email incorrecto.";
     }
 
-    header("Location: /login");
+    header("Location: login");
     exit();
 }
