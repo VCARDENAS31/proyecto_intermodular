@@ -1,3 +1,7 @@
+/**
+ * Lanza una alerta de confirmación para eliminar un usuario.
+ * Si se confirma, redirige a la ruta de eliminación con el ID correspondiente.
+ */
 function confirmarEliminarUsuario(id) {
     confirmarAccion(
         "¿Eliminar este usuario? Esta acción no se puede deshacer.",
@@ -7,6 +11,10 @@ function confirmarEliminarUsuario(id) {
     );
 }
 
+/**
+ * Lanza una alerta de confirmación para eliminar un producto.
+ * Si se confirma, redirige a la ruta de eliminación con el ID correspondiente.
+ */
 function confirmarEliminarProducto(id) {
     confirmarAccion(
         "¿Eliminar este producto? Esta acción no se puede deshacer.",
@@ -16,6 +24,10 @@ function confirmarEliminarProducto(id) {
     );
 }
 
+/**
+ * Lanza una alerta de confirmación para eliminar un cupón.
+ * Si se confirma, redirige a la ruta de eliminación con el ID correspondiente.
+ */
 function confirmarEliminarCupon(id) {
     confirmarAccion(
         "¿Eliminar este cupón?",
@@ -25,6 +37,10 @@ function confirmarEliminarCupon(id) {
     );
 }
 
+/**
+ * Lanza una alerta de confirmación para eliminar un pedido.
+ * Si se confirma, redirige a la ruta de eliminación con el ID correspondiente.
+ */
 function confirmarEliminarPedido(id) {
     confirmarAccion(
         "¿Eliminar este pedido? Esta acción no se puede deshacer.",

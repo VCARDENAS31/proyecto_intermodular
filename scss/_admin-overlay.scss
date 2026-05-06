@@ -1,3 +1,8 @@
+/* ==========================================================================
+   ADMIN OVERLAY
+   Capa semitransparente que cubre el contenido cuando el sidebar está abierto.
+   ========================================================================== */
+
 #overlaySidebar {
     position: fixed;
     top: 0;
@@ -9,10 +14,12 @@
     display: none;
 }
 
+/* Estado visible del overlay */
 #overlaySidebar.mostrar {
     display: block;
 }
 
+/* Margen superior para títulos en secciones de gestión */
 *.contenido-gestion>*>h1 {
     margin-top: 150px;
 }

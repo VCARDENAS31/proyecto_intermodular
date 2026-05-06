@@ -17,8 +17,8 @@ header('Content-Type: application/json');
 // Establece el tipo de contenido de la respuesta como JSON
 
 if (!isset($_SESSION['usuario_id'])) {
-    // Verifica si el usuario ha iniciado sesión; si no, devuelve error
-    echo json_encode(["ok" => false]);
+    // Verifica si el usuario ha iniciado sesión; si no, sale un mensje de no logueado
+    echo json_encode(["ok" => false, "msg" => "No logueado"]);
     exit();
 }
 

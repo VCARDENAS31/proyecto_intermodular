@@ -1,3 +1,8 @@
+/* ==========================================================================
+   MODAL ANIMATIONS
+   Animación del borde RGB para modales de producto.
+   ========================================================================== */
+
 @keyframes borderGlow {
     0% {
         border-image: linear-gradient(45deg, #ff0055, #ff5500, #00ffff, #5500ff, #ff0055) 1;

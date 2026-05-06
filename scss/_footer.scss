@@ -1,9 +1,15 @@
+/* ==========================================================================
+   FOOTER
+   Pie de página con logo, enlaces, contacto y redes sociales.
+   ========================================================================== */
+
 .footer {
     background: linear-gradient(180deg, #2d2959, #2a2753);
     color: #fff;
     font-size: 14px;
 }
 
+/* Sección superior del footer */
 .footer-top {
     background: #1f1c3f;
 }
@@ -16,6 +22,7 @@
     position: relative;
 }
 
+/* Títulos de columnas */
 .footer-title {
     font-size: 13px;
     letter-spacing: 1.5px;
@@ -23,6 +30,7 @@
     font-weight: 600;
 }
 
+/* Enlaces del footer */
 .footer-links li {
     margin-bottom: 10px;
 }
@@ -40,6 +48,7 @@
     background: rgba(255, 255, 255, 0.18);
 }
 
+/* Información de contacto */
 .footer-contact {
     margin-bottom: 14px;
     opacity: 0.9;
@@ -49,6 +58,7 @@
     margin-right: 8px;
 }
 
+/* Redes sociales */
 .footer-social li {
     margin-bottom: 12px;
     opacity: 0.9;
@@ -64,6 +74,7 @@
     margin-right: 10px;
 }
 
+/* Colores de iconos de redes */
 .bi-instagram {
     color: #e1306c;
 }
@@ -76,12 +87,14 @@
     color: #1da1f2;
 }
 
+/* Sección inferior (copyright) */
 .footer-bottom {
     background: rgba(0, 0, 0, 0.15);
     color: #ccc;
     font-size: 13px;
 }
 
+/* Responsive: centrar en móvil */
 @media (max-width: 768px) {
     .footer-title {
         text-align: center;

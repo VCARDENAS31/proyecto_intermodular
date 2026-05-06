@@ -1,3 +1,10 @@
+/* ==========================================================================
+   PLATFORM FRAMES
+   Marcos decorativos superpuestos según plataforma (PS5, Xbox, Switch).
+   Se aplican como pseudo-elementos sobre las imágenes.
+   ========================================================================== */
+
+/* Base para pseudo-elementos de marco */
 .ps5 .card-img-container::after,
 .xbox .card-img-container::after,
 .switch .card-img-container::after,
@@ -16,18 +23,22 @@
     z-index: 10;
 }
 
+/* Marco PS5 */
 .ps5 .card-img-container::after {
     background-image: url('../assets/imagenes/marco_ps5.png');
 }
 
+/* Marco Xbox */
 .xbox .card-img-container::after {
     background-image: url('../assets/imagenes/marco_xbox.png');
 }
 
+/* Marco Nintendo Switch */
 .switch .card-img-container::after {
     background-image: url('../assets/imagenes/marco_ns.png');
 }
 
+/* Marcos para vista de detalle */
 .ps5 .card-img-container-ver-detalle::after {
     background-image: url('../assets/imagenes/marco_ps5.png');
 }

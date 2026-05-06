@@ -2,7 +2,7 @@
     <!-- NAVBAR PRINCIPAL -->
     <nav class="navbar-principal navbar-dark">
 
-        <!-- IZQUIERDA -->
+        <!-- IZQUIERDA: Botón menú móvil y logo -->
         <div class="nav-left">
             <button class="navbar-toggler d-lg-none" type="button" id="botonMenu">
                 <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
             </a>
         </div>
 
-        <!-- BUSCADOR (SOLO ESCRITORIO) -->
+        <!-- CENTRO: Buscador solo en escritorio -->
         <div class="nav-center">
             <form class="buscador position-relative" action="buscar" method="GET">
                 <input type="search" name="q" class="form-control rounded-pill ps-4" placeholder="Buscar videojuegos..."
@@ -23,27 +23,30 @@
             </form>
         </div>
 
-        <!-- DERECHA -->
+        <!-- DERECHA: Contacto, perfil y carrito -->
         <div class="nav-right">
 
             <a href="contacto" class="text-white"><i class="bi bi-telephone"></i></a>
 
+            <!-- Menú desplegable de perfil -->
             <div class="perfil-menu">
                 <i class="bi bi-person-circle"></i>
 
                 <div class="dropdown-perfil">
                     <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
+                        <!-- Usuario logueado: opciones de perfil -->
                         <a href="perfil">Mi perfil</a>
                         <a href="historial">Historial de pedidos</a>
                         <a class="btn-cerrar-sesion" href="logout">Cerrar sesión</a>
                     <?php else: ?>
+                        <!-- Usuario no logueado: login y registro -->
                         <a href="login">Iniciar sesión</a>
                         <a href="registro">Registrarse</a>
                     <?php endif; ?>
                 </div>
             </div>
 
-
+            <!-- Icono del carrito -->
             <i class="bi bi-cart"></i>
 
         </div>
@@ -61,17 +64,19 @@
     </div>
 
 
-    <!-- SIDEBAR MOVIL -->
+    <!-- SIDEBAR MOVIL: Menú de navegación para dispositivos móviles -->
     <div id="sidebarMenu">
         <button id="cerrarMenu" class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
             aria-label="Cerrar"></button>
 
+        <!-- Sección de usuario en sidebar -->
         <div class="user-section">
             <i class="bi bi-person-circle"></i>
             <p class="mt-2 mb-0">BIENVENIDO</p>
 
             <strong>
                 <?php echo isset($_SESSION['usuario_nombre']) ? htmlspecialchars($_SESSION['usuario_nombre']) : 'Invitado'; ?>
+                <!-- Muestra el nombre del usuario logueado o 'Invitado' si no hay sesión -->
             </strong>
         </div>
 
@@ -109,36 +114,38 @@
         </div>
         <!-- Botón cerrar sesión -->
         <?php if (isset($_SESSION['usuario_nombre']) && $_SESSION['usuario_nombre'] !== ''): ?>
+            <!-- Solo mostrar si hay usuario logueado -->
             <a href="/logout" class="btn btn-danger logout-btn btn-cerrar-sesion w-75">
                 CERRAR SESIÓN
             </a>
         <?php endif; ?>
     </div>
 
-    <!-- OVERLAY para cerrar sidebar -->
+    <!-- OVERLAY para cerrar sidebar al hacer clic fuera -->
     <div id="overlaySidebarMenu"></div>
 
 
-    <!-- SIDEBAR CARRITO -->
+    <!-- SIDEBAR CARRITO: Panel lateral que muestra los productos en el carrito -->
     <div id="sidebarCarrito">
 
-        <!-- HEADER -->
+        <!-- HEADER del sidebar del carrito -->
         <div class="carrito-header">
             <h5>Tu carrito</h5>
             <button id="cerrarCarrito" class="btn-close btn-close-white"></button>
         </div>
 
-        <!-- PRODUCTOS -->
+        <!-- CUERPO: Lista de productos en el carrito -->
         <div class="carrito-body">
 
             <?php
-            $total = 0;
+            $total = 0; // Inicializar total del carrito
 
             if (!empty($_SESSION['carrito'])) {
+                // Iterar sobre cada producto en el carrito de la sesión
                 foreach ($_SESSION['carrito'] as $id => $producto) {
 
-                    $subtotal = round($producto['precio'] * $producto['cantidad'], 2);
-                    $total += $subtotal;
+                    $subtotal = round($producto['precio'] * $producto['cantidad'], 2); // Calcular subtotal por producto
+                    $total += $subtotal; // Sumar al total general
 
                     ?>
                     <div class="carrito-item">
@@ -153,7 +160,7 @@
                             </span>
                         </div>
 
-                        <!-- eliminar -->
+                        <!-- Botón para eliminar producto del carrito -->
                         <a href="#" class="btn-eliminar" data-id="<?php echo $id; ?>">
                             <i class="bi bi-trash eliminar"></i>
                         </a>
@@ -161,23 +168,23 @@
                     <?php
                 }
             } else {
-                echo "<p>Carrito vacío</p>";
+                echo "<p>Carrito vacío</p>"; // Mensaje si no hay productos
             }
             ?>
 
         </div>
 
-        <!-- FOOTER -->
-        <!-- FOOTER del sidebarCarrito -->
+        <!-- FOOTER: Total y botón de pago -->
         <div class="carrito-footer">
             <div class="total">
-                <strong><?php echo $total; ?>€</strong>
+                <strong><?php echo $total; ?>€</strong> <!-- Mostrar total calculado -->
             </div>
 
-            <?php $estaVacio = empty($_SESSION['carrito']); ?>
+            <?php $estaVacio = empty($_SESSION['carrito']); // Verificar si carrito está vacío ?>
 
             <a href="pasarela" id="btnPagar" class="btn btn-primary w-100 <?php echo $estaVacio ? 'disabled' : ''; ?>"
-                <?php echo $estaVacio ?>>
+                <?php echo $estaVacio ? 'aria-disabled="true"' : ''; ?>>
+                <!-- Botón de pago: deshabilitado si carrito vacío -->
                 Ir a pagar
             </a>
         </div>
@@ -185,11 +192,11 @@
 
     </div>
 
-    <!-- OVERLAY -->
+    <!-- OVERLAY para cerrar sidebar del carrito -->
     <div id="overlayCarrito"></div>
 
 
-    <!-- NAVBAR SECUNDARIO -->
+    <!-- NAVBAR SECUNDARIO: Navegación principal con mega-menús (solo desktop) -->
     <div class="navbar-secundario d-none d-md-block">
         <div class="container">
             <ul class="nav w-100 justify-content-between text-center">
@@ -200,7 +207,7 @@
                     </a>
                 </li>
 
-                <!-- VIDEOJUEGOS -->
+                <!-- VIDEOJUEGOS: Mega-menú con enlaces por plataforma -->
                 <li class="nav-item dropdown-mega">
                     <a class="menu-item" href="videojuegos">
                         <i class="bi bi-controller"></i> VIDEOJUEGOS
@@ -219,7 +226,7 @@
                     </div>
                 </li>
 
-                <!-- CONSOLAS -->
+                <!-- CONSOLAS: Mega-menú con enlaces por plataforma -->
                 <li class="nav-item dropdown-mega">
                     <a class="menu-item" href="consolas">
                         <i class="bi bi-box-fill"></i> CONSOLAS
@@ -238,7 +245,7 @@
                     </div>
                 </li>
 
-                <!-- ACCESORIOS -->
+                <!-- ACCESORIOS: Mega-menú con enlaces por plataforma -->
                 <li class="nav-item dropdown-mega">
                     <a class="menu-item" href="accesorios">
                         <i class="bi bi-headset"></i> ACCESORIOS
@@ -263,6 +270,7 @@
 
 </header>
 
+<!-- MODAL DE CONFIRMACIÓN: Para acciones que requieren confirmación del usuario -->
 <div class="modal fade" id="modalConfirm" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-3 shadow">
@@ -273,7 +281,7 @@
             </div>
 
             <div class="modal-body">
-                <p id="modalMensaje" class="text-black">¿Seguro?</p>
+                <p id="modalMensaje" class="text-black">¿Seguro?</p> <!-- Mensaje dinámico de confirmación -->
             </div>
 
             <div class="modal-footer">
@@ -281,7 +289,7 @@
                     Cancelar
                 </button>
                 <button type="button" class="btn btn-danger" id="btnConfirmar">
-                    Confirmar
+                    Confirmar <!-- Botón que ejecuta la acción confirmada -->
                 </button>
             </div>
 

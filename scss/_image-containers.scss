@@ -1,3 +1,10 @@
+/* ==========================================================================
+   IMAGE CONTAINERS
+   Contenedores de imágenes para cards, modales y vistas de detalle.
+   Incluye el modal con borde animado RGB.
+   ========================================================================== */
+
+/* Contenedor de imagen en cards */
 .card-img-container {
     height: 250px;
     width: 100%;
@@ -5,28 +12,33 @@
     overflow: hidden;
 }
 
+/* Contenedor para vista de detalle */
 .card-img-container-ver-detalle {
     height: 300px;
     width: auto;
     position: relative;
 }
 
+/* Contenedor para modal de producto */
 .card-img-container-ver-detalle-modal {
     height: 600px;
     width: auto;
     position: relative;
 }
 
+/* Imagen que cubre todo el contenedor */
 .card-img-top {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* Cursor de zoom para modal */
 .container-modal-producto {
     cursor: zoom-in;
 }
 
+/* Modal con borde RGB animado */
 div.modal-content,
 .container-modal-producto {
     background-color: rgb(255, 255, 255);
@@ -42,6 +54,7 @@ div.modal-content,
     box-shadow: 0 0 15px rgba(255, 85, 85, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
 }
 
+/* Responsive: modal más pequeño en móvil */
 @media screen and (max-width: 768px) {
     .card-img-container-ver-detalle-modal {
         height: 400px;

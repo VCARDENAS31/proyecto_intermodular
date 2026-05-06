@@ -1,12 +1,20 @@
+/* ==========================================================================
+   SLIDER
+   Carrusel horizontal de productos con flechas de navegación.
+   ========================================================================== */
+
+/* Contenedor con scroll horizontal */
 #arrastrar-scroll {
     overflow-x: auto;
 }
 
+/* Evitar arrastre de imágenes */
 #arrastrar-scroll img {
     pointer-events: none;
     user-select: none;
 }
 
+/* Cards dentro del slider */
 #arrastrar-scroll .card {
     width: 200px;
     display: flex;
@@ -19,13 +27,14 @@
     height: 100%;
 }
 
+/* Contenedor del slider con flechas */
 .contenedor-slider {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-/* Flechas */
+/* Botones de navegación (flechas) */
 .btn-scroll {
     position: absolute;
     width: 40px;
@@ -48,6 +57,7 @@
     transform: scale(1.1);
 }
 
+/* Posición de las flechas */
 .prev-btn {
     left: -10px;
 }
@@ -55,4 +65,3 @@
 .next-btn {
     right: -10px;
 }
-

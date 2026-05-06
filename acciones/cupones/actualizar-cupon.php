@@ -15,9 +15,8 @@ require_once ROOT_PATH . 'dao/cuponDAO.php';
 
 
 // Seguridad
-if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
-    // Verifica que la solicitud sea POST y que el usuario sea admin; de lo contrario, deniega acceso
-    die("Acceso no autorizado.");
+if (!esAdmin()) {
+    accesoDenegado();
 }
 
 // Datos

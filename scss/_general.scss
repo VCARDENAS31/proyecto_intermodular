@@ -1,3 +1,8 @@
+/* ==========================================================================
+   GENERAL
+   Estilos base globales: tipografía, enlaces y elementos comunes.
+   ========================================================================== */
+
 body {
     font-family: 'Exo', sans-serif;
     background-color: #ffffff;
@@ -6,6 +11,7 @@ body {
     padding: 0;
 }
 
+/* Eliminar subrayado de enlaces */
 a {
     text-decoration: none !important;
 }
@@ -14,6 +20,7 @@ hr {
     border: 1px solid black;
 }
 
+/* Enlaces de noticias sin estilos adicionales */
 .link-noticia {
     text-decoration: none;
     color: inherit;

@@ -1,3 +1,9 @@
+/* ==========================================================================
+   ADMIN CARDS
+   Estilos para las tarjetas de acción del panel de administración.
+   Incluye iconos, títulos y efectos hover.
+   ========================================================================== */
+
 .card-action {
     border: 1px solid #ddd;
     text-align: center;
@@ -10,6 +16,7 @@
     color: black;
 }
 
+/* Icono dentro de la tarjeta */
 .card-action i {
     font-size: 50px;
     margin-bottom: 15px;
@@ -17,10 +24,12 @@
     transition: color 0.3s;
 }
 
+/* Cambio de color del icono en hover */
 .card-action:hover i {
     color: #0b3c6f;
 }
 
+/* Título de la tarjeta */
 .card-action h6 {
     font-weight: bold;
     margin: 0;

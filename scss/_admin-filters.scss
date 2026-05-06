@@ -1,8 +1,15 @@
+/* ==========================================================================
+   ADMIN FILTERS
+   Estilos para la barra de filtros y dropdowns del panel de administración.
+   ========================================================================== */
+
+/* Barra de filtros principal */
 .filter-bar {
     border: 1px solid #333;
     background-color: #1a1a1a !important;
 }
 
+/* Checkboxes dentro del dropdown oscuro */
 .dropdown-menu-dark .form-check {
     margin-bottom: 8px;
 }
@@ -12,6 +19,7 @@
     font-size: 0.9rem;
 }
 
+/* Sección de barra de filtro destacada */
 section.barra-filtro {
     background-color: #151335;
     font-weight: bold;
@@ -19,6 +27,7 @@ section.barra-filtro {
     font-size: 0.85rem;
 }
 
+/* Ancho fijo para cards dentro de filtros */
 div>.card {
     width: 200px;
 }

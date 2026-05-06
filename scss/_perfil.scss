@@ -1,8 +1,14 @@
+/* ==========================================================================
+   PERFIL
+   Menú desplegable del perfil de usuario en el navbar.
+   ========================================================================== */
+
 .perfil-menu {
     position: relative;
     cursor: pointer;
 }
 
+/* Dropdown del perfil */
 .dropdown-perfil {
     display: none;
     position: absolute;
@@ -27,6 +33,7 @@
     background: #f0f0f0;
 }
 
+/* Mostrar en hover */
 .perfil-menu:hover .dropdown-perfil {
     display: block;
 }

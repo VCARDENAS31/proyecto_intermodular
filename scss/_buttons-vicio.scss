@@ -1,3 +1,10 @@
+/* ==========================================================================
+   BUTTONS VICIO
+   Botones personalizados con efectos de relleno animado.
+   Incluye variantes primaria y secundaria.
+   ========================================================================== */
+
+/* Botón principal con efecto de barrido */
 .btn-vicio {
     display: block;
     width: 100%;
@@ -19,6 +26,7 @@
     z-index: 2;
 }
 
+/* Pseudo-elemento para efecto de relleno */
 .btn-vicio:after {
     position: absolute;
     content: "";
@@ -31,6 +39,7 @@
     z-index: 1;
 }
 
+/* Botón primario (morado) */
 .btn-primary {
     background-color: #8e44ad !important;
     border-color: #8e44ad !important;
@@ -65,6 +74,7 @@
     color: #8e44ad !important;
 }
 
+/* Botón secundario (morado oscuro) */
 .btn-secondary {
     background-color: #3e0078 !important;
     border-color: #3e0078 !important;

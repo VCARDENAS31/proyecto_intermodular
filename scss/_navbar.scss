@@ -1,7 +1,15 @@
+/* ==========================================================================
+   NAVBAR
+   Barra de navegación principal y secundaria.
+   Incluye logo, buscador, menú de usuario, mega menú y responsive.
+   ========================================================================== */
+
+/* Logo */
 .nav-left div.logo>img {
     width: 100px;
 }
 
+/* Colores de fondo */
 .navbar-principal {
     background-color: #2a2753;
 }
@@ -10,7 +18,7 @@
     background-color: #1f1c3f;
 }
 
-/* NAVBAR GENERAL */
+/* Estructura del navbar principal */
 .navbar-principal {
     display: flex;
     align-items: center;
@@ -43,6 +51,7 @@
     cursor: pointer;
 }
 
+/* Buscador desktop */
 .buscador {
     width: 100%;
     max-width: 500px;
@@ -90,7 +99,7 @@
     align-items: center;
 }
 
-/* Responsive */
+/* Responsive móvil */
 @media (max-width: 767px) {
     .nav-left {
         margin-left: 15px;
@@ -113,6 +122,7 @@
     }
 }
 
+/* Responsive desktop */
 @media (min-width: 768px) {
     .nav-center {
         display: flex;
@@ -134,7 +144,7 @@
     }
 }
 
-
+/* Toggle del navbar (solo móvil) */
 .navbar-toggler {
     display: none;
 }
@@ -145,7 +155,7 @@
     }
 }
 
-
+/* Navbar secundario (categorías) */
 .navbar-secundario {
     position: relative;
     background: #1f1b3a;
@@ -163,10 +173,12 @@
     text-align: center;
 }
 
+/* Icono del menú */
 .menu-item>i {
     margin-right: 10px;
 }
 
+/* Ítems del menú secundario */
 .navbar-secundario .menu-item {
     display: flex;
     width: 100%;
@@ -185,6 +197,7 @@
     transform: translateY(-2px);
 }
 
+/* Línea inferior animada en hover */
 .navbar-secundario .menu-item::after {
     content: '';
     position: absolute;
@@ -201,6 +214,7 @@
     width: 100%;
 }
 
+/* Mega menú desplegable */
 .dropdown-mega {
     position: relative;
 }
@@ -246,12 +260,14 @@
     background: rgba(13, 110, 253, 0.08);
 }
 
+/* Mostrar mega menú en hover */
 .dropdown-mega:hover .mega-menu {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
 }
 
+/* Flecha que rota */
 .flecha {
     transition: 0.3s;
 }

@@ -1,3 +1,10 @@
+/* ==========================================================================
+   SIDEBAR CARRITO
+   Panel lateral deslizable del carrito de compras.
+   Incluye header, listado de productos, footer con total y overlay.
+   ========================================================================== */
+
+/* Contenedor principal del sidebar */
 #sidebarCarrito {
     position: fixed;
     top: 0;
@@ -12,10 +19,12 @@
     transition: right 0.3s;
 }
 
+/* Sidebar visible */
 #sidebarCarrito.active {
     right: 0;
 }
 
+/* Cabecera del carrito */
 .carrito-header {
     padding: 20px;
     border-bottom: 1px solid #1e293b;
@@ -24,12 +33,14 @@
     align-items: center;
 }
 
+/* Cuerpo con productos */
 .carrito-body {
     flex: 1;
     overflow-y: auto;
     padding: 15px;
 }
 
+/* Cada producto en el carrito */
 .carrito-item {
     display: flex;
     align-items: center;
@@ -59,11 +70,13 @@
     color: #94a3b8;
 }
 
+/* Botón eliminar producto */
 .eliminar {
     cursor: pointer;
     color: #ef4444;
 }
 
+/* Pie del carrito con total */
 .carrito-footer {
     padding: 15px;
     border-top: 1px solid #1e293b;
@@ -75,6 +88,7 @@
     margin-bottom: 10px;
 }
 
+/* Overlay detrás del carrito */
 #overlayCarrito {
     position: fixed;
     top: 0;

@@ -1,3 +1,9 @@
+/* ==========================================================================
+   MODAL COMPRA
+   Modal de confirmación de compra exitosa.
+   ========================================================================== */
+
+/* Estilos generales del modal */
 .modal-content {
     border-radius: 12px;
 }
@@ -14,6 +20,7 @@
     font-size: 16px;
 }
 
+/* Modal fullscreen de compra */
 .modal-compra {
     position: fixed;
     top: 0;
@@ -31,6 +38,7 @@
     display: flex;
 }
 
+/* Caja central del modal */
 .modal-box {
     background: white;
     padding: 40px;
@@ -38,6 +46,7 @@
     text-align: center;
 }
 
+/* Icono de check verde */
 .check {
     font-size: 60px;
     color: green;

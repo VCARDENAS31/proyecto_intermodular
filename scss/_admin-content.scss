@@ -1,3 +1,9 @@
+/* ==========================================================================
+   ADMIN CONTENT
+   Área principal de contenido del panel de administración.
+   Se ajusta según la visibilidad del sidebar en pantallas grandes.
+   ========================================================================== */
+
 #content {
     flex-grow: 1;
     margin-top: 56px;
@@ -5,6 +11,7 @@
     width: 100%;
 }
 
+/* Desplazamiento del contenido cuando el sidebar está visible (desktop) */
 @media (min-width: 769px) {
     #sidebarMovil.mostrar+#content {
         margin-left: 280px;

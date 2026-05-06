@@ -1,15 +1,22 @@
+/* ==========================================================================
+   TABS
+   Sistema de pestañas para organizar contenido (ej: descripción, specs).
+   ========================================================================== */
+
 .tabs-container {
     margin-top: 20px;
     border: 1px solid #ddd;
     margin-bottom: 20px;
 }
 
+/* Contenedor de pestañas */
 .tabs {
     display: flex;
     gap: 10px;
     border-bottom: 2px solid #ddd;
 }
 
+/* Cada pestaña */
 .tab {
     background: transparent;
     border: none;
@@ -21,6 +28,7 @@
     transition: all 0.3s;
 }
 
+/* Línea inferior animada */
 .tab::after {
     content: "";
     position: absolute;
@@ -36,6 +44,7 @@
     color: #000;
 }
 
+/* Pestaña activa */
 .tab.active {
     color: #000;
 }
@@ -44,6 +53,7 @@
     width: 100%;
 }
 
+/* Contenido de cada pestaña */
 .tab-content {
     display: none;
     padding: 25px;

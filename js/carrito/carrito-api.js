@@ -1,21 +1,26 @@
+// Seleccionamos todos los botones de añadir al carrito
 document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 
+    // Evento click en cada botón
     boton.addEventListener("click", (e) => {
 
-        e.preventDefault();
+        e.preventDefault(); // evita comportamiento por defecto
 
-        const id = boton.dataset.id;
+        const id = boton.dataset.id; // obtenemos id del producto
 
+        // Petición al backend
         fetch(`/agregar-carrito?id=${id}`)
-            .then(res => res.json())
+            .then(res => res.json()) // convertimos a JSON
             .then(data => {
 
+                // Si hay error
                 if (!data.ok) {
 
-                    // 🔥 ALERTA BONITA SIN FUNCIONES
+                    // Creamos alerta visual
                     const alerta = document.createElement("div");
                     alerta.textContent = data.mensaje;
 
+                    // estilos básicos
                     alerta.style.position = "fixed";
                     alerta.style.top = "20px";
                     alerta.style.right = "20px";
@@ -27,14 +32,15 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
 
                     document.body.appendChild(alerta);
 
+                    // eliminar después de 2.5s
                     setTimeout(() => {
                         alerta.remove();
                     }, 2500);
 
-                    return;
+                    return; // salimos
                 }
 
-                // ✅ éxito
+                // Mensaje éxito
                 const ok = document.createElement("div");
                 ok.textContent = "Producto añadido";
 
@@ -53,9 +59,11 @@ document.querySelectorAll(".btn-add-carrito").forEach(boton => {
                     ok.remove();
                 }, 2000);
 
+                // abrimos carrito
                 sidebarCarrito.classList.add("active");
                 overlayCarrito.classList.add("active");
 
+                // actualizamos contenido
                 actualizarCarrito(data.carrito);
 
             });

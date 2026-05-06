@@ -1,3 +1,10 @@
+/* ==========================================================================
+   ADMIN SIDEBAR
+   Menú lateral deslizable del panel de administración.
+   Incluye overlay, sección de usuario, ítems de menú y submenús.
+   ========================================================================== */
+
+/* Overlay del sidebar (fondo oscuro) */
 #overlaySidebarMenu {
     position: fixed;
     top: 0;
@@ -16,6 +23,7 @@
     opacity: 1;
 }
 
+/* Contenedor principal del sidebar */
 #sidebarMenu {
     background-color: #0f172a;
     color: white;
@@ -30,10 +38,12 @@
     flex-direction: column;
 }
 
+/* Sidebar visible */
 #sidebarMenu.mostrar {
     left: 0;
 }
 
+/* Sección del usuario (avatar/nombre) */
 #sidebarMenu .user-section {
     text-align: center;
     padding: 30px 10px;
@@ -43,6 +53,7 @@
     font-size: 60px;
 }
 
+/* Ítems del menú */
 #sidebarMenu .menu-item {
     padding: 14px 22px;
     cursor: pointer;
@@ -55,12 +66,13 @@
     outline: 1px solid #bcbcbc;
 }
 
+/* Botón de cerrar sesión */
 .logout-btn {
     margin: auto 20px 30px;
     font-weight: bold;
 }
 
-/* Sidebar menu-item general */
+/* Estilo general para ítems del menú */
 .menu-item {
     padding: 14px 18px;
     display: flex;
@@ -79,6 +91,7 @@
     font-size: 18px;
 }
 
+/* Flecha desplegable */
 .menu-item .bi-chevron-down {
     transition: transform 0.3s;
     margin-left: 15px;
@@ -88,7 +101,7 @@
     transform: rotate(180deg);
 }
 
-/* Submenu */
+/* Submenú colapsable */
 .submenu {
     max-height: 0;
     overflow: hidden;
@@ -116,6 +129,7 @@
     color: #fff;
 }
 
+/* Submenú expandido */
 .submenu.active {
     max-height: 300px;
     margin-top: 5px;

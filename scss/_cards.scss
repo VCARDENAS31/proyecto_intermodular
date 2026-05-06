@@ -1,3 +1,10 @@
+/* ==========================================================================
+   CARDS
+   Estilos para tarjetas de productos y noticias.
+   Incluye efectos hover con elevación y sombra.
+   ========================================================================== */
+
+/* Tarjeta base */
 .card {
     border: 1px solid #c2c1c1;
     border-radius: 12px;
@@ -9,6 +16,7 @@
     box-shadow: 0 0 12px rgba(13, 110, 253, 0.5);
 }
 
+/* Tarjetas de acción y noticias */
 .card-action,
 .card-noticia {
     border-radius: 12px;
@@ -25,6 +33,7 @@
     border: 2px solid #0b3c6f;
 }
 
+/* Efecto zoom en imagen de noticia */
 .card-noticia {
     overflow: hidden;
 }
