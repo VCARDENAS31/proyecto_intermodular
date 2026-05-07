@@ -1,7 +1,12 @@
 <?php
+// ================= CONFIGURACIÓN E INCLUDES =================
+// Cargamos la configuración principal del proyecto
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
+// Conexión a la base de datos
 require_once ROOT_PATH . 'dao/conexion-bd.php';
+
+// Funciones DAO para operaciones con productos
 require_once ROOT_PATH . 'dao/productoDAO.php';
 ?>
 
@@ -9,25 +14,30 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
 <html lang="es">
 
 <head>
+    <!-- ================= METADATOS Y CONFIGURACIÓN DEL HEAD ================= -->
     <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Viciogames</title>
     <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+    
+    <!-- ================= FUENTES Y ESTILOS EXTERNOS ================= -->
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- ================= HEADER DE USUARIO ================= -->
     <?php include ROOT_PATH . 'includes/header-user.php'; ?>
 
     <main>
-        <!-- CAROUSEL RESPONSIVO -->
+        <!-- ================= CAROUSEL PRINCIPAL ================= -->
+        <!-- Carousel responsivo con imágenes promocionales -->
         <div class="container mt-5 mb-5 ">
             <div id="carrusel-imagenes" class="carousel slide" data-bs-ride="carousel">
 
-                <!-- Indicadores -->
+                <!-- Indicadores del carousel (puntos de navegación) -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="0"
                         class="active"></button>
@@ -35,20 +45,23 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="2"></button>
                 </div>
 
-                <!-- Slides -->
+                <!-- Slides del carousel -->
                 <div class="carousel-inner">
+                    <!-- Primer slide (activo por defecto) -->
                     <div class="carousel-item active">
                         <img src="assets/imagenes/banner1-principal.webp" class="d-block w-100 img-fluid rounded-4" alt="Banner principal">
                     </div>
+                    <!-- Segundo slide -->
                     <div class="carousel-item">
                         <img src="assets/imagenes/banner2-principal.webp" class="d-block w-100 img-fluid rounded-4" alt="Banner secundario">
                     </div>
+                    <!-- Tercer slide -->
                     <div class="carousel-item">
                         <img src="assets/imagenes/banner3-principal.webp" class="d-block w-100 img-fluid rounded-4" alt="Banner terciario">
                     </div>
                 </div>
 
-                <!-- Controles -->
+                <!-- Controles de navegación (flechas) -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-imagenes"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
@@ -61,27 +74,35 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
             </div>
         </div>
 
-        <!-- ===== SECCIONES DE PRODUCTOS ===== -->
-        <!-- Próximos lanzamientos -->
+        <!-- ================= SECCIÓN: PRÓXIMOS LANZAMIENTOS ================= -->
+        <!-- Muestra juegos que saldrán próximamente (solo imágenes, sin funcionalidad de compra) -->
         <section id="proximos-lanzamientos">
             <div class="container rounded-4 p-4">
+                
+                <!-- Título responsive (diferente tamaño en móvil y desktop) -->
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
+                    <!-- Título para móvil -->
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">PRÓXIMAMENTE</h6>
                     </div>
+                    <!-- Título para desktop -->
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">PRÓXIMAMENTE</h2>
                     </div>
-
                 </div>
 
                 <hr>
+                
+                <!-- ================= SLIDER HORIZONTAL ================= -->
                 <div class="contenedor-slider">
+                    <!-- Botón scroll izquierda -->
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
+                    
+                    <!-- Contenedor de cards con scroll horizontal -->
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
 
+                        <!-- Cards de próximos lanzamientos (estáticas) -->
                         <div class="card col-6 col-md-4 col-lg-3 flex-shrink-0">
                             <img class="card-img-top img-fluid" src="assets/imagenes/code-vein.webp">
                         </div>
@@ -119,69 +140,85 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         </div>
 
                     </div>
+                    
+                    <!-- Botón scroll derecha -->
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
 
         </section>
 
-        <!-- Videojuegos -->
+        <!-- ================= SECCIÓN: VIDEOJUEGOS ================= -->
+        <!-- Muestra los últimos videojuegos intercalados por plataforma -->
         <section id="videojuegos">
             <div class="container p-4">
+                
+                <!-- Título y botón "Ver todo" -->
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
+                    <!-- Título móvil -->
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">VIDEOJUEGOS</h6>
                     </div>
+                    <!-- Título desktop -->
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">VIDEOJUEGOS</h2>
                     </div>
-
+                    <!-- Enlace a la página completa de videojuegos -->
                     <a href="videojuegos" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
-
                 </div>
                 <hr>
 
+                <!-- ================= SLIDER DE VIDEOJUEGOS ================= -->
                 <div class="contenedor-slider">
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
-                        // Llamamos a la función del archivo externo
+                        // ================= CARGA DINÁMICA DE VIDEOJUEGOS =================
+                        // Obtenemos los últimos juegos intercalados por plataforma
                         $ultimosJuegos = obtenerUltimosJuegosIntercalados($conexion);
 
-                        // Supongamos que $ultimosJuegos es el resultado de tu consulta SQL
+                        // Iteramos sobre cada juego para crear su card
                         foreach ($ultimosJuegos as $juego) {
-                            // Convertimos 'PS5' a 'ps5', 'Switch' a 'switch', etc.
+                            // Convertimos la plataforma a minúsculas para usar como clase CSS
+                            // Ejemplo: 'PS5' -> 'ps5', 'Switch' -> 'switch'
                             $clasePlataforma = strtolower($juego['plataforma']);
                             ?>
 
+                            <!-- Card del videojuego con clase de plataforma para estilos específicos -->
                             <div class="card <?php echo $clasePlataforma; ?> col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                                
+                                <!-- Contenedor de imagen -->
                                 <div class="card-img-container">
                                     <img class="card-img-top rounded-3"
                                         src="assets/imagenes/<?php echo $juego['img_url']; ?>">
                                 </div>
+                                
+                                <!-- Información del producto -->
                                 <div class="text-center">
                                     <p class="fw-bold mb-0 mt-3"><?php echo $juego['nombre']; ?></p>
                                     <p class="mb-3"><b>Precio:</b> <?php echo $juego['precio']; ?>€</p>
                                 </div>
+                                
+                                <!-- Botones de acción -->
                                 <div class="mt-auto">
                                     <?php if ($juego['stock'] > 0): ?>
-
+                                        <!-- Botón añadir al carrito (solo si hay stock) -->
                                         <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
                                             data-id="<?php echo $juego['id_producto']; ?>">
                                             <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                         </a>
                                     <?php else: ?>
-
+                                        <!-- Botón deshabilitado si no hay stock -->
                                         <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
                                             Sin stock
                                         </button>
-
                                     <?php endif; ?>
+                                    
+                                    <!-- Botón ver detalles del producto -->
                                     <a href="producto/<?php echo $juego['slug']; ?>" class="btn btn-secondary btn-sm w-100">
                                         <i class="bi bi-eye"></i> VER
                                     </a>
@@ -198,38 +235,39 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
         </section>
 
 
-        <!-- Consolas -->
+        <!-- ================= SECCIÓN: CONSOLAS ================= -->
+        <!-- Muestra las últimas consolas intercaladas por plataforma -->
         <section id="consolas">
             <div class="container p-4">
+                
+                <!-- Título y botón "Ver todo" -->
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">CONSOLAS</h6>
                     </div>
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">CONSOLAS</h2>
                     </div>
-
                     <a href="consolas" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
-
                 </div>
                 <hr>
 
+                <!-- ================= SLIDER DE CONSOLAS ================= -->
                 <div class="contenedor-slider">
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
-                        // Llamamos a la función del archivo externo
+                        // ================= CARGA DINÁMICA DE CONSOLAS =================
                         $ultimasConsolas = obtenerUltimasConsolasIntercaladas($conexion);
 
-                        // Supongamos que $ultimasConsolas es el resultado de tu consulta SQL
                         foreach ($ultimasConsolas as $consolas) {
                             ?>
 
+                            <!-- Card de consola (sin clase de plataforma ya que no aplica el mismo estilo) -->
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
                                     <img class="card-img-top" src="assets/imagenes/<?php echo $consolas['img_url']; ?>">
@@ -240,17 +278,14 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                 </div>
                                 <div class="mt-auto">
                                     <?php if ($consolas['stock'] > 0): ?>
-
                                         <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
                                             data-id="<?php echo $consolas['id_producto']; ?>">
                                             <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                         </a>
                                     <?php else: ?>
-
                                         <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
                                             Sin stock
                                         </button>
-
                                     <?php endif; ?>
                                     <a href="producto/<?php echo $consolas['slug']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
@@ -268,38 +303,39 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
             </div>
         </section>
 
-        <!-- Accesorios -->
+        <!-- ================= SECCIÓN: ACCESORIOS ================= -->
+        <!-- Muestra los últimos accesorios intercalados -->
         <section id="accesorios">
             <div class="container p-4">
+                
+                <!-- Título y botón "Ver todo" -->
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">ACCESORIOS</h6>
                     </div>
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">ACCESORIOS</h2>
                     </div>
-
                     <a href="accesorios" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
-
                 </div>
                 <hr>
 
+                <!-- ================= SLIDER DE ACCESORIOS ================= -->
                 <div class="contenedor-slider">
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
 
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
-                        // Llamamos a la función del archivo externo
+                        // ================= CARGA DINÁMICA DE ACCESORIOS =================
                         $ultimosAccesorios = obtenerUltimosAccesoriosIntercalados($conexion);
 
-                        // Supongamos que $ultimosAccesorios es el resultado de tu consulta SQL
                         foreach ($ultimosAccesorios as $accesorio) {
                             ?>
 
+                            <!-- Card de accesorio -->
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
                                     <img class="card-img-top" src="assets/imagenes/<?php echo $accesorio['img_url']; ?>">
@@ -310,17 +346,14 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                 </div>
                                 <div class="mt-auto">
                                     <?php if ($accesorio['stock'] > 0): ?>
-
                                         <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
                                             data-id="<?php echo $accesorio['id_producto']; ?>">
                                             <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                         </a>
                                     <?php else: ?>
-
                                         <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
                                             Sin stock
                                         </button>
-
                                     <?php endif; ?>
                                     <a href="producto/<?php echo $accesorio['slug']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
@@ -338,12 +371,15 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
             </div>
         </section>
 
-        <!-- ===== SECCIÓN NOTICIAS ===== -->
+        <!-- ================= SECCIÓN: NOTICIAS DE VIDEOJUEGOS ================= -->
+        <!-- Muestra cards con enlaces a noticias externas del sector -->
         <section id="noticias-videojuegos" class="py-5">
             <div class="container">
                 <hr class="mb-5">
 
                 <div class="row g-4">
+                    
+                    <!-- ================= NOTICIA 1: Hardware ================= -->
                     <div class="col-md-4">
                         <div class="card-noticia shadow-sm">
                             <a href="https://www.hobbyconsolas.com/videojuegos/sony-anuncia-coleccion-hyperpop-con-nuevos-mandos-carcasas-ps5-3-colores-reservas-precio-fecha-lanzamiento_6918304_0.html"
@@ -360,8 +396,9 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         </div>
                     </div>
 
+                    <!-- ================= NOTICIA 2: Hardware ================= -->
                     <div class="col-md-4">
-                        <a href="https://www.muycomputer.com/2026/01/12/intel-panther-lake-estara-al-nivel-de-ps6-portatil/"
+                        <a href="https://www.muycomputer.com/2026/01/12/intel-panther-lake-estara-al-nivel-de-ps6-portatil"
                             class="link-noticia">
                             <div class="card-noticia shadow-sm">
                                 <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=500"
@@ -376,6 +413,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                         </a>
                     </div>
 
+                    <!-- ================= NOTICIA 3: Lanzamientos ================= -->
                     <div class="col-md-4">
                         <a href="https://www.clavecd.es/elden-ring-2-impactante-actualizacion-de-fromsoftware-news-d/"
                             class="link-noticia">
@@ -400,15 +438,22 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
     <!-- ================= FOOTER ================= -->
     <?php include 'includes/footer.php'; ?>
 
-    <!-- Scripts -->
+    <!-- ================= SCRIPTS ================= -->
+    <!-- Bootstrap JS -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Utilidades para modales -->
     <script src="js/utils/modal.js"></script>
+    <!-- Control del sidebar -->
     <script src="js/ui/sidebar.js"></script>
+    <!-- Control del submenú desplegable -->
     <script src="js/ui/submenu.js"></script>
+    <!-- Funcionalidad del slider horizontal -->
     <script src="js/ui/slider.js"></script>
+    <!-- Interfaz de usuario del carrito -->
     <script src="js/carrito/carrito-ui.js"></script>
+    <!-- Llamadas API del carrito -->
     <script src="js/carrito/carrito-api.js"></script>
+    <!-- Funcionalidad de logout -->
     <script src="js/usuario/logout.js"></script>
 </body>
 

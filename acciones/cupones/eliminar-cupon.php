@@ -33,7 +33,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         // Llama a la función eliminarCupon del DAO, pasando la conexión y el ID
         // Si la eliminación es exitosa, redirige con mensaje de éxito
 
-        header("Location: gestionar-cupones?msj=eliminado");
+        header("Location: /gestionar-cupones?msj=eliminado");
         // Redirige a la página de gestión de cupones con parámetro de mensaje 'eliminado'
 
         exit();
@@ -41,7 +41,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     } else {
         // Si la eliminación falla, redirige con mensaje de error
 
-        header("Location: gestionar-cupones?error=1");
+        header("Location: /gestionar-cupones?error=1");
         // Redirige a la página de gestión de cupones con parámetro de error
 
         exit();
@@ -51,7 +51,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
     // Si el ID no es válido o no está presente, redirige sin parámetros
 
-    header("Location: gestionar-cupones");
+    header("Location: /gestionar-cupones");
     // Redirige a la página de gestión de cupones sin parámetros adicionales
 
     exit();

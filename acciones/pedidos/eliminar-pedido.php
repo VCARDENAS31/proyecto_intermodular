@@ -32,7 +32,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         // Llama a la función eliminarPedido del DAO, pasando la conexión y el ID
         // Si la eliminación es exitosa, redirige con mensaje de éxito
 
-        header("Location: gestionar-pedidos?msj=eliminado");
+        header("Location: /gestionar-pedidos?msj=eliminado");
         // Redirige a la página de gestión de pedidos con parámetro de mensaje 'eliminado'
 
         exit();
@@ -41,7 +41,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     } else {
         // Si la eliminación falla, redirige con mensaje de error
 
-        header("Location: gestionar-pedidos?error=1");
+        header("Location: /gestionar-pedidos?error=1");
         // Redirige a la página de gestión de pedidos con parámetro de error
 
         exit();
@@ -51,7 +51,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
     // Si el ID no es válido o no está presente, redirige sin parámetros
 
-    header("Location: gestionar-pedidos");
+    header("Location: /gestionar-pedidos");
     // Redirige a la página de gestión de pedidos sin parámetros adicionales
 
     exit();

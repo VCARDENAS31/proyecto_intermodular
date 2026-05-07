@@ -43,12 +43,12 @@ function obtenerProductoPorId($conexion, $id)
 }
 
 
-function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $imagen, $slug)
+function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria, $descripcion, $plataforma, $imagen, $slug, $tieneLector, $almacenamiento)
 {
     // Construye la consulta preparada para insertar un nuevo producto
     $sql = "INSERT INTO productos 
-            (nombre, precio, stock, tipo, categoria, descripcion, plataforma, img_url, slug) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            (nombre, precio, stock, tipo, categoria, descripcion, plataforma, img_url, slug, tieneLector, almacenamiento) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Prepara la sentencia SQL
     $stmt = mysqli_prepare($conexion, $sql);
@@ -56,7 +56,7 @@ function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria
     // Vincula los parámetros con sus tipos: string, double, int, string, string, string, string, string, string
     mysqli_stmt_bind_param(
         $stmt,
-        "sdissssss",
+        "sdissssssis",
         $nombre,
         $precio,
         $stock,
@@ -65,7 +65,9 @@ function insertarProducto($conexion, $nombre, $precio, $stock, $tipo, $categoria
         $descripcion,
         $plataforma,
         $imagen,
-        $slug
+        $slug,
+        $tieneLector,
+        $almacenamiento
     );
 
     // Ejecuta la inserción y retorna el resultado
@@ -107,17 +109,35 @@ function eliminarProducto($conexion, $id)
     return mysqli_stmt_execute($stmt);
 }
 
-function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $descripcion)
-{
+function actualizarProducto(
+    $conexion,
+    $id,
+    $nombre,
+    $precio,
+    $stock,
+    $descripcion,
+    $tieneLector,
+    $almacenamiento
+) {
+
     // Convierte el ID a entero para mayor seguridad
     $id = intval($id);
+
     // Escapa el nombre para evitar inyección SQL
     $nombre = mysqli_real_escape_string($conexion, $nombre);
+
     // Escapa la descripción para evitar inyección SQL
     $descripcion = mysqli_real_escape_string($conexion, $descripcion);
 
+    // Escapa el valor de tieneLector
+    $tieneLector = mysqli_real_escape_string($conexion, $tieneLector);
+
+    // Escapa el valor de almacenamiento
+    $almacenamiento = mysqli_real_escape_string($conexion, $almacenamiento);
+
     // Convierte el precio a float, reemplazando comas por puntos si es necesario
     $precio = floatval(str_replace(',', '.', $precio));
+
     // Convierte el stock a entero
     $stock = intval($stock);
 
@@ -126,13 +146,14 @@ function actualizarProducto($conexion, $id, $nombre, $precio, $stock, $descripci
                 nombre = '$nombre',
                 precio = $precio,
                 stock = $stock,
-                descripcion = '$descripcion'
+                descripcion = '$descripcion',
+                tieneLector = '$tieneLector',
+                almacenamiento = '$almacenamiento'
             WHERE id_producto = $id";
 
     // Ejecuta la actualización y retorna el resultado
     return mysqli_query($conexion, $sql);
 }
-
 
 
 function obtenerJuegosPorPlataforma($conexion, $plataforma)

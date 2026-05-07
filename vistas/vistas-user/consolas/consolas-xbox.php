@@ -1,11 +1,26 @@
 <?php
+/* ============================================================
+   CONSOLAS-XBOX.PHP
+   Listado de consolas Xbox con filtros (precio, lector,
+   almacenamiento).
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   INICIALIZACIÓN DE SESIÓN
+   ------------------------------------------------------------ */
 session_start();
 
+/* ------------------------------------------------------------
+   CARGA DE CONFIGURACIÓN Y DAOs
+   ------------------------------------------------------------ */
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/productoDAO.php';
 
+/* ------------------------------------------------------------
+   RECOGIDA DE FILTROS DESDE GET
+   ------------------------------------------------------------ */
 $precio = $_GET['precio'] ?? null;
 $tieneLector = isset($_GET['tieneLector']) ? $_GET['tieneLector'] : null;
 $almacenamiento = $_GET['almacenamiento'] ?? null;
@@ -15,21 +30,29 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
 <html lang="es">
 
 <head>
+    <!-- ========== META Y BASE ========== -->
     <base href="http://viciogames.test">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Viciogames | Consolas Xbox</title>
+
+    <!-- ========== FAVICON ========== -->
     <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
+
+    <!-- ========== FUENTES Y ESTILOS ========== -->
     <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- ========== CABECERA DE USUARIO ========== -->
     <?php include ROOT_PATH . 'includes/header-user.php'; ?>
 
     <main>
-               <!-- CAROUSEL RESPONSIVO -->
+        <!-- ========================================================
+             CAROUSEL RESPONSIVO (Banners Xbox)
+             ======================================================== -->
         <div class="container-fluid p-0">
             <div id="carrusel-imagenes" class="carousel slide" data-bs-ride="carousel">
 
@@ -65,9 +88,9 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
             </div>
         </div>
 
-        <!-- ===== SECCIONES DE PRODUCTOS ===== -->
-
-
+        <!-- ========================================================
+             MENÚ SECUNDARIO (Navegación entre plataformas)
+             ======================================================== -->
         <div class="navbar-secundario">
             <div class="container p-0">
                 <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
@@ -91,10 +114,13 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
         </div>
 
 
+        <!-- ========================================================
+             BARRA DE FILTROS
+             ======================================================== -->
         <section class="barra-filtro p-4 mb-5 shadow-lg">
             <form method="GET" class="row g-3 align-items-end justify-content-center">
 
-                <!-- PRECIO -->
+                <!-- FILTRO: PRECIO -->
                 <div class="col-md-3">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">
                         Filtrar por Precio
@@ -103,6 +129,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                     <div class="dropdown">
                         <button class="btn btn-dark w-100 dropdown-toggle text-start" data-bs-toggle="dropdown">
                             <?php
+                            /* Muestra el texto según filtro seleccionado */
                             if ($precio == '0-400')
                                 echo 'Menos de 400€';
                             elseif ($precio == '400-600')
@@ -125,7 +152,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                     </div>
                 </div>
 
-                <!-- LECTOR -->
+                <!-- FILTRO: LECTOR (con/sin) -->
                 <div class="col-md-3">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">
                         Tipo de Consola
@@ -152,7 +179,7 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                     </div>
                 </div>
 
-                <!-- ALMACENAMIENTO -->
+                <!-- FILTRO: ALMACENAMIENTO -->
                 <div class="col-md-3">
                     <label class="form-label text-info small fw-bold mb-2 uppercase">
                         Almacenamiento
@@ -166,61 +193,95 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
                         <ul class="dropdown-menu dropdown-menu-dark p-3 w-100">
                             <li><input type="radio" name="almacenamiento" value="512GB" <?php if ($almacenamiento == '512GB')
                                 echo 'checked'; ?>> 512GB</li>
+                            <li><input type="radio" name="almacenamiento" value="825GB" <?php if ($almacenamiento == '825GB')
+                                echo 'checked'; ?>> 825GB</li>
                             <li><input type="radio" name="almacenamiento" value="1TB" <?php if ($almacenamiento == '1TB')
                                 echo 'checked'; ?>> 1TB</li>
+                            <li><input type="radio" name="almacenamiento" value="2TB" <?php if ($almacenamiento == '2TB')
+                                echo 'checked'; ?>> 2TB</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- BOTONES -->
+                <!-- BOTONES: Aplicar / Reset -->
                 <div class="col-md-3 d-flex gap-2 align-items-end">
                     <button type="submit" class="btn btn-info w-100">Aplicar</button>
-                    <a href="consolas-xbox.php" class="btn btn-secondary w-100">Reset</a>
+                    <a href="consolas/xbox" class="btn btn-secondary w-100">Reset</a>
                 </div>
 
             </form>
         </section>
 
+        <!-- ========================================================
+             LISTADO DE CONSOLAS FILTRADAS
+             ======================================================== -->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
 
 
                 <?php
+                /* ------------------------------------------------
+                   CONSULTA CON FILTROS
+                   Obtiene las consolas Xbox que cumplen los
+                   criterios seleccionados.
+                   ------------------------------------------------ */
                 $productos = obtenerConsolasFiltradas(
                     $conexion,
-                    'Xbox', // o Xbox
+                    'Xbox', // Plataforma fija
                     $precio,
                     $tieneLector,
                     $almacenamiento
                 );
-                while ($fila = mysqli_fetch_assoc($productos)) {
-                    ?>
-                    <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
-                        <div>
-                            <img class="card-img-top" src="assets/imagenes/<?php echo $fila['img_url']; ?>">
-                        </div>
-                        <div class="text-center">
-                            <p class="fw-bold mb-0 mt-3"><?php echo $fila['nombre']; ?></p>
-                            <p class=" mb-3"><b>Precio:</b> <?php echo $fila['precio']; ?>€</p>
-                        </div>
-                        <div class="mt-auto">
-                            <?php if ($fila['stock'] > 0): ?>
 
-                                <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
-                                    data-id="<?php echo $fila['id_producto']; ?>">
-                                    <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                // Verificar si existen productos
+                if (mysqli_num_rows($productos) > 0) {
+
+                    while ($fila = mysqli_fetch_assoc($productos)) {
+                        ?>
+                        <!-- Tarjeta de producto -->
+                        <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
+                            <div>
+                                <img class="card-img-top" src="assets/imagenes/<?php echo $fila['img_url']; ?>">
+                            </div>
+
+                            <div class="text-center">
+                                <p class="fw-bold mb-0 mt-3">
+                                    <?php echo $fila['nombre']; ?>
+                                </p>
+
+                                <p class="mb-3">
+                                    <b>Precio:</b> <?php echo $fila['precio']; ?>€
+                                </p>
+                            </div>
+
+                            <div class="mt-auto">
+                                <?php if ($fila['stock'] > 0): ?>
+
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
+                                        data-id="<?php echo $fila['id_producto']; ?>">
+                                        <i class="bi bi-cart"></i> AÑADIR AL CARRITO
+                                    </a>
+
+                                <?php else: ?>
+
+                                    <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
+                                        Sin stock
+                                    </button>
+
+                                <?php endif; ?>
+
+                                <a href="producto/<?php echo $fila['slug']; ?>" class="btn btn-secondary btn-sm w-100">
+                                    <i class="bi bi-eye"></i> VER
                                 </a>
-                            <?php else: ?>
-
-                                <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
-                                    Sin stock
-                                </button>
-
-                            <?php endif; ?>
-                            <a href="producto/<?php echo $fila['slug']; ?>" class="btn btn-secondary btn-sm w-100">
-                                <i class="bi bi-eye"></i> VER
-                            </a>
+                            </div>
                         </div>
+                        <?php
+                    }
+
+                } else {
+                    ?>
+                    <div class="txt-sin-resultados">
+                        No hay productos con este filtro
                     </div>
                     <?php
                 }
@@ -228,9 +289,11 @@ $almacenamiento = $_GET['almacenamiento'] ?? null;
             </div>
         </div>
     </main>
+
+    <!-- ========== FOOTER ========== -->
     <?php include ROOT_PATH . 'includes/footer.php'; ?>
 
-    <!-- Scripts -->
+    <!-- ========== SCRIPTS ========== -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/utils/modal.js"></script>
     <script src="js/ui/sidebar.js"></script>

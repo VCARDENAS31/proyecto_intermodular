@@ -30,7 +30,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         // Llama a la función del DAO para eliminar el usuario de la base de datos
         // Si la eliminación se realiza correctamente, redirige con mensaje de éxito
 
-        header("Location: gestionar-usuarios?msj=eliminado");
+        header("Location: /gestionar-usuarios?msj=eliminado");
         // Redirige a la página de gestión de usuarios con un mensaje de usuario eliminado
 
         exit();
@@ -39,7 +39,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     } else {
         // Si la eliminación falla (por ejemplo, por historial de pedidos), redirige con error
 
-        header("Location: gestionar-usuarios?error=historial");
+        header("Location: /gestionar-usuarios?error=historial");
         // Redirige a la página de gestión de usuarios con un parámetro de error específico
 
         exit();
@@ -49,7 +49,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 } else {
     // Si no se proporciona un ID válido, redirige de vuelta a la gestión de usuarios
 
-    header("Location: gestionar-usuarios");
+    header("Location: /gestionar-usuarios");
     // Redirige a la página de gestión de usuarios sin parámetros adicionales
 
     exit();

@@ -1,14 +1,15 @@
 <?php
+// ==========================================
+// ACCESORIOS - PÁGINA PRINCIPAL (TODAS LAS PLATAFORMAS)
+// ==========================================
+// ====== INICIO DE SESIÓN Y CONFIGURACIÓN ======
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
-
 require_once ROOT_PATH . 'dao/conexion-bd.php';
 require_once ROOT_PATH . 'dao/productoDAO.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <base href="http://viciogames.test">
     <meta charset="UTF-8" />
@@ -19,24 +20,21 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+    <!-- ====== HEADER ====== -->
     <?php include ROOT_PATH . 'includes/header-user.php'; ?>
-
     <main>
-        <!-- CAROUSEL RESPONSIVO -->
+        <!-- ====== CAROUSEL / BANNER PRINCIPAL ====== -->
         <div class="container-fluid p-0">
             <div id="carrusel-imagenes" class="carousel slide" data-bs-ride="carousel">
-
-                <!-- Indicadores -->
+                <!-- Indicadores del carrusel (3 slides, uno por plataforma) -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="0"
                         class="active"></button>
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="1"></button>
                     <button type="button" data-bs-target="#carrusel-imagenes" data-bs-slide-to="2"></button>
                 </div>
-
-                <!-- Slides -->
+                <!-- Slides del carrusel con banners de cada plataforma -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="assets/imagenes/banner1-accesorios-ps5.webp" class="d-block w-100"
@@ -51,8 +49,7 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                             alt="Banner accesorios Nintendo Switch">
                     </div>
                 </div>
-
-                <!-- Controles -->
+                <!-- Controles de navegación del carrusel -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-imagenes"
                     data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
@@ -61,12 +58,9 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                     data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
-
             </div>
         </div>
-
-        <!-- ===== SECCIONES DE PRODUCTOS ===== -->
-
+        <!-- ====== NAVBAR SECUNDARIO (NAVEGACIÓN POR PLATAFORMA) ====== -->
         <div class="navbar-secundario">
             <div class="container p-0">
                 <ul class="nav flex-column flex-lg-row text-center justify-content-lg-between">
@@ -88,41 +82,37 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                 </ul>
             </div>
         </div>
-
-        <!-- Accesorios PS5 -->
+        <!-- ====== SECCIÓN ACCESORIOS PS5 ====== -->
         <section id="accesorios-ps5">
             <div class="container p-4 mt-4">
+                <!-- Encabezado de sección con título y enlace "Ver todo" -->
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
+                    <!-- Título responsive: h6 en móvil, h2 en escritorio -->
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">ACCESORIOS PS5</h6>
                     </div>
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">ACCESORIOS PS5</h2>
                     </div>
-
                     <a href="accesorios/ps5" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
-
                 </div>
                 <hr>
-
+                <!-- Slider horizontal de productos -->
                 <div class="contenedor-slider">
+                    <!-- Botón para desplazar hacia la izquierda -->
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
-
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
-                        // Llamamos a la función del archivo externo
+                        // Obtiene los últimos 10 accesorios de PS5
                         $ultimos10AccesoriosPs5 = obtenerUltimos10AccesoriosPorPlataforma($conexion, 'PS5');
-
-                        // Supongamos que $ultimos10AccesoriosPs5 es el resultado de tu consulta SQL
+                        // Recorre y muestra cada producto
                         foreach ($ultimos10AccesoriosPs5 as $producto) {
-                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
+                            // Clase CSS basada en la plataforma (para estilos específicos)
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
-
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
                                     <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
@@ -133,17 +123,16 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                 </div>
                                 <div class="mt-auto">
                                     <?php if ($producto['stock'] > 0): ?>
-
+                                        <!-- Botón añadir al carrito -->
                                         <a href="javascript:void(0);" class="btn btn-primary btn-sm w-100 mb-1 btn-add-carrito"
                                             data-id="<?php echo $producto['id_producto']; ?>">
                                             <i class="bi bi-cart"></i> AÑADIR AL CARRITO
                                         </a>
                                     <?php else: ?>
-
+                                        <!-- Sin stock -->
                                         <button class="btn btn-secondary btn-sm w-100 mb-1" disabled>
                                             Sin stock
                                         </button>
-
                                     <?php endif; ?>
                                     <a href="producto/<?php echo $producto['slug']; ?>"
                                         class="btn btn-secondary btn-sm w-100">
@@ -151,51 +140,40 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     </a>
                                 </div>
                             </div>
-
                         <?php }
                         ?>
                     </div>
+                    <!-- Botón para desplazar hacia la derecha -->
                     <button class="btn-scroll next-btn" onclick="scrollSlider(this, 300)"><i
                             class="bi bi-chevron-right"></i></button>
                 </div>
             </div>
         </section>
-
-
-        <!-- Videojuegos XBOX SERIES X/S -->
+        <!-- ====== SECCIÓN ACCESORIOS XBOX SERIES X/S ====== -->
         <section id="accesorios-xbox">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">ACCESORIOS XBOX SERIES X/S</h6>
                     </div>
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">ACCESORIOS XBOX SERIES X/S</h2>
                     </div>
-
                     <a href="accesorios/xbox" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
-
                 </div>
                 <hr>
-
                 <div class="contenedor-slider">
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
-
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
-                        // Llamamos a la función del archivo externo
+                        // Obtiene los últimos 10 accesorios de Xbox
                         $ultimos10AccesoriosXbox = obtenerUltimos10AccesoriosPorPlataforma($conexion, 'Xbox');
-
-                        // Supongamos que $ultimos10AccesoriosXbox es el resultado de tu consulta SQL
                         foreach ($ultimos10AccesoriosXbox as $producto) {
-                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
-
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
                                     <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
@@ -221,7 +199,6 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     </a>
                                 </div>
                             </div>
-
                         <?php }
                         ?>
                     </div>
@@ -230,41 +207,31 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                 </div>
             </div>
         </section>
-
-        <!-- VIDEOJUEGOS NINTENDO SWITCH -->
+        <!-- ====== SECCIÓN ACCESORIOS NINTENDO SWITCH ====== -->
         <section id="accesorios-nintendo">
             <div class="container p-4">
                 <div class="mb-4 mb-md-5 justify-content-between align-items-center d-flex">
-
                     <div class="d-md-none">
                         <h6 class="fw-bold mb-0">ACCESORIOS NINTENDO SWITCH</h6>
                     </div>
                     <div class="d-none d-md-block">
                         <h2 class="fw-bold mb-0">ACCESORIOS NINTENDO SWITCH</h2>
                     </div>
-
                     <a href="accesorios/switch" class="btn btn-sm btn-outline-primary rounded-pill px-3 px-md-4">
                         Ver todo
                     </a>
-
                 </div>
                 <hr>
-
                 <div class="contenedor-slider">
                     <button class="btn-scroll prev-btn" onclick="scrollSlider(this, -300)"><i
                             class="bi bi-chevron-left"></i></button>
-
                     <div id="arrastrar-scroll" class="d-flex flex-nowrap gap-3 overflow-auto pb-3">
                         <?php
-                        // Llamamos a la función del archivo externo
+                        // Obtiene los últimos 10 accesorios de Nintendo Switch
                         $ultimos10AccesoriosSwitch = obtenerUltimos10AccesoriosPorPlataforma($conexion, 'Switch');
-
-                        // Supongamos que $ultimos10AccesoriosSwitch es el resultado de tu consulta SQL
                         foreach ($ultimos10AccesoriosSwitch as $producto) {
-                            // Convertimos la palabra de la plataforma a minúsculas para usarla como clase CSS
                             $clasePlataforma = strtolower($producto['plataforma']);
                             ?>
-
                             <div class="card col-9 col-sm-6 col-md-4 col-lg-3 p-2 m-2">
                                 <div>
                                     <img class="card-img-top" src="assets/imagenes/<?php echo $producto['img_url']; ?>">
@@ -290,7 +257,6 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
                                     </a>
                                 </div>
                             </div>
-
                         <?php }
                         ?>
                     </div>
@@ -300,11 +266,9 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
             </div>
         </section>
     </main>
-
-    <!-- ================= FOOTER ================= -->
+    <!-- ====== FOOTER ====== -->
     <?php include ROOT_PATH . 'includes/footer.php'; ?>
-
-    <!-- Scripts -->
+    <!-- ====== SCRIPTS ====== -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/utils/modal.js"></script>
     <script src="js/ui/sidebar.js"></script>
@@ -314,5 +278,4 @@ require_once ROOT_PATH . 'dao/productoDAO.php';
     <script src="js/carrito/carrito-api.js"></script>
     <script src="js/usuario/logout.js"></script>
 </body>
-
 </html>

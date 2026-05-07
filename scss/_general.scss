@@ -26,3 +26,11 @@ hr {
     color: inherit;
     display: block;
 }
+
+/* Cuando en los filtros no hay resultados se aplica este estilo en el texto */
+.txt-sin-resultados {
+    margin-top: 150px;
+    margin-bottom: 150px;
+    font-size: 50px;
+    text-align: center;
+}

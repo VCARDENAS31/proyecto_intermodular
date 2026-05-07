@@ -35,6 +35,12 @@ $stock = $_POST['stock'] ?? 0;
 $descripcion = $_POST['descripcion'] ?? '';
 // Obtiene la descripción del producto o string vacío si no está presente
 
+$tieneLector = $_POST['tieneLector'] ?? null;
+// Obtiene si la consola tiene lector
+
+$almacenamiento = $_POST['almacenamiento'] ?? null;
+// Obtiene el almacenamiento de la consola
+
 // Verifica que el producto exista en la base de datos
 $producto = obtenerProductoPorId($conexion, $id);
 // Llama a la función del DAO para obtener los datos actuales del producto
@@ -59,8 +65,13 @@ $resultado = actualizarProducto(
     // Pasa el nuevo precio del producto
     $stock,
     // Pasa el nuevo stock del producto
-    $descripcion
+    $descripcion,
     // Pasa la nueva descripción del producto
+    $tieneLector,
+    // Pasa el nuevo tipo de lector del producto
+    $almacenamiento
+    // Pasa el nuevo almacenamiento del producto
+
 );
 
 // Redirige según el resultado de la actualización

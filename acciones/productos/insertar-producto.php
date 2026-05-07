@@ -59,6 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $slug = preg_replace('/[^a-z0-9-]/', '', $slug);
     // Elimina caracteres especiales del slug, dejando solo letras, números y guiones
 
+    $tieneLector = $_POST['tieneLector'] ?? null;
+    // Obtiene si la consola tiene lector o no
+
+    $almacenamiento = $_POST['almacenamiento'] ?? null;
+    // Obtiene el almacenamiento de la consola
+
     // Verificar que el slug no exista en la base de datos
     if (existeSlug($conexion, $slug)) {
         // Llama a la función del DAO para verificar si el slug ya está registrado
@@ -197,8 +203,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Pasa la plataforma del producto
         $rutaFinalBD,
         // Pasa la ruta de la imagen guardada
-        $slug
+        $slug,
         // Pasa el slug del producto
+        $tieneLector,
+        // Pasa el lector
+        $almacenamiento
+        //Pasa el almacenamiento
     );
 
     if ($resultado) {
