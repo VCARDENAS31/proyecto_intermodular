@@ -221,7 +221,8 @@ if (!esAdmin()) {
 
                             <div class="mb-4">
 
-                                <label class="form-label">Imagen del producto si quieres subir una nueva (Solo webp)</label>
+                                <label class="form-label">Imagen del producto si quieres subir una nueva (Solo
+                                    webp)</label>
 
                                 <input type="file" name="imagen" class="form-control" accept=".webp">
 
@@ -281,6 +282,12 @@ if (!esAdmin()) {
                                 <?php if ($_GET['error'] == 'upload'): ?>
                                     <div class="alert alert-danger">
                                         Error al subir la imagen
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($_GET['error'] == 'doble-img'): ?>
+                                    <div class="alert alert-danger">
+                                        Solo puedes subir una imagen nueva o seleccionar una existente, no ambas
                                     </div>
                                 <?php endif; ?>
 

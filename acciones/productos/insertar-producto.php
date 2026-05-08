@@ -99,6 +99,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $imagen_existente = $_POST['imagen_existente'] ?? '';
     // Obtiene la ruta de una imagen existente o string vacío si no hay
 
+    // ======================================================
+// VALIDAR QUE SOLO SE USE UNA OPCIÓN DE IMAGEN
+// ======================================================
+
+    // Verifica si se subió una imagen nueva
+    $subioImagenNueva = isset($_FILES['imagen']) &&
+        $_FILES['imagen']['error'] === 0 &&
+        !empty($_FILES['imagen']['name']);
+
+    // Verifica si se seleccionó una imagen existente
+    $usoImagenExistente = !empty($imagen_existente);
+
+    // Si usa ambas opciones → error
+    if ($subioImagenNueva && $usoImagenExistente) {
+
+        header("Location: anadir-producto.php?error=doble-img");
+        exit();
+    }
+
+    // Si no usa ninguna → error
+    if (!$subioImagenNueva && !$usoImagenExistente) {
+
+        header("Location: anadir-producto.php?error=img");
+        exit();
+    }
+
     if (!empty($imagen_existente)) {
         // Si hay una imagen existente, la usa directamente
 
