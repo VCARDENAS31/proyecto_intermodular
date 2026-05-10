@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 // ================= CONFIGURACIÓN E INCLUDES =================
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
 require_once ROOT_PATH . 'dao/conexion-bd.php';

@@ -36,6 +36,8 @@ RewriteRule ^autentificacion$ acciones/login/autentificacion.php [L,QSA]
 RewriteRule ^procesar-registro$ acciones/login/procesar-registro.php [L,QSA]
 RewriteRule ^logout$ acciones/login/logout.php [L,QSA]
 
+RewriteRule ^verificar-codigo$ vistas/vistas-login/verificar-codigo.php [L,QSA]
+RewriteRule ^confirmar-registro$ acciones/login/confirmar-registro.php [L,QSA]
 
 # ========================================
 #  CARRITO / PEDIDOS

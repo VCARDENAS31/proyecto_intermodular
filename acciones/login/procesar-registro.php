@@ -1,148 +1,173 @@
 <?php
-// Inicia el bloque de código PHP para el script de procesamiento de registro
 
+// Inicia la sesión para acceder a variables temporales
 session_start();
-// Inicia la sesión para almacenar mensajes de error o éxito en $_SESSION
 
+// ==============================
+// IMPORTAR CONFIGURACIÓN GENERAL
+// ==============================
+// Carga constantes globales como ROOT_PATH
 require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
-// Incluye el archivo de configuración principal que define constantes como ROOT_PATH
 
+// Incluye la conexión MySQL
 require_once ROOT_PATH . 'dao/conexion-bd.php';
-// Incluye el archivo de conexión a la base de datos para establecer la conexión MySQL
 
-// Configura mysqli para lanzar excepciones en caso de error
+// Incluye la función enviarCodigo()
+require_once ROOT_PATH . 'includes/email.php';
+
+
+// Hace que MySQLi lance excepciones automáticamente
+// para poder usar try/catch
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-// Permite usar try-catch para capturar excepciones de mysqli
 
+// ==============================
+// VERIFICAR MÉTODO POST
+// ==============================
+// Solo permitir acceso mediante envío de formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifica si la solicitud HTTP es de tipo POST, asegurando que se procese solo envíos de formularios
 
     // ==============================
-    // RECOGER DATOS
+    // RECOGER DATOS DEL FORMULARIO
     // ==============================
-    // Sección de recopilación de datos del formulario de registro
 
+    // Obtener nombre
     $nombre = trim($_POST['nombre']);
-    // Obtiene el nombre del usuario y elimina espacios en blanco al inicio y final
 
+    // Obtener apellidos
     $apellidos = trim($_POST['apellidos']);
-    // Obtiene los apellidos del usuario y elimina espacios en blanco
 
+    // Obtener email
     $email = trim($_POST['email']);
-    // Obtiene el email del usuario y elimina espacios en blanco
 
+    // Obtener contraseña sin encriptar
     $password_plana = $_POST['password'];
-    // Obtiene la contraseña sin encriptar (se encriptará después)
 
     // ==============================
-    // VALIDACIÓN CONTRASEÑA
+    // VALIDAR CONTRASEÑA
     // ==============================
-    // Sección de validación de la contraseña según criterios de seguridad
+    // Debe:
+    // - Tener mínimo 5 caracteres
+    // - Contener una mayúscula
+    // - Contener un carácter especial
 
     if (
-        // Inicia la validación de contraseña con múltiples condiciones
         strlen($password_plana) < 5 ||
-        // Verifica que la contraseña tenga mínimo 5 caracteres
         !preg_match('/[A-Z]/', $password_plana) ||
-        // Verifica que la contraseña contenga al menos una mayúscula
         !preg_match('/[\W_]/', $password_plana)
-        // Verifica que la contraseña contenga al menos un carácter especial
     ) {
+
+        // Guardar mensaje de error
         $_SESSION['error_registro'] = "La contraseña debe tener mínimo 5 caracteres, una mayúscula y un carácter especial.";
-        // Almacena el mensaje de error en la sesión para mostrarlo en la página de registro
 
+        // Redirigir al formulario
         header("Location: registro");
-        // Redirige de vuelta a la página de registro
 
+        // Detener ejecución
         exit();
-        // Termina la ejecución del script
     }
 
     // ==============================
-    // VALIDAR EMAIL
+    // VALIDAR FORMATO EMAIL
     // ==============================
-    // Sección de validación del formato del email
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // Verifica si el email tiene un formato válido usando filter_var
 
+        // Guardar mensaje de error
         $_SESSION['error_registro'] = "Email no válido.";
-        // Almacena el mensaje de error en la sesión
 
+        // Redirigir al formulario
         header("Location: registro");
-        // Redirige de vuelta a la página de registro
 
+        // Detener ejecución
         exit();
-        // Termina la ejecución del script
     }
 
     // ==============================
-    // ENCRIPTAR CONTRASEÑA
+    // VERIFICAR SI EL EMAIL EXISTE
     // ==============================
-    // Sección de cifrado seguro de la contraseña
+    // Evita registros duplicados
 
-    $password_segura = password_hash($password_plana, PASSWORD_DEFAULT);
-    // Encripta la contraseña usando bcrypt (PASSWORD_DEFAULT) para almacenamiento seguro
+    $sqlCheck = "SELECT id_usuario FROM usuarios WHERE email = ?";
+
+    // Preparar consulta
+    $stmtCheck = mysqli_prepare($conexion, $sqlCheck);
+
+    // Vincular email
+    mysqli_stmt_bind_param($stmtCheck, "s", $email);
+
+    // Ejecutar consulta
+    mysqli_stmt_execute($stmtCheck);
+
+    // Guardar resultado
+    mysqli_stmt_store_result($stmtCheck);
+
+    // Verificar si existe un usuario con ese email
+    if (mysqli_stmt_num_rows($stmtCheck) > 0) {
+
+        // Guardar mensaje de error
+        $_SESSION['error_registro'] = "El correo ya está registrado.";
+
+        // Redirigir al formulario
+        header("Location: registro");
+
+        // Detener ejecución
+        exit();
+    }
 
     // ==============================
-    // INSERTAR USUARIO
+    // GENERAR CÓDIGO DE VERIFICACIÓN
     // ==============================
-    // Sección de inserción del nuevo usuario en la base de datos
+    // Genera un código aleatorio de 6 cifras
 
-    $sql = "INSERT INTO usuarios (email, contrasena, nombre, apellidos, rol) 
-            VALUES (?, ?, ?, ?, 'user')";
-    // Define la consulta SQL preparada para insertar un nuevo usuario con rol 'user' por defecto
+    $codigo = rand(100000, 999999);
 
-    $stmt = mysqli_prepare($conexion, $sql);
-    // Prepara la declaración SQL usando la conexión a la base de datos
+    // ==============================
+    // GUARDAR DATOS TEMPORALES
+    // ==============================
+    // El usuario NO se registra todavía
+    // Se almacenan temporalmente en sesión
+    // hasta verificar el código
 
-    mysqli_stmt_bind_param($stmt, "ssss", $email, $password_segura, $nombre, $apellidos);
-    // Vincula los parámetros a la consulta preparada: email, password, nombre, apellidos (todos strings)
+    $_SESSION['registro_temp'] = [
+
+        'nombre' => $nombre,
+
+        'apellidos' => $apellidos,
+
+        'email' => $email,
+
+        // Guardar contraseña encriptada
+        'password' => password_hash($password_plana, PASSWORD_DEFAULT)
+    ];
+
+    // Guardar código en sesión
+    $_SESSION['codigo_verificacion'] = $codigo;
+
+    // ==============================
+    // ENVIAR EMAIL DE VERIFICACIÓN
+    // ==============================
 
     try {
-        // Inicia un bloque try para capturar excepciones durante la ejecución
 
-        mysqli_stmt_execute($stmt);
-        // Ejecuta la consulta preparada para insertar el usuario en la base de datos
+        // Enviar código al correo
+        enviarCodigo($email, $codigo);
 
-        // MENSAJE DE ÉXITO
-        // Sección de procesamiento después de un registro exitoso
+        // Redirigir a verificar código
+        header("Location: verificar-codigo");
 
-        $_SESSION['exito_registro'] = "Usuario creado correctamente. Ya puedes iniciar sesión.";
-        // Almacena el mensaje de éxito en la sesión para mostrarlo en la página de login
-
-        // redirige a la página de login con URL limpia
-
-        header("Location: login");
-        // Envía la cabecera de redirección a la página de login
-
+        // Detener ejecución
         exit();
-        // Termina la ejecución del script después de la redirección
 
-    } catch (mysqli_sql_exception $e) {
-        // Captura cualquier excepción de mysqli (errores de base de datos)
+    } catch (Exception $e) {
 
+        // Si falla el envío del correo
 
-        // Sección de manejo específico de errores
+        $_SESSION['error_registro'] = "Error al enviar el correo.";
 
-        if ($e->getCode() == 1062) {
-            // Verifica si el código de error es 1062 (violación de restricción única - email duplicado)
-
-            $_SESSION['error_registro'] = "El correo ya está registrado.";
-            // Almacena mensaje de error específico para email duplicado
-
-        } else {
-            // Si es otro tipo de error
-
-            $_SESSION['error_registro'] = "Error al registrar usuario.";
-            // Almacena un mensaje de error genérico
-
-        }
-
+        // Volver al registro
         header("Location: registro");
-        // Redirige de vuelta a la página de registro para mostrar el error
 
+        // Detener ejecución
         exit();
-        // Termina la ejecución del script
     }
 }
