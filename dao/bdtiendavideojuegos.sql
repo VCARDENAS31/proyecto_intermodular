@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2026 a las 00:47:45
+-- Tiempo de generación: 10-05-2026 a las 19:20:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -455,9 +455,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `email`, `contrasena`, `nombre`, `apellidos`, `rol`) VALUES
-(1, 'admin@tienda.com', '$2y$10$9A53zi1LFMD21Hk/TtjOpO9lgilHan8zGyaGqYsbT6uYSRLDAtjYm', 'Victor', 'Cardenas', 'admin'),
-(16, 'daniel@ejemplo.com', '$2y$10$2SNZhnZIBOZbP2AKm14ZW.Na171RgLbbyrWh3HwGlxptzvnPX5wpK', 'Daniel', 'Alvarez', 'user'),
-(19, 'jorge@ejemplo.com', '$2y$10$R.xAvyW35/FPPRwgQSkqVegZ9stlVmeV.r0J9rh/GJzMIOBm.sQEa', 'Jorge', 'Campos', 'user');
+(16, 'daniel123@ejemplo.com', '$2y$10$qxgSN8LJNAGUYJu0YcxAZeWhi1m.W9H5ZaqpGDU8/KhqwCiImloGm', 'Daniel', 'Alvarez', 'user'),
+(19, 'jorge@ejemplo.com', '$2y$10$R.xAvyW35/FPPRwgQSkqVegZ9stlVmeV.r0J9rh/GJzMIOBm.sQEa', 'Jorge', 'Campos', 'user'),
+(45, 'tienda@ejemplo.com', '$2y$10$i9ZAcUJpD.VzFaXj1z9L7.QWlTzz9BMY1aXV/DKN1cphqv2kYVAvO', 'Victor', 'Cardenas Portugal', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -555,13 +555,13 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- Restricciones para tablas volcadas
