@@ -13362,7 +13362,7 @@ div.modal-content,
 
 @font-face {
   font-family: "Exo";
-  src: url("../../assets/fonts/Exo-Regular.ttf") format("truetype");
+  src: url("../../assets/fonts/Exo-Regular.ttf") format("truetype"), url("../../assets/fonts/Exo-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
