@@ -52,8 +52,6 @@ $totalFinal = $total - $descuento + 2.99;
     <title>Envío y Pago</title>
     <!-- ========== ESTILOS ========== -->
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     <!-- ========== BARRA DE NAVEGACIÓN DEL CHECKOUT ========== -->

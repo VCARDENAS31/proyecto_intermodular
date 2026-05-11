@@ -34,18 +34,11 @@ if (!isset($_SESSION['registro_temp'])) {
     <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
 
     <!-- ================= FUENTES Y ESTILOS ================= -->
-    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
-<body>
-
+<body class="auth">
     <!-- ================= CONTENEDOR PRINCIPAL ================= -->
     <!-- Centra el contenido vertical y horizontalmente -->
     <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">

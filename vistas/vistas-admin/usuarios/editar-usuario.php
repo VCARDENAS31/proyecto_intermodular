@@ -34,8 +34,6 @@ $user = obtenerUsuarioPorId($conexion, $_GET['id']);
     <link rel="icon" href="assets/imagenes/logo/favicon.ico" type="image/x-icon">
     
     <!-- ================= FUENTES Y ESTILOS EXTERNOS ================= -->
-    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;400;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
