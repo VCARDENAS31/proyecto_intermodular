@@ -111,7 +111,7 @@ $resultados = buscarProductos($conexion, $busqueda);
 
             <?php else: ?>
                 <!-- Si no hay resultados, muestra mensaje -->
-                <div class="col-12 text-center">
+                <div class="col-12 text-center mt-5 mb-5">
                     <p>No se encontraron resultados.</p>
                 </div>
             <?php endif; ?>
