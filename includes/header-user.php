@@ -138,29 +138,27 @@
         <div class="carrito-body">
 
             <?php
-            $total = 0; // Inicializar total del carrito
+            $total = 0;
 
             if (!empty($_SESSION['carrito'])) {
-                // Iterar sobre cada producto en el carrito de la sesión
-                foreach ($_SESSION['carrito'] as $id => $producto) {
+                // CAMBIAMOS $producto por $itemCarrito
+                foreach ($_SESSION['carrito'] as $id => $itemCarrito) {
 
-                    $subtotal = round($producto['precio'] * $producto['cantidad'], 2); // Calcular subtotal por producto
-                    $total += $subtotal; // Sumar al total general
-
+                    $subtotal = round($itemCarrito['precio'] * $itemCarrito['cantidad'], 2);
+                    $total += $subtotal;
                     ?>
                     <div class="carrito-item">
-                        <img src="assets/imagenes/<?php echo $producto['img']; ?>">
+                        <img src="assets/imagenes/<?php echo $itemCarrito['img']; ?>">
                         <div class="info">
                             <p>
-                                <?php echo $producto['nombre']; ?> - <?php echo $producto['plataforma']; ?>
+                                <?php echo $itemCarrito['nombre']; ?> - <?php echo $itemCarrito['plataforma']; ?>
                             </p>
                             <span>
-                                <?php echo $producto['precio']; ?>€ x
-                                <?php echo $producto['cantidad']; ?>
+                                <?php echo $itemCarrito['precio']; ?>€ x
+                                <?php echo $itemCarrito['cantidad']; ?>
                             </span>
                         </div>
 
-                        <!-- Botón para eliminar producto del carrito -->
                         <a href="#" class="btn-eliminar" data-id="<?php echo $id; ?>">
                             <i class="bi bi-trash eliminar"></i>
                         </a>
@@ -168,7 +166,7 @@
                     <?php
                 }
             } else {
-                echo "<p>Carrito vacío</p>"; // Mensaje si no hay productos
+                echo "<p>Carrito vacío</p>";
             }
             ?>
 
