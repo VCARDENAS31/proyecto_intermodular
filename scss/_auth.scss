@@ -39,7 +39,7 @@ body.auth {
 }
 
 /* ===== INPUTS ===== */
-.form-control {
+.form-control-auth {
     background: #3e3a73;
     border: none;
     border-radius: 12px;
@@ -47,11 +47,11 @@ body.auth {
     padding: 12px 15px;
 }
 
-.form-control::placeholder {
+.form-control-auth::placeholder {
     color: #cfcff5;
 }
 
-.form-control:focus {
+.form-control-auth:focus {
     box-shadow: none;
     background: #4b4682;
     color: #fff;

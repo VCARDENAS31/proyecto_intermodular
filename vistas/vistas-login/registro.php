@@ -43,7 +43,7 @@ session_start();
                     <span class="input-group-text">
                         <i class="bi bi-person"></i>
                     </span>
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                    <input type="text" name="nombre" class="form-control-auth form-control" placeholder="Nombre" required>
                 </div>
                 
                 <!-- ================= CAMPO APELLIDOS ================= -->
@@ -51,7 +51,7 @@ session_start();
                     <span class="input-group-text">
                         <i class="bi bi-person"></i>
                     </span>
-                    <input type="text" name="apellidos" class="form-control" placeholder="Apellidos" required>
+                    <input type="text" name="apellidos" class="form-control-auth form-control" placeholder="Apellidos" required>
                 </div>
                 
                 <!-- ================= CAMPO EMAIL ================= -->
@@ -59,7 +59,7 @@ session_start();
                     <span class="input-group-text">
                         <i class="bi bi-envelope"></i>
                     </span>
-                    <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+                    <input type="email" name="email" class="form-control-auth form-control" placeholder="Correo electrónico" required>
                 </div>
                 
                 <!-- ================= CAMPO CONTRASEÑA ================= -->
@@ -68,7 +68,7 @@ session_start();
                     <span class="input-group-text">
                         <i class="bi bi-lock"></i>
                     </span>
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña" required 
+                    <input type="password" name="password" class="form-control-auth form-control" placeholder="Contraseña" required 
                            pattern="^(?=.*[A-Z])(?=.*[\W_]).{5,}$" 
                            title="Debe tener mínimo 5 caracteres, una mayúscula y un carácter especial">
                 </div>

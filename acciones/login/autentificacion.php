@@ -64,14 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Si la contraseña no coincide, establece un mensaje de error en la sesión
 
-            $_SESSION['error_login'] = "Contraseña incorrecta.";
+            $_SESSION['error_login'] = "Datos incorrectos";
             // Mensaje de error para contraseña incorrecta
         }
 
     } else {
         // Si no se encuentra ningún usuario con el email, establece un mensaje de error en la sesión
 
-        $_SESSION['error_login'] = "Email incorrecto.";
+        $_SESSION['error_login'] = "Datos incorrectos";
         // Mensaje de error para email no encontrado
     }
 

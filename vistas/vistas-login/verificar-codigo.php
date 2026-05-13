@@ -76,7 +76,7 @@ if (!isset($_SESSION['registro_temp'])) {
                     <!-- Campo para introducir el código -->
                     <input type="text"
                         name="codigo"
-                        class="form-control"
+                        class="form-control-auth form-control"
                         placeholder="Introduce el código"
                         required>
 

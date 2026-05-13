@@ -272,7 +272,7 @@ function obtenerJuegosPorPlataformaFiltrados($conexion, $plataforma, $categoria 
     return mysqli_stmt_get_result($stmt);
 }
 
-// 🔥 ACCESORIOS FILTRADOS
+// ACCESORIOS FILTRADOS
 function obtenerAccesoriosPorPlataformaFiltrados($conexion, $plataforma, $categoria = null, $precio = null)
 {
     // Construye la consulta base para accesorios de una plataforma
@@ -323,7 +323,7 @@ function obtenerAccesoriosPorPlataformaFiltrados($conexion, $plataforma, $catego
 }
 
 
-// 🔥 CONSOLAS FILTRADAS
+// CONSOLAS FILTRADAS
 function obtenerConsolasFiltradas($conexion, $plataforma, $precio = null, $tieneLector = null, $almacenamiento = null)
 {
     // Construye la consulta base para consolas de una plataforma

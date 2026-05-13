@@ -62,13 +62,13 @@ session_start();
                 <!-- ================= CAMPO EMAIL CON ICONO ================= -->
                 <div class="mb-3 input-group">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+                    <input type="email" name="email" class="form-control-auth form-control" placeholder="Correo electrónico" required>
                 </div>
 
                 <!-- ================= CAMPO CONTRASEÑA CON ICONO ================= -->
                 <div class="mb-3 input-group">
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" name="password" class="form-control-auth form-control" placeholder="Contraseña" required>
                 </div>
 
                 <!-- ================= BOTÓN DE ENVÍO ================= -->

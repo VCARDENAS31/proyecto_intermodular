@@ -25,7 +25,7 @@ if (isset($_GET['id'])) {
     // Si el producto existe en la base de datos.
     if ($producto) {
         // Convierte el stock del producto a un número entero.
-        $stock = (int)$producto['stock'];
+        $stock = (int) $producto['stock'];
 
         // SIN STOCK
         // Si el stock del producto es menor o igual a 0.
