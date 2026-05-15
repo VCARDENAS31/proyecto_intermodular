@@ -48,6 +48,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Termina la ejecución del script tras la redirección
     }
 
+    // VERIFICAR SI EL EMAIL YA EXISTE
+    $sqlCheck = "SELECT id_usuario FROM usuarios WHERE email = ?";
+
+    // Preparar consulta
+    $stmtCheck = mysqli_prepare($conexion, $sqlCheck);
+
+    // Vincular email
+    mysqli_stmt_bind_param($stmtCheck, "s", $email);
+
+    // Ejecutar consulta
+    mysqli_stmt_execute($stmtCheck);
+
+    // Guardar resultado
+    mysqli_stmt_store_result($stmtCheck);
+
+    // Verificar si existe un usuario con ese email
+    if (mysqli_stmt_num_rows($stmtCheck) > 0) {
+
+        // Redirigir indicando email duplicado
+        header("Location: anadir-usuario.php?error=email");
+
+        // Detener ejecución
+        exit();
+    }
+
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     // Cifra la contraseña de forma segura antes de guardarla en la base de datos
 

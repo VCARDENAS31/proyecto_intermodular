@@ -35,7 +35,7 @@ if (!esAdmin()) {
     <!-- ================= CONTENIDO PRINCIPAL ================= -->
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-8 col-lg-8">
+            <div class="col-12 col-md-8 col-lg-8 mt-5">
 
                 <div class="bg-white shadow mt-5">
 

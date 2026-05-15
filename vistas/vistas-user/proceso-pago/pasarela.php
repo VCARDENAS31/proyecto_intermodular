@@ -35,7 +35,7 @@ $total = 0;
         <!-- Logo con enlace al inicio -->
     <a href="/">
         <div class="logo-checkout">
-            <img src="assets/imagenes/logo/logo_tienda.png" height="40">
+            <img src="assets/imagenes/logo/logo_tienda.png" height="60">
         </div>
     </a>
         <!-- Indicador de pasos (Paso 1 activo) -->
@@ -118,7 +118,7 @@ $total = 0;
                     <!-- ===== SECCIÓN DE CUPÓN ===== -->
                     <p class="mb-2 fw-bold">¿Tienes un código descuento?</p>
                     <div class="d-flex mb-2">
-                        <input type="text" id="inputCupon" class="form-control me-2" placeholder="Introduce código">
+                        <input type="text" id="inputCupon" class="form-control w-75" placeholder="Introduce código">
                         <button id="btnCupon" class="btn btn-primary">Aplicar</button>
                     </div>
                     <!-- Mensaje de cupón aplicado -->

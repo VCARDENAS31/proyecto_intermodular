@@ -89,7 +89,7 @@
         <div class="submenu">
             <div><a href="videojuegos/xbox"><i class="bi bi-xbox"> </i> Videojuegos Xbox</a></div>
             <div><a href="videojuegos/ps5"><i class="bi bi-playstation"></i> Videojuegos PS5</a></div>
-            <div><a href="videojuegos/switch"></a><i class="bi bi-nintendo-switch"> </i> Videojuegos Nintendo
+            <div><a href="videojuegos/switch"><i class="bi bi-nintendo-switch"> </i> Videojuegos Nintendo
                 Switch</a></div>
         </div>
 
@@ -98,8 +98,8 @@
         </div>
         <div class="submenu">
             <div><a href="consolas/xbox"><i class="bi bi-xbox"> </i> Consolas Xbox</a></div>
-            <div><a href="consolas/ps5"></a><i class="bi bi-playstation"> </i> Consolas PS5</a></div>
-            <div><a href="consolas/switch"></a><i class="bi bi-nintendo-switch"> </i> Consolas Nintendo Switch</a>
+            <div><a href="consolas/ps5"><i class="bi bi-playstation"> </i> Consolas PS5</a></div>
+            <div><a href="consolas/switch"><i class="bi bi-nintendo-switch"> </i> Consolas Nintendo Switch</a>
             </div>
         </div>
 

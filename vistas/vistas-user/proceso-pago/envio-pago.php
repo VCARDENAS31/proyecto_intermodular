@@ -58,7 +58,7 @@ $totalFinal = $total - $descuento + 2.99;
     <div class="checkout-nav py-3 px-4 d-flex justify-content-between align-items-center">
         <a href="/">
             <div class="logo-checkout">
-                <img src="assets/imagenes/logo/logo_tienda.png" height="40">
+                <img src="assets/imagenes/logo/logo_tienda.png" height="60">
             </div>
         </a>
         <!-- Indicador de pasos (Paso 2 activo) -->

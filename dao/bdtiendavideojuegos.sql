@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2026 a las 19:20:20
+-- Tiempo de generación: 15-05-2026 a las 21:02:38
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,7 +54,9 @@ CREATE TABLE `cupones` (
 
 INSERT INTO `cupones` (`id_cupon`, `codigo`, `descuento_porcentaje`, `fecha_caducidad`, `activo`) VALUES
 (5, 'FREE5', 5, '2026-11-01', 1),
-(15, 'NUEVAPRUEBA', 15, '2026-07-12', 1);
+(15, 'NUEVAPRUEBA', 15, '2026-07-12', 1),
+(17, 'BIENVENIDO2026', 11, '2026-06-07', 1),
+(18, 'VERANO2026', 12, '2026-06-26', 0);
 
 -- --------------------------------------------------------
 
@@ -67,15 +69,6 @@ CREATE TABLE `cupones_usuarios` (
   `id_usuario` int(11) DEFAULT NULL,
   `id_cupon` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `cupones_usuarios`
---
-
-INSERT INTO `cupones_usuarios` (`id`, `id_usuario`, `id_cupon`) VALUES
-(17, 16, 5),
-(18, 16, 15),
-(19, 19, 15);
 
 -- --------------------------------------------------------
 
@@ -97,12 +90,17 @@ CREATE TABLE `detalles_pedidos` (
 --
 
 INSERT INTO `detalles_pedidos` (`id_detalle`, `pedido_id`, `producto_id`, `precio_unitario`, `cantidad`, `total_linea`) VALUES
-(41, 65, 162, 599.99, 1, 599.99),
-(42, 65, 275, 12.99, 1, 12.99),
-(43, 65, 148, 39.99, 1, 39.99),
-(44, 66, 162, 599.99, 1, 599.99),
-(45, 66, 275, 12.99, 1, 12.99),
-(46, 66, 148, 39.99, 1, 39.99);
+(57, 69, 182, 529.00, 1, 529.00),
+(58, 69, 183, 449.99, 1, 449.99),
+(59, 69, 212, 59.99, 1, 59.99),
+(60, 70, 17, 34.99, 2, 69.98),
+(61, 70, 22, 49.99, 1, 49.99),
+(62, 70, 66, 60.00, 1, 60.00),
+(63, 70, 123, 29.99, 1, 29.99),
+(64, 71, 159, 345.00, 1, 345.00),
+(65, 71, 149, 55.00, 1, 55.00),
+(66, 72, 215, 29.99, 1, 29.99),
+(67, 72, 196, 34.99, 1, 34.99);
 
 -- --------------------------------------------------------
 
@@ -128,8 +126,10 @@ CREATE TABLE `pedidos` (
 --
 
 INSERT INTO `pedidos` (`id_pedido`, `usuario_id`, `cupon_id`, `total`, `estado`, `fecha_pedido`, `direccion_envio`, `telefono`, `nombre_cliente`, `metodo_pago`) VALUES
-(65, 16, 15, 558.01, 'pendiente', '2026-05-07 19:30:32', 'Calle de Huarte, 8, Pamplona (34534)', '980908890', 'Daniel Torres', 'tarjeta'),
-(66, 19, 15, 558.01, 'reparto', '2026-05-07 19:59:32', 'Cuenca, Murcia (12312)', '678789897', 'Jorge Campos', 'contra');
+(69, 54, NULL, 1041.97, 'pendiente', '2026-05-15 20:53:50', 'calle portugal, 12312, Lisboa (34534)', '678677766', 'Pepe Lima Ferreira', 'tarjeta'),
+(70, 54, NULL, 212.95, 'pendiente', '2026-05-15 20:55:40', 'calle portugal, 12312, Lisboa (78879)', '967567656', 'Pepe Lima Ferreira', 'contra'),
+(71, 55, NULL, 402.99, 'pendiente', '2026-05-15 20:58:31', 'calle zaragoza, 3290, Zaragoza (31231)', '987655432', 'Javier Liras Lara', 'contra'),
+(72, 56, NULL, 67.97, 'pendiente', '2026-05-15 21:00:29', 'calle madrid, 12312, Madrid (34223)', '645345543', 'Cristiano Dos Santos Aveiro', 'tarjeta');
 
 -- --------------------------------------------------------
 
@@ -172,12 +172,12 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (14, 'Devil May Cry 5', 25.00, 10, 'Juego', 'Acción', 'Hack and slash de alta velocidad con estilo espectacular.\r\nCombates fluidos con combos impresionantes.\r\nPersonajes carismáticos y narrativa intensa.\r\nGran variedad de armas y habilidades.\r\nGráficos estilizados con efectos llamativos.\r\nAcción pura con un ritmo frenético.', 'productos/videojuegos/accion/devil-may-cry-6-caratula.webp', 'PS5', NULL, NULL, 'devil-may-cry-5-ps5'),
 (15, 'Sekiro: Shadows Die Twice', 59.99, 12, 'Juego', 'Acción', 'Viaje desafiante en el Japón feudal lleno de enemigos letales.\r\nSistema de combate preciso basado en reflejos.\r\nExploración de escenarios detallados.\r\nHistoria profunda de honor y venganza.\r\nGran dificultad que recompensa la habilidad.\r\nUna experiencia intensa y satisfactoria.', 'productos/videojuegos/accion/sekiro-shadows-die-twice-caratula.webp', 'Xbox', NULL, NULL, 'sekiro-shadows-die-twice-xbox'),
 (16, 'Bayonetta 3', 49.99, 8, 'Juego', 'Acción', 'Acción espectacular con combates llenos de magia y estilo.\r\nEnfréntate a enemigos gigantescos en batallas épicas.\r\nSistema de combate fluido y dinámico.\r\nEscenarios variados y llenos de detalles.\r\nPersonaje carismático con gran personalidad.\r\nUna experiencia única dentro del género.', 'productos/videojuegos/accion/bayonetta-3-caratula.webp', 'Switch', NULL, NULL, 'bayonetta-3-switch'),
-(17, 'Sifu', 34.99, 15, 'Juego', 'Acción', 'Domina el Kung Fu en una historia de venganza intensa.\r\nSistema de combate técnico y desafiante.\r\nMecánica de envejecimiento única.\r\nDiseño artístico minimalista y elegante.\r\nNiveles diseñados para rejugabilidad.\r\nIdeal para jugadores que buscan reto.', 'productos/videojuegos/accion/sifu-caratula.webp', 'PS5', NULL, NULL, 'sifu-ps5'),
+(17, 'Sifu', 34.99, 13, 'Juego', 'Acción', 'Domina el Kung Fu en una historia de venganza intensa.\r\nSistema de combate técnico y desafiante.\r\nMecánica de envejecimiento única.\r\nDiseño artístico minimalista y elegante.\r\nNiveles diseñados para rejugabilidad.\r\nIdeal para jugadores que buscan reto.', 'productos/videojuegos/accion/sifu-caratula.webp', 'PS5', NULL, NULL, 'sifu-ps5'),
 (18, 'Wolfenstein II', 19.99, 20, 'Juego', 'Acción', 'Shooter ambientado en una realidad alternativa dominada por enemigos.\r\nHistoria intensa con narrativa profunda.\r\nArmas variadas y combates estratégicos.\r\nEscenarios detallados y ambientación inmersiva.\r\nAcción constante y ritmo dinámico.\r\nUn clásico moderno del género.', 'productos/videojuegos/accion/wolfensteinII-caratula.webp', 'Xbox', NULL, NULL, 'wolfenstein-ii-xbox'),
 (19, 'Astral Chain', 45.00, 5, 'Juego', 'Acción', 'Combate futurista combinando acción y estrategia.\r\nControla personajes y entidades al mismo tiempo.\r\nHistoria envolvente con estilo anime.\r\nEscenarios urbanos detallados.\r\nSistema de combate innovador.\r\nExclusivo con una experiencia única.', 'productos/videojuegos/accion/astral-chain-caratula.webp', 'Switch', NULL, NULL, 'astral-chain-switch'),
 (20, 'Hades', 24.99, 40, 'Juego', 'Acción', 'Roguelike de acción con combates rápidos y adictivos.\r\nHistoria basada en la mitología griega.\r\nGran variedad de armas y habilidades.\r\nDiseño artístico impresionante.\r\nAlta rejugabilidad en cada partida.\r\nUna joya imprescindible del género indie.', 'productos/videojuegos/accion/hades-caratula.webp', 'Switch', NULL, NULL, 'hades-switch'),
 (21, 'The Legend of Zelda: TotK', 69.99, 30, 'Juego', 'Aventura', 'Embárcate en una aventura épica en un mundo abierto lleno de misterios.\r\nExplora cielos y tierras con total libertad.\r\nResuelve puzles y enfréntate a enemigos desafiantes.\r\nHistoria profunda con personajes memorables.\r\nGráficos artísticos y detallados.\r\nUna experiencia imprescindible para amantes de la aventura.', 'productos/videojuegos/aventura/zelda-tears-of-the-kingdom-caratula.webp', 'Switch', NULL, NULL, 'the-legend-of-zelda-totk-switch'),
-(22, 'Uncharted: Legacy of Thieves', 49.99, 20, 'Juego', 'Aventura', 'Viaja por el mundo en busca de tesoros perdidos y secretos antiguos.\r\nAventura cinematográfica con acción constante.\r\nEscenarios espectaculares y detallados.\r\nPersonajes carismáticos y narrativa envolvente.\r\nCombina exploración, plataformas y combate.\r\nUna experiencia digna de una película de acción.', 'productos/videojuegos/aventura/uncharted-legacy-of-thieves-caratula.webp', 'PS5', NULL, NULL, 'uncharted-legacy-of-thieves-ps5'),
+(22, 'Uncharted: Legacy of Thieves', 49.99, 19, 'Juego', 'Aventura', 'Viaja por el mundo en busca de tesoros perdidos y secretos antiguos.\r\nAventura cinematográfica con acción constante.\r\nEscenarios espectaculares y detallados.\r\nPersonajes carismáticos y narrativa envolvente.\r\nCombina exploración, plataformas y combate.\r\nUna experiencia digna de una película de acción.', 'productos/videojuegos/aventura/uncharted-legacy-of-thieves-caratula.webp', 'PS5', NULL, NULL, 'uncharted-legacy-of-thieves-ps5'),
 (23, 'God of War Ragnarok', 59.99, 25, 'Juego', 'Aventura', 'Vive la épica historia de Kratos y Atreus en su viaje final.\r\nCombates intensos con enemigos mitológicos.\r\nNarrativa profunda cargada de emociones.\r\nEscenarios impresionantes inspirados en la mitología nórdica.\r\nSistema de progresión y habilidades mejorado.\r\nUna obra maestra de la aventura moderna.', 'productos/videojuegos/aventura/god-of-war-ragnarok-caratula.webp', 'PS5', NULL, NULL, 'god-of-war-ragnarok-ps5'),
 (24, 'Horizon Forbidden West', 49.99, 15, 'Juego', 'Aventura', 'Explora un mundo postapocalíptico dominado por máquinas.\r\nCaza criaturas robóticas con armas avanzadas.\r\nHistoria rica y llena de misterio.\r\nEntornos abiertos llenos de vida y detalle.\r\nSistema de combate estratégico.\r\nUna aventura visualmente espectacular.', 'productos/videojuegos/aventura/horizon-forbidden-caratula.webp', 'PS5', NULL, NULL, 'horizon-forbidden-west-ps5'),
 (25, 'Ghost of Tsushima', 39.99, 10, 'Juego', 'Aventura', 'Conviértete en un samurái en la isla de Tsushima.\r\nCombate con espada en duelos intensos.\r\nExplora paisajes hermosos inspirados en Japón.\r\nHistoria de honor, sacrificio y venganza.\r\nEstilo visual cinematográfico.\r\nUna experiencia inmersiva única.', 'productos/videojuegos/aventura/ghost-of-tsushima-caratula.webp', 'PS5', NULL, NULL, 'ghost-of-tsushima-ps5'),
@@ -186,7 +186,7 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (28, 'Assassins Creed Valhalla', 35.00, 20, 'Juego', 'Aventura', 'Conquista Inglaterra como un feroz guerrero vikingo.\r\nExplora un mundo abierto lleno de misiones.\r\nCombate brutal con armas y habilidades.\r\nConstruye y gestiona tu asentamiento.\r\nNarrativa épica basada en la historia.\r\nUna aventura extensa y envolvente.', 'productos/videojuegos/aventura/assassin-creed-valhalla.webp', 'Xbox', NULL, NULL, 'assassins-creed-valhalla-xbox'),
 (29, 'Ratchet & Clank', 59.99, 15, 'Juego', 'Aventura', 'Salta entre dimensiones en una aventura llena de acción.\r\nArmas creativas y combate dinámico.\r\nEscenarios futuristas con gran detalle.\r\nHistoria divertida y personajes carismáticos.\r\nGráficos de nueva generación.\r\nUna experiencia espectacular y entretenida.', 'productos/videojuegos/aventura/ratchet-and-clank-caratula.webp', 'PS5', NULL, NULL, 'ratchet-y-clank-ps5'),
 (30, 'Super Mario Odyssey', 49.99, 10, 'Juego', 'Aventura', 'Acompaña a Mario en un viaje por mundos increíbles.\r\nExplora escenarios llenos de secretos.\r\nMecánicas innovadoras con Cappy.\r\nDiseño creativo y variado.\r\nJugabilidad accesible y divertida.\r\nUn clásico moderno de plataformas en 3D.', 'productos/videojuegos/aventura/super-mario-odyssey-caratula.webp', 'Switch', NULL, NULL, 'super-mario-odyssey-switch'),
-(31, 'Resident Evil Village', 39.99, 18, 'Juego', 'Terror', 'Sobrevive a una pesadilla en un pueblo lleno de criaturas aterradoras.\r\nAmbiente oscuro con tensión constante.\r\nCombate y gestión de recursos limitados.\r\nHistoria inquietante llena de misterios.\r\nGráficos realistas que aumentan la inmersión.\r\nUna experiencia de horror intensa e inolvidable.', 'productos/videojuegos/terror/resident-evil-8-caratula.webp', 'PS5', NULL, NULL, 'resident-evil-village-ps5'),
+(31, 'Resident Evil Village', 39.99, 17, 'Juego', 'Terror', 'Sobrevive a una pesadilla en un pueblo lleno de criaturas aterradoras.\r\nAmbiente oscuro con tensión constante.\r\nCombate y gestión de recursos limitados.\r\nHistoria inquietante llena de misterios.\r\nGráficos realistas que aumentan la inmersión.\r\nUna experiencia de horror intensa e inolvidable.', 'productos/videojuegos/terror/resident-evil-8-caratula.webp', 'PS5', NULL, NULL, 'resident-evil-village-ps5'),
 (32, 'Silent Hill 2 Remake', 69.99, 12, 'Juego', 'Terror', 'Sumérgete en una historia de terror psicológico profundamente perturbadora.\r\nExplora una ciudad envuelta en niebla y secretos.\r\nNarrativa intensa cargada de simbolismo.\r\nAmbiente opresivo que genera tensión constante.\r\nSonido y diseño que potencian el miedo.\r\nUna obra maestra del terror moderno.', 'productos/videojuegos/terror/silent-hill-2-remake-caratula.webp', 'PS5', NULL, NULL, 'silent-hill-2-remake-ps5'),
 (33, 'Dead Space Remake', 59.99, 10, 'Juego', 'Terror', 'Vive el horror espacial en una nave infestada de criaturas.\r\nAmbiente claustrofóbico y angustiante.\r\nCombate estratégico con recursos limitados.\r\nDiseño de sonido que incrementa la tensión.\r\nGráficos renovados con gran detalle.\r\nUna experiencia aterradora en el espacio.', 'productos/videojuegos/terror/dead-space-remake-caratula.webp', 'Xbox', NULL, NULL, 'dead-space-remake-xbox'),
 (34, 'Alan Wake 2', 55.00, 15, 'Juego', 'Terror', 'Un thriller psicológico que mezcla realidad y pesadilla.\r\nHistoria profunda con múltiples capas narrativas.\r\nAmbiente oscuro y sobrenatural.\r\nExploración e investigación constantes.\r\nNarrativa envolvente con giros inesperados.\r\nIdeal para amantes del terror psicológico.', 'productos/videojuegos/terror/alan-wake-2-caratula.webp', 'Xbox', NULL, NULL, 'alan-wake-2-xbox'),
@@ -207,7 +207,7 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (49, 'Skyrim: Anniversary', 39.99, 25, 'Juego', 'RPG', 'Explora un mundo lleno de dragones y magia.\r\nLibertad total para crear tu aventura.\r\nSistema de progresión abierto.\r\nGran cantidad de misiones secundarias.\r\nAmbiente inmersivo.\r\nUn clásico atemporal del RPG.', 'productos/videojuegos/rpg/skyrim-anniversary-caratula.webp', 'Switch', NULL, NULL, 'skyrim-anniversary-switch'),
 (50, 'Octopath Traveler II', 55.00, 12, 'Juego', 'RPG', 'Vive ocho historias diferentes en un mundo único.\r\nCombate por turnos estratégico.\r\nEstilo visual HD-2D espectacular.\r\nPersonajes con historias profundas.\r\nExploración rica en contenido.\r\nUna experiencia RPG diferente y memorable.', 'productos/videojuegos/rpg/octopath-travelerII-caratula.webp', 'Switch', NULL, NULL, 'octopath-traveler-ii-switch'),
 (51, 'FIFA 26', 69.99, 25, 'Juego', 'Deportes', 'El simulador de fútbol más avanzado con tecnología HyperMotion que mejora cada animación en tiempo real.\r\nDisfruta de partidos intensos con físicas realistas y movimientos fluidos.\r\nIncluye modos como Carrera, Ultimate Team y multijugador online competitivo.\r\nGráficos de última generación con estadios detallados y ambiente auténtico.\r\nIA mejorada que adapta la dificultad a tu estilo de juego.\r\nVive la experiencia más cercana al fútbol profesional desde casa.', 'productos/videojuegos/deporte/ea-sports-fc-26-caratula.webp', 'Xbox', NULL, NULL, 'fifa-26-xbox'),
-(52, 'FIFA 26', 69.99, 25, 'Juego', 'Deportes', 'El simulador de fútbol más avanzado con tecnología HyperMotion que mejora cada animación en tiempo real.\r\nDisfruta de partidos intensos con físicas realistas y movimientos fluidos.\r\nIncluye modos como Carrera, Ultimate Team y multijugador online competitivo.\r\nGráficos de última generación con estadios detallados y ambiente auténtico.\r\nIA mejorada que adapta la dificultad a tu estilo de juego.\r\nVive la experiencia más cercana al fútbol profesional desde casa.', 'productos/videojuegos/deporte/ea-sports-fc-26-caratula.webp', 'Switch', NULL, NULL, 'fifa-26-switch'),
+(52, 'FIFA 26', 69.99, 24, 'Juego', 'Deportes', 'El simulador de fútbol más avanzado con tecnología HyperMotion que mejora cada animación en tiempo real.\r\nDisfruta de partidos intensos con físicas realistas y movimientos fluidos.\r\nIncluye modos como Carrera, Ultimate Team y multijugador online competitivo.\r\nGráficos de última generación con estadios detallados y ambiente auténtico.\r\nIA mejorada que adapta la dificultad a tu estilo de juego.\r\nVive la experiencia más cercana al fútbol profesional desde casa.', 'productos/videojuegos/deporte/ea-sports-fc-26-caratula.webp', 'Switch', NULL, NULL, 'fifa-26-switch'),
 (53, 'NBA 2K26', 59.90, 15, 'Juego', 'Deportes', 'Experimenta la emoción del baloncesto con gráficos hiperrealistas y animaciones precisas.\r\nControla cada jugada con nuevas mecánicas ofensivas y defensivas.\r\nModo MyCareer mejorado con historia envolvente.\r\nCompite online contra jugadores de todo el mundo.\r\nAmbientes y estadios recreados con gran detalle.\r\nIdeal para los amantes del baloncesto competitivo.', 'productos/videojuegos/deporte/nba-2k-26-caratula.webp', 'PS5', NULL, NULL, 'nba-2k26-ps5'),
 (54, 'NBA 2K26', 59.90, 15, 'Juego', 'Deportes', 'Experimenta la emoción del baloncesto con gráficos hiperrealistas y animaciones precisas.\r\nControla cada jugada con nuevas mecánicas ofensivas y defensivas.\r\nModo MyCareer mejorado con historia envolvente.\r\nCompite online contra jugadores de todo el mundo.\r\nAmbientes y estadios recreados con gran detalle.\r\nIdeal para los amantes del baloncesto competitivo.', 'productos/videojuegos/deporte/nba-2k-26-caratula.webp', 'Switch', NULL, NULL, 'nba-2k26-switch'),
 (55, 'F1 24', 65.00, 10, 'Juego', 'Deportes', 'Siente la velocidad extrema de la Fórmula 1 con físicas realistas.\r\nCompite en circuitos oficiales con condiciones dinámicas.\r\nModo carrera profundo con gestión de equipo incluida.\r\nGráficos espectaculares que reflejan cada detalle del coche.\r\nIA desafiante que pone a prueba tus habilidades.\r\nLa experiencia definitiva de conducción profesional.', 'productos/videojuegos/deporte/f1-24-caratula.webp', 'Xbox', NULL, NULL, 'f1-24-xbox'),
@@ -220,7 +220,7 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (63, 'WWE 2K24', 55.00, 8, 'Juego', 'Deportes', 'Vive la emoción de la lucha libre con gráficos realistas.\r\nGran variedad de luchadores y modos de juego.\r\nCrea tu propio personaje y carrera.\r\nAnimaciones mejoradas y combates fluidos.\r\nModo online competitivo.\r\nIdeal para fans del wrestling.', 'productos/videojuegos/deporte/www-2k-24-caratula.webp', 'Xbox', NULL, NULL, 'wwe-2k24-xbox'),
 (64, 'WWE 2K24', 55.00, 8, 'Juego', 'Deportes', 'Vive la emoción de la lucha libre con gráficos realistas.\r\nGran variedad de luchadores y modos de juego.\r\nCrea tu propio personaje y carrera.\r\nAnimaciones mejoradas y combates fluidos.\r\nModo online competitivo.\r\nIdeal para fans del wrestling.', 'productos/videojuegos/deporte/www-2k-24-caratula.webp', 'Switch', NULL, NULL, 'wwe-2k24-switch'),
 (65, 'Madden NFL 26', 60.00, 10, 'Juego', 'Deportes', 'Simulación completa de fútbol americano con jugadas estratégicas.\r\nControl total del equipo y gestión táctica.\r\nModos online y offline.\r\nGráficos realistas con estadios auténticos.\r\nIA avanzada para mayor desafío.\r\nPerfecto para fans de la NFL.', 'productos/videojuegos/deporte/madden-nfl-26-caratula.webp', 'PS5', NULL, NULL, 'madden-nfl-26-ps5'),
-(66, 'Madden NFL 26', 60.00, 10, 'Juego', 'Deportes', 'Simulación completa de fútbol americano con jugadas estratégicas.\r\nControl total del equipo y gestión táctica.\r\nModos online y offline.\r\nGráficos realistas con estadios auténticos.\r\nIA avanzada para mayor desafío.\r\nPerfecto para fans de la NFL.', 'productos/videojuegos/deporte/madden-nfl-26-caratula.webp', 'Switch', NULL, NULL, 'madden-nfl-26-switch'),
+(66, 'Madden NFL 26', 60.00, 9, 'Juego', 'Deportes', 'Simulación completa de fútbol americano con jugadas estratégicas.\r\nControl total del equipo y gestión táctica.\r\nModos online y offline.\r\nGráficos realistas con estadios auténticos.\r\nIA avanzada para mayor desafío.\r\nPerfecto para fans de la NFL.', 'productos/videojuegos/deporte/madden-nfl-26-caratula.webp', 'Switch', NULL, NULL, 'madden-nfl-26-switch'),
 (67, 'Tony Hawks Pro Skater 1+2', 39.99, 5, 'Juego', 'Deportes', 'Remasterización de los clásicos juegos de skate más icónicos.\r\nTrucos fluidos y jugabilidad mejorada.\r\nMapas originales con gráficos modernos.\r\nModo multijugador online.\r\nGran banda sonora.\r\nDiversión arcade asegurada.', 'productos/videojuegos/deporte/tony-hawks-pro-skater-1mas2.webp', 'PS5', NULL, NULL, 'tony-hawks-pro-skater-1-2-ps5'),
 (68, 'Tony Hawks Pro Skater 1+2', 39.99, 5, 'Juego', 'Deportes', 'Remasterización de los clásicos juegos de skate más icónicos.\r\nTrucos fluidos y jugabilidad mejorada.\r\nMapas originales con gráficos modernos.\r\nModo multijugador online.\r\nGran banda sonora.\r\nDiversión arcade asegurada.', 'productos/videojuegos/deporte/tony-hawks-pro-skater-1mas2.webp', 'Switch', NULL, NULL, 'tony-hawks-pro-skater-1-2-switch'),
 (69, 'Rocket League Ultimate', 29.99, 100, 'Juego', 'Deportes', 'Fútbol con coches a toda velocidad en partidos caóticos.\r\nMecánicas simples pero altamente competitivas.\r\nMultijugador online muy activo.\r\nPersonalización de vehículos.\r\nPartidas rápidas y adictivas.\r\nIdeal para jugar con amigos.', 'productos/videojuegos/deporte/rocket-league-ultimate-caratula.webp', 'PS5', NULL, NULL, 'rocket-league-ultimate-ps5'),
@@ -278,7 +278,7 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (120, 'Little Nightmares II', 29.99, 24, 'Juego', 'Terror', 'Ayuda a Mono a sobrevivir en un mundo oscuro y distorsionado.\r\nPlataformas con puzles inquietantes.\r\nDiseño artístico único y perturbador.\r\nHistoria contada de forma visual.\r\nAmbiente opresivo y misterioso.\r\nUna experiencia corta pero impactante.', 'productos/videojuegos/terror/little-nightmaresII-caratula.webp', 'Xbox', NULL, NULL, 'little-nightmares-ii-xbox'),
 (121, 'Amnesia: The Bunker', 24.99, 20, 'Juego', 'Terror', 'Terror puro en un búnker durante la guerra.\r\nOscuridad constante con recursos limitados.\r\nSistema de supervivencia realista.\r\nEnemigos impredecibles que generan tensión.\r\nExploración lenta y estratégica.\r\nUna experiencia intensa y angustiante.', 'productos/videojuegos/terror/amnesia-the-bunker-caratula.webp', 'PS5', NULL, NULL, 'amnesia-the-bunker-ps5'),
 (122, 'Amnesia: The Bunker', 24.99, 19, 'Juego', 'Terror', 'Terror puro en un búnker durante la guerra.\r\nOscuridad constante con recursos limitados.\r\nSistema de supervivencia realista.\r\nEnemigos impredecibles que generan tensión.\r\nExploración lenta y estratégica.\r\nUna experiencia intensa y angustiante.', 'productos/videojuegos/terror/amnesia-the-bunker-caratula.webp', 'Switch', NULL, NULL, 'amnesia-the-bunker-switch'),
-(123, 'Alien: Isolation', 29.99, 9, 'Juego', 'Terror', 'Escapa de una criatura letal en una estación espacial.\r\nIA del enemigo impredecible.\r\nAmbiente tenso y claustrofóbico.\r\nJuego basado en sigilo y supervivencia.\r\nDiseño sonoro que eleva el miedo.\r\nUn clásico del terror moderno.', 'productos/videojuegos/terror/alien-isolation-caratula.webp', 'Xbox', NULL, NULL, 'alien-isolation-xbox'),
+(123, 'Alien: Isolation', 29.99, 8, 'Juego', 'Terror', 'Escapa de una criatura letal en una estación espacial.\r\nIA del enemigo impredecible.\r\nAmbiente tenso y claustrofóbico.\r\nJuego basado en sigilo y supervivencia.\r\nDiseño sonoro que eleva el miedo.\r\nUn clásico del terror moderno.', 'productos/videojuegos/terror/alien-isolation-caratula.webp', 'Xbox', NULL, NULL, 'alien-isolation-xbox'),
 (124, 'Alien: Isolation', 29.99, 10, 'Juego', 'Terror', 'Escapa de una criatura letal en una estación espacial.\r\nIA del enemigo impredecible.\r\nAmbiente tenso y claustrofóbico.\r\nJuego basado en sigilo y supervivencia.\r\nDiseño sonoro que eleva el miedo.\r\nUn clásico del terror moderno.', 'productos/videojuegos/terror/alien-isolation-caratula.webp', 'Switch', NULL, NULL, 'alien-isolation-switch'),
 (125, 'The Evil Within 2', 19.99, 12, 'Juego', 'Terror', 'Adéntrate en un mundo de pesadillas para salvar a tu hija.\r\nAmbiente psicológico oscuro.\r\nCombate y exploración combinados.\r\nHistoria intensa y emocional.\r\nEscenarios surrealistas y perturbadores.\r\nUna experiencia inquietante y profunda.', 'productos/videojuegos/terror/the-evil-within-2-caratula.webp', 'PS5', NULL, NULL, 'the-evil-within-2-ps5'),
 (126, 'The Evil Within 2', 19.99, 11, 'Juego', 'Terror', 'Adéntrate en un mundo de pesadillas para salvar a tu hija.\r\nAmbiente psicológico oscuro.\r\nCombate y exploración combinados.\r\nHistoria intensa y emocional.\r\nEscenarios surrealistas y perturbadores.\r\nUna experiencia inquietante y profunda.', 'productos/videojuegos/terror/the-evil-within-2-caratula.webp', 'Switch', NULL, NULL, 'the-evil-within-2-switch'),
@@ -304,9 +304,9 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (146, 'Dragon Age: The Veilguard', 69.99, 14, 'Juego', 'RPG', 'Salva el mundo de Thedas de una amenaza divina.\r\nToma decisiones que cambian la historia.\r\nCombate estratégico con habilidades.\r\nExploración de un mundo rico en lore.\r\nPersonajes complejos.\r\nUna experiencia RPG épica.', 'productos/videojuegos/rpg/dragon-age-4-caratula.webp', 'Switch', NULL, NULL, 'dragon-age-the-veilguard-switch'),
 (147, 'Skyrim: Anniversary', 39.99, 24, 'Juego', 'RPG', 'Explora un mundo lleno de dragones y magia.\r\nLibertad total para crear tu aventura.\r\nSistema de progresión abierto.\r\nGran cantidad de misiones secundarias.\r\nAmbiente inmersivo.\r\nUn clásico atemporal del RPG.', 'productos/videojuegos/rpg/skyrim-anniversary-caratula.webp', 'PS5', NULL, NULL, 'skyrim-anniversary-ps5'),
 (148, 'Skyrim: Anniversary', 39.99, 23, 'Juego', 'RPG', 'Explora un mundo lleno de dragones y magia.\r\nLibertad total para crear tu aventura.\r\nSistema de progresión abierto.\r\nGran cantidad de misiones secundarias.\r\nAmbiente inmersivo.\r\nUn clásico atemporal del RPG.', 'productos/videojuegos/rpg/skyrim-anniversary-caratula.webp', 'Xbox', NULL, NULL, 'skyrim-anniversary-xbox'),
-(149, 'Octopath Traveler II', 55.00, 9, 'Juego', 'RPG', 'Vive ocho historias diferentes en un mundo único.\r\nCombate por turnos estratégico.\r\nEstilo visual HD-2D espectacular.\r\nPersonajes con historias profundas.\r\nExploración rica en contenido.\r\nUna experiencia RPG diferente y memorable.', 'productos/videojuegos/rpg/octopath-travelerII-caratula.webp', 'PS5', NULL, NULL, 'octopath-traveler-ii-ps5'),
+(149, 'Octopath Traveler II', 55.00, 8, 'Juego', 'RPG', 'Vive ocho historias diferentes en un mundo único.\r\nCombate por turnos estratégico.\r\nEstilo visual HD-2D espectacular.\r\nPersonajes con historias profundas.\r\nExploración rica en contenido.\r\nUna experiencia RPG diferente y memorable.', 'productos/videojuegos/rpg/octopath-travelerII-caratula.webp', 'PS5', NULL, NULL, 'octopath-traveler-ii-ps5'),
 (150, 'Octopath Traveler II', 55.00, 11, 'Juego', 'RPG', 'Vive ocho historias diferentes en un mundo único.\r\nCombate por turnos estratégico.\r\nEstilo visual HD-2D espectacular.\r\nPersonajes con historias profundas.\r\nExploración rica en contenido.\r\nUna experiencia RPG diferente y memorable.', 'productos/videojuegos/rpg/octopath-travelerII-caratula.webp', 'Xbox', NULL, NULL, 'octopath-traveler-ii-xbox'),
-(151, 'Nintendo Switch OLED - Edición Zelda: Tears of the Kingdom', 359.99, 5, 'Consola', 'Nintendo', 'Diseño exclusivo inspirado en la saga Zelda con pantalla OLED de 7 pulgadas.', 'productos/consolas/nintendo-switch/nintendo-switch-oled-zelda.webp', 'Switch', 1, '64GB', 'nintendo-switch-oled-edicion-zelda-tears-of-the-kingdom'),
+(151, 'Nintendo Switch OLED - Edición Zelda: Tears of the Kingdom', 359.99, 4, 'Consola', 'Nintendo', 'Diseño exclusivo inspirado en la saga Zelda con pantalla OLED de 7 pulgadas.', 'productos/consolas/nintendo-switch/nintendo-switch-oled-zelda.webp', 'Switch', 1, '64GB', 'nintendo-switch-oled-edicion-zelda-tears-of-the-kingdom'),
 (152, 'Nintendo Switch OLED - Modelo Blanco/Azul/Rojo', 349.90, 10, 'Consola', 'Nintendo', 'Consola Nintendo Switch modelo OLED con colores clásicos y almacenamiento de 64GB.', 'productos/consolas/nintendo-switch/nintendo-switch-oled-redbluejoycon.webp', 'Switch', 1, '64GB', 'nintendo-switch-oled-modelo-blanco-azul-rojo'),
 (153, 'Nintendo Switch OLED - Edición Pokémon Escarlata y Púrpura', 659.99, 4, 'Consola', 'Nintendo', 'Edición especial con motivos de Koraidon y Miraidon en el dock y Joy-Cons.', 'productos/consolas/nintendo-switch/nintendo-switch-oled-pokemon-scarlet-and-violet.webp', 'Switch', 1, '64GB', 'nintendo-switch-oled-edicion-pokemon-escarlata-y-purpura'),
 (154, 'Nintendo Switch - Pack Mario Kart 8 Deluxe', 299.00, 8, 'Consola', 'Nintendo', 'Incluye la consola estándar y el código de descarga del juego Mario Kart 8 Deluxe.', 'productos/consolas/nintendo-switch/nintendo-switch-mariokart8.webp', 'Switch', 1, '32GB', 'nintendo-switch-pack-mario-kart-8-deluxe'),
@@ -314,11 +314,11 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (156, 'Nintendo Switch - Edición Nintendo Switch Sports', 295.00, 12, 'Consola', 'Nintendo', 'Consola estándar con el juego Nintendo Switch Sports preinstalado y cinta de pierna.', 'productos/consolas/nintendo-switch/nintendo-swicth-nssports.webp', 'Switch', 1, '32GB', 'nintendo-switch-edicion-nintendo-switch-sports'),
 (157, 'Nintendo Switch - Edición Especial Fortnite', 320.00, 3, 'Consola', 'Nintendo', 'Diseño único de Fortnite con Joy-Cons exclusivos y moneda virtual incluida.', 'productos/consolas/nintendo-switch/nintendo-switch-fortnite.webp', 'Switch', 1, '32GB', 'nintendo-switch-edicion-especial-fortnite'),
 (158, 'Nintendo Switch - Edición Monster Hunter Rise', 330.00, 2, 'Consola', 'Nintendo', 'Consola con arte serigrafiado de Magnamalo y contenido digital del juego.', 'productos/consolas/nintendo-switch/nintendo-switch-moster-hunter-rise.webp', 'Switch', 1, '32GB', 'nintendo-switch-edicion-monster-hunter-rise'),
-(159, 'Nintendo Switch - Edición Splatoon 3', 345.00, 7, 'Consola', 'Nintendo', 'Colores degradados neón y motivos de Splatoon en toda la consola y base.', 'productos/consolas/nintendo-switch/nintendo-switch-splatoon3.webp', 'Switch', 1, '32GB', 'nintendo-switch-edicion-splatoon-3'),
+(159, 'Nintendo Switch - Edición Splatoon 3', 345.00, 5, 'Consola', 'Nintendo', 'Colores degradados neón y motivos de Splatoon en toda la consola y base.', 'productos/consolas/nintendo-switch/nintendo-switch-splatoon3.webp', 'Switch', 1, '32GB', 'nintendo-switch-edicion-splatoon-3'),
 (160, 'Nintendo Switch - Modelo Gris Estándar', 289.00, 15, 'Consola', 'Nintendo', 'Versión clásica de la consola con Joy-Cons en color gris espacial.', 'productos/consolas/nintendo-switch/nintendo-switch-gris.webp', 'Switch', 1, '32GB', 'nintendo-switch-modelo-gris-estandar'),
 (161, 'Nintendo Switch OLED Blanca - Pack Mario Kart 8 Deluxe', 549.99, 8, 'Consola', 'Nintendo', 'Modelo OLED en color blanco con el juego Mario Kart 8 Deluxe incluido.', 'productos/consolas/nintendo-switch/nintendo-switch-oled-blanca-mariokart8.webp', 'Switch', 1, '64GB', 'nintendo-switch-oled-blanca-pack-mario-kart-8-deluxe'),
 (162, 'Nintendo Switch - Pack Super Smash Bros. Ultimate', 599.99, 3, 'Consola', 'Nintendo', 'Consola Nintendo Switch con código de descarga para Super Smash Bros. Ultimate.', 'productos/consolas/nintendo-switch/nintendo-super-smash-bros.webp', 'Switch', 1, '32GB', 'nintendo-switch-pack-super-smash-bros-ultimate'),
-(163, 'PlayStation 5 con Lector de Discos', 549.99, 10, 'Consola', 'Sony', 'Consola PS5 original con unidad de disco Blu-ray Ultra HD.', 'productos/consolas/ps5/ps5-con-disco.webp', 'PS5', 1, '825GB', 'playstation-5-con-lector-de-discos'),
+(163, 'PlayStation 5 con Lector de Discos', 549.99, 9, 'Consola', 'Sony', 'Consola PS5 original con unidad de disco Blu-ray Ultra HD.', 'productos/consolas/ps5/ps5-con-disco.webp', 'PS5', 1, '825GB', 'playstation-5-con-lector-de-discos'),
 (164, 'PlayStation 5 Digital Edition', 449.99, 12, 'Consola', 'Sony', 'Versión totalmente digital de la consola PS5 sin lector de discos.', 'productos/consolas/ps5/ps5-digital.webp', 'PS5', 0, '825GB', 'playstation-5-digital-edition'),
 (165, 'PlayStation 5 Slim con Lector de Discos', 549.99, 15, 'Consola', 'Sony', 'Nuevo diseño Slim más ligero y compacto con lector de discos extraíble.', 'productos/consolas/ps5/ps5-slim-con-disco.webp', 'PS5', 1, '825GB', 'playstation-5-slim-con-lector-de-discos'),
 (166, 'PlayStation 5 Slim Digital Edition', 449.99, 10, 'Consola', 'Sony', 'Diseño Slim ultra compacto sin lector de discos.', 'productos/consolas/ps5/ps5-slim-digital.webp', 'PS5', 0, '1TB', 'playstation-5-slim-digital-edition'),
@@ -329,16 +329,16 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (171, 'PlayStation 5 Pro', 799.99, 3, 'Consola', 'Sony', 'La consola más potente de Sony con IA avanzada y trazado de rayos mejorado.', 'productos/consolas/ps5/ps5-pro.webp', 'PS5', 1, '825GB', 'playstation-5-pro'),
 (172, 'PlayStation 5 Slim - Pack NBA 2K26', 599.90, 5, 'Consola', 'Sony', 'Incluye consola PS5 Slim con lector de discos y el juego NBA 2K26.', 'productos/consolas/ps5/ps5-nba2k26-con-disco.webp', 'PS5', 1, '825GB', 'playstation-5-slim-pack-nba-2k26'),
 (173, 'PlayStation 5 Slim Digital - Pack FC 26', 499.00, 7, 'Consola', 'Sony', 'Consola digital con el simulador de fútbol EA Sports FC 26 incluido.', 'productos/consolas/ps5/ps5-slim-digital-fc26.webp', 'PS5', 0, '825GB', 'playstation-5-slim-digital-pack-fc-26'),
-(174, 'PlayStation 5 Slim Digital - Pack Fortnite', 449.99, 10, 'Consola', 'Sony', 'Edición digital con contenido exclusivo para Fortnite incluido en la caja.', 'productos/consolas/ps5/ps5-slim-digital-fornite.webp', 'PS5', 0, '825GB', 'playstation-5-slim-digital-pack-fortnite'),
-(175, 'Xbox Series X - 1TB Standard', 499.00, 8, 'Consola', 'Microsoft', 'La Xbox más rápida y potente de la historia con lector de discos.', 'productos/consolas/xbox-series-sx/xbox-series-x-1tb.webp', 'Xbox', 1, '1TB', 'xbox-series-x-1tb-standard'),
+(174, 'PlayStation 5 Slim Digital - Pack Fortnite', 449.99, 9, 'Consola', 'Sony', 'Edición digital con contenido exclusivo para Fortnite incluido en la caja.', 'productos/consolas/ps5/ps5-slim-digital-fornite.webp', 'PS5', 0, '825GB', 'playstation-5-slim-digital-pack-fortnite'),
+(175, 'Xbox Series X - 1TB Standard', 499.00, 7, 'Consola', 'Microsoft', 'La Xbox más rápida y potente de la historia con lector de discos.', 'productos/consolas/xbox-series-sx/xbox-series-x-1tb.webp', 'Xbox', 1, '1TB', 'xbox-series-x-1tb-standard'),
 (176, 'Xbox Series X - 2TB Galaxy Black Special Edition', 599.99, 2, 'Consola', 'Microsoft', 'Edición especial con 2TB de almacenamiento y diseño Galaxy Black.', 'productos/consolas/xbox-series-sx/xbox-series-x-2tb.webp', 'Xbox', 1, '2TB', 'xbox-series-x-2tb-galaxy-black-special-edition'),
 (177, 'Xbox Series S - 1TB Carbon Black', 349.00, 6, 'Consola', 'Microsoft', 'Rendimiento de nueva generación en color negro con 1TB de SSD.', 'productos/consolas/xbox-series-sx/xbox-series-s-negra.webp', 'Xbox', 0, '512GB', 'xbox-series-s-1tb-carbon-black'),
-(178, 'Xbox Series S - 512GB Standard', 289.00, 12, 'Consola', 'Microsoft', 'La consola Xbox más pequeña y elegante de la historia, totalmente digital.', 'productos/consolas/xbox-series-sx/xbox-one-series-s.webp', 'Xbox', 0, '512GB', 'xbox-series-s-512gb-standard'),
+(178, 'Xbox Series S - 512GB Standard', 289.00, 11, 'Consola', 'Microsoft', 'La consola Xbox más pequeña y elegante de la historia, totalmente digital.', 'productos/consolas/xbox-series-sx/xbox-one-series-s.webp', 'Xbox', 0, '512GB', 'xbox-series-s-512gb-standard'),
 (179, 'Xbox Series S - Pack Starter con 2 Mandos', 319.99, 4, 'Consola', 'Microsoft', 'Incluye consola Xbox Series S de 512GB y un segundo mando extra.', 'productos/consolas/xbox-series-sx/xbox-one-series-s-dos-mandos.webp', 'Xbox', 0, '512GB', 'xbox-series-s-pack-starter-con-2-mandos'),
 (180, 'Xbox Series S - Pack Gilded Hunter (Fortnite/Rocket League/Fall Guys)', 299.00, 5, 'Consola', 'Microsoft', 'Incluye contenido extra para Fortnite, Rocket League y Fall Guys.', 'productos/consolas/xbox-series-sx/xbox-one-series-s-fortnite-rl-fg-512gb.webp', 'Xbox', 0, '512GB', 'xbox-series-s-pack-gilded-hunter-fortnite-rocket-league-fall-guys'),
 (181, 'Xbox Series X - Edición Especial Halo Infinite', 549.99, 3, 'Consola', 'Microsoft', 'Edición limitada 20 aniversario con diseño inspirado en el universo de Halo.', 'productos/consolas/xbox-series-sx/xbox-series-x-halo-infinte.webp', 'Xbox', 1, '1TB', 'xbox-series-x-edicion-especial-halo-infinite'),
-(182, 'Xbox Series X - Pack Diablo IV 1TB', 529.00, 5, 'Consola', 'Microsoft', 'Incluye consola Xbox Series X y el juego Diablo IV para la mejor experiencia RPG.', 'productos/consolas/xbox-series-sx/xbox-series-x-diablo-1tb.webp', 'Xbox', 1, '1TB', 'xbox-series-x-pack-diablo-iv-1tb'),
-(183, 'Xbox Series X - 1TB Digital Edition Blanca', 449.99, 7, 'Consola', 'Microsoft', 'Versión totalmente digital de la Series X en color Robot White con 1TB SSD.', 'productos/consolas/xbox-series-sx/xbox-series-x-blanco-1tb-digital.webp', 'Xbox', 1, '1TB', 'xbox-series-x-1tb-digital-edition-blanca'),
+(182, 'Xbox Series X - Pack Diablo IV 1TB', 529.00, 4, 'Consola', 'Microsoft', 'Incluye consola Xbox Series X y el juego Diablo IV para la mejor experiencia RPG.', 'productos/consolas/xbox-series-sx/xbox-series-x-diablo-1tb.webp', 'Xbox', 1, '1TB', 'xbox-series-x-pack-diablo-iv-1tb'),
+(183, 'Xbox Series X - 1TB Digital Edition Blanca', 449.99, 6, 'Consola', 'Microsoft', 'Versión totalmente digital de la Series X en color Robot White con 1TB SSD.', 'productos/consolas/xbox-series-sx/xbox-series-x-blanco-1tb-digital.webp', 'Xbox', 1, '1TB', 'xbox-series-x-1tb-digital-edition-blanca'),
 (184, 'Xbox Series S - Pack Gilded Hunter (Fortnite & Rocket League)', 299.00, 10, 'Consola', 'Microsoft', 'Incluye consola Series S y packs de cosméticos para Fortnite y Rocket League.', 'productos/consolas/xbox-series-sx/xbox-series-s-fortnite-rocketleague.webp', 'Xbox', 0, '512GB', 'xbox-series-s-pack-gilded-hunter-fortnite-y-rocket-league'),
 (185, 'Xbox One S - Pack Forza Horizon 4', 249.00, 2, 'Consola', 'Microsoft', 'Consola Xbox One S de 1TB con el juego Forza Horizon 4 incluido.', 'productos/consolas/xbox-series-sx/xbox-one-s-forza-horizon4.webp', 'Xbox', 1, '1TB', 'xbox-one-s-pack-forza-horizon-4'),
 (186, 'Xbox One S - Starter Pack', 229.99, 4, 'Consola', 'Microsoft', 'Pack de inicio que incluye la consola Xbox One S y 3 meses de Game Pass.', 'productos/consolas/xbox-series-sx/xbox-one-s-starterpack.webp', 'Xbox', 1, '1TB', 'xbox-one-s-starter-pack'),
@@ -351,7 +351,7 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (193, 'Ventilador de Refrigeración Externo (Blanco)', 24.99, 20, 'Accesorio', 'Ventiladores', 'Ventilador externo para PS5 que mejora la refrigeración.\nReduce sobrecalentamiento.\nFácil instalación.\nMejora rendimiento.\nAlarga vida útil.', 'productos/accesorios/ps5/cooling-fan-blanco-ps5.webp', 'PS5', NULL, NULL, 'ventilador-de-refrigeracion-externo-blanco'),
 (194, 'Cable de Carga USB-C Reforzado', 14.99, 50, 'Accesorio', 'Cables', 'Cable USB-C reforzado para carga rápida.\nAlta velocidad de transferencia.\nMaterial resistente.\nCompatible con varios dispositivos.\nIdeal como repuesto.', 'productos/accesorios/ps5/cable-usb-cargador-ps5.webp', 'PS5', NULL, NULL, 'cable-de-carga-usb-c-reforzado'),
 (195, 'Batería Portátil para DualSense', 19.99, 15, 'Accesorio', 'Cargadores', 'Batería portátil para DualSense.\nAmplía sesiones de juego.\nFácil acople.\nCompacta y ligera.\nPerfecta para largas partidas.', 'productos/accesorios/ps5/bateria-portatil-dualsenseps5.webp', 'PS5', NULL, NULL, 'bateria-portatil-para-dualsense'),
-(196, 'Kit de Personalización - Demon Slayer Edition', 34.99, 4, 'Accesorio', 'Fundas y estuches', 'Kit Demon Slayer para personalizar mando.\nDiseño inspirado en el anime.\nFácil instalación.\nMaterial resistente.\nIdeal para fans.', 'productos/accesorios/ps5/custom-kit-demon-slayer-dualsense5.webp', 'PS5', NULL, NULL, 'kit-de-personalizacion-demon-slayer-edition'),
+(196, 'Kit de Personalización - Demon Slayer Edition', 34.99, 3, 'Accesorio', 'Fundas y estuches', 'Kit Demon Slayer para personalizar mando.\nDiseño inspirado en el anime.\nFácil instalación.\nMaterial resistente.\nIdeal para fans.', 'productos/accesorios/ps5/custom-kit-demon-slayer-dualsense5.webp', 'PS5', NULL, NULL, 'kit-de-personalizacion-demon-slayer-edition'),
 (197, 'Control DualSense Edge - Pro Controller', 239.99, 5, 'Accesorio', 'Dualsense', 'DualSense Edge es un mando profesional.\nBotones traseros configurables.\nPalancas intercambiables.\nMáxima precisión.\nPara jugadores exigentes.', 'productos/accesorios/ps5/dualsense-edge-ps5.webp', 'PS5', NULL, NULL, 'control-dualsense-edge-pro-controller'),
 (198, 'Control DualSense - Edición Especial Ghost of Yotei', 84.99, 4, 'Accesorio', 'Dualsense', 'Edición Ghost of Yotei con diseño artístico.\nTecnología háptica avanzada.\nGran ergonomía.\nAlta calidad de construcción.\nPerfecto para coleccionistas.', 'productos/accesorios/ps5/dualsense-ghost-of-yotei-ps5.webp', 'PS5', NULL, NULL, 'control-dualsense-edicion-especial-ghost-of-yotei'),
 (199, 'Control DualSense - Edición Spider-Man 2', 79.99, 3, 'Accesorio', 'Dualsense', 'DualSense Spider-Man 2 con diseño exclusivo.\nInspirado en Venom.\nFunciones avanzadas.\nGran comodidad.\nIdeal para fans de Marvel.', 'productos/accesorios/ps5/dualsense-spiderman2-ps5.webp', 'PS5', NULL, NULL, 'control-dualsense-edicion-spider-man-2'),
@@ -367,10 +367,10 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (209, 'Cable HDMI 2.1 de Alta Velocidad (Hori)', 29.99, 20, 'Accesorio', 'Cables', 'Cable HDMI 2.1 compatible con 4K y 8K.\nAlta velocidad.\nIdeal para PS5.\nSeñal estable.\nPerfecto para gaming.', 'productos/accesorios/ps5/ps5-hdmi21hori-ps5.webp', 'PS5', NULL, NULL, 'cable-hdmi-2-1-de-alta-velocidad-hori'),
 (210, 'Memoria SSD NVMe M.2 4TB con Disipador', 399.99, 5, 'Accesorio', 'Memorias', 'SSD NVMe 4TB para ampliar almacenamiento.\nAlta velocidad.\nCompatible con PS5.\nGran capacidad.\nIdeal para muchos juegos.', 'productos/accesorios/ps5/memoria-ssd-4tb-ps5.webp', 'PS5', NULL, '4TB', 'memoria-ssd-nvme-m-2-4tb-con-disipador'),
 (211, 'Control Remoto Multimedia PS5', 29.99, 12, 'Accesorio', 'Dualsense', 'Control remoto multimedia PS5.\nNavegación sencilla.\nIdeal para streaming.\nDiseño compacto.\nMuy práctico.', 'productos/accesorios/ps5/media-remote-ps5.webp', 'PS5', NULL, NULL, 'control-remoto-multimedia-ps5'),
-(212, 'Cámara HD PlayStation 5', 59.99, 8, 'Accesorio', 'Camaras', 'Cámara HD PS5 con doble lente.\nResolución 1080p.\nIdeal para streaming.\nFácil configuración.\nBuena calidad de imagen.', 'productos/accesorios/ps5/hd-camera-ps5.webp', 'PS5', 1, '825GB', 'camara-hd-playstation-5'),
+(212, 'Cámara HD PlayStation 5', 59.99, 7, 'Accesorio', 'Camaras', 'Cámara HD PS5 con doble lente.\nResolución 1080p.\nIdeal para streaming.\nFácil configuración.\nBuena calidad de imagen.', 'productos/accesorios/ps5/hd-camera-ps5.webp', 'PS5', 1, '825GB', 'camara-hd-playstation-5'),
 (213, 'Funda Rígida de Transporte para DualSense', 19.99, 25, 'Accesorio', 'Fundas y estuches', 'Funda rígida para DualSense.\nProtección segura.\nMaterial resistente.\nFácil transporte.\nIdeal para viajes.', 'productos/accesorios/ps5/funda-rigida-dualsense-ps5.webp', 'PS5', NULL, NULL, 'funda-rigida-de-transporte-para-dualsense'),
 (214, 'Estuche de Transporte Deluxe para PS5', 64.99, 6, 'Accesorio', 'Fundas y estuches', 'Estuche de transporte PS5.\nGran capacidad.\nProtección acolchada.\nEspacio para accesorios.\nIdeal para viajar.', 'productos/accesorios/ps5/estuche-de-transporte-ps5.webp', 'PS5', NULL, NULL, 'estuche-de-transporte-deluxe-para-ps5'),
-(215, 'Soporte Vertical para PS5 Slim / Pro', 29.99, 10, 'Accesorio', 'Soportes', 'Soporte vertical PS5.\nEstabilidad garantizada.\nDiseño elegante.\nFácil instalación.\nAhorra espacio.', 'productos/accesorios/ps5/estante-vertical-ps5.webp', 'PS5', NULL, NULL, 'soporte-vertical-para-ps5-slim-pro'),
+(215, 'Soporte Vertical para PS5 Slim / Pro', 29.99, 9, 'Accesorio', 'Soportes', 'Soporte vertical PS5.\nEstabilidad garantizada.\nDiseño elegante.\nFácil instalación.\nAhorra espacio.', 'productos/accesorios/ps5/estante-vertical-ps5.webp', 'PS5', NULL, NULL, 'soporte-vertical-para-ps5-slim-pro'),
 (216, 'Mando DualSense Edge - White Edition', 239.99, 4, 'Accesorio', 'Dualsense', 'DualSense Edge White Edition profesional.\nAltamente personalizable.\nGran precisión.\nMaterial premium.\nPara gamers avanzados.', 'productos/accesorios/ps5/mando-dualsense-edge-blanco.webp', 'PS5', NULL, NULL, 'mando-dualsense-edge-white-edition'),
 (217, 'Control Inalámbrico Xbox - Carbon Black', 59.99, 15, 'Accesorio', 'Mandos', 'Mando Xbox Carbon Black con diseño ergonómico.\nAgarre texturizado.\nGran precisión.\nCompatible con PC.\nIdeal para uso diario.', 'productos/accesorios/xbox-series-sx/mando-carbon-black-xbox.webp', 'Xbox', NULL, NULL, 'control-inalambrico-xbox-carbon-black'),
 (218, 'Control Inalámbrico Xbox - Shock Blue', 64.99, 10, 'Accesorio', 'Mandos', 'Mando Xbox Shock Blue vibrante.\nAlta precisión.\nBuen agarre.\nConectividad Bluetooth.\nDiseño llamativo.', 'productos/accesorios/xbox-series-sx/mando-azul-xbox.webp', 'Xbox', NULL, NULL, 'control-inalambrico-xbox-shock-blue'),
@@ -432,8 +432,8 @@ INSERT INTO `productos` (`id_producto`, `nombre`, `precio`, `stock`, `tipo`, `ca
 (273, 'Tarjeta MicroSDXC Pokémon Edition - 256GB (Pokéball)', 39.99, 12, 'Accesorio', 'Memorias', 'MicroSD Pokeball 256GB.\nDiseño único.\nBuena capacidad.\nRápida.\nIdeal Switch.', 'productos/accesorios/nintendo-switch/microsd-pokemon-256gb-nintendo-switch.webp', 'Switch', NULL, '256GB', 'tarjeta-microsdxc-pokemon-edition-256gb-pokeball'),
 (274, 'Tarjeta MicroSDXC Samsung EVO Select - 256GB', 34.99, 20, 'Accesorio', 'Memorias', 'MicroSD Samsung 256GB.\nAlta fiabilidad.\nBuena velocidad.\nCompatible.\nUso diario.', 'productos/accesorios/nintendo-switch/micro-sd256gb-samsung-nintendo-switch.webp', 'Switch', NULL, '256GB', 'tarjeta-microsdxc-samsung-evo-select-256gb'),
 (275, 'Protector de Pantalla de Cristal Templado (Anti-Luz Azul)', 12.99, 48, 'Accesorio', 'Fundas y protectores', 'Protector pantalla templado.\nAlta resistencia.\nFiltro luz azul.\nProtege pantalla.\nFácil instalación.', 'productos/accesorios/nintendo-switch/protector-pantalla-templado-antirayos-azules-nintendo-switch.webp', 'Switch', NULL, NULL, 'protector-de-pantalla-de-cristal-templado-anti-luz-azul'),
-(282, 'FIFA 26', 69.99, 6, 'Juego', 'Deportes', 'EA SPORTS FC 26, lanzado el 26 de septiembre de 2025, es el simulador de fútbol definitivo que trae jugabilidad renovada con IA mejorada, regates ágiles y animaciones realistas basadas en la comunidad.', 'productos/videojuegos/deporte/ea-sports-fc-26-caratula.webp', 'PS5', NULL, NULL, 'fifa-26-ps5'),
-(294, 'Resident Evil 7', 29.99, 13, 'Juego', 'Terror', 'Biohazard marca un reinicio terrorífico en la aclamada saga de supervivencia RE. En primera persona, los jugadores encarnan a Ethan Winters, quien busca a su esposa desaparecida en una plantación abandonada en Luisiana, dominada por la familia Baker, unos lugareños infectados y caníbales. Este título se centra en el horror psicológico, la exploración, los acertijos y la gestión estricta de recursos.', 'productos/videojuegos/terror/resident-evil-7.webp', 'PS5', 0, '', 'resident-evil-7-ps5');
+(282, 'FIFA 26', 69.99, 5, 'Juego', 'Deportes', 'EA SPORTS FC 26, lanzado el 26 de septiembre de 2025, es el simulador de fútbol definitivo que trae jugabilidad renovada con IA mejorada, regates ágiles y animaciones realistas basadas en la comunidad.', 'productos/videojuegos/deporte/ea-sports-fc-26-caratula.webp', 'PS5', NULL, NULL, 'fifa-26-ps5'),
+(294, 'Resident Evil 7', 29.99, 12, 'Juego', 'Terror', 'Biohazard marca un reinicio terrorífico en la aclamada saga de supervivencia RE. En primera persona, los jugadores encarnan a Ethan Winters, quien busca a su esposa desaparecida en una plantación abandonada en Luisiana, dominada por la familia Baker, unos lugareños infectados y caníbales. Este título se centra en el horror psicológico, la exploración, los acertijos y la gestión estricta de recursos.', 'productos/videojuegos/terror/resident-evil-7.webp', 'PS5', 0, '', 'resident-evil-7-ps5');
 
 -- --------------------------------------------------------
 
@@ -455,9 +455,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `email`, `contrasena`, `nombre`, `apellidos`, `rol`) VALUES
-(16, 'daniel123@ejemplo.com', '$2y$10$qxgSN8LJNAGUYJu0YcxAZeWhi1m.W9H5ZaqpGDU8/KhqwCiImloGm', 'Daniel', 'Alvarez', 'user'),
-(19, 'jorge@ejemplo.com', '$2y$10$R.xAvyW35/FPPRwgQSkqVegZ9stlVmeV.r0J9rh/GJzMIOBm.sQEa', 'Jorge', 'Campos', 'user'),
-(45, 'tienda@ejemplo.com', '$2y$10$i9ZAcUJpD.VzFaXj1z9L7.QWlTzz9BMY1aXV/DKN1cphqv2kYVAvO', 'Victor', 'Cardenas Portugal', 'admin');
+(45, 'tienda@ejemplo.com', '$2y$10$i9ZAcUJpD.VzFaXj1z9L7.QWlTzz9BMY1aXV/DKN1cphqv2kYVAvO', 'Victor', 'Cardenas Portugal', 'admin'),
+(53, 'admin@ejemplo.com', '$2y$10$KjzSftg6s1lQ.9TUb06P9ej7/0Ovzm3h7WCID2v8SRC88vUf9ZspW', 'admin', 'adminsito', 'admin'),
+(54, 'pepe@ejemplo.com', '$2y$10$qMUSDS5J3pGtmnDAF/MU9.yK4UVveD2iBQEG57Fmtaw4pbcCHkszi', 'Pepe', 'Lima Ferreira', 'user'),
+(55, 'javier@ejemplo.com', '$2y$10$1620BG.71wng5M5whqrZVOg2f0vBm93PI9snmvv.H7JumJqqk4iwG', 'Javier', 'Liras Lara', 'user'),
+(56, 'cristiano@ejemplo.com', '$2y$10$TnBjtvBIdLYzKb913uhyvORq4f8DbcBrIAMnQC/6msu6CLziJzVMK', 'Cristiano', 'Dos Santos Aveiro', 'user');
 
 --
 -- Índices para tablas volcadas
@@ -531,37 +533,37 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `cupones`
 --
 ALTER TABLE `cupones`
-  MODIFY `id_cupon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_cupon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `cupones_usuarios`
 --
 ALTER TABLE `cupones_usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `detalles_pedidos`
 --
 ALTER TABLE `detalles_pedidos`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=302;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Restricciones para tablas volcadas
